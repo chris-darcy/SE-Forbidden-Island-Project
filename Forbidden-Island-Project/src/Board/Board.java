@@ -23,9 +23,11 @@ public class Board {
 	}
 	
 	public void show() {
-		for (Tile[] tile : board){
+		for (Tile[] row : board){
+			for(Tile col : row) {
 			//System.out.println(tile.toString());
-			System.out.println("tile" + tile.toString());
+				System.out.println("tile" + col.toString());
+			}
 		}	
 	}
 }
