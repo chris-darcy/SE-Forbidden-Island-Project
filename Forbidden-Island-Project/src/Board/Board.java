@@ -45,7 +45,7 @@ public class Board {
 		    		tilePos = idx.next();
 				    
 				    if(isCorner(tilePos)) {
-				    	Tile tile = new Tile("Corner",tilePos,TileStatus.SUNK,TileType.NORMAL);
+				    	Tile tile = new Tile("Corner",tilePos,TileStatus.SUNK,TileType.EMPTY);
 				    	board.add(tile);
 				    }
 				    else {	
