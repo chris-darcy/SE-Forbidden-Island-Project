@@ -15,7 +15,7 @@ public class TreasureCard extends Card {
 	
 	//------------------------------ METHODS --------------------------------------//
 		
-	// Add treasure card to had of participant
+	// Add treasure card to hand of participant
 	public static void addTreasureCard() {
 		//
 		
