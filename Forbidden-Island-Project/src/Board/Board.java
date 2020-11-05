@@ -1,4 +1,4 @@
-package Board;
+ package Board;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -97,27 +97,26 @@ public class Board {
 			if(row != tile.getLoc()/6) {
 				row = tile.getLoc()/6;
 			}
-			if(isCorner(tile.getLoc())) {
-				layout[row] = layout[row] + "   ";
-			}
-			else {
-				switch(tile.getTileType()) {
-	    		case WIND:
-	    			layout[row] = layout[row] + "[W]";
-	    			break;
-	    		case OCEAN:
-	    			layout[row] = layout[row] + "[O]";
-	    			break;
-	    		case FIRE:
-	    			layout[row] = layout[row] + "[F]";
-	    			break;
-	    		case EARTH:
-	    			layout[row] = layout[row] + "[E]";
-	    			break;
-	    		case NORMAL:
-	    			layout[row] = layout[row] + "[ ]";
-	    			break;
-				}
+			
+			switch(tile.getTileType()) {
+    		case WIND:
+    			layout[row] = layout[row] + "[W]";
+    			break;
+    		case OCEAN:
+    			layout[row] = layout[row] + "[O]";
+    			break;
+    		case FIRE:
+    			layout[row] = layout[row] + "[F]";
+    			break;
+    		case EARTH:
+    			layout[row] = layout[row] + "[E]";
+    			break;
+    		case NORMAL:
+    			layout[row] = layout[row] + "[ ]";
+    			break;
+    		case EMPTY:
+    			layout[row] = layout[row] + "   ";
+    			break;
 			}
 		}
 		for (String line : layout) {
