@@ -74,6 +74,7 @@ public class Participant {
 		
 		if(Math.abs(currentLocation/6 - newLocation/6) == 1 || Math.abs(currentLocation%6 - newLocation%6) == 1 ) { // if the user has chosen a tile that is one move away
 			participant.setLocation(newLocation);
+			participant.actionUsed();
 		}
 		else {
 			System.out.println("You chose a tile further than one action away, please choose a closer tile!");

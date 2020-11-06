@@ -4,7 +4,7 @@ import Board.Tile;
 import Board.TileStatus;
 import Board.Tiletype;
 
-public class FloodCard extends Cards {
+public class FloodCard extends Card {
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
