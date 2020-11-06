@@ -5,5 +5,6 @@ public enum TileType {
 	EARTH,
 	WIND,
 	FIRE,
-	OCEAN
+	OCEAN, 
+	EMPTY
 }

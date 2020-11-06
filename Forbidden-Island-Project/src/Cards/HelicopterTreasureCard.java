@@ -1,5 +1,7 @@
 package Cards;
+
 import Board.*;
+import Participant.Participant;
 
 public class HelicopterTreasureCard extends TreasureCard{
 	
@@ -7,7 +9,7 @@ public class HelicopterTreasureCard extends TreasureCard{
 		super(name);
 	}
 	// one or more users can be moved, this will be called for each user to be moved
-		public static void helicopterLift(Participant toBeMoved, int[] location) {  //!!! Participant has to be created !!!
+		public static void helicopterLift(Participant toBeMoved, int location) {  //!!! Participant has to be created !!!
 			toBeMoved.setLocation(location); // relocated the chosen user 
 		} 
 }

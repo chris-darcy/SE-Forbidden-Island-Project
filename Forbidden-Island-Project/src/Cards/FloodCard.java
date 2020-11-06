@@ -1,8 +1,6 @@
 package Cards;
 
-import Board.Tile;
-import Board.TileStatus;
-import Board.Tiletype;
+import Board.*;
 
 public class FloodCard extends Card {
 	
@@ -18,10 +16,10 @@ public class FloodCard extends Card {
 	protected void floodCardChosen(Tile tile) {
 		switch(tile.getTileStatus()) {
 		case UNFLOODED:
-			tile.setTileStatus(FLOODED); // !!! unsure why there is an error here !!!
+			tile.setTileStatus(TileStatus.FLOODED); // !!! unsure why there is an error here !!!
 		case FLOODED:
-			tile.setTileStatus(SUNK); // !!! unsure why there is an error here !!!
-			if(tile.getName() == "FOOLSLANDING" || ) { // if fool's landing is sunk OR any two treasure tiles are sunk - game over!
+			tile.setTileStatus(TileStatus.SUNK); // !!! unsure why there is an error here !!!
+			if(tile.getName() == "FOOLSLANDING") { // !!! if fool's landing is sunk OR any two treasure tiles are sunk - game over!
 			// !!! game over !!!
 				break;
 			}
