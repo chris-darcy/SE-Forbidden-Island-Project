@@ -61,7 +61,7 @@ public class Participant {
 		return location;
 	}
 	
-	protected void setLocation(int location) {
+	public void setLocation(int location) {
 		this.location = location;
 	}
 	

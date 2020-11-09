@@ -30,6 +30,11 @@ public class Tile {
 		return location;
 	}
 	
+	// get the name of the tile
+		public String getName() {
+			return name;
+		}
+		
 	// set location of tile
 	public void setLocation(int location) {
 		this.location = location;
