@@ -2,9 +2,8 @@ package Participant;
 
 import java.util.Scanner;
 
-public class Participant {
+public abstract class Participant {
 	protected String name;
-	protected Character character;
 	protected Hand hand;
 	protected int actionsRemaining;
 	protected int numberOfActions = 3;
@@ -12,9 +11,8 @@ public class Participant {
 	protected int currentLocation;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
-	protected Participant(String name, Character character, Hand hand, int location, int actionsRemaining) {
+	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
 		this.name = name;
-		this.character = character;
 		this.hand = hand;
 		this.location = location;
 		this.actionsRemaining = actionsRemaining;
@@ -27,14 +25,6 @@ public class Participant {
 	
 	protected void setName(String name) {
 		this.name = name;
-	}
-	
-	protected Character getCharacter() {
-		return character;
-	}
-	
-	protected void setCharacter(Character character) {
-		this.character = character;
 	}
 	
 	protected Hand getHand() {
@@ -64,7 +54,7 @@ public class Participant {
 	public void setLocation(int location) {
 		this.location = location;
 	}
-	
+	 // !!! location numbers/ operation may change
 	protected void moveParticipant(Participant participant, int increment) { // participant has ability to move once for one action
 		System.out.println("You are currently on tile " + participant.location + "\n" 
 	+ "You have " + actionsRemaining + "actions remaining. \n Choose a tile to move to!");
@@ -72,8 +62,9 @@ public class Participant {
 		Scanner findNewLocation = new Scanner(System.in);
 		int newLocation = findNewLocation.nextInt();
 		
-		if(Math.abs(currentLocation/6 - newLocation/6) == 1 || Math.abs(currentLocation%6 - newLocation%6) == 1 ) { // if the user has chosen a tile that is one move away
+		if(Math.abs(currentLocation/6 - newLocation/6) == 1 || Math.abs(currentLocation%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
 			participant.setLocation(newLocation);
+			participant.actionUsed();
 		}
 		else {
 			System.out.println("You chose a tile further than one action away, please choose a closer tile!");

@@ -30,11 +30,12 @@ public class Tile {
 		return location;
 	}
 	
-	// get the name of the tile
+	// get the location of the tile
 		public String getName() {
 			return name;
 		}
-		
+	
+
 	// set location of tile
 	public void setLocation(int location) {
 		this.location = location;
@@ -48,5 +49,15 @@ public class Tile {
 	// set status of Tile
 	public void setTileStatus(TileStatus tileStatus) {
 		this.tileStatus = tileStatus;
+	}
+	
+	// get the type of the tile
+	public TileType getTileType() {
+		return tileType;
+	}
+			
+	// set type of Tile
+	public void setTileType(TileType tileType) {
+		this.tileType = tileType;
 	}
 }

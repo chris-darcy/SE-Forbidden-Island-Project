@@ -1,6 +1,7 @@
 package Cards;
+
 import Board.*;
-import Participant.*;
+import Participant.Participant;
 
 public class HelicopterTreasureCard extends TreasureCard{
 	
