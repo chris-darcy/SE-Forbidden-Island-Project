@@ -17,7 +17,7 @@ public class SandbagTreasureCard extends TreasureCard {
 				break;
 				
 			case FLOODED:
-				tile.setTileStatus(TileStatus.UNFLOODED); // !!! enum not working here !!!
+				tile.setTileStatus(TileStatus.UNFLOODED);
 				break;
 			
 			case SUNK:

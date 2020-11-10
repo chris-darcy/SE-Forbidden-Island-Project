@@ -7,7 +7,7 @@ import Cards.*;
 
 public class Hand {
 	protected List<Card> hand = new ArrayList<Card>(); 
-	protected int maxCards;
+	public int maxCards;
 	protected Card chosenCard;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
@@ -20,9 +20,17 @@ public class Hand {
 	protected String printHand() {
 		return hand.toString();
 	}
-
+	
+	protected int numberOfCards() {
+		return hand.size();
+	}
+	
 	protected void removeCardFromHand(Card card) {
 		hand.remove(card);
+	}
+	
+	protected void addCardToHand(Card card) {
+		hand.add(card);
 	}
 	
 	protected void tooManyCards() {
