@@ -13,6 +13,3 @@ public abstract class Card {
 		return this.name;
 	}
 }
-
-// innocuous comment
-//another innocuous comment... sneaky
