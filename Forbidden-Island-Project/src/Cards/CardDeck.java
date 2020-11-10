@@ -25,7 +25,7 @@ public class CardDeck {
 			nums.add(i);
 		}
 		
-		Collections.shuffle(nums);
+		Collections.shuffle(nums); // shuffle cards
 		Iterator<Integer> idx = nums.iterator();
 		
 		BufferedReader scan;
