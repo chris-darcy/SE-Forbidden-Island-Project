@@ -187,6 +187,10 @@ public class Board {
 		return specialSets;
 	}
 	
+	public ArrayList<Tile> getBoard() {
+		return board;
+	}
+	
 	// needed to sort the board by tile location 0-->35
 	class Sortbyloc implements Comparator<Tile> 
 	{ 
