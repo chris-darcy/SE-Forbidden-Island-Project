@@ -16,14 +16,21 @@ public class Board {
 
 	private int board_size = 36;
 	private ArrayList<Tile> board =  new ArrayList<Tile>(); 
+	private ArrayList<Tile> fireSet =  new ArrayList<Tile>(); 
+	private ArrayList<Tile> oceanSet =  new ArrayList<Tile>(); 
+	private ArrayList<Tile> earthSet =  new ArrayList<Tile>(); 
+	private ArrayList<Tile> windSet =  new ArrayList<Tile>();
+	private ArrayList<ArrayList<Tile>> specialSets =  new ArrayList<ArrayList<Tile>>();
+	
 	private Integer[] corners = new Integer[]{0,1,4,5,6,11,24,29,30,31,34,35};
 
 	
 	public Board() {
 		initialise();
+		createSet();
 	}
 	
-	public void initialise() {
+	private void initialise() {
 
 	
 		int tilePos;
@@ -75,6 +82,7 @@ public class Board {
 				    	}
 				    	Tile tile = new Tile(attributes[0],tilePos,TileStatus.UNFLOODED,tiletype);
 				    	board.add(tile);
+				    	addToSpecialSet(tile,tiletype);
 				    }
 				    
 				    // Order board by location for easy reading
@@ -131,6 +139,52 @@ public class Board {
 	// tiles not part of actual play board
 	public boolean isCorner(int tilePos) {
 		return Arrays.asList(corners).contains(tilePos);
+	}
+	
+	public void addToSpecialSet(Tile treasureTile, TileType tiletype) {
+		switch(tiletype) {
+		case WIND:
+			windSet.add(treasureTile);
+			break;
+		case OCEAN:
+			oceanSet.add(treasureTile);
+			break;
+		case FIRE:
+			fireSet.add(treasureTile);
+			break;
+		case EARTH:
+			earthSet.add(treasureTile);
+			break;
+		default:
+			break;
+		}
+	}
+	
+	private void createSet() {
+		specialSets.add(windSet);
+		specialSets.add(oceanSet);
+		specialSets.add(fireSet);
+		specialSets.add(earthSet);
+	}
+	
+	public ArrayList <Tile> getWindSet(){
+		return windSet;
+	}
+	
+	public ArrayList <Tile> getOceanSet(){
+		return oceanSet;
+	}
+	
+	public ArrayList <Tile> getFireSet(){
+		return fireSet;
+	}
+	
+	public ArrayList <Tile> getEarthSet(){
+		return earthSet;
+	}
+	
+	public ArrayList<ArrayList <Tile>> getSpecialSets(){
+		return specialSets;
 	}
 	
 	// needed to sort the board by tile location 0-->35
