@@ -1,11 +1,12 @@
 package Participant;
 
 import java.util.Scanner;
+
+import Board.Tile;
 import Cards.*;
 
 public abstract class Participant {
 	protected String name;
-	protected String occupation;
 	protected Hand hand;
 	protected int actionsRemaining;
 	protected int numberOfActions = 3;
@@ -16,9 +17,8 @@ public abstract class Participant {
 	protected int maxCards = 5;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
-	protected Participant(String name, String occupation, Hand hand, int location, int actionsRemaining) {
+	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
 		this.name = name;
-		this.occupation = occupation;
 		this.hand = hand;
 		this.location = location;
 		this.actionsRemaining = actionsRemaining;
@@ -31,14 +31,6 @@ public abstract class Participant {
 	
 	protected void setName(String name) {
 		this.name = name;
-	}
-	
-	protected String getOccupation() {
-		return occupation;
-	}
-	
-	protected void setOccupation(String occupation) {
-		this.occupation = name;
 	}
 	
 	protected Hand getHand() {
@@ -69,6 +61,22 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
+	public void shoreUp(Tile tile) {
+		if(participant.getActionsRemaining()>0) {
+			if(tile.getLocation() == participant.getLocation() || Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
+				tile.shoreUpTile();
+				participant.actionUsed();
+			}
+			else {
+				System.out.println(tile.getName() + ", this is too far away for you shore up, try a closer tile.");
+			}
+		}
+		else{
+			System.out.println("You don't have enough actions left!");
+		}
+		
+	}
+	
 	// This method will be overridden by the Messenger Participant
 	protected void giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
@@ -85,7 +93,7 @@ public abstract class Participant {
 			}
 		}
 		else {
-			System.out.println(receiver.getName() + ", otherwise known as "+ receiver.getOccupation() + " is not on the same tile as you!\n Please choose another action.");
+			System.out.println(receiver.getName() + ", " + " is not on the same tile as you!\n Please choose another action.");
 		}
 	}
 	
