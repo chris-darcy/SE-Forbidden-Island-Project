@@ -68,7 +68,7 @@ public abstract class Participant {
 				participant.actionUsed();
 			}
 			else {
-				System.out.println(tile.getName() + ", this is too far away for you shore up, try a closer tile.");
+				System.out.println(tile.getName() + ", is too far away for you shore up, try a closer tile.");
 			}
 		}
 		else{
