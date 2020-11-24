@@ -1,4 +1,5 @@
 package Game;
+import Participant.*;
 
 
 import java.util.ArrayList;
@@ -10,12 +11,15 @@ import Board.Board;
 import Board.TileType;
 import Participant.Hand;
 import Participant.Participant;
+import WaterLevel.WaterLevel;
 
 public class GUI {	
 	private Scanner input;
 	private boolean proceed;
 	private boolean valid;
 	private Board board;
+	private WaterLevel waterlevel;
+	private PlayerList playerList;
 	private Iterator<Integer> roles;
 	
 	
@@ -24,6 +28,8 @@ public class GUI {
 		proceed = true;
 		valid = false;
 		board = Board.getInstance();
+		waterlevel = WaterLevel.getInstance();
+		playerList = PlayerList.getInstance();
 		roles = shuffleRoles();
 	}
 	
@@ -40,48 +46,72 @@ public class GUI {
 	//
 	public void createPlayerList(){
 		int playernums = 0;
-		Participant player;
 		String name;
-		String occupation;
-		Hand hand;
+		Hand hand = null;
+		Participant player = null;
 		int location;
 		int role;
 		
-		playernums = inputPlayerNumbers();
+		if(!playerList.isCreated()) {
+			playernums = inputPlayerNumbers();
+					
+			for(int i=0; i<playernums; i++) {
+				name = inputPlayerName(i);
+				role = roles.next();
 				
-		for(int i=0; i<playernums; i++) {
-			name = inputPlayerName(i);
-			role = roles.next();
-			
-			// roles still need to be made!!!
-			switch(role) {
-			case 0:
-				location = board.getPilotStartLoc();
-				player = new Pilot(name,hand,location,3);
-				break;
-			case 1:
-				location = board.getEngineerStartLoc();
-				player = new Engineer(name,hand,location,3);
-				break;
-			case 2:
-				location = board.getExplorerStartLoc();
-				player = new Explorer(name,hand,location,3);
-				break;
-			case 3:
-				location = board.getDiverStartLoc();
-				player = new Diver(name,hand,location,3);
-				break;
-			case 4:
-				location = board.getMessengerStartLoc();
-				player = new Messenger(name,hand,location,3);
-				break;
-			case 5:
-				location = board.getNavigatorStartLoc();
-				player = new Navigator(name,hand,location,3);
-				break;
+				
+				switch(role) {
+				case 0:
+					location = board.getPilotStartLoc();
+					player = new Pilot(name,hand,location,3);
+					break;
+				case 1:
+					location = board.getEngineerStartLoc();
+					player = new Engineer(name,hand,location,3);
+					break;
+				case 2:
+					location = board.getExplorerStartLoc();
+					player = new Explorer(name,hand,location,3);
+					break;
+				case 3:
+					location = board.getDiverStartLoc();
+					player = new Diver(name,hand,location,3);
+					break;
+				case 4:
+					location = board.getMessengerStartLoc();
+					player = new Messenger(name,hand,location,3);
+					break;
+				case 5:
+					location = board.getNavigatorStartLoc();
+					player = new Navigator(name,hand,location,3);
+					break;
+				}
+				playerList.addPlayer(player);
 			}
-			// Add player to playerList
+			playerList.create();
 		}
+		
+	}
+	
+	//
+	// Set the difficulty of the game by starting the waterlevel at an initial height
+	//
+	public WaterLevel setDifficulty() {
+		waterlevel = WaterLevel.getInstance();
+		
+		System.out.println("Please enter the initial water level mark");
+		System.out.println("1: Novice\n2: Normal\n3: Elite\n4: Legendary");
+		
+		while(!input.hasNextInt()) {
+			System.out.println("please enter an integer for the difficulty level");
+			input.nextLine();
+		}
+		
+		int startLevel = input.nextInt();
+		
+		waterlevel.setCurrentWaterLevel(startLevel);
+		
+		return waterlevel;
 	}
 	
 	//
@@ -134,6 +164,7 @@ public class GUI {
 		}
 			return name;
 	}	
+	
 	
 	//
 	// Ask player if they wish to continue

@@ -4,7 +4,6 @@ package Cards;
  */
 public class Card {
 	protected String name;
-	private CardType cardType;
 	
 	protected Card (String name) {
 		this.name = name;

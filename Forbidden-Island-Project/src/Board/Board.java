@@ -29,7 +29,8 @@ public class Board {
 	private int explorerStartLoc;
 	private int diverStartLoc;
 	private int messengerStartLoc;
-	private int navigatorStartLoc;	
+	private int navigatorStartLoc;
+	private int foolsLandingLoc;
 	private Integer[] corners = new Integer[]{0,1,4,5,6,11,24,29,30,31,34,35};
 
 	
@@ -97,6 +98,9 @@ public class Board {
 				    			break;
 				    		case "N":
 				    			tiletype = TileType.NORMAL;
+				    			if(attributes[0] == "FOOLS LANDING") {
+				    				foolsLandingLoc = tilePos;
+				    			}
 				    			break;
 				    	}
 				    	
@@ -208,6 +212,10 @@ public class Board {
 		specialSets.add(oceanSet);
 		specialSets.add(fireSet);
 		specialSets.add(earthSet);
+	}
+	
+	public Tile getFoolsLanding() {
+		return board.get(foolsLandingLoc);
 	}
 	
 	public ArrayList <Tile> getWindSet(){

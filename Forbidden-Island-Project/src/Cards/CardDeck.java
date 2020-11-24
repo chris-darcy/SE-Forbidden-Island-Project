@@ -23,7 +23,7 @@ public class CardDeck {
 		String line;
 		String[] attributes;
 		ArrayList<Integer> nums = new ArrayList<Integer>();
-		CardType cardType;
+		
 		
 		BufferedReader scan;
 		try {
