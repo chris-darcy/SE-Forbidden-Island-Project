@@ -46,4 +46,7 @@ public class TreasureCardDeck {
 		}
 		return null;
 	}
+	public int size() {
+		return cardDeck.size();
+	}
 }

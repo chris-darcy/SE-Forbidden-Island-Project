@@ -44,5 +44,8 @@ public class FloodCardDeck {
 		}
 		return null;
 	}
+	public int size() {
+		return cardDeck.size();
+	}
 }
 

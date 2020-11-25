@@ -9,10 +9,7 @@ public abstract class Card {
 		this.name = name;
 	}
 	
-	private String getCardName() {
+	public String getName() {
 		return this.name;
 	}
 }
-
-// innocuous comment
-//another innocuous comment... sneaky
