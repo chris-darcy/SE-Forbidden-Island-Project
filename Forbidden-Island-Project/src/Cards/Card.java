@@ -10,8 +10,8 @@ public class Card {
 //		this.cardType = cardType;
 	}
 	
-	private String getCardName() {
-		return name;
+	public String getName() {
+		return this.name;
 	}
 
 }

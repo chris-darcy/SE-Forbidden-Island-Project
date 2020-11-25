@@ -7,6 +7,7 @@ public class Tile {
 	public int location;
 	TileStatus tileStatus;
 	TileType tileType;
+	Tile tile;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -73,5 +74,14 @@ public class Tile {
 	// set type of Tile
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
+	}
+	
+	public void shoreUpTile() {
+		if(tile.getTileStatus() == TileStatus.FLOODED) {
+			tile.setTileStatus(TileStatus.UNFLOODED);
+		}
+		if(tile.getTileStatus() == TileStatus.UNFLOODED || tile.getTileStatus() == TileStatus.SUNK) {
+			System.out.println("This tile is " + tile.getTileStatus() + "\n You cannot shore up this card!");
+		}
 	}
 }
