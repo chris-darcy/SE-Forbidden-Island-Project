@@ -49,4 +49,8 @@ public class TreasureCardDeck {
 	public int size() {
 		return cardDeck.size();
 	}
+	
+	public Card pop() {
+		return cardDeck.pop();
+	}
 }

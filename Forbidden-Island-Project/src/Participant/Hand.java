@@ -11,14 +11,18 @@ public class Hand {
 	protected Card chosenCard;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
-	protected Hand(List<Card> hand) {
+	public Hand(List<Card> hand) {
 		this.hand = hand;
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
 	
 	protected String printHand() {
-		return hand.toString();
+		System.out.println("Your hand: \n");
+		for (Card card : hand) {
+			System.out.println(card.getName());
+		}
+		return null;
 	}
 	
 	protected int numberOfCards() {
@@ -29,7 +33,7 @@ public class Hand {
 		hand.remove(card);
 	}
 	
-	protected void addCardToHand(Card card) {
+	protected void add(Card card) {
 		hand.add(card);
 	}
 	
