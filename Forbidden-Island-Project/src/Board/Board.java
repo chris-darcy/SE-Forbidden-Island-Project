@@ -234,7 +234,22 @@ public class Board {
 		return earthSet;
 	}
 	
-	public ArrayList<ArrayList <Tile>> getSpecialSets(){
+	public ArrayList <Tile> getSpecialSet(TileType setType){
+		switch(setType) {
+		case WIND:
+			return windSet;	
+		case OCEAN:
+			return oceanSet;
+		case FIRE:
+			return fireSet;
+		case EARTH:
+			return earthSet;
+		default:
+			return null;
+		}
+	}
+	
+	public ArrayList<ArrayList <Tile>> getAllSpecialSets(){
 		return specialSets;
 	}
 	

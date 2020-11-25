@@ -15,6 +15,8 @@ public class GameManager {
 	protected GUI gui;
 	protected WaterLevel waterlevel;
 	protected PlayerList playerList;
+	protected boolean treasureLost;
+	protected boolean foolsLandingLost;
 
 	GameManager() {}
 	
@@ -38,6 +40,9 @@ public class GameManager {
 	}
 	
 	public void runGame() {
+		while(!foolsLandingLost && !treasureLost) {
+			
+		}
 		
 	}
 	
@@ -45,11 +50,30 @@ public class GameManager {
 		
 	}
 	
-	public boolean aTreasureLost() {	
+	public void updateSpecialTileStatus(Tile specialTile) {	
+		
+		if(specialTile.getTileType() != TileType.NORMAL) {
+			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());
+			
+			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
+				treasureLost = true;
+				//potentially update gui 
+			}
+		}		
+		else{	
+			if(specialTile.getTileStatus() == TileStatus.SUNK) {
+				foolsLandingLost = true;
+				//potentially update gui
+			}
+		}		
+	}
+	
+	
+	public boolean checkTreasureLost() {	
 		int lostOfSet = 0;
 		Board board = Board.getInstance();
 	
-		for (ArrayList<Tile> set: board.getSpecialSets()) {		
+		for (ArrayList<Tile> set: board.getAllSpecialSets()) {		
 			lostOfSet = 0;
 			
 			for(Tile tile: set) {
@@ -64,7 +88,7 @@ public class GameManager {
 		return false;	
 	}
 	
-	public boolean foolsLandingLost() {
+	public boolean checkFoolsLandingLost() {
 		Board board = Board.getInstance();
 		
 		if(board.getFoolsLanding().getTileStatus() == TileStatus.SUNK) {
