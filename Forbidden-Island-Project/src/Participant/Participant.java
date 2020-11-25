@@ -17,7 +17,9 @@ public abstract class Participant {
 	protected int maxCards = 5;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
+
 	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
+
 		this.name = name;
 		this.hand = hand;
 		this.location = location;
