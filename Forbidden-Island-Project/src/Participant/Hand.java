@@ -16,12 +16,11 @@ public class Hand {
 	
 	//------------------------------ METHODS --------------------------------------//
 	
-	public String printHand() {
+	public void printHand() {
 		System.out.println("Your hand: \n");
-		for (Card card : hand) {
-			System.out.println(card.getName());
+		for (TreasureCard card : hand) {
+			System.out.println(card.getName()+"\n");
 		}
-		return null;
 	}
 	
 	protected int numberOfCards() {
@@ -44,15 +43,15 @@ public class Hand {
 		hand.remove(card);
 	}
 
-	public List<TreasureCard> populateHand(TreasureCard card) {
+	public void populateHand(TreasureCard card) {
 		if(hand.size() < maxCards) {
 			hand.add(card);
+			System.out.println("here!");
 		}
 //		else {
 //			hand.add(card); // add card so the user can chosen out of 6 cards
 //			hand.tooManyCards(card);
 //		}
-		return hand;
 	}
 	
 }

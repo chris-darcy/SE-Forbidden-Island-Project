@@ -18,6 +18,7 @@ public class HandCheck {
 		
 		for (int i = 0; i < 2; i++) {
 			hand.populateHand(treasureCardDeck.pop()); // pop the top cards from the deck
+			hand.printHand();
 		}
 		
 		hand.printHand();
