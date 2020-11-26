@@ -1,20 +1,33 @@
 package Testing;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import Participant.Hand;
+
+import java.util.Stack;
+
 import Cards.*;
 
 public class HandCheck {
-	protected TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
-	protected FloodCardDeck floodCardDeck = new FloodCardDeck();
-	private List<Card> handList = new ArrayList<Card>(); 
 	
-	// populate the participants hand
-	for (int i = 0; i < 6; i++) {
-		handList.add(treasureCardDeck.pop());
+	public static void main(String [] args) {
+		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
+		FloodCardDeck floodCardDeck = new FloodCardDeck();
+		Stack<FloodCard> discardFloodDeck = new Stack<FloodCard>();
+		FloodCard floodCard;
+		
+		Hand hand = new Hand(); 
+		
+		for (int i = 0; i < 2; i++) {
+			hand.populateHand(treasureCardDeck.pop()); // pop the top cards from the deck
+		}
+		
+		hand.printHand();
+		
+		System.out.println("\nFlood Card(s) Drawn:\n");
+		for(int i = 0; i< 2;i++) { //should read in current water level !!!
+			floodCard = floodCardDeck.pop();
+			discardFloodDeck.push(floodCard); // add the cards to the discard pile (i.e bottom of the 
+			System.out.println(floodCard.getName());
+		}
+		
 	}
-	Hand hand = new Hand(handList); 
-	hand.printHand();
-}}
+}

@@ -46,11 +46,12 @@ public class TreasureCardDeck {
 		}
 		return null;
 	}
+	
 	public int size() {
 		return cardDeck.size();
 	}
 	
-	public Card pop() {
+	public TreasureCard pop() {
 		return cardDeck.pop();
 	}
 }

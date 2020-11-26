@@ -47,5 +47,8 @@ public class FloodCardDeck {
 	public int size() {
 		return cardDeck.size();
 	}
+	public FloodCard pop() {
+		return cardDeck.pop();
+	}
 }
 

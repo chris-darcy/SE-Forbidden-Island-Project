@@ -89,7 +89,7 @@ public abstract class Participant {
 				giversHand.removeCardFromHand(TreasureCardToGive);
 			}
 			else{
-				receiversHand.tooManyCards(); // tell user they have too many cards and have them remove another card
+				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
 			}
 		}
 		else {
@@ -98,12 +98,12 @@ public abstract class Participant {
 	}
 	
 	 // !!! location numbers/ operation may change
-	protected void moveParticipant() { // participant has ability to move once for one action
-		System.out.println("You are currently on tile " + participant.location + "\n" 
-	+ "You have " + actionsRemaining + "actions remaining. \n Choose a tile to move to!");
-		currentLocation = participant.getLocation();
-		Scanner findNewLocation = new Scanner(System.in); // !!!
-		int newLocation = findNewLocation.nextInt();
+	protected void moveParticipant(int newLocation) { // participant has ability to move once for one action
+//		System.out.println("You are currently on tile " + participant.location + "\n" 
+//	+ "You have " + actionsRemaining + "actions remaining. \n Choose a tile to move to!");
+//		currentLocation = participant.getLocation();
+//		Scanner findNewLocation = new Scanner(System.in); // !!!
+//		int newLocation = findNewLocation.nextInt();
 		
 		if(Math.abs(currentLocation/6 - newLocation/6) == 1 || Math.abs(currentLocation%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
 			participant.setLocation(newLocation);

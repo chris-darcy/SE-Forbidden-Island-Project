@@ -12,7 +12,7 @@ public class Engineer extends Participant{
 	@Override
 	public void shoreUp(Tile tile) {
 		if(participant.getActionsRemaining()>0) {
-			if(chance>2 & tile.getLocation() == participant.getLocation() || 
+			if(chance > 2 & tile.getLocation() == participant.getLocation() || 
 			   Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
 			   Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
 				
