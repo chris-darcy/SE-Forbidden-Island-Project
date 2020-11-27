@@ -21,8 +21,6 @@ public class HandCheck {
 			hand.printHand();
 		}
 		
-		hand.printHand();
-		
 		System.out.println("\nFlood Card(s) Drawn:\n");
 		for(int i = 0; i< 2;i++) { //should read in current water level !!!
 			floodCard = floodCardDeck.pop();

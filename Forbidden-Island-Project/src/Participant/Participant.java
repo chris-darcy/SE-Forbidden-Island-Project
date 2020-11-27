@@ -6,7 +6,7 @@ import Board.Tile;
 import Cards.*;
 
 public abstract class Participant {
-	protected String name;
+	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
 	protected Hand hand;
 	protected int actionsRemaining;
 	protected int numberOfActions = 3;
