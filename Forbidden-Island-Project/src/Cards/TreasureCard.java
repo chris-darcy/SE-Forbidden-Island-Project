@@ -1,6 +1,5 @@
 package Cards;
 
-import Board.*;
 import WaterLevel.*;
 
 public class TreasureCard extends Card {
@@ -17,7 +16,6 @@ public class TreasureCard extends Card {
 		
 	// Add treasure card to hand of participant
 	public static void addTreasureCard() {
-		//
 		
 	}
 	

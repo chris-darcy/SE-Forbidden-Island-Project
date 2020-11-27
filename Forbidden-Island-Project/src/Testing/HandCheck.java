@@ -13,11 +13,13 @@ public class HandCheck {
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		Stack<FloodCard> discardFloodDeck = new Stack<FloodCard>();
 		FloodCard floodCard;
+//		public static final String ANSI_RESET = "\u001B[0m";
 		
 		Hand hand = new Hand(); 
 		
 		for (int i = 0; i < 2; i++) {
 			hand.populateHand(treasureCardDeck.pop()); // pop the top cards from the deck
+			System.out.println();
 			hand.printHand();
 		}
 		
