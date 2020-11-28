@@ -1,103 +1,94 @@
 package Game;
 import Participant.*;
 
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 import Board.Board;
+import Board.Tile;
+import Board.TileStatus;
 import Board.TileType;
-import Participant.Hand;
-import Participant.Participant;
-import WaterLevel.WaterLevel;
 
 public class GUI {	
 	private Scanner input;
 	private boolean proceed;
 	private boolean valid;
-	private Board board;
-	private WaterLevel waterlevel;
-	private PlayerList playerList;
-	private Iterator<Integer> roles;
+	private Map<String,String> tl = new HashMap<>();
+	private int playernums = 0;
 	
 	
 	public GUI() {
 		input = new Scanner(System.in);
 		proceed = true;
 		valid = false;
-		board = Board.getInstance();
-		waterlevel = WaterLevel.getInstance();
-		playerList = PlayerList.getInstance();
-		roles = shuffleRoles();
+		initTileDict();
 	}
 	
 	
 	//
 	// Creates graphical display of board
 	//
-	public void showBoard(Board board) {
-		board.show();
-	}
-	
-	//
-	// create the player characters at game startup
-	//
-	public void createPlayerList(){
-		int playernums = 0;
-		String name;
-		Hand hand = null;
-		Participant player = null;
-		int location;
-		int role;
+	public void showBoard(ArrayList<Tile> board,PlayerList playerList) {
+		String[] tlSlices = new String[] {"","","","","","",""};
+		int idx;
+		int playerSliceIdx = 2;
+		Tile tile;
 		
-		if(!playerList.isCreated()) {
-			playernums = inputPlayerNumbers();
-					
-			for(int i=0; i<playernums; i++) {
-				name = inputPlayerName(i);
-				role = roles.next();
+		for (int row=0; row<6; row++ ){
+			for(int col=0; col<6; col++) {
 				
+				idx = 6*row + col;
+				tile = board.get(idx); 
 				
-				switch(role) {
-				case 0:
-					location = board.getPilotStartLoc();
-					player = new Pilot(name,hand,location,3);
-					break;
-				case 1:
-					location = board.getEngineerStartLoc();
-					player = new Engineer(name,hand,location,3);
-					break;
-				case 2:
-					location = board.getExplorerStartLoc();
-					player = new Explorer(name,hand,location,3);
-					break;
-				case 3:
-					location = board.getDiverStartLoc();
-					player = new Diver(name,hand,location,3);
-					break;
-				case 4:
-					location = board.getMessengerStartLoc();
-					player = new Messenger(name,hand,location,3);
-					break;
-				case 5:
-					location = board.getNavigatorStartLoc();
-					player = new Navigator(name,hand,location,3);
-					break;
+				if(tile.getTileType() == TileType.EMPTY) {
+					for(int i=0; i<7; i++) {
+						tlSlices[i] = tlSlices[i] + tl.get("EMPTY");
+					}
 				}
-				playerList.addPlayer(player);
-			}
-			playerList.create();
+				
+				else {
+					
+					tlSlices[0] = tlSlices[0] + tl.get(tile.getTileType().toString());
+					tlSlices[1] = tlSlices[1] + tl.get(tile.getTileStatus().toString());
+					
+					if(playerList.playersOnTile(idx)) {
+						for(Participant p: playerList.getPlayersOnTile(idx)){
+							tlSlices[playerSliceIdx] = tlSlices[playerSliceIdx] + tl.get(p.getRoleName());
+							playerSliceIdx++;
+						}		
+					}
+					
+					for(int i=playerSliceIdx; i<6; i++) {
+							tlSlices[i] = tlSlices[i] + tl.get("BLANK");
+					}
+					
+					playerSliceIdx = 2;
+					
+					tlSlices[6] = tlSlices[6] + tl.get("NORMAL");	
+				}
+			}	
+				System.out.println(tlSlices[0]);
+				System.out.println(tlSlices[1]);
+				System.out.println(tlSlices[2]);
+				System.out.println(tlSlices[3]);
+				System.out.println(tlSlices[4]);
+				System.out.println(tlSlices[5]);
+				System.out.println(tlSlices[6]);
+				System.out.println("");			
+					
+				Arrays.fill(tlSlices,"");
+			
 		}
-		
 	}
 	
+	
 	//
-	// Set the difficulty of the game by starting the waterlevel at an initial height
+	// Get the difficulty of the game with the waterlevel at an initial height
 	//
-	public WaterLevel setDifficulty() {
-		waterlevel = WaterLevel.getInstance();
+	public int setDifficulty() {
 		
 		System.out.println("Please enter the initial water level mark");
 		System.out.println("1: Novice\n2: Normal\n3: Elite\n4: Legendary");
@@ -105,23 +96,17 @@ public class GUI {
 		while(!input.hasNextInt()) {
 			System.out.println("please enter an integer for the difficulty level");
 			input.nextLine();
-		}
-		
-		int startLevel = input.nextInt();
-		
-		waterlevel.setCurrentWaterLevel(startLevel);
-		
-		return waterlevel;
+		}	
+		return input.nextInt();	
 	}
 	
 	//
 	// Retrieve number of players in group
 	//
-	private int inputPlayerNumbers() {
-		int playernums = 0;
+	public int inputPlayerNumbers() {		
 		valid = false;
 		
-		System.out.println("Please enter the number of players (min 2, max 4)\n");
+		System.out.println("Please enter the number of players (min 2, max 4)");
 		
 		while(!valid) {
 			
@@ -145,12 +130,12 @@ public class GUI {
 	//
 	// Query player for their character name
 	//
-	private String inputPlayerName(int i) {	
+	public String inputPlayerName(int i) {	
 		String name = "";
 		proceed = false;
 		
 		while(!proceed) {
-			System.out.println("Please enter your character name\n");
+			System.out.println("Please enter your character name");
 			name = input.nextLine();
 				
 			while(name.equals("") || name.equals(" ")) {
@@ -170,7 +155,7 @@ public class GUI {
 	// Ask player if they wish to continue
 	//
 	public boolean queryYN() {
-		input.nextLine();
+		//input.nextLine();
 		
 		while(true) {
 			switch(input.next()) {
@@ -189,19 +174,34 @@ public class GUI {
 		
 	}
 	
-	private Iterator<Integer> shuffleRoles(){
-		ArrayList<Integer> roleNumbers = new ArrayList<Integer>();
-		Iterator<Integer> shuffledRoles;
+	private void initTileDict() {
+		tl.put("NORMAL"    ," ####### ");
+		tl.put("EMPTY"     ,"         ");
+		tl.put("OCEAN"     ," #OCEAN# ");
+		tl.put("FIRE"      ," #Fire=# ");
+		tl.put("WIND"      ," #Wind=# ");
+		tl.put("EARTH"     ," #Earth# ");
 		
-		// Randomise roles
-		for(int i=0;i<6;i++){
-			roleNumbers.add(i);
-		}
-		Collections.shuffle(roleNumbers);
-		shuffledRoles = roleNumbers.iterator();
+		tl.put("SUNK"      ,"         ");
+		tl.put("UNFLOODED" ," #     # ");
+		tl.put("FLOODED"   ," #  F! # ");
+			
+		tl.put("Pilot"     ," # [P] # ");
+		tl.put("Engineer"  ," # [G] # ");
+		tl.put("Explorer"  ," # [E] # ");
+		tl.put("Diver"     ," # [D] # ");
+		tl.put("Messenger" ," # [M] # ");
+		tl.put("Navigator" ," # [N] # ");
+		tl.put("BLANK"     ," #     # ");
 		
-		return shuffledRoles;
+		
 	}
+	
+	
+    
+	
+	
+	
 	
 }
 

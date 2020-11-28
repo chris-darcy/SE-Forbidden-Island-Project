@@ -35,6 +35,10 @@ public abstract class Participant {
 		this.name = name;
 	}
 	
+	public String getRoleName() {
+		return this.getClass().getSimpleName();
+	}
+	
 	protected Hand getHand() {
 		return hand;
 	}

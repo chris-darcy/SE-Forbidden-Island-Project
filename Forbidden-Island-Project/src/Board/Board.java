@@ -96,7 +96,7 @@ public class Board {
 				    		case "E":
 				    			tiletype = TileType.EARTH;
 				    			break;
-				    		case "N":
+				    		default:
 				    			tiletype = TileType.NORMAL;
 				    			if(attributes[0] == "FOOLS LANDING") {
 				    				foolsLandingLoc = tilePos;
