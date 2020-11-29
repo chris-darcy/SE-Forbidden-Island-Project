@@ -1,25 +1,28 @@
 package Cards;
 
+//import java.util.Collection;
 import java.util.Stack;
 
 public class TreasureCardDeck {
-	public TreasureCard earthTreasureCard = new TreasureCard("Earth");
-	public TreasureCard fireTreasureCard = new TreasureCard("Fire");
-	public TreasureCard windTreasureCard = new TreasureCard("Wind");
-	public TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
-	public HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
-	public SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
-	public RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("RiseWater");
+	
 	Stack<TreasureCard> cardDeck = new Stack<TreasureCard>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
+	
 	public TreasureCardDeck() {
 		initialise(); // calls to initialise the cardDeck
 	}
 	
 	//-------------------------------- METHODS ------------------------------------//
+	
 	public void initialise() { // type of card input determines type of deck created (flood or treasure)
-		
+		TreasureCard earthTreasureCard = new TreasureCard("Earth");
+		TreasureCard fireTreasureCard = new TreasureCard("Fire");
+		TreasureCard windTreasureCard = new TreasureCard("Wind");
+		TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
+		HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
+		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
+		RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("RiseWater");
 		
 		// add all the treasure cards to the deck of cards
 		for (int i = 0; i < 5; i++) { // 5 of each treasure
@@ -38,11 +41,12 @@ public class TreasureCardDeck {
 			cardDeck.push(sandbagTreasureCard);
 		}	
 		
+//		Collection.shuffle(cardDeck);
 	}
 	
-	public String toString() {
+	public String printDeck() {
 		for (TreasureCard card: cardDeck) {
-			System.out.println(card.getName().toString());
+			System.out.println(card.getName());
 		}
 		return null;
 	}

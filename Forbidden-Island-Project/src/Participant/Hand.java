@@ -7,7 +7,7 @@ import Cards.*;
 
 public class Hand {
 	protected List<TreasureCard> hand = new ArrayList<TreasureCard>(); 
-	public int maxCards;
+	public int maxCards = 5;
 	protected Card chosenCard;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
@@ -16,11 +16,12 @@ public class Hand {
 	
 	//------------------------------ METHODS --------------------------------------//
 	
-	public void printHand() {
-		System.out.println("Your hand: \n");
-		for (TreasureCard card : hand) {
-			System.out.println(card.getName()+"\n");
+	public String printHand() {
+		System.out.println("Your hand:\n");
+		for (TreasureCard card: hand) {
+			System.out.println(card.getName().toString());
 		}
+		return hand.toString();
 	}
 	
 	protected int numberOfCards() {
@@ -46,12 +47,11 @@ public class Hand {
 	public void populateHand(TreasureCard card) {
 		if(hand.size() < maxCards) {
 			hand.add(card);
-			System.out.println("here!");
 		}
-//		else {
-//			hand.add(card); // add card so the user can chosen out of 6 cards
-//			hand.tooManyCards(card);
-//		}
+		else {
+			hand.add(card); // add card so the user can chosen out of 6 cards
+			((Hand) hand).tooManyCards(card);
+		}
 	}
 	
 }

@@ -6,11 +6,11 @@ import Cards.FloodCardDeck;
 public class TestCardDeck {
 	public static void main(String [] args) {
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
-		treasureCardDeck.toString();
+		treasureCardDeck.printDeck();
 		
-		System.out.println("\n \n");
+		System.out.println("\n");
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
-		floodCardDeck.toString();
+		floodCardDeck.printDeck();
 		
 	} 
 }
