@@ -1,6 +1,7 @@
 package Participant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import Cards.*;
@@ -11,17 +12,18 @@ public class Hand {
 	protected Card chosenCard;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
-	protected Hand(List<Card> hand) {
-		this.hand = hand;
+	public Hand() {
+		
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
 	
-	protected String printHand() {
-		return hand.toString();
+	public String[] getPrintableHand() {	
+		String handString = Arrays.toString(hand.toArray());
+	    return handString.substring(1,handString.length()-1).split(", ");
 	}
 	
-	protected int numberOfCards() {
+	public int numberOfCards() {
 		return hand.size();
 	}
 	
@@ -29,7 +31,7 @@ public class Hand {
 		hand.remove(card);
 	}
 	
-	protected void addCardToHand(Card card) {
+	public void addCardToHand(Card card) {
 		hand.add(card);
 	}
 	

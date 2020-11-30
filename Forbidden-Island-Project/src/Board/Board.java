@@ -75,7 +75,7 @@ public class Board {
 		    		tilePos = idx.next();
 				    
 				    if(isCorner(tilePos)) {
-				    	Tile tile = new Tile("Corner",tilePos,TileStatus.SUNK,TileType.EMPTY);
+				    	Tile tile = new Tile("",tilePos,TileStatus.SUNK,TileType.EMPTY);
 				    	board.add(tile);
 				    }
 				    else {	
@@ -96,7 +96,7 @@ public class Board {
 				    		case "E":
 				    			tiletype = TileType.EARTH;
 				    			break;
-				    		case "N":
+				    		default:
 				    			tiletype = TileType.NORMAL;
 				    			if(attributes[0] == "FOOLS LANDING") {
 				    				foolsLandingLoc = tilePos;

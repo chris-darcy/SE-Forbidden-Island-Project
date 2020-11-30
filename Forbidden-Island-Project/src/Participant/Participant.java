@@ -27,7 +27,7 @@ public abstract class Participant {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 	
@@ -35,7 +35,11 @@ public abstract class Participant {
 		this.name = name;
 	}
 	
-	protected Hand getHand() {
+	public String getRoleName() {
+		return this.getClass().getSimpleName();
+	}
+	
+	public Hand getHand() {
 		return hand;
 	}
 	

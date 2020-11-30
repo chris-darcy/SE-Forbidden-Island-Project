@@ -4,7 +4,8 @@ import Board.Tile;
 
 public class Engineer extends Participant{
 	protected int chance = 0;
-	protected Engineer(String name, Hand hand, int location, int actionsRemaining) {
+	
+	public Engineer(String name, Hand hand, int location, int actionsRemaining) {
 		super(name, hand, location, actionsRemaining);
 	}
 	
