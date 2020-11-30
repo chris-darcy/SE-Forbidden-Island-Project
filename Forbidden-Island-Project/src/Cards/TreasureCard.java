@@ -1,6 +1,5 @@
 package Cards;
 
-import WaterLevel.*;
 
 public class TreasureCard extends Card {
 	
@@ -10,4 +9,4 @@ public class TreasureCard extends Card {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-
+}

@@ -16,12 +16,12 @@ public class HandCheck {
 		
 		Hand hand = new Hand(); 
 		
-		treasureCardDeck.printDeck();
+//		treasureCardDeck.printDeck();
 		
 		for (int i = 0; i < 2; i++) {
 			hand.populateHand(treasureCardDeck.pop()); // pop the top cards from the deck
 		}
-		hand.printHand();
+		hand.getPrintableHand();
 		
 		System.out.println("\nFlood Card(s) Drawn:\n");
 		for(int i = 0; i < 2 ;i++) { // should read in current water level !!!

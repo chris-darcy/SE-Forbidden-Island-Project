@@ -40,7 +40,7 @@ public class FloodCardDeck {
 		}
 //		Collection.shuffle(cardDeck);
 	}
-	public String toString() {
+	public String printDeck() {
 		for (FloodCard card: cardDeck) {
 			System.out.println(card.getName());
 		}

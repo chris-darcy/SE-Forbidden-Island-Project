@@ -91,7 +91,7 @@ public abstract class Participant {
 			Hand receiversHand = receiver.getHand();
 			
 			if(receiversHand.numberOfCards() < maxCards) {
-				receiversHand.add(TreasureCardToGive);
+				receiversHand.addCardToHand(TreasureCardToGive);
 				giversHand.removeCardFromHand(TreasureCardToGive);
 			}
 			else{

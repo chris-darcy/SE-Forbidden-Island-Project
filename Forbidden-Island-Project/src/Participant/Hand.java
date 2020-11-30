@@ -20,6 +20,7 @@ public class Hand {
 	
 
 	public String[] getPrintableHand() {	
+		System.out.println("Your hand:\n");
 		String handString = Arrays.toString(hand.toArray());
 	    return handString.substring(1,handString.length()-1).split(", ");
 	}
@@ -32,7 +33,7 @@ public class Hand {
 		hand.remove(card);
 	}
 	
-	public void addCardToHand(Card card) {
+	public void addCardToHand(TreasureCard card) {
 		hand.add(card);
 	}
 	

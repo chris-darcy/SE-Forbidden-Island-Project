@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Cards.Card;
+import Cards.EarthTreasureCard;
+import Cards.FireTreasureCard;
+import Cards.OceanTreasureCard;
 import Cards.TreasureCardDeck;
 import Participant.Hand;
 import Participant.Participant;
