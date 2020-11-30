@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
+//import java.util.Collection;
 
 public class FloodCardDeck {
 	Stack<FloodCard> cardDeck = new Stack<FloodCard>();
@@ -37,16 +38,20 @@ public class FloodCardDeck {
 		catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
+//		Collection.shuffle(cardDeck);
 	}
-	
 	public String toString() {
 		for (FloodCard card: cardDeck) {
-			System.out.println(card.getName().toString());
+			System.out.println(card.getName());
 		}
 		return null;
 	}
+	
 	public int size() {
 		return cardDeck.size();
+	}
+	public FloodCard pop() {
+		return cardDeck.pop();
 	}
 }
 

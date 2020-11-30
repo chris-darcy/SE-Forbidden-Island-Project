@@ -1,6 +1,5 @@
 package Cards;
 
-import Board.*;
 import WaterLevel.*;
 
 public class TreasureCard extends Card {
@@ -9,5 +8,6 @@ public class TreasureCard extends Card {
 	protected TreasureCard(String name) {
 		super(name);
 	}
-		
-}
+	
+	//------------------------------ METHODS --------------------------------------//
+
