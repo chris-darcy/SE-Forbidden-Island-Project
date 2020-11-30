@@ -27,7 +27,7 @@ public abstract class Participant {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	protected String getName() {
+	public String getName() {
 		return name;
 	}
 	
@@ -39,7 +39,7 @@ public abstract class Participant {
 		return this.getClass().getSimpleName();
 	}
 	
-	protected Hand getHand() {
+	public Hand getHand() {
 		return hand;
 	}
 	

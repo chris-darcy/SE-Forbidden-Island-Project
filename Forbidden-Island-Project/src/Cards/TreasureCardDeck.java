@@ -3,12 +3,12 @@ package Cards;
 import java.util.Stack;
 
 public class TreasureCardDeck {
-	public TreasureCard earthTreasureCard = new TreasureCard("Earth");
-	public TreasureCard fireTreasureCard = new TreasureCard("Fire");
-	public TreasureCard windTreasureCard = new TreasureCard("Wind");
-	public TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
-	public HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
-	public SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
+	public TreasureCard earthTreasureCard = new TreasureCard("Earth Treasure Card");
+	public TreasureCard fireTreasureCard = new TreasureCard("Fire Treasure Card");
+	public TreasureCard windTreasureCard = new TreasureCard("Wind Treasure Card");
+	public TreasureCard oceanTreasureCard = new TreasureCard("Ocean Treasure Card");
+	public HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter Card");
+	public SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Shore Up Card");
 	public RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("RiseWater");
 	Stack<TreasureCard> cardDeck = new Stack<TreasureCard>();
 	

@@ -36,9 +36,9 @@ public class PlayerList {
 	public ArrayList<Participant> getPlayersOnTile(int tilePos){
 		ArrayList<Participant> playersOnTile = new ArrayList<Participant>();
 		
-		for(int i=0; i<playerList.size(); i++) {
-			if(playerList.get(i).getLocation() == tilePos) {
-				playersOnTile.add(playerList.get(i));
+		for(Participant player: playerList) {
+			if(player.getLocation() == tilePos) {
+				playersOnTile.add(player);
 			}
 		}
 		return playersOnTile;
@@ -53,6 +53,9 @@ public class PlayerList {
 	}
 	public boolean isCreated() {
 		return created;
+	}
+	public Participant getPlayer(int i) {
+		return playerList.get(i);
 	}
 	
 }

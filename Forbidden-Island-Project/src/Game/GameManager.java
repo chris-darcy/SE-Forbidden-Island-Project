@@ -36,7 +36,7 @@ public class GameManager {
 		playerList		 = PlayerList.getInstance();
 		gui              = new GUI();
 		//floodCardDeck    = new FloodCardDeck();
-		//treasureCardDeck = new TreasureCardDeck();
+		treasureCardDeck = new TreasureCardDeck();
 	}
 	
 	public static GameManager getInstance() {
@@ -72,7 +72,6 @@ public class GameManager {
 	public void createPlayerList(){
 		int playernums = 0;
 		String name;
-		Hand hand = null;
 		Participant player = null;
 		int location;
 		String[] roles = shuffleRoles();
@@ -83,7 +82,7 @@ public class GameManager {
 					
 			for(int i=0; i<playernums; i++) {
 				name = gui.inputPlayerName(i);
-				
+				Hand hand = new Hand();
 				
 				switch(roles[i]) {
 				case "P":
@@ -116,7 +115,7 @@ public class GameManager {
 			}
 			playerList.create();
 		}
-		gui.showBoard(board.getBoard(), playerList);
+
 	}
 	
 	public void updateSpecialTileStatus(Tile specialTile) {	
@@ -183,6 +182,19 @@ public class GameManager {
 		}
 	}
 	
+	// !!!!!!!REMOVE LATER !!!!!!!!!!
+	public void callGUIDisplay(int playernums) {
+		
+		for(int i=0; i<playernums; i++) {
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.earthTreasureCard);
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.fireTreasureCard);
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.windTreasureCard);
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.oceanTreasureCard);
+		}
+		gui.updatePlayerHands(playerList);
+		gui.updateBoard(board.getBoard(), playerList);
+		gui.display();
+	}
 	
 	private void handOutCards() {
 		

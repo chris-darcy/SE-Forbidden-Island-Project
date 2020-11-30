@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
 import Board.Tile;
 import Board.TileType;
 
@@ -14,26 +13,50 @@ public class GUI {
 	private Scanner input;
 	private boolean proceed;
 	private boolean valid;
-	private Map<String,String> tl = new HashMap<>();
 	private int playernums = 0;
-	
+	private String border;
+	private String indent;
+	private Map<String,String> tl = new HashMap<>();
+	private String[][] allHandSlices;
+	private String[][] boardSlices = new String[6][8];
 	
 	public GUI() {
 		input = new Scanner(System.in);
 		proceed = true;
 		valid = false;
 		initTileDict();
+		initHeaderStrings();
 	}
 	
 	
 	//
-	// Creates graphical display of board
+	// Display Board alongside player hands
 	//
-	public void showBoard(ArrayList<Tile> board,PlayerList playerList) {
-		String[] tlSlices = new String[] {"","","","","","","",""};
+	public void display() {
+		
+		printHeader();
+		for(int i=0; i<6;i++) {		
+			for(int slice=0; slice<8;slice++) {
+				if(i<playernums) {
+					System.out.println(boardSlices[i][slice] + " || " + allHandSlices[i][slice]);				
+				}
+				else {
+					System.out.println(boardSlices[i][slice] + " || ");			
+				}
+			}
+			System.out.println(indent+indent+"             || ");
+		}
+		printFooter();
+	}
+	
+	//
+	// Creates String representation of current board
+	//
+	public void updateBoard(ArrayList<Tile> board,PlayerList playerList) {
 		int idx;
 		int playerSliceIdx = 3;
 		Tile tile;
+		for(String[] rowSlices: boardSlices) { Arrays.fill(rowSlices,"");}
 		
 		for (int row=0; row<6; row++ ){
 			for(int col=0; col<6; col++) {
@@ -43,40 +66,56 @@ public class GUI {
 				
 				if(tile.getTileType() == TileType.EMPTY) {
 					for(int i=0; i<8; i++) {
-						tlSlices[i] = tlSlices[i] + tl.get("EMPTY");
+						boardSlices[row][i] = boardSlices[row][i] + tl.get("EMPTY");
 					}
-				}
+				}		
 				
-				else {
-					
-					tlSlices[0] = tlSlices[0] + tl.get(tile.name);
-					tlSlices[1] = tlSlices[1] + tl.get(tile.getTileType().toString());
-					tlSlices[2] = tlSlices[2] + tl.get(tile.getTileStatus().toString());					
+				else {				
+					boardSlices[row][0] = boardSlices[row][0] + tl.get(tile.name);
+					boardSlices[row][1] = boardSlices[row][1] + tl.get(tile.getTileType().toString());
+					boardSlices[row][2] = boardSlices[row][2] + tl.get(tile.getTileStatus().toString());					
 					
 					if(playerList.playersOnTile(idx)) {
 						for(Participant p: playerList.getPlayersOnTile(idx)){
-							tlSlices[playerSliceIdx] = tlSlices[playerSliceIdx] + tl.get(p.getRoleName());
+							boardSlices[row][playerSliceIdx] = boardSlices[row][playerSliceIdx] + tl.get(p.getRoleName());
 							playerSliceIdx++;
 						}		
 					}
 					
 					for(int i=playerSliceIdx; i<7; i++) {
-							tlSlices[i] = tlSlices[i] + tl.get("BLANK");
-					}
+						boardSlices[row][i] = boardSlices[row][i] + tl.get("BLANK");
+					}	
+					
+					boardSlices[row][7] = boardSlices[row][7] + tl.get("NORMAL");
 					
 					playerSliceIdx = 3;
-					
-					tlSlices[7] = tlSlices[7] + tl.get("NORMAL");	
 				}
 			}	
-			
-			for(String slice: tlSlices) { System.out.println(slice); }
-			System.out.println("");				
-			Arrays.fill(tlSlices,"");
-			
 		}
 	}
 	
+	//
+	// Creates String representation of player hands
+	//
+	public void updatePlayerHands(PlayerList playerList) {
+		
+		for(int player=0; player<playernums; player++){
+			
+			allHandSlices[player][0] = playerList.getPlayer(player).getName() +" (" + playerList.getPlayer(player).getRoleName()+"):";	
+			
+			String[] hand = playerList.getPlayer(player).getHand().getPrintableHand();	
+		
+			//8 slices, first saved for player name
+			for(int card=0;card<7;card++) {	
+				if(card<hand.length) {
+					allHandSlices[player][card+1] = hand[card];
+				}
+				else {
+					allHandSlices[player][card+1] = "";
+				}
+			}		
+		}
+	}
 	
 	//
 	// Get the difficulty of the game with the waterlevel at an initial height
@@ -117,6 +156,10 @@ public class GUI {
 				valid = true;
 			}
 		}
+		
+		// can set the size of the hand display array
+		allHandSlices = new String[playernums][8];
+	
 		return playernums;
 	}
 	
@@ -136,7 +179,7 @@ public class GUI {
 				name = input.nextLine();
 			}
 			
-			System.out.println("Player " + i + ", your name will be " + name);
+			System.out.println("Player " + (i+1) + ", your name will be " + name);
 			System.out.println("Confirm name: y/n");
 			proceed = queryYN();
 		}
@@ -147,7 +190,7 @@ public class GUI {
 	//
 	// Ask player if they wish to continue
 	//
-	public boolean queryYN() {
+	private boolean queryYN() {
 		//input.nextLine();
 		
 		while(true) {
@@ -165,6 +208,18 @@ public class GUI {
 			}
 		}
 		
+	}
+	
+	private void printHeader() {
+		System.out.println(border);
+		System.out.println(indent+"Board Layout"+indent+"   Player Hands");
+		System.out.println(border);
+	}
+	
+	private void printFooter() {
+		System.out.println(border);
+		System.out.println("");
+		System.out.println(border);
 	}
 	
 	private void initTileDict() {
@@ -212,13 +267,19 @@ public class GUI {
 		tl.put("BREAKERS BRIDGE"   ," BREAKERS B. ");  
 		tl.put("CLIFFS OF ABANDON" ," CLIFFS O. A.");
 	}
+	
+	private void initHeaderStrings(){
+		int tileWidth = 13;
+		int cardNameLen = 20;
+		char[]stars   = new char[tileWidth*6 + cardNameLen];
+		char[]spaces   = new char[Math.round((tileWidth*6 - 12)/2)];
+		
+		Arrays.fill(stars, '*');
+		border = new String(stars);
+		Arrays.fill(spaces, ' ');
+		indent = new String(spaces);
 
-	
-	
-    
-	
-	
-	
+	}	
 	
 }
 
