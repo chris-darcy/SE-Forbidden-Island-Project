@@ -1,5 +1,7 @@
 package Board;
 
+import Game.GameManager;
+
 public class Tile {
 	public String name;
 	public int location;
@@ -49,6 +51,18 @@ public class Tile {
 		
 	// set status of Tile
 	public void setTileStatus(TileStatus tileStatus) {
+		
+		// GM monitors the state of the special tiles
+		if(this.name == "FOOLS LANDING" || 
+			this.tileType == TileType.EARTH || 
+			this.tileType == TileType.FIRE  ||
+			this.tileType == TileType.OCEAN ||
+			this.tileType == TileType.WIND ) {
+			
+			GameManager GM = GameManager.getInstance();
+			GM.updateSpecialTileStatus(this);
+		}
+		
 		this.tileStatus = tileStatus;
 	}
 	

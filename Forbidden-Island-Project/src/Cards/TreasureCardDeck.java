@@ -4,7 +4,7 @@ package Cards;
 import java.util.Stack;
 
 public class TreasureCardDeck {
-	
+
 	Stack<TreasureCard> cardDeck = new Stack<TreasureCard>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//

@@ -21,7 +21,7 @@ public class FloodCard extends Card{
 			tile.setTileStatus(TileStatus.FLOODED); // !!! unsure why there is an error here !!!
 		case FLOODED:
 			tile.setTileStatus(TileStatus.SUNK); // !!! unsure why there is an error here !!!
-			if(tile.getName() == "FOOLSLANDING") { // if fool's landing is sunk OR any two treasure tiles are sunk - game over!
+			if(tile.getName() == "FOOLS LANDING") { // if fool's landing is sunk OR any two treasure tiles are sunk - game over!
 			// !!! game over !!!
 				break;
 			}
