@@ -110,7 +110,7 @@ public class GameManager {
 					player = new Navigator(name,hand,location,3);
 					break;
 				}
-				System.out.println("Player " + i +": " + name + ", you have been assigned the role of " + player.getClass().getSimpleName());
+				gui.printPlayerFinalised(player);
 				playerList.addPlayer(player);
 			}
 			playerList.create();
@@ -186,10 +186,10 @@ public class GameManager {
 	public void callGUIDisplay(int playernums) {
 		
 		for(int i=0; i<playernums; i++) {
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.earthTreasureCard);
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.fireTreasureCard);
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.windTreasureCard);
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.oceanTreasureCard);
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
 		}
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);

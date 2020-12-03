@@ -145,43 +145,6 @@ public class Board {
 			e1.printStackTrace();
 		}				
 	}
-
-	
-	// display the board and special tiles in console
-	public void show() {
-		String[] layout = new String[] {"","","","","",""};
-		int row = 0;
-		
-		for (Tile tile : board){
-			if(row != tile.getLocation()/6) {
-				row = tile.getLocation()/6;
-			}
-			
-			switch(tile.getTileType()) {
-    		case WIND:
-    			layout[row] = layout[row] + "[W]";
-    			break;
-    		case OCEAN:
-    			layout[row] = layout[row] + "[O]";
-    			break;
-    		case FIRE:
-    			layout[row] = layout[row] + "[F]";
-    			break;
-    		case EARTH:
-    			layout[row] = layout[row] + "[E]";
-    			break;
-    		case NORMAL:
-    			layout[row] = layout[row] + "[ ]";
-    			break;
-    		case EMPTY:
-    			layout[row] = layout[row] + "   ";
-    			break;
-			}
-		}
-		for (String line : layout) {
-			System.out.println(line);
-		}
-	}
 	
 	// tiles not part of actual play board
 	public boolean isCorner(int tilePos) {

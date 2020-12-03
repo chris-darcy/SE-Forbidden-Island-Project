@@ -34,7 +34,7 @@ public class GUI {
 	//
 	public void display() {
 		
-		printHeader();
+		printSeparator(indent+"Board Layout"+indent+"   Player Hands");
 		for(int i=0; i<6;i++) {		
 			for(int slice=0; slice<8;slice++) {
 				if(i<playernums) {
@@ -46,7 +46,7 @@ public class GUI {
 			}
 			System.out.println(indent+indent+"             || ");
 		}
-		printFooter();
+		printSeparator("");
 	}
 	
 	//
@@ -138,6 +138,7 @@ public class GUI {
 	public int inputPlayerNumbers() {		
 		valid = false;
 		
+		printSeparator(indent + "Player Numbers");
 		System.out.println("Please enter the number of players (min 2, max 4)");
 		
 		while(!valid) {
@@ -153,6 +154,7 @@ public class GUI {
 				System.out.println("please enter a valid number of players (2-4)");
 			}
 			else {
+				input.nextLine();
 				valid = true;
 			}
 		}
@@ -170,12 +172,14 @@ public class GUI {
 		String name = "";
 		proceed = false;
 		
+		printSeparator(indent + "Player " + (i+1) + " Name");
+		
 		while(!proceed) {
 			System.out.println("Please enter your character name");
 			name = input.nextLine();
 				
-			while(name.equals("") || name.equals(" ")) {
-				System.out.println("Not a valid name, please choose another");
+			while(name.isBlank() || name.length() > 12) {
+				System.out.println("please choose a name (1-12 characters)");
 				name = input.nextLine();
 			}
 			
@@ -194,7 +198,7 @@ public class GUI {
 		//input.nextLine();
 		
 		while(true) {
-			switch(input.next()) {
+			switch(input.nextLine()) {
 			case "y":
 				return true;
 			case "Y":
@@ -210,17 +214,16 @@ public class GUI {
 		
 	}
 	
-	private void printHeader() {
+	private void printSeparator(String title) {
 		System.out.println(border);
-		System.out.println(indent+"Board Layout"+indent+"   Player Hands");
+		System.out.println(title);
 		System.out.println(border);
 	}
 	
-	private void printFooter() {
-		System.out.println(border);
-		System.out.println("");
-		System.out.println(border);
+	public void printPlayerFinalised(Participant player){
+		System.out.println(player.getName() + ", you have been assigned the role of " + player.getClass().getSimpleName() + "!\n");
 	}
+	
 	
 	private void initTileDict() {
 		tl.put("NORMAL"            ," O#########O ");
