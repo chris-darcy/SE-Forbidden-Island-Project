@@ -9,4 +9,7 @@ public class TreasureCard extends Card {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
+	public String toString(){
+		return this.name;
+	}
 }
