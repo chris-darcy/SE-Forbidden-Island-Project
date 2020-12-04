@@ -20,7 +20,6 @@ public class Hand {
 	
 
 	public String[] getPrintableHand() {	
-		System.out.println("Your hand:\n");
 		String handString = Arrays.toString(hand.toArray());
 	    return handString.substring(1,handString.length()-1).split(", ");
 	}

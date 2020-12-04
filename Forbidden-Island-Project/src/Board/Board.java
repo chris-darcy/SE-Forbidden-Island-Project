@@ -32,7 +32,6 @@ public class Board {
 	private int navigatorStartLoc;
 	private int foolsLandingLoc;
 	private Integer[] corners = new Integer[]{0,1,4,5,6,11,24,29,30,31,34,35};
-
 	
 	//
 	// Implement Board as Singleton
