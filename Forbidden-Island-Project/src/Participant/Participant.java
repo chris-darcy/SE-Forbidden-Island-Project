@@ -67,18 +67,20 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
-	public void shoreUp(Tile tile) {
+	public boolean shoreUp(Tile tile) {
+		// Add check for shore-up tile 
 		if(participant.getActionsRemaining()>0) {
 			if(tile.getLocation() == participant.getLocation() || Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
 				tile.shoreUpTile();
 				participant.actionUsed();
+				return true;
 			}
 			else {
-				System.out.println(tile.getName() + ", is too far away for you shore up, try a closer tile.");
+				return false;
 			}
 		}
 		else{
-			System.out.println("You don't have enough actions left!");
+			return false;
 		}
 		
 	}
@@ -111,12 +113,18 @@ public abstract class Participant {
 //		Scanner findNewLocation = new Scanner(System.in); // !!!
 //		int newLocation = findNewLocation.nextInt();
 		
-		if(Math.abs(currentLocation/6 - newLocation/6) == 1 || Math.abs(currentLocation%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
+		if(Math.abs(participant.getLocation()/6 - newLocation/6) == 1 || Math.abs(participant.getLocation()%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
 			participant.setLocation(newLocation);
 			participant.actionUsed();
 		}
 		else {
 			System.out.println("You chose a tile further than one action away, please choose a closer tile!");
 		}
+	}
+	
+	protected void onSunkTile() {
+		//verify the participant is on a sunk tile
+		participant.getLocation();
+		
 	}
 }
