@@ -122,14 +122,10 @@ public class GUI {
 	//
 	public int setDifficulty() {
 		
-		System.out.println("Please enter the initial water level mark");
+		System.out.println("~Please enter the initial water level mark~");
 		System.out.println("1: Novice\n2: Normal\n3: Elite\n4: Legendary");
 		
-		while(!input.hasNextInt()) {
-			System.out.println("please enter an integer for the difficulty level");
-			input.nextLine();
-		}	
-		return input.nextInt();	
+		return getIntFor("the difficulty level");
 	}
 	
 	//
@@ -139,22 +135,16 @@ public class GUI {
 		valid = false;
 		
 		printSeparator(indent + "Player Numbers");
-		System.out.println("Please enter the number of players (min 2, max 4)");
+		System.out.println("~Please enter the number of players (min 2, max 4)~");
 		
 		while(!valid) {
 			
-			while(!input.hasNextInt()) {
-				System.out.println("please enter an integer for player numbers");
-				input.nextLine();
-			}
-			
-			playernums = input.nextInt();
+			playernums = getIntFor("player numbers");
 			
 			if(playernums<2 || playernums>4) {
 				System.out.println("please enter a valid number of players (2-4)");
 			}
 			else {
-				input.nextLine();
 				valid = true;
 			}
 		}
@@ -175,7 +165,7 @@ public class GUI {
 		printSeparator(indent + "Player " + (i+1) + " Name");
 		
 		while(!proceed) {
-			System.out.println("Please enter your character name");
+			System.out.println("~Please enter your character name~");
 			name = input.nextLine();
 				
 			while(name.isBlank() || name.length() > 12) {
@@ -188,14 +178,57 @@ public class GUI {
 			proceed = queryYN();
 		}
 			return name;
-	}	
+	}
 	
+	//
+	// Ask player to choose which surplus card to remove from their hand
+	//
+	public int chooseCardToDiscard(Participant player) {
+		int cardsLeft = player.getHand().numberOfCards();
+		int chosen  = 0;
+		valid = false;
+		
+		printWarning(player.getName()+ ", you have too many cards. Discard one");
+		
+		System.out.println("~Which card will you discard?~");
+		for(String card: player.getHand().getPrintableHand()) {
+			System.out.println("   " + (6-cardsLeft) + ": " + card);
+			cardsLeft--;
+		}
+		
+		while(!valid) {
+			chosen = getIntFor("the card to discard");
+			
+			if(chosen > 0 && chosen < 6) {
+				valid = true;
+				System.out.println("you have chosen to discard the " + player.getHand().getPrintableHand()[chosen]);
+			}
+			else{
+				System.out.println("no such card available");
+			}
+		}		
+		return chosen;		
+	}
+	
+	//
+	// get and validate an int from the user for a particular reason
+	//
+	private int getIntFor(String purpose) {
+		int i;
+		while(!input.hasNextInt()) {
+			System.out.println("please enter an integer for " + purpose);
+			input.nextLine();
+		}		
+		i = input.nextInt();
+		input.nextLine();
+		
+		return i;
+	}
 	
 	//
 	// Ask player if they wish to continue
 	//
 	private boolean queryYN() {
-		//input.nextLine();
 		
 		while(true) {
 			switch(input.nextLine()) {
@@ -218,6 +251,21 @@ public class GUI {
 		System.out.println(border);
 		System.out.println(title);
 		System.out.println(border);
+	}
+	
+	private void printWarning(String warning) {
+		char[]fslashes   = new char[warning.length()];
+		char[]spaces   = new char[warning.length()-10];
+		
+		Arrays.fill(fslashes, '/');
+		String line = new String(fslashes);
+		Arrays.fill(spaces, ' ');
+		String space = new String(spaces);
+		
+		System.out.println(indent + "///" + line + "///");
+		System.out.println(indent + "   " + " !WARNING "  + space + " ");
+		System.out.println(indent + "   " + warning + " ");
+		System.out.println(indent + "///" + line + "///\n");
 	}
 	
 	public void printPlayerFinalised(Participant player){
@@ -281,7 +329,6 @@ public class GUI {
 		border = new String(stars);
 		Arrays.fill(spaces, ' ');
 		indent = new String(spaces);
-
 	}	
 	
 }

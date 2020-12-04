@@ -194,6 +194,7 @@ public class GameManager {
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);
 		gui.display();
+		gui.chooseCardToDiscard(playerList.getPlayer(0));
 	}
 	
 	private void handOutCards() {
