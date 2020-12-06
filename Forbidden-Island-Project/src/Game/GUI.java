@@ -19,6 +19,7 @@ public class GUI {
 	private Map<String,String> tl = new HashMap<>();
 	private String[][] allHandSlices;
 	private String[][] boardSlices = new String[6][8];
+	private String[] waterlevelBar = new String[3];
 	
 	public GUI() {
 		input = new Scanner(System.in);
@@ -46,6 +47,11 @@ public class GUI {
 			}
 			System.out.println(indent+indent+"             || ");
 		}
+		printSeparator(indent+"Waterlevel");
+		System.out.println(waterlevelBar[0]);
+		System.out.println(waterlevelBar[0]);
+		System.out.println(waterlevelBar[1]);
+		System.out.println(waterlevelBar[2]);
 		printSeparator("");
 	}
 	
@@ -118,14 +124,28 @@ public class GUI {
 	}
 	
 	//
+	// Creates String representation of waterlevel
+	//
+	public void updateWaterLevel() {
+		waterlevelBar[0] = waterlevelBar[0] + "####";
+		waterlevelBar[1] = "    " + waterlevelBar[1];
+	}
+	
+	//
 	// Get the difficulty of the game with the waterlevel at an initial height
 	//
 	public int setDifficulty() {
+		int startLevel = 0;
 		
 		System.out.println("~Please enter the initial water level mark~");
-		System.out.println("1: Novice\n2: Normal\n3: Elite\n4: Legendary");
+		System.out.println("   1: Novice\n   2: Normal\n   3: Elite\n   4: Legendary");
 		
-		return getIntFor("the difficulty level");
+		startLevel =  getIntFor("the difficulty level");
+		waterlevelBar[0] = makeLongString('#',startLevel*4);
+		waterlevelBar[1] = makeLongString(' ',(startLevel-1)*4) + "   v";
+		waterlevelBar[2] = "   .   2   .   .   3   .   4   .   5   X";
+		
+		return startLevel;
 	}
 	
 	//
@@ -253,19 +273,14 @@ public class GUI {
 		System.out.println(border);
 	}
 	
-	private void printWarning(String warning) {
-		char[]fslashes   = new char[warning.length()];
-		char[]spaces   = new char[warning.length()-10];
+	private void printWarning(String warning) {				
+		String fslashes = makeLongString('/',warning.length());
+		String spaces = makeLongString(' ',warning.length()-10);
 		
-		Arrays.fill(fslashes, '/');
-		String line = new String(fslashes);
-		Arrays.fill(spaces, ' ');
-		String space = new String(spaces);
-		
-		System.out.println(indent + "///" + line + "///");
-		System.out.println(indent + "   " + " !WARNING "  + space + " ");
+		System.out.println(indent + "///" + fslashes + "///");
+		System.out.println(indent + "   " + " !WARNING "  + spaces + " ");
 		System.out.println(indent + "   " + warning + " ");
-		System.out.println(indent + "///" + line + "///\n");
+		System.out.println(indent + "///" + fslashes + "///\n");
 	}
 	
 	public void printPlayerFinalised(Participant player){
@@ -322,14 +337,17 @@ public class GUI {
 	private void initHeaderStrings(){
 		int tileWidth = 13;
 		int cardNameLen = 20;
-		char[]stars   = new char[tileWidth*6 + cardNameLen];
-		char[]spaces   = new char[Math.round((tileWidth*6 - 12)/2)];
 		
-		Arrays.fill(stars, '*');
-		border = new String(stars);
-		Arrays.fill(spaces, ' ');
-		indent = new String(spaces);
-	}	
+		border = makeLongString('*',tileWidth*6 + cardNameLen);
+		indent = makeLongString(' ',Math.round((tileWidth*6 - 12)/2));
+	}
+	
+	private String makeLongString(char filler,int length){
+		char[]longString   = new char[length];
+		Arrays.fill(longString, filler);
+		
+		return new String(longString);
+	}
 	
 }
 
