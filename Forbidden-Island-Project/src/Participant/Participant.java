@@ -47,7 +47,7 @@ public abstract class Participant {
 		this.hand = hand;
 	}
 	
-	protected int getActionsRemaining() {
+	public int getActionsRemaining() {
 		return actionsRemaining;
 	}
 	
@@ -86,7 +86,7 @@ public abstract class Participant {
 	}
 	
 	// This method will be overridden by the Messenger Participant
-	protected void giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	public void giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == participant.getLocation()) {
 			Hand giversHand = participant.getHand();
@@ -106,7 +106,7 @@ public abstract class Participant {
 	}
 	
 	 // !!! location numbers/ operation may change
-	protected void moveParticipant(int newLocation) { // participant has ability to move once for one action
+	public void moveParticipant(int newLocation) { // participant has ability to move once for one action
 //		System.out.println("You are currently on tile " + participant.location + "\n" 
 //	+ "You have " + actionsRemaining + "actions remaining. \n Choose a tile to move to!");
 //		currentLocation = participant.getLocation();
@@ -120,6 +120,10 @@ public abstract class Participant {
 		else {
 			System.out.println("You chose a tile further than one action away, please choose a closer tile!");
 		}
+	}
+	
+	public void captureTreasure() {
+		
 	}
 	
 	protected void onSunkTile() {

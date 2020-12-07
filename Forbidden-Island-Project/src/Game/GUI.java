@@ -211,6 +211,7 @@ public class GUI {
 		printWarning(player.getName()+ ", you have too many cards. Discard one");
 		
 		System.out.println("~Which card will you discard?~");
+		
 		for(String card: player.getHand().getPrintableHand()) {
 			System.out.println("   " + (6-cardsLeft) + ": " + card);
 			cardsLeft--;

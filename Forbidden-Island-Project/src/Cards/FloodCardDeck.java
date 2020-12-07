@@ -1,58 +1,57 @@
 package Cards;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
+import Board.Board;
+import Board.Tile;
+import Board.TileStatus;
+
 public class FloodCardDeck {
-	Stack<FloodCard> cardDeck = new Stack<FloodCard>();
-	String line;
-	String[] attributes;
+	private Stack<Integer> cardDeck = new Stack<Integer>();
+	private ArrayList<Integer> discardDeck = new ArrayList<Integer>();
+	private ArrayList<Tile> board = new ArrayList<Tile> ();
+	private Integer[] corners = new Integer[]{0,1,4,5,6,11,24,29,30,31,34,35};
 	
-	public FloodCardDeck() {
+	public FloodCardDeck() {	
 		initialise();
 	}
 	
 	private void initialise() {
-		BufferedReader scan;
-		try {
-			scan = new BufferedReader(new FileReader("src/Tiles.txt"));
-			for (int i = 0; i < 24; i++) {  // 24 flood cards
-		    	try {
-		    		line = scan.readLine();
-					attributes = line.split("-"); //Delimiter is a hyphen
-			    	
-					for (int j = 0; j < attributes[1].length(); j++) {
-		    		FloodCard floodCard = new FloodCard(attributes[0]);
-		    		cardDeck.push(floodCard);
-			    	}			
-		    	} 
-		    	catch (IOException e) {
-					e.printStackTrace();
-				}    
-			}
-		} 
-		catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		board = Board.getInstance().getBoard();
 		
+		List<Integer> cornerList = Arrays.asList(corners);
+		for(int i=0;i<36;i++) {
+			if(!cornerList.contains(i)) {
+				cardDeck.add(i);
+			}
+		}	
 		Collections.shuffle(cardDeck); // shuffle the deck when initiated
-	}
-	public String printDeck() {
-		for (FloodCard card: cardDeck) {
-			System.out.println(card.getName());
-		}
-		return null;
 	}
 	
 	public int size() {
 		return cardDeck.size();
 	}
-	public FloodCard pop() {
-		return cardDeck.pop();
+	public void draw() {
+		int tilePos = cardDeck.pop();
+		Tile tile = board.get(tilePos);
+		
+		switch(tile.getTileStatus()) {
+		case UNFLOODED:
+			tile.setTileStatus(TileStatus.FLOODED);
+			discardDeck.add(tilePos);
+		case FLOODED:
+			tile.setTileStatus(TileStatus.SUNK);
+			if(tile.getName() == "FOOLS LANDING") {
+			// Observer
+				break;
+			}
+		default:
+			System.out.println("Something went wrong, please try again!");
+		}	
 	}
 }
 

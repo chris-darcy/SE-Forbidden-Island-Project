@@ -51,11 +51,18 @@ public class PlayerList {
 	public void create() {
 		created = true;
 	}
+	
 	public boolean isCreated() {
 		return created;
 	}
+	
 	public Participant getPlayer(int i) {
 		return playerList.get(i);
 	}
+	
+	public int getSize() {
+		return playerList.size();
+	}
+
 	
 }
