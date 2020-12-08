@@ -2,10 +2,12 @@ package Cards;
 
 //import java.util.Collection;
 import java.util.Stack;
+import java.util.Collections;
 
 public class TreasureCardDeck {
 
 	Stack<TreasureCard> cardDeck = new Stack<TreasureCard>();
+	Stack<TreasureCard> treasureDiscardPile = new Stack<TreasureCard>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -41,7 +43,7 @@ public class TreasureCardDeck {
 			cardDeck.push(sandbagTreasureCard);
 		}	
 		
-//		Collection.shuffle(cardDeck);
+		Collections.shuffle(cardDeck); // shuffle cards initially
 	}
 	
 	public String printDeck() {
@@ -58,4 +60,10 @@ public class TreasureCardDeck {
 	public TreasureCard pop() {
 		return cardDeck.pop();
 	}
+	
+	public void addToDiscardPile(TreasureCard treasureCard){ // when chosen to remove/ used, add to discard pile
+		treasureDiscardPile.add(treasureCard);
+	}
+	
+	
 }

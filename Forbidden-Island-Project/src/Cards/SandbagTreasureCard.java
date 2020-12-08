@@ -4,6 +4,8 @@ import Board.Tile;
 import Board.*;
 
 public class SandbagTreasureCard extends TreasureCard {
+	
+	//----------------------------- CONSTRUCTORS ----------------------------------//
 	protected SandbagTreasureCard(String name) {
 		super(name);
 	}

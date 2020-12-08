@@ -37,6 +37,10 @@ public class Hand {
 		hand.add(card);
 	}
 	
+	public boolean handContains(TreasureCard treasureCard) {
+		return hand.contains(treasureCard);
+	}
+	
 	protected void tooManyCards(TreasureCard card) {
 //		Scanner cardIndex = new Scanner(System.in);
 //		System.out.println("You have too many cards, choose the index of the card you wish to add to the discard pile:");

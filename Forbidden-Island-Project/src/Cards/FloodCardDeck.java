@@ -5,10 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Stack;
-//import java.util.Collection;
+import java.util.Collections;
 
 public class FloodCardDeck {
 	Stack<FloodCard> cardDeck = new Stack<FloodCard>();
+	Stack<FloodCard> floodDiscardPile = new Stack<FloodCard>();
+	
 	String line;
 	String[] attributes;
 	
@@ -38,7 +40,7 @@ public class FloodCardDeck {
 		catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
-//		Collection.shuffle(cardDeck);
+		Collections.shuffle(cardDeck); // shuffle deck initially
 	}
 	public String printDeck() {
 		for (FloodCard card: cardDeck) {
@@ -52,6 +54,10 @@ public class FloodCardDeck {
 	}
 	public FloodCard pop() {
 		return cardDeck.pop();
+	}
+	
+	public void addToDiscardPile(FloodCard floodCard){ // when drawn/ after use, add to discard pile
+		floodDiscardPile.add(floodCard);
 	}
 }
 
