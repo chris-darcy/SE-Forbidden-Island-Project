@@ -1,6 +1,6 @@
 package Cards;
 
-//import java.util.Collection;
+import java.util.Collections;
 import java.util.Stack;
 import java.util.Collections;
 
@@ -44,6 +44,7 @@ public class TreasureCardDeck {
 		}	
 		
 		Collections.shuffle(cardDeck); // shuffle cards initially
+
 	}
 	
 	public String printDeck() {

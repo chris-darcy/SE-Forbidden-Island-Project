@@ -16,15 +16,15 @@ import Participant.Pilot;
 public class Print_Hand_demo {
 	public static void main(String[] args) {
 		
-		List<Card> hand = new ArrayList<Card>();
+//		List<Card> hand = new ArrayList<Card>();
 
 		Hand H = new Hand();
 		TreasureCardDeck deck = new TreasureCardDeck();
 		
-		H.addCardToHand(deck.earthTreasureCard);
-		H.addCardToHand(deck.fireTreasureCard);
-		H.addCardToHand(deck.windTreasureCard);
-		H.addCardToHand(deck.oceanTreasureCard);
+		H.addCardToHand(deck.pop());
+		H.addCardToHand(deck.pop());
+		H.addCardToHand(deck.pop());
+		H.addCardToHand(deck.pop());
 		
 		for(String cardName: H.getPrintableHand()) {
 			System.out.println(cardName);

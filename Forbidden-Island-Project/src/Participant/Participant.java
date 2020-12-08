@@ -1,5 +1,7 @@
 package Participant;
 
+import java.util.ArrayList;
+
 //import java.util.Scanner;
 
 import Board.*;
@@ -17,6 +19,7 @@ public abstract class Participant {
 	protected int maxCards = 5;
 	protected Board board;
 	protected SandbagTreasureCard sandbagTreasureCard;
+	protected ArrayList<Integer> relevantTileList = new ArrayList<Integer>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
@@ -104,24 +107,31 @@ public abstract class Participant {
 			System.out.println(receiver.getName() + ", " + " is not on the same tile as you!\n Please choose another action.");
 		}
 	}
-	
-	 // !!! location numbers/ operation may change
-	protected void moveParticipant(int newLocation) { // participant has ability to move once for one action
-//		System.out.println("You are currently on tile " + participant.location + "\n" 
-//	+ "You have " + actionsRemaining + "actions remaining. \n Choose a tile to move to!");
-//		currentLocation = participant.getLocation();
-//		Scanner findNewLocation = new Scanner(System.in); // !!!
-//		int newLocation = findNewLocation.nextInt();
-		
-		// check isn't a corner (newLocation) !!!
-		// up down left right !!!
-		if(Math.abs(participant.getLocation()/6 - newLocation/6) == 1 || Math.abs(participant.getLocation()%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
-			participant.setLocation(newLocation);
-			participant.actionUsed();
+
+	protected ArrayList<Integer> relevantTiles() { // returns relevant tiles that the participant can move to
+		// check where the participant currently is
+		if(participant.getLocation()/6 == 0) { // participant is on an upper edge tile
+			relevantTileList.add(getLocation() + 6); // participant can move down (+6 as each tile below is +6)
 		}
-		else {
-			System.out.println("You chose a tile further than one action away, please choose a closer tile!");
+	    if (participant.getLocation()/6 == 5) {
+	    	relevantTileList.add(getLocation() - 6); // participant can move up (-6 as each tile above is -6)
+	    }	    	
+		if(participant.getLocation()%6 == 0 ) { // participant is on an left edge tile
+			relevantTileList.add(getLocation() + 1); // participant can move left (+1 as each tile to the left is +1)
 		}
+		if(participant.getLocation()%6 == 1) { // participant is on an right edge tile
+			
+		}
+		 
+//		if(Math.abs(participant.getLocation()/6 - newLocation/6) == 1 || Math.abs(participant.getLocation()%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
+//			participant.setLocation(newLocation);
+//			participant.actionUsed();
+//			return true; // they can move
+//		}
+//		else {
+//			return false; // they can't move
+//		}
+		return relevantTileList;
 	}
 	
 	protected void onSunkTile() {

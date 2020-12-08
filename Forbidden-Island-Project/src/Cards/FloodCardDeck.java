@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Stack;
 import java.util.Collections;
+import java.util.Stack;
+
 
 public class FloodCardDeck {
 	Stack<FloodCard> cardDeck = new Stack<FloodCard>();
@@ -41,6 +42,7 @@ public class FloodCardDeck {
 			e1.printStackTrace();
 		}
 		Collections.shuffle(cardDeck); // shuffle deck initially
+
 	}
 	public String printDeck() {
 		for (FloodCard card: cardDeck) {
