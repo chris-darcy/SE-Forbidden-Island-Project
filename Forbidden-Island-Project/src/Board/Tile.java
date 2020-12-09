@@ -61,7 +61,6 @@ public class Tile {
 			
 			GameManager GM = GameManager.getInstance();
 			GM.updateSpecialTileStatus(this);
-//			notifyObserver(); // notify that a 
 		}
 		
 		this.tileStatus = tileStatus;
