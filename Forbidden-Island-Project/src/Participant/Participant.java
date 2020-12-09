@@ -3,11 +3,10 @@ package Participant;
 import java.util.ArrayList;
 import Board.*;
 import Cards.*;
-import Board.*;
 
 public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
-	protected Hand hand;
+	public Hand hand;
 	protected int actionsRemaining;
 	protected int numberOfActions = 3;
 	protected int currentLocation;
@@ -68,19 +67,15 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
-	public boolean canShoreUp(Tile tile) { // return if participant can shore up a tile
-		if(participant.getActionsRemaining() > 0 && participant.getHand().handContains(sandbagTreasureCard)) { // participant needs to have a sandbag card and have enough actions remaining // !!! might not be necessary anymore
-			if(tile.getLocation() == participant.getLocation() || Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
-				tile.shoreUpTile();
-				participant.actionUsed();
-				return true;
-			}
-			else {
-				return false;
-			}
+	protected boolean shoreUp(Tile tile) {
+		SandbagTreasureCard card = new SandbagTreasureCard("Sandbag");
+		
+		if (participant.getHand().handContains(card) && tile.getLocation() == participant.getLocation() && tile.getTileStatus() == TileStatus.FLOODED) {
+			tile.setTileStatus(TileStatus.UNFLOODED); // tile is "shored up"
+			return true; // successful
 		}
-		else{
-			return false;
+		else { 
+			return false; // unsuccessful
 		}
 	}
 	
@@ -146,23 +141,4 @@ public abstract class Participant {
 		participant.relevantTiles(board); // for most participants, they will only be able to move to as normal
 	}
 
-	public static void shoreUp(Tile tile) {
-		switch(tile.getTileStatus()) {
-			case UNFLOODED:
-				System.out.println("You have chosen an unflooded tile, please try a flooded tile!");// user told unflooded tile chosen
-				break;
-				
-			case FLOODED:
-				tile.setTileStatus(TileStatus.UNFLOODED);
-				break;
-			
-			case SUNK:
-				System.out.println("You have chosen a sunk tile (already at the bottom of the sea), please try a flooded tile!");// user told sunk tile chosen
-				break;
-				
-			default:
-				System.out.println("Please try again");
-				break;
-		}
-	}
 }
