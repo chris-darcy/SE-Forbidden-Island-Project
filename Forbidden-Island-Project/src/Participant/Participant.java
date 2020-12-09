@@ -16,7 +16,7 @@ public abstract class Participant {
 	protected int maxCards = 5;
 	protected SandbagTreasureCard sandbagTreasureCard;
 	protected ArrayList<Integer> relevantTileList = new ArrayList<Integer>();
-	
+	protected int location;
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
 	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
@@ -141,66 +141,28 @@ public abstract class Participant {
 		participant.setLocation(newLocation);
 	}
 	
-//		
-//	
-//		int x, y, up, down, left, right;
-//		
-//		// convert location to x, y coordinates
-//		x = participant.getLocation()%6;
-//		y = participant.getLocation()/6;
-//		
-//		up   = y + 1;
-//		down = y - 1;
-//		right= x + 1;
-//		left = x - 1;
-//		
-//		board.get(participant.getLocation()).getTileStatus();
-//		
-//		// check if up is relevant
-//		switch (board.get(participant.getLocation()-6).getTileStatus()){ // -6 to go up
-//		case SUNK:
-//			
-//		}
-		
-//		if(Math.abs(participant.getLocation()/6 - newLocation/6) == 1 || Math.abs(participant.getLocation()%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
-//			participant.actionUsed();
-//		}
-//		
-//		else {
-//		}
-		
-//		if(participant.getLocation()/6 == 0) { // participant is on an upper edge tile
-//			relevantTileList.add(getLocation() + 6); // participant can move down (+6 as each tile below is +6)
-//			board.getBoard();
-//		}
-//	    if (participant.getLocation()/6 == 5) {
-//	    	relevantTileList.add(getLocation() - 6); // participant can move up (-6 as each tile above is -6)
-//	    }	    	
-//		if(participant.getLocation()%6 == 0 ) { // participant is on an left edge tile
-//			relevantTileList.add(getLocation() + 1); // participant can move left (+1 as each tile to the left is +1)
-//		}
-//		if(participant.getLocation()%6 == 1) { // participant is on an right edge tile
-//			
-//		}
-		 
-//		if(Math.abs(participant.getLocation()/6 - newLocation/6) == 1 || Math.abs(participant.getLocation()%6 - newLocation%6) == 1) { // if the user has chosen a tile that is one move away
-//			participant.setLocation(newLocation);
-//			participant.actionUsed();
-//			return true; // they can move
-//		}
-//		else {
-//			return false; // they can't move
-//		}
-		
-	
-	protected void onSunkTile() {
+	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		participant.getLocation();
-		
+		participant.relevantTiles(board); // for most participants, they will only be able to move to as normal
 	}
 
-	public void shoreUp(Tile tile) {
-		// TODO Auto-generated method stub
-		
+	public static void shoreUp(Tile tile) {
+		switch(tile.getTileStatus()) {
+			case UNFLOODED:
+				System.out.println("You have chosen an unflooded tile, please try a flooded tile!");// user told unflooded tile chosen
+				break;
+				
+			case FLOODED:
+				tile.setTileStatus(TileStatus.UNFLOODED);
+				break;
+			
+			case SUNK:
+				System.out.println("You have chosen a sunk tile (already at the bottom of the sea), please try a flooded tile!");// user told sunk tile chosen
+				break;
+				
+			default:
+				System.out.println("Please try again");
+				break;
+		}
 	}
 }
