@@ -80,7 +80,7 @@ public abstract class Participant {
 	}
 	
 	// This method will be overridden by the Messenger Participant
-	protected void giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	protected boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == participant.getLocation()) {
 			Hand giversHand = participant.getHand();
@@ -93,9 +93,10 @@ public abstract class Participant {
 			else{
 				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
 			}
+			return true;
 		}
 		else {
-			System.out.println(receiver.getName() + ", " + " is not on the same tile as you!\n Please choose another action.");
+			return false;
 		}
 	}
 
