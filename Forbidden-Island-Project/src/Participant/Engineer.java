@@ -1,6 +1,7 @@
 package Participant;
 
 import Board.Tile;
+import Board.TileStatus;
 
 public class Engineer extends Participant{
 	protected int chance = 0;
@@ -11,26 +12,33 @@ public class Engineer extends Participant{
 	
 	// can shore up two tiles for 1 action
 	@Override
-	public void shoreUp(Tile tile) {
-		if(participant.getActionsRemaining()>0) {
-			if(chance > 2 & tile.getLocation() == participant.getLocation() || 
-			   Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
-			   Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
+	public boolean shoreUp(Tile tile) {
+		int chance = 0; // initialise 
+		if(participant.getActionsRemaining()>0 &&
+		   chance > 2 && 
+		   tile.getTileStatus() != TileStatus.SUNK &&
+		   (tile.getLocation() == participant.getLocation() || 
+			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
+			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
 				
 				chance++;
-				tile.shoreUpTile();
+				
+				switch (tile.getTileStatus()){
+				case UNFLOODED:
+					tile.setTileStatus(TileStatus.FLOODED);
+				case FLOODED:
+					tile.setTileStatus(TileStatus.SUNK);
+				}
 				
 				if(chance == 2) {
 					participant.actionUsed();
 				}
-			}
-			else {
-				System.out.println(tile.getName() + ", is too far away for you shore up, try a closer tile.");
-			}
-		}
-		else{
-			System.out.println("You don't have enough actions left!");
+				return true;
 		}
 		
+		else {
+			return false;
+		}
+	
 	}
 }
