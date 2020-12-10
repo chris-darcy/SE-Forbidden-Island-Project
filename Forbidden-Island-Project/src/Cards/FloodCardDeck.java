@@ -37,7 +37,8 @@ public class FloodCardDeck {
 	public int size() {
 		return cardDeck.size();
 	}
-	public void draw() {
+	
+	public String draw() {
 		int tilePos = cardDeck.pop();
 		Tile tile = board.get(tilePos);
 		
@@ -54,6 +55,7 @@ public class FloodCardDeck {
 		default:
 			System.out.println("Something went wrong, please try again!");
 		}	
+		return tile.getName(); // will be shown to the user so they know what they drew
 	}
 }
 
