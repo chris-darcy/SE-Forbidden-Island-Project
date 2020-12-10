@@ -13,15 +13,18 @@ public class Hand {
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	public Hand() {
-
+		
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
 	
 
-	public String[] getPrintableHand() {	
-		String handString = Arrays.toString(hand.toArray());
-	    return handString.substring(1,handString.length()-1).split(", ");
+	public ArrayList<String> getPrintableHand() {
+		ArrayList<String> handString = new ArrayList<String>();
+		for(TreasureCard card : hand) {
+			handString.add(card.toString());
+		}
+		return handString;
 	}
 	
 	public int numberOfCards() {
@@ -36,11 +39,11 @@ public class Hand {
 		hand.add(card);
 	}
 	
+	public boolean handContains(TreasureCard treasureCard) {
+		return hand.contains(treasureCard);
+	}
+	
 	protected void tooManyCards(TreasureCard card) {
-//		Scanner cardIndex = new Scanner(System.in);
-//		System.out.println("You have too many cards, choose the index of the card you wish to add to the discard pile:");
-//		// User has to interact to indicate which card to remove !!!
-//		int cardNumber = cardIndex.nextInt();
 		hand.remove(card);
 	}
 

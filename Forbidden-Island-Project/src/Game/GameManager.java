@@ -43,7 +43,8 @@ public class GameManager {
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
-		waterlevel.setCurrentWaterLevel(gui.setDifficulty());	
+		waterlevel.setMaxWaterLevel(gui.setDifficulty());
+
 	}
 	
 	public void runGame() {
@@ -143,12 +144,16 @@ public class GameManager {
 			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
 				treasureLost = true;
 				//potentially update gui 
+
+//				notifyObserver(); // notify that an important tile has been changed
 			}
 		}		
 		else{	
 			if(specialTile.getTileStatus() == TileStatus.SUNK) {
 				foolsLandingLost = true;
 				//potentially update gui
+
+//				notifyObserver(); // notify that an important tile has been changed
 			}
 		}		
 	}

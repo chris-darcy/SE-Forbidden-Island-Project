@@ -7,11 +7,11 @@ public class RiseWaterTreasureCard extends TreasureCard{
 	}
 	
 	public void riseWaterLevel() {
-		if(WaterLevel.getCurrentWaterLevel() < WaterLevel.getMaxWaterLevel()) {
-			WaterLevel.setCurrentWaterLevel(WaterLevel.getCurrentWaterLevel() + 1); // increment water level
-		}
-		else{
-			// GAME OVER!!
-		}
+//		if(WaterLevel.getCurrentWaterLevel() < WaterLevel.getMaxWaterLevel()) {
+//			WaterLevel.setCurrentWaterLevel(WaterLevel.getCurrentWaterLevel() + 1); // increment water level
+//		}
+//		else{
+//			// GAME OVER!!
+//		}
 	}
 }

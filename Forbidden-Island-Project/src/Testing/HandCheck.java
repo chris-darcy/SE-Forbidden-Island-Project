@@ -30,7 +30,6 @@ public class HandCheck {
 			discardFloodDeck.push(floodCard); // add the cards to the discard pile (i.e bottom of the 
 			System.out.println(floodCard.getName());
 		}
-		
 	}
 
 }

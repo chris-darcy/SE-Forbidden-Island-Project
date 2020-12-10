@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
+
 import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
@@ -30,6 +31,7 @@ public class FloodCardDeck {
 			}
 		}	
 		Collections.shuffle(cardDeck); // shuffle the deck when initiated
+
 	}
 	
 	public int size() {
