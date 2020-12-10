@@ -47,7 +47,7 @@ public abstract class Participant {
 		this.hand = hand;
 	}
 	
-	protected int getActionsRemaining() {
+	public int getActionsRemaining() {
 		return actionsRemaining;
 	}
 	
@@ -144,6 +144,10 @@ public abstract class Participant {
 		participant.setLocation(newLocation);
 	}
 	
+	public void captureTreasure() {
+		
+	}
+
 	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
 		participant.getRelevantTiles(board); // for most participants, they will only be able to move to as normal

@@ -3,20 +3,11 @@ package Game;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 import Board.*;
 import Cards.*;
-import Participant.Diver;
-import Participant.Engineer;
-import Participant.Explorer;
-import Participant.Hand;
-import Participant.Messenger;
-import Participant.Navigator;
-import Participant.Participant;
-import Participant.Pilot;
-import Participant.PlayerList;
+import Participant.*;
 import WaterLevel.WaterLevel;
 
 public class GameManager {
@@ -32,11 +23,13 @@ public class GameManager {
 
 	GameManager() {
 		board 			 = Board.getInstance();
-		//waterlevel 		 = WaterLevel.getInstance();
+		waterlevel 		 = WaterLevel.getInstance();
 		playerList		 = PlayerList.getInstance();
 		gui              = new GUI();
-		//floodCardDeck    = new FloodCardDeck();
+		floodCardDeck    = new FloodCardDeck();
 		treasureCardDeck = new TreasureCardDeck();
+		
+		setupGame();
 	}
 	
 	public static GameManager getInstance() {
@@ -49,15 +42,41 @@ public class GameManager {
 	public void setupGame() {
 		floodFirstSixTiles();
 		createPlayerList();
-		
+		handOutCards();
 		waterlevel.setMaxWaterLevel(gui.setDifficulty());
-		
-	
+
 	}
 	
 	public void runGame() {
+		Participant player;
+		int choice;
+		
 		while(!foolsLandingLost && !treasureLost) {
-			
+			for(int i=0; i<playerList.getSize();i++) {
+				player = playerList.getPlayer(i);
+				
+				while(player.getActionsRemaining() > 0) {
+					choice = gui.chooseAction();
+					
+					switch(choice) {
+						case 0:
+							player.moveParticipant(gui.chooseLocation());
+							break;
+							
+						case 1:
+							player.giveCard(gui.chooseReciever(player), gui.chooseCardToGive(player));
+							break;
+							
+						case 2:
+							player.shoreUp(gui.chooseTile());
+							break;
+							
+						case 3:
+							player.captureTreasure();
+							break;
+					}
+				}
+			}
 		}
 		
 	}
@@ -71,11 +90,10 @@ public class GameManager {
 	//
 	public void createPlayerList(){
 		int playernums = 0;
-		String name;
-		Participant player = null;
 		int location;
+		String name;
 		String[] roles = shuffleRoles();
-
+		Participant player = null;
 		
 		if(!playerList.isCreated()) {
 			playernums = gui.inputPlayerNumbers();
@@ -152,37 +170,67 @@ public class GameManager {
 	}
 	
 	
-	public boolean checkTreasureLost() {	
-		int lostOfSet = 0;
-		Board board = Board.getInstance();
+//	public boolean checkTreasureLost() {	
+//		int lostOfSet = 0;
+//		Board board = Board.getInstance();
+//	
+//		for (ArrayList<Tile> set: board.getAllSpecialSets()) {		
+//			lostOfSet = 0;
+//			
+//			for(Tile tile: set) {
+//				if(tile.getTileStatus() == TileStatus.SUNK) {
+//					lostOfSet += 1;
+//				}	
+//			}		
+//			if(lostOfSet > 1) {
+//				return true;
+//			}	
+//		}
+//		return false;	
+//	}
+//	
+//	public boolean checkFoolsLandingLost() {
+//		Board board = Board.getInstance();
+//		
+//		if(board.getFoolsLanding().getTileStatus() == TileStatus.SUNK) {
+//			return true;
+//		}
+//		return false;
+//	}
 	
-		for (ArrayList<Tile> set: board.getAllSpecialSets()) {		
-			lostOfSet = 0;
-			
-			for(Tile tile: set) {
-				if(tile.getTileStatus() == TileStatus.SUNK) {
-					lostOfSet += 1;
-				}	
-			}		
-			if(lostOfSet > 1) {
-				return true;
-			}	
-		}
-		return false;	
-	}
-	
-	public boolean checkFoolsLandingLost() {
-		Board board = Board.getInstance();
-		
-		if(board.getFoolsLanding().getTileStatus() == TileStatus.SUNK) {
-			return true;
-		}
-		return false;
-	}
+	//
+	// randomly flood the first 6 tiles to initialise the board
+	//
 	
 	private void floodFirstSixTiles() {
 		for(int i=0; i<6; i++) {
-			
+			floodCardDeck.draw();
+		}
+	}
+	
+	//
+	// hand 2 card out to each player at the beginning of the game
+	//
+	private void handOutCards() {		
+		TreasureCard card;
+		Participant player;
+		
+		if(playerList.isCreated()) {
+			for(int i=0; i<playerList.getSize();i++) {
+				
+				player = playerList.getPlayer(i);
+				
+				for(int cardsToDraw = 0; cardsToDraw<2;cardsToDraw++) {
+					card = treasureCardDeck.draw();
+					
+					while(card instanceof RiseWaterTreasureCard) {
+						treasureCardDeck.replace(card);
+						card = treasureCardDeck.draw();
+					}
+					
+					player.getHand().addCardToHand(card);
+				}
+			}
 		}
 	}
 	
@@ -190,10 +238,10 @@ public class GameManager {
 	public void callGUIDisplay(int playernums) {
 		
 		for(int i=0; i<playernums; i++) {
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.pop());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
+			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
 		}
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);
@@ -201,13 +249,7 @@ public class GameManager {
 		gui.chooseCardToDiscard(playerList.getPlayer(0));
 	}
 	
-	private void handOutCards() {
-		
-		
-		if(playerList.isCreated()) {
-			
-		}
-	}
+
 	
 	
  

@@ -58,13 +58,18 @@ public class TreasureCardDeck {
 		return cardDeck.size();
 	}
 	
-	public TreasureCard pop() {
+	public TreasureCard draw() {
 		return cardDeck.pop();
 	}
 	
+
+	public void replace(TreasureCard drawnCard) {
+		cardDeck.add(drawnCard);
+		Collections.shuffle(cardDeck);
+	}
+
 	public void addToDiscardPile(TreasureCard treasureCard){ // when chosen to remove/ used, add to discard pile
 		treasureDiscardPile.add(treasureCard);
 	}
-	
-	
+
 }
