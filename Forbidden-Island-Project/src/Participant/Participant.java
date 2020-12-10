@@ -67,17 +67,25 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
-	protected boolean shoreUp(Tile tile) {
-		SandbagTreasureCard card = new SandbagTreasureCard("Sandbag");
-		
-		if (participant.getHand().handContains(card) && tile.getLocation() == participant.getLocation() && tile.getTileStatus() == TileStatus.FLOODED) {
-			tile.setTileStatus(TileStatus.UNFLOODED); // tile is "shored up"
-			return true; // successful
+	public boolean shoreUp(Tile tile) {
+		if(participant.getActionsRemaining()>0 &&
+		   tile.getTileStatus() != TileStatus.SUNK &&
+		   (tile.getLocation() == participant.getLocation() || 
+			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
+			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
+				
+				switch (tile.getTileStatus()){
+				case UNFLOODED:
+					tile.setTileStatus(TileStatus.FLOODED);
+				case FLOODED:
+					tile.setTileStatus(TileStatus.SUNK);
+				}
+				return true;
 		}
-		else { 
-			return false; // unsuccessful
+		else {
+				return false;
+			}
 		}
-	}
 	
 	// This method will be overridden by the Messenger Participant
 	protected boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
@@ -100,7 +108,7 @@ public abstract class Participant {
 		}
 	}
 
-	protected ArrayList<Integer> relevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
+	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
 		
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
         
@@ -110,8 +118,7 @@ public abstract class Participant {
 		relevantTiles.add(participant.getLocation() + 6);
 		relevantTiles.add(participant.getLocation() - 6);
 		
-		for (int location : relevantTiles) {
-			// check the TileStatus is not EMPTY of SUNK
+		for (int location : relevantTiles) { // check the TileStatus is not EMPTY of SUNK
 			if (board.get(location).getTileStatus() == TileStatus.SUNK || // if tile is sunk or is a corner piece (empty)
 				board.get(location).getTileType() == TileType.EMPTY) {    // the participant can't move there
 				relevantTiles.remove(location);
@@ -139,7 +146,7 @@ public abstract class Participant {
 	
 	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		participant.relevantTiles(board); // for most participants, they will only be able to move to as normal
+		participant.getRelevantTiles(board); // for most participants, they will only be able to move to as normal
 	}
 
 }
