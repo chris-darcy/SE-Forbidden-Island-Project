@@ -10,7 +10,7 @@ public class TestCardDeck {
 		
 		System.out.println("\n");
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
-		floodCardDeck.printDeck();
+		floodCardDeck.getPrintableHand();
 		
 	} 
 }

@@ -10,6 +10,7 @@ import java.util.Stack;
 import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
+import Participant.Hand;
 
 public class FloodCardDeck {
 	private Stack<Integer> cardDeck = new Stack<Integer>();
@@ -56,6 +57,12 @@ public class FloodCardDeck {
 			System.out.println("Something went wrong, please try again!");
 		}	
 		return tile.getName(); // will be shown to the user so they know what they drew
+	}
+	
+	public void printDeck() {
+		for (int card: cardDeck) { 
+			System.out.println(card);
+		}
 	}
 }
 

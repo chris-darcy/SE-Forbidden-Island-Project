@@ -9,7 +9,7 @@ import Board.Board;
 
 public class TestParticipant {
 	public static void main(String [] args) {
-		Board board = new Board();
+//		Board board = new Board();
 		String name = "Bob";
 		int actionsRemaining = 5;
 		int location = 3; // uppermost edge
@@ -18,12 +18,12 @@ public class TestParticipant {
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		
 		
-		hand.populateHand(treasureCardDeck.pop());
-		hand.populateHand(treasureCardDeck.pop());
+		hand.populateHand(treasureCardDeck.draw());
+		hand.populateHand(treasureCardDeck.draw());
 		
 		Participant engineerTest = new Engineer(name, hand, location, actionsRemaining);
 		
 		engineerTest.hand.getPrintableHand();
-		engineerTest.getRelevantTiles(board.getBoard());
+//		engineerTest.getRelevantTiles(board.getBoard());
 	}
 }
