@@ -10,6 +10,7 @@ import java.util.Stack;
 import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
+import Board.TileType;
 
 public class FloodCardDeck {
 	private Stack<Integer> cardDeck = new Stack<Integer>();
@@ -42,17 +43,17 @@ public class FloodCardDeck {
 		Tile tile = board.get(tilePos);
 		
 		switch(tile.getTileStatus()) {
-		case UNFLOODED:
-			tile.setTileStatus(TileStatus.FLOODED);
-			discardDeck.add(tilePos);
-		case FLOODED:
-			tile.setTileStatus(TileStatus.SUNK);
-			if(tile.getName() == "FOOLS LANDING") {
-			// Observer
-				break;
-			}
-		default:
-			System.out.println("Something went wrong, please try again!");
+			case UNFLOODED:
+				tile.setTileStatus(TileStatus.FLOODED);
+				discardDeck.add(tilePos);
+			case FLOODED:
+				tile.setTileStatus(TileStatus.SUNK);
+				if(tile.getTileType() == TileType.FOOLSLANDING) {
+				// Observer
+					break;
+				}
+			default:
+				//System.out.println("Something went wrong, please try again!");
 		}	
 	}
 }

@@ -29,7 +29,6 @@ public class GameManager {
 		floodCardDeck    = new FloodCardDeck();
 		treasureCardDeck = new TreasureCardDeck();
 		
-		setupGame();
 	}
 	
 	public static GameManager getInstance() {
@@ -43,8 +42,7 @@ public class GameManager {
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
-		waterlevel.setMaxWaterLevel(gui.setDifficulty());
-
+		waterlevel.setCurrentWaterLevel(gui.setDifficulty());
 	}
 	
 	public void runGame() {
@@ -56,15 +54,15 @@ public class GameManager {
 				player = playerList.getPlayer(i);
 				
 				while(player.getActionsRemaining() > 0) {
-					choice = gui.chooseAction();
+					choice = gui.chooseAction(player);
 					
 					switch(choice) {
 						case 0:
-							player.moveParticipant(gui.chooseLocation());
+							movePlayer(player);
 							break;
 							
 						case 1:
-							player.giveCard(gui.chooseReciever(player), gui.chooseCardToGive(player));
+							giveCard(player);
 							break;
 							
 						case 2:
@@ -105,27 +103,27 @@ public class GameManager {
 				switch(roles[i]) {
 				case "P":
 					location = board.getPilotStartLoc();
-					player = new Pilot(name,hand,location,3);
+					player = new Pilot(name,hand,i,location,3);
 					break;
 				case "G":
 					location = board.getEngineerStartLoc();
-					player = new Engineer(name,hand,location,3);
+					player = new Engineer(name,hand,i,location,3);
 					break;
 				case "E":
 					location = board.getExplorerStartLoc();
-					player = new Explorer(name,hand,location,3);
+					player = new Explorer(name,hand,i,location,3);
 					break;
 				case "D":
 					location = board.getDiverStartLoc();
-					player = new Diver(name,hand,location,3);
+					player = new Diver(name,hand,i,location,3);
 					break;
 				case "M":
 					location = board.getMessengerStartLoc();
-					player = new Messenger(name,hand,location,3);
+					player = new Messenger(name,hand,i,location,3);
 					break;
 				case "N":
 					location = board.getNavigatorStartLoc();
-					player = new Navigator(name,hand,location,3);
+					player = new Navigator(name,hand,i,location,3);
 					break;
 				}
 				gui.printPlayerFinalised(player);
@@ -159,7 +157,7 @@ public class GameManager {
 	}
 	
 	//
-	// integers represent character roles Engineer, Diver etc, shuffle and return int role list
+	// Letters represent character roles Engineer, Diver etc, shuffle and return String role list
 	//
 	private String[] shuffleRoles(){	
 		String[] roles = {"P","M","G","E","D","N"};
@@ -199,9 +197,35 @@ public class GameManager {
 //	}
 	
 	//
+	// facilitate a player giving a card from their hand
+	//
+	private void giveCard(Participant player) {
+		int cardChoice;
+		Participant receiver;
+		TreasureCard card;
+		
+		cardChoice = gui.chooseCardToGive(player);
+		
+		receiver = playerList.getPlayer(gui.chooseReceiver(player,playerList.getAllPlayerExcept(player)));
+		player.giveCard(receiver,card);
+	}
+	
+	//
+	// facilitate moving the player
+	//
+	private void movePlayer(Participant player) {
+		int location;
+		ArrayList<Integer> relevantTiles;
+		ArrayList<Tile> brd  = board.getBoard();
+		
+		relevantTiles = player.getRelevantTiles(brd);
+		location = gui.chooseNextLocation(relevantTiles, brd);
+		player.move(location);
+	}
+	
+	//
 	// randomly flood the first 6 tiles to initialise the board
 	//
-	
 	private void floodFirstSixTiles() {
 		for(int i=0; i<6; i++) {
 			floodCardDeck.draw();
@@ -236,17 +260,11 @@ public class GameManager {
 	
 	// !!!!!!!REMOVE LATER !!!!!!!!!!
 	public void callGUIDisplay(int playernums) {
-		
-		for(int i=0; i<playernums; i++) {
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
-			playerList.getPlayer(i)	.getHand().addCardToHand(treasureCardDeck.draw());
-		}
+
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);
 		gui.display();
-		gui.chooseCardToDiscard(playerList.getPlayer(0));
+		gui.chooseCardToDiscard(playerList.getPlayer(0),0);
 	}
 	
 

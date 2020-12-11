@@ -18,13 +18,13 @@ public class TreasureCardDeck {
 	//-------------------------------- METHODS ------------------------------------//
 	
 	public void initialise() { // type of card input determines type of deck created (flood or treasure)
-		TreasureCard earthTreasureCard = new TreasureCard("Earth");
-		TreasureCard fireTreasureCard = new TreasureCard("Fire");
-		TreasureCard windTreasureCard = new TreasureCard("Wind");
-		TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
-		HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
-		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
-		RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("RiseWater");
+		TreasureCard earthTreasureCard = new TreasureCard("Earth Treasure Card");
+		TreasureCard fireTreasureCard = new TreasureCard("Fire Treasure Card");
+		TreasureCard windTreasureCard = new TreasureCard("Wind Treasure Card");
+		TreasureCard oceanTreasureCard = new TreasureCard("Ocean Treasure Card");
+		HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter Lift Card");
+		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbags Card");
+		RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("Waters Rise");
 		
 		// add all the treasure cards to the deck of cards
 		for (int i = 0; i < 5; i++) { // 5 of each treasure
