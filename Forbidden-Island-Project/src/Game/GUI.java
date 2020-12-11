@@ -109,12 +109,12 @@ public class GUI {
 			
 			allHandSlices[player][0] = playerList.getPlayer(player).getName() +" (" + playerList.getPlayer(player).getRoleName()+"):";	
 			
-			String[] hand = playerList.getPlayer(player).getHand().getPrintableHand();	
+			ArrayList<String> hand = playerList.getPlayer(player).getHand().getPrintableHand();	
 		
 			//8 slices, first saved for player name
 			for(int card=0;card<7;card++) {	
-				if(card<hand.length) {
-					allHandSlices[player][card+1] = hand[card];
+				if(card<hand.size()) {
+					allHandSlices[player][card+1] = hand.get(card);
 				}
 				else {
 					allHandSlices[player][card+1] = "";
@@ -222,7 +222,7 @@ public class GUI {
 			
 			if(chosen > 0 && chosen < 6) {
 				valid = true;
-				System.out.println("you have chosen to discard the " + player.getHand().getPrintableHand()[chosen]);
+				System.out.println("you have chosen to discard the " + player.getHand().getPrintableHand().get(chosen));
 			}
 			else{
 				System.out.println("no such card available");

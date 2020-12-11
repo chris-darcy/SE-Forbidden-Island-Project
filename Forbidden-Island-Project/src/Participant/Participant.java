@@ -75,10 +75,10 @@ public abstract class Participant {
 			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
 				
 				switch (tile.getTileStatus()){
-				case UNFLOODED:
-					tile.setTileStatus(TileStatus.FLOODED);
-				case FLOODED:
-					tile.setTileStatus(TileStatus.SUNK);
+					case UNFLOODED:
+						tile.setTileStatus(TileStatus.FLOODED);
+					case FLOODED:
+						tile.setTileStatus(TileStatus.SUNK);
 				}
 				participant.actionUsed();
 				return true;
@@ -102,6 +102,7 @@ public abstract class Participant {
 			else{
 				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
 			}
+			participant.actionUsed();
 			return true;
 		}
 		else {
@@ -131,6 +132,7 @@ public abstract class Participant {
 		return relevantTiles;
 	}
 	
+	// should be moved to GameManager? !!!
 	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
 		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
 			return true;

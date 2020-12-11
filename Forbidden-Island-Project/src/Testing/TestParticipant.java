@@ -2,26 +2,28 @@ package Testing;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Cards.Card;
-import Participant.Hand;
-import Participant.Participant;
-import Participant.Participant.*;
+import Cards.*;
+import Game.GameManager;
+import Participant.*;
+import Board.Board;
 
 public class TestParticipant {
-//	protected List<Card> handNewParticipant = new ArrayList<Card>(); 
-//	handNewParticipant.add();
-//	handNewParticipant.add();
-//	handNewParticipant.add();
-//	Hand hand = new Hand(handNewParticipant);
-//	Participant newParticipant = new Participant("Bob", "Engineer", hand, 13, 5);
-//	
-//	protected TestParticipant() {
-//		
-//	}
-//	
-//	// test initialising the participant
-//	protected void initialiseParticipant() {
-//		
-//	}
+	public static void main(String [] args) {
+		Board board = new Board();
+		String name = "Bob";
+		int actionsRemaining = 5;
+		int location = 3; // uppermost edge
+		Hand hand = new Hand();
+		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
+		FloodCardDeck floodCardDeck = new FloodCardDeck();
+		
+		
+		hand.populateHand(treasureCardDeck.pop());
+		hand.populateHand(treasureCardDeck.pop());
+		
+		Participant engineerTest = new Engineer(name, hand, location, actionsRemaining);
+		
+		engineerTest.hand.getPrintableHand();
+		engineerTest.getRelevantTiles(board.getBoard());
+	}
 }

@@ -10,6 +10,7 @@ public class Hand {
 	protected List<TreasureCard> hand = new ArrayList<TreasureCard>(); 
 	public int maxCards = 5;
 	protected Card chosenCard;
+	protected Participant participant;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	public Hand() {
@@ -43,7 +44,7 @@ public class Hand {
 		return hand.contains(treasureCard);
 	}
 	
-	protected void tooManyCards(TreasureCard card) {
+	protected void tooManyCards(TreasureCard card) { // !!!
 		hand.remove(card);
 	}
 

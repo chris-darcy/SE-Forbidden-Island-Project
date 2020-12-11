@@ -2,7 +2,7 @@ package Cards;
 
 public class OceanTreasureCard extends TreasureCard{
 
-	protected OceanTreasureCard(String name) {
+	public OceanTreasureCard(String name) {
 		super(name);
 	}
 
