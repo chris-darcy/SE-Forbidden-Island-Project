@@ -7,6 +7,7 @@ import Cards.*;
 public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
 	public Hand hand;
+	private int playerNum;
 	protected int actionsRemaining;
 	protected int numberOfActions = 3;
 	protected int currentLocation;
@@ -18,9 +19,10 @@ public abstract class Participant {
 	protected int location;
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
-	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
+	protected Participant(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 
 		this.name = name;
+		this.playerNum = playerNum;
 		this.hand = hand;
 		this.location = location;
 		this.actionsRemaining = actionsRemaining;
@@ -33,6 +35,10 @@ public abstract class Participant {
 	
 	protected void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getPlayerNum() {
+		return playerNum;
 	}
 	
 	public String getRoleName() {
@@ -88,7 +94,7 @@ public abstract class Participant {
 		}
 	
 	// This method will be overridden by the Messenger Participant
-	protected boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	public boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == participant.getLocation()) {
 			Hand giversHand = participant.getHand();
@@ -140,7 +146,7 @@ public abstract class Participant {
 		
 	} 
 	
-	protected void move(int newLocation) { // moves participant to new location
+	public void move(int newLocation) { // moves participant to new location
 		participant.setLocation(newLocation);
 	}
 	

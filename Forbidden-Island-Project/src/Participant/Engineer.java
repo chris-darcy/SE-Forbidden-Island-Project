@@ -6,8 +6,8 @@ import Board.TileStatus;
 public class Engineer extends Participant{
 	protected int chance = 0;
 	
-	public Engineer(String name, Hand hand, int location, int actionsRemaining) {
-		super(name, hand, location, actionsRemaining);
+	public Engineer(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
+		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
 	// can shore up two tiles for 1 action
