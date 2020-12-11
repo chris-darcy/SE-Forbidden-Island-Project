@@ -86,6 +86,7 @@ public abstract class Participant {
 				case FLOODED:
 					tile.setTileStatus(TileStatus.SUNK);
 				}
+				participant.actionUsed();
 				return true;
 		}
 		else {
