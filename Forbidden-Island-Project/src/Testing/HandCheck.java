@@ -1,8 +1,10 @@
 package Testing;
 
 import Participant.Hand;
-//import WaterLevel.WaterLevel;
+import java.util.ArrayList;
 import java.util.Stack;
+
+import Board.Board;
 import Cards.*;
 
 public class HandCheck {
@@ -10,26 +12,30 @@ public class HandCheck {
 	public static void main(String [] args) {
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
-		Stack<FloodCard> discardFloodDeck = new Stack<FloodCard>();
-		
-		FloodCard floodCard;
-//		WaterLevel waterLevel;
-		
+		Stack<String> discardFloodDeck = new Stack<String>();
+		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
+		TreasureCard oceanTreasureCard = new OceanTreasureCard("Ocean");
+		String floodCard;
 		Hand hand = new Hand(); 
 		
 		System.out.println("Your Hand:\n");
 		for (int i = 0; i < 2; i++) {
-			hand.populateHand(treasureCardDeck.pop()); // pop the top cards from the deck
+			hand.populateHand(treasureCardDeck.draw()); // pop the top cards from the deck
 		}
-		String[] printHand =  hand.getPrintableHand();
+		ArrayList<String> printHand =  hand.getPrintableHand(); // !!! still not working
 		System.out.println(printHand);
 		
 		System.out.println("\nFlood Card(s) Drawn:\n");
 		for(int i = 0; i < 2 ;i++) { // should read in current water level !!!
-			floodCard = floodCardDeck.pop();
-			discardFloodDeck.push(floodCard); // add the cards to the discard pile (i.e bottom of the 
-			System.out.println(floodCard.getName());
+			floodCard = floodCardDeck.draw();
+			discardFloodDeck.add(floodCard); // add the cards to the discard pile (i.e bottom of the 
+			System.out.println(floodCard);
 		}
+		
+		hand.addCardToHand(sandbagTreasureCard);
+		
+		System.out.println("\n");
+		System.out.println(hand.handContains(oceanTreasureCard));
 	}
 
 }

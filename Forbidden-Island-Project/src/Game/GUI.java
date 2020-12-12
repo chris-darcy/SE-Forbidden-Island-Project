@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
 import Board.Tile;
 import Board.TileType;
 
@@ -34,7 +33,8 @@ public class GUI {
 	//
 	// Display Board alongside player hands
 	//
-	public void display() {		
+	public void display() {
+		
 		printSeparator(indent+"Board Layout"+indent+"   Player Hands");
 		for(int i=0; i<6;i++) {		
 			for(int slice=0; slice<8;slice++) {
@@ -137,19 +137,15 @@ public class GUI {
 	public int setDifficulty() {
 		int startLevel = 0;
 		
-		printSeparator(indent + "Set Game Difficulty");
 		System.out.println("~Please enter the initial water level mark~");
-		System.out.println("   0: Novice\n   1: Normal\n   2: Elite\n   3: Legendary");
+		System.out.println("   1: Novice\n   2: Normal\n   3: Elite\n   4: Legendary");
 		
-		startLevel =  getChoiceWithinBoundary("the difficulty level",
-											  "no such option available",
-											  0, 3);
-		
-		waterlevelBar[0] = makeLongString('#',(startLevel+1)*4);
-		waterlevelBar[1] = makeLongString(' ',(startLevel)*4) + "   v";
+		startLevel =  getIntFor("the difficulty level");
+		waterlevelBar[0] = makeLongString('#',startLevel*4);
+		waterlevelBar[1] = makeLongString(' ',(startLevel-1)*4) + "   v";
 		waterlevelBar[2] = "   .   2   .   .   3   .   4   .   5   X";
 		
-		return (startLevel+1);
+		return startLevel;
 	}
 	
 	//
@@ -161,9 +157,17 @@ public class GUI {
 		printSeparator(indent + "Player Numbers");
 		System.out.println("~Please enter the number of players (min 2, max 4)~");
 		
-		playernums = getChoiceWithinBoundary("player numbers",
-											 "please enter a valid number of players (2-4)",
-											 2, 4);
+		while(!valid) {
+			
+			playernums = getIntFor("player numbers");
+			
+			if(playernums<2 || playernums>4) {
+				System.out.println("please enter a valid number of players (2-4)");
+			}
+			else {
+				valid = true;
+			}
+		}
 		
 		// can set the size of the hand display array
 		allHandSlices = new String[playernums][8];
@@ -223,8 +227,8 @@ public class GUI {
 		}
 		
 		choice = getChoiceWithinBoundary("your action",
-										 "no such option available",
-										 0, (choiceNum-1));
+						 "no such option available",
+						 0, (choiceNum-1));
 		
 		return everyoneElse.get(choice).getPlayerNum();
 	}
@@ -233,21 +237,31 @@ public class GUI {
 	// Ask player to choose which surplus card to remove from their hand
 	//
 	public int chooseCardToDiscard(Participant player) {
-		int choiceNum = 0;
-		int choice = 0;
+		int cardsLeft = player.getHand().numberOfCards();
+		int chosen  = 0;
+		valid = false;
 		
 		printWarning(player.getName()+ ", you have too many cards. Discard one");
 		
 		System.out.println("~Which card will you discard?~");
-		printAHand(player.getPlayerNum());
 		
-		choice = getChoiceWithinBoundary("the card to discard",
-										 "no such card available",
-										 0, (choiceNum-1));
+		for(String card: player.getHand().getPrintableHand()) {
+			System.out.println("   " + (6-cardsLeft) + ": " + card);
+			cardsLeft--;
+		}
 		
-		System.out.println("you have chosen to discard the " + allHandSlices[player.getPlayerNum()][choice]);
-	
-		return choice;		
+		while(!valid) {
+			chosen = getIntFor("the card to discard");
+			
+			if(chosen > 0 && chosen < 6) {
+				valid = true;
+				System.out.println("you have chosen to discard the " + player.getHand().getPrintableHand().get(chosen));
+			}
+			else{
+				System.out.println("no such card available");
+			}
+		}		
+		return chosen;		
 	}
 	
 	//
@@ -261,8 +275,8 @@ public class GUI {
 		printAHand(player.getPlayerNum());
 		
 		choice = getChoiceWithinBoundary("the card to give",
-										 "no such card available",
-										 0, (choiceNum-1));
+						 "no such card available",
+						 0, (choiceNum-1));
 		
 		System.out.println("you have chosen to give the " + allHandSlices[player.getPlayerNum()][choice]);
 	
@@ -328,7 +342,7 @@ public class GUI {
 		}		
 		i = input.nextInt();
 		input.nextLine();
-		System.out.println("returned: " + i);
+		
 		return i;
 	}
 	
@@ -354,18 +368,6 @@ public class GUI {
 		
 	}
 	
-	//
-	// display a players hand along with the relative option numbers
-	//
-	private void printAHand(int playerNum) {
-		int choiceNum = 0;
-		
-		for(String card: allHandSlices[playerNum]) {
-			System.out.println("   " + (choiceNum) + ": " + card);
-			choiceNum++;
-		}
-	}
-	
 	private void printSeparator(String title) {
 		System.out.println(border);
 		System.out.println(title);
@@ -385,6 +387,7 @@ public class GUI {
 	public void printPlayerFinalised(Participant player){
 		System.out.println(player.getName() + ", you have been assigned the role of " + player.getClass().getSimpleName() + "!\n");
 	}
+	
 	
 	private void initTileDict() {
 		tl.put("NORMAL"            ," O#########O ");
@@ -434,7 +437,7 @@ public class GUI {
 	
 	private void initHeaderStrings(){
 		int tileWidth = 13;
-		int cardNameLen = 23;
+		int cardNameLen = 20;
 		
 		border = makeLongString('*',tileWidth*6 + cardNameLen);
 		indent = makeLongString(' ',Math.round((tileWidth*6 - 12)/2));

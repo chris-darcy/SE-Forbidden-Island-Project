@@ -8,8 +8,7 @@ public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
 	public Hand hand;
 	private int playerNum;
-	protected int actionsRemaining;
-	protected int numberOfActions = 3;
+	protected int numberOfActions;
 	protected int currentLocation;
 	protected boolean sameTile;
 	protected Participant participant; 
@@ -25,7 +24,7 @@ public abstract class Participant {
 		this.playerNum = playerNum;
 		this.hand = hand;
 		this.location = location;
-		this.actionsRemaining = actionsRemaining;
+		this.numberOfActions = numberOfActions;
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
@@ -54,11 +53,11 @@ public abstract class Participant {
 	}
 	
 	public int getActionsRemaining() {
-		return actionsRemaining;
+		return numberOfActions;
 	}
 	
 	protected void setActionsRemaining(int numberOfActions) {
-		this.numberOfActions = actionsRemaining;
+		this.numberOfActions = numberOfActions;
 	}
 	
 	protected void actionUsed() { // each time the user uses an action
@@ -73,18 +72,19 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
-	public boolean shoreUp(Tile tile) {
-		if(participant.getActionsRemaining()>0 &&
+	// !!!
+	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
+		if(participant.getHand().handContains(sandbagTreasureCard) && // RELEVANTTILES
 		   tile.getTileStatus() != TileStatus.SUNK &&
 		   (tile.getLocation() == participant.getLocation() || 
 			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
 			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
 				
 				switch (tile.getTileStatus()){
-				case UNFLOODED:
-					tile.setTileStatus(TileStatus.FLOODED);
-				case FLOODED:
-					tile.setTileStatus(TileStatus.SUNK);
+					case UNFLOODED:
+						tile.setTileStatus(TileStatus.FLOODED);
+					case FLOODED:
+						tile.setTileStatus(TileStatus.SUNK);
 				}
 				participant.actionUsed();
 				return true;
@@ -101,6 +101,8 @@ public abstract class Participant {
 			Hand giversHand = participant.getHand();
 			Hand receiversHand = receiver.getHand();
 			
+			// tooManyCards() 
+			
 			if(receiversHand.numberOfCards() < maxCards) {
 				receiversHand.addCardToHand(TreasureCardToGive);
 				giversHand.removeCardFromHand(TreasureCardToGive);
@@ -108,6 +110,7 @@ public abstract class Participant {
 			else{
 				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
 			}
+			participant.actionUsed();
 			return true;
 		}
 		else {
@@ -137,6 +140,7 @@ public abstract class Participant {
 		return relevantTiles;
 	}
 	
+	// should be moved to GameManager? !!!
 	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
 		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
 			return true;

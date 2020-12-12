@@ -42,7 +42,7 @@ public class GameManager {
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
-		waterlevel.setCurrentWaterLevel(gui.setDifficulty());
+		waterlevel.setMaxWaterLevel(gui.setDifficulty());
 	}
 	
 	public void runGame() {

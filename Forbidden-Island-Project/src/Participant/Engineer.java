@@ -11,11 +11,12 @@ public class Engineer extends Participant{
 	}
 	
 	// can shore up two tiles for 1 action
+	// !!! should read in 2 tiles
 	@Override
 	public boolean shoreUp(Tile tile) {
 		int chance = 0; // initialise 
 		if(participant.getActionsRemaining()>0 &&
-		   chance > 2 && 
+		   chance <= 1 && 
 		   tile.getTileStatus() != TileStatus.SUNK &&
 		   (tile.getLocation() == participant.getLocation() || 
 			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
@@ -30,15 +31,13 @@ public class Engineer extends Participant{
 					tile.setTileStatus(TileStatus.SUNK);
 				}
 				
-				if(chance == 2) {
+				if(chance == 1) { // has had two chances
 					participant.actionUsed();
 				}
-				return true;
+				return true;		
 		}
-		
 		else {
 			return false;
 		}
-	
 	}
 }

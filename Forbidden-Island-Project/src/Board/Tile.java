@@ -75,5 +75,5 @@ public class Tile {
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
 	}
-
+	
 }

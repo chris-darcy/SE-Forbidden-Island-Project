@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WaterLevel {
-	public int currentWaterLevel;
-	public int maxWaterLevel;
+	public static int currentWaterLevel;
+	public static int maxWaterLevel;
 	private static WaterLevel uniqueInstance = null;
 //	private List<Observer> obervers = new ArrayList<Observer>(); // !! Try and intergrate an observer
 	//------------------------------ CONSTRUCTORS ---------------------------------//
@@ -24,15 +24,16 @@ public class WaterLevel {
 		return uniqueInstance;
 	}
 	
-	public int getCurrentWaterLevel() {
+	public static int getCurrentWaterLevel() {
 		return currentWaterLevel;
 	}
 	
-	public void setCurrentWaterLevel(int currentWaterLevel) { // update current water level
+	public void setWaterLevel(int currentWaterLevel) { // update current water level
 		this.currentWaterLevel = currentWaterLevel;
+//		notifyObservers(); // notify the observers that the waterlevel has been changed
 	}
 	
-	public int getMaxWaterLevel() {
+	public static int getMaxWaterLevel() {
 		return maxWaterLevel;
 	}
 	
