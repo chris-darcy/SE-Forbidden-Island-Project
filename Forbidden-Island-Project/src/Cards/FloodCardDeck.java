@@ -11,10 +11,11 @@ import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
 import Participant.Hand;
+import Board.TileType;
 
 public class FloodCardDeck {
 	private Stack<Integer> cardDeck = new Stack<Integer>();
-	private ArrayList<Integer> discardDeck = new ArrayList<Integer>();
+	private Stack<Integer> discardDeck = new Stack<Integer>();
 	private ArrayList<Tile> board = new ArrayList<Tile> ();
 	private Integer[] corners = new Integer[]{0,1,4,5,6,11,24,29,30,31,34,35};
 	
@@ -42,19 +43,21 @@ public class FloodCardDeck {
 	public String draw() {
 		int tilePos = cardDeck.pop();
 		Tile tile = board.get(tilePos);
-		
+//		if () {
+//			discardToFloodDeck();
+//		}
 		switch(tile.getTileStatus()) {
-		case UNFLOODED:
-			tile.setTileStatus(TileStatus.FLOODED);
-			discardDeck.add(tilePos);
-		case FLOODED:
-			tile.setTileStatus(TileStatus.SUNK);
-			if(tile.getName() == "FOOLS LANDING") {
-			// Observer
-				break;
-			}
-		default:
-			System.out.println("Something went wrong, please try again!");
+			case UNFLOODED:
+				tile.setTileStatus(TileStatus.FLOODED);
+				discardDeck.add(tilePos);
+			case FLOODED:
+				tile.setTileStatus(TileStatus.SUNK);
+				if(tile.getTileType() == TileType.FOOLSLANDING) {
+				// Observer
+					break;
+				}
+			default:
+				//System.out.println("Something went wrong, please try again!");
 		}	
 		return tile.getName(); // will be shown to the user so they know what they drew
 	}
@@ -64,5 +67,10 @@ public class FloodCardDeck {
 			System.out.println(card);
 		}
 	}
+	/////////////////////////////////////
+	// discard -> flooddeck
+//	private discardToFloodDeck(){
+//		
+//	}
 }
 
