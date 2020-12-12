@@ -16,12 +16,12 @@ public class TestParticipant {
 		Hand hand = new Hand();
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
-		
+		int playerNumber = 1;
 		
 		hand.populateHand(treasureCardDeck.draw());
 		hand.populateHand(treasureCardDeck.draw());
 		
-		Participant engineerTest = new Engineer(name, hand, location, actionsRemaining);
+		Participant engineerTest = new Engineer(name, hand, playerNumber, location, actionsRemaining);
 		
 		engineerTest.hand.getPrintableHand();
 //		engineerTest.getRelevantTiles(board.getBoard());

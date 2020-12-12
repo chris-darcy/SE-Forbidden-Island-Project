@@ -11,6 +11,7 @@ import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
 import Participant.Hand;
+import Board.TileType;
 
 public class FloodCardDeck {
 	private Stack<Integer> cardDeck = new Stack<Integer>();
@@ -44,17 +45,17 @@ public class FloodCardDeck {
 		Tile tile = board.get(tilePos);
 		
 		switch(tile.getTileStatus()) {
-		case UNFLOODED:
-			tile.setTileStatus(TileStatus.FLOODED);
-			discardDeck.add(tilePos);
-		case FLOODED:
-			tile.setTileStatus(TileStatus.SUNK);
-			if(tile.getName() == "FOOLS LANDING") {
-			// Observer
-				break;
-			}
-		default:
-			System.out.println("Something went wrong, please try again!");
+			case UNFLOODED:
+				tile.setTileStatus(TileStatus.FLOODED);
+				discardDeck.add(tilePos);
+			case FLOODED:
+				tile.setTileStatus(TileStatus.SUNK);
+				if(tile.getTileType() == TileType.FOOLSLANDING) {
+				// Observer
+					break;
+				}
+			default:
+				//System.out.println("Something went wrong, please try again!");
 		}	
 		return tile.getName(); // will be shown to the user so they know what they drew
 	}
@@ -64,5 +65,7 @@ public class FloodCardDeck {
 			System.out.println(card);
 		}
 	}
+	/////////////////////////////////////
+	// discard -> flooddeck
 }
 
