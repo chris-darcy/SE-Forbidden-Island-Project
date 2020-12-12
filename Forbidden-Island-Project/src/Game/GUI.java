@@ -201,6 +201,39 @@ public class GUI {
 	}
 	
 	//
+	// Ask player for their next action
+	//
+	public int chooseAction(Participant player) {
+		int choice = 0;
+		System.out.println("~What will your next move be?~  MOVES REMAINING: " + player.getActionsRemaining());
+		
+		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure");
+		choice = getChoiceWithinBoundary("your action",
+										 "no such option available",
+										 0, 3);
+		return choice;
+	}
+	
+	//
+	// Ask a player to choose the receiver of their give card action
+	//
+	public int chooseReceiver(Participant player,ArrayList<Participant> everyoneElse) {
+		int choice = 0;
+		int choiceNum = 0;
+		
+		System.out.println("~Which player will you give a card to?~");	
+		for(Participant p: everyoneElse) {
+			System.out.println("   " + choiceNum + ": " + p.getName() + " (" + p.getRoleName() + ")");
+		}
+		
+		choice = getChoiceWithinBoundary("your action",
+						 "no such option available",
+						 0, (choiceNum-1));
+		
+		return everyoneElse.get(choice).getPlayerNum();
+	}
+	
+	//
 	// Ask player to choose which surplus card to remove from their hand
 	//
 	public int chooseCardToDiscard(Participant player) {
@@ -229,6 +262,73 @@ public class GUI {
 			}
 		}		
 		return chosen;		
+	}
+	
+	//
+	// Ask player to choose which card to give from their hand
+	//
+	public int chooseCardToGive(Participant player) {
+		int choiceNum = 0;
+		int choice = 0;
+		
+		System.out.println("~Which card will you give?~");
+		printAHand(player.getPlayerNum());
+		
+		choice = getChoiceWithinBoundary("the card to give",
+						 "no such card available",
+						 0, (choiceNum-1));
+		
+		System.out.println("you have chosen to give the " + allHandSlices[player.getPlayerNum()][choice]);
+	
+		return choice;		
+	}
+	
+	//
+	// get choice of next location from player
+	//
+	public int chooseNextLocation(ArrayList<Integer> relevantTiles,ArrayList<Tile> board) {
+		int choice = 0;
+		int choiceNum = 0;
+		valid = false;
+		
+		System.out.println("~Where will you move?~");
+		
+		for(int tilePos: relevantTiles) {
+			System.out.println(tilePos + ": " + board.get(tilePos).getName());
+		}
+
+		while(!valid) {
+			choice = getIntFor("the location");
+			
+			if(!relevantTiles.contains(choice)) {
+				System.out.println("you cannot move to that location");
+			}
+			else{
+				valid = true;
+				System.out.println("you will be moved to " + board.get(choice).getName());
+			}
+		}		
+		return choice;		
+	}
+	
+	//
+	// get integer choice from player but must be within upper and lower limts, display error message otherwise.
+	//
+	private int getChoiceWithinBoundary(String purpose,String invalidMsg, int lowerLim, int upperLim) {
+		int choice=0;		
+		valid = false;
+		
+		while(!valid) {
+			choice = getIntFor(purpose);
+			
+			if(choice < lowerLim || choice > upperLim) {
+				System.out.println(invalidMsg);
+			}
+			else{
+				valid = true;
+			}
+		}		
+		return choice;		
 	}
 	
 	//
