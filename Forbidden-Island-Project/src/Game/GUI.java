@@ -298,7 +298,7 @@ public class GUI {
 	}
 	
 	//
-	// get integer choice from player but must be within upper and lower limts, display error message otherwise
+	// get integer choice from player but must be within upper and lower limts, display error message otherwise.
 	//
 	private int getChoiceWithinBoundary(String purpose,String invalidMsg, int lowerLim, int upperLim) {
 		int choice=0;		
