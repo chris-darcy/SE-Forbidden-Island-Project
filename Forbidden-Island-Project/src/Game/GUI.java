@@ -368,6 +368,18 @@ public class GUI {
 		
 	}
 	
+	//
+	// display a players hand along with the relative option numbers
+	//
+	private void printAHand(int playerNum) {
+		int choiceNum = 0;
+		
+		for(String card: allHandSlices[playerNum]) {
+			System.out.println("   " + (choiceNum) + ": " + card);
+			choiceNum++;
+		}
+	}
+	
 	private void printSeparator(String title) {
 		System.out.println(border);
 		System.out.println(title);
