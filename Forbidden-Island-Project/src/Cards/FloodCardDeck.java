@@ -69,11 +69,9 @@ public class FloodCardDeck {
 	}
 	/////////////////////////////////////
 	// discard -> flooddeck
-<<<<<<< HEAD
 //	private discardToFloodDeck(){
 //		
 //	}
-=======
->>>>>>> 231f2a71b9893cb07796e09cab5ee1f6d8f5e969
+
 }
 
