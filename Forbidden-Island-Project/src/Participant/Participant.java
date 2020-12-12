@@ -7,8 +7,8 @@ import Cards.*;
 public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
 	public Hand hand;
-	protected int actionsRemaining;
-	protected int numberOfActions = 3;
+	private int playerNum;
+	protected int numberOfActions;
 	protected int currentLocation;
 	protected boolean sameTile;
 	protected Participant participant; 
@@ -18,12 +18,13 @@ public abstract class Participant {
 	protected int location;
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
-	protected Participant(String name, Hand hand, int location, int actionsRemaining) {
+	protected Participant(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 
 		this.name = name;
+		this.playerNum = playerNum;
 		this.hand = hand;
 		this.location = location;
-		this.actionsRemaining = actionsRemaining;
+		this.numberOfActions = numberOfActions;
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
@@ -33,6 +34,10 @@ public abstract class Participant {
 	
 	protected void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getPlayerNum() {
+		return playerNum;
 	}
 	
 	public String getRoleName() {
@@ -48,11 +53,11 @@ public abstract class Participant {
 	}
 	
 	public int getActionsRemaining() {
-		return actionsRemaining;
+		return numberOfActions;
 	}
 	
 	protected void setActionsRemaining(int numberOfActions) {
-		this.numberOfActions = actionsRemaining;
+		this.numberOfActions = numberOfActions;
 	}
 	
 	protected void actionUsed() { // each time the user uses an action
@@ -67,8 +72,9 @@ public abstract class Participant {
 		this.location = location;
 	}
 	
-	public boolean shoreUp(Tile tile) {
-		if(participant.getActionsRemaining()>0 &&
+	// !!!
+	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
+		if(participant.getHand().handContains(sandbagTreasureCard) && // RELEVANTTILES
 		   tile.getTileStatus() != TileStatus.SUNK &&
 		   (tile.getLocation() == participant.getLocation() || 
 			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
@@ -89,11 +95,13 @@ public abstract class Participant {
 		}
 	
 	// This method will be overridden by the Messenger Participant
-	protected boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	public boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == participant.getLocation()) {
 			Hand giversHand = participant.getHand();
 			Hand receiversHand = receiver.getHand();
+			
+			// tooManyCards() 
 			
 			if(receiversHand.numberOfCards() < maxCards) {
 				receiversHand.addCardToHand(TreasureCardToGive);
@@ -143,7 +151,7 @@ public abstract class Participant {
 		
 	} 
 	
-	protected void move(int newLocation) { // moves participant to new location
+	public void move(int newLocation) { // moves participant to new location
 		participant.setLocation(newLocation);
 	}
 	

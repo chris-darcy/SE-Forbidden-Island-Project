@@ -6,8 +6,8 @@ import Board.TileStatus;
 public class Engineer extends Participant{
 	protected int chance = 0;
 	
-	public Engineer(String name, Hand hand, int location, int actionsRemaining) {
-		super(name, hand, location, actionsRemaining);
+	public Engineer(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
+		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
 	// can shore up two tiles for 1 action
@@ -16,7 +16,7 @@ public class Engineer extends Participant{
 	public boolean shoreUp(Tile tile) {
 		int chance = 0; // initialise 
 		if(participant.getActionsRemaining()>0 &&
-		   chance > 2 && 
+		   chance <= 1 && 
 		   tile.getTileStatus() != TileStatus.SUNK &&
 		   (tile.getLocation() == participant.getLocation() || 
 			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 

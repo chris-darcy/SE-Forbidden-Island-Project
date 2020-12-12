@@ -3,14 +3,12 @@ package Participant;
 import Cards.TreasureCard;
 
 public class Messenger extends Participant{
-	public Messenger(String name, Hand hand, int location, int actionsRemaining) {
-		super(name, hand, location, actionsRemaining);
+	public Messenger(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
+		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	@Override
-	protected boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
-		// all players can give another player a treasure card if on the same tile
-		int count = 0; // initialise
-		if (receiver.getLocation() == participant.getLocation() && count>2) {
+	public boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+		// Messenger can give a card to any other player
 			Hand giversHand = participant.getHand();
 			Hand receiversHand = receiver.getHand();
 			
@@ -21,12 +19,7 @@ public class Messenger extends Participant{
 			else{
 				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
 			}
-			count = count+1;
 			return true;
-		}
-		else {
-			return false;
-		}
-		
 	}
+		
 }

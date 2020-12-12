@@ -22,7 +22,7 @@ public class Hand {
 
 	public ArrayList<String> getPrintableHand() {
 		ArrayList<String> handString = new ArrayList<String>();
-		for(TreasureCard card : hand) {
+		for(Card card : hand) {
 			handString.add(card.toString());
 		}
 		return handString;
@@ -40,11 +40,13 @@ public class Hand {
 		hand.add(card);
 	}
 	
-	public boolean handContains(TreasureCard treasureCard) {
-		return hand.contains(treasureCard);
+	public boolean handContains(Object object) { // general check for card type
+		return hand.contains(object);
 	}
 	
 	protected void tooManyCards(TreasureCard card) { // !!!
+		participant.getHand();
+		
 		hand.remove(card);
 	}
 

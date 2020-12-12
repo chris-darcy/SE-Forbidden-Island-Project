@@ -17,17 +17,14 @@ public class TreasureCardDeck {
 	
 	//-------------------------------- METHODS ------------------------------------//
 	
-	public void initialise() { // type of card input determines type of deck created (flood or treasure)
-		TreasureCard earthTreasureCard = new TreasureCard("Earth");
-		TreasureCard fireTreasureCard = new TreasureCard("Fire");
-		TreasureCard windTreasureCard = new TreasureCard("Wind");
-		TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
-		HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
-		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
-		RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("RiseWater");
+	public void initialise() { // type of card input determines type of deck created
 		
 		// add all the treasure cards to the deck of cards
 		for (int i = 0; i < 5; i++) { // 5 of each treasure
+			EarthTreasureCard earthTreasureCard = new EarthTreasureCard("Earth");
+			FireTreasureCard fireTreasureCard = new FireTreasureCard("Fire");
+			WindTreasureCard windTreasureCard = new WindTreasureCard("Wind");
+			OceanTreasureCard oceanTreasureCard = new OceanTreasureCard("Ocean");
 			cardDeck.push(earthTreasureCard);
 			cardDeck.push(fireTreasureCard);
 			cardDeck.push(windTreasureCard);
@@ -35,11 +32,14 @@ public class TreasureCardDeck {
 		}
 		
 		for (int i = 0; i < 3; i++) { // 3 helicopter treasure cards and 3 water rise cards
+			HelicopterTreasureCard helicopterTreasureCard = new HelicopterTreasureCard("Helicopter");
+			RiseWaterTreasureCard riseWaterTreasureCard = new RiseWaterTreasureCard("Waters Rise");
 			cardDeck.push(helicopterTreasureCard);
 			cardDeck.push(riseWaterTreasureCard);
 		}
 		
 		for (int i = 0; i < 2; i++) { // 2 sandbag treasure cards
+			SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
 			cardDeck.push(sandbagTreasureCard);
 		}	
 		
@@ -49,7 +49,7 @@ public class TreasureCardDeck {
 	
 	public String printDeck() {
 		for (TreasureCard card: cardDeck) {
-			System.out.println(card.getName());
+			System.out.println(card.toString());
 		}
 		return null;
 	}
