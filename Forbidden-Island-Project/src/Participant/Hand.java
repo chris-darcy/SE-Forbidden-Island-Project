@@ -11,14 +11,15 @@ public class Hand {
 	public int maxCards = 5;
 	protected Card chosenCard;
 	protected Participant participant;
-	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	public Hand() {
 		
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	
+	public Card getCardInHand(int i) { // method to get card from hand at a given index
+		return hand.get(i);
+	}	
 
 	public ArrayList<String> getPrintableHand() {
 		ArrayList<String> handString = new ArrayList<String>();
@@ -26,7 +27,7 @@ public class Hand {
 			handString.add(card.toString());
 		}
 		return handString;
-	}
+	}	
 	
 	public int numberOfCards() {
 		return hand.size();
@@ -49,7 +50,7 @@ public class Hand {
 		
 		hand.remove(card);
 	}
-
+	
 	public void populateHand(TreasureCard card) {
 		if(hand.size() < maxCards) {
 			hand.add(card);
