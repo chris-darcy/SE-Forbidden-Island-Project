@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 //import java.util.Scanner;
 import Cards.*;
+import Game.GameManager;
 
 public class Hand {
 	protected List<TreasureCard> hand = new ArrayList<TreasureCard>(); 
@@ -21,6 +22,9 @@ public class Hand {
 		return hand.get(i);
 	}	
 
+	private int size() {
+		return participant.getHand().size();
+	}
 	public ArrayList<String> getPrintableHand() {
 		ArrayList<String> handString = new ArrayList<String>();
 		for(Card card : hand) {
@@ -33,8 +37,8 @@ public class Hand {
 		return hand.size();
 	}
 	
-	protected void removeCardFromHand(TreasureCard card) {
-		hand.remove(card);
+	public void removeCardFromHand(int i) { // i is the index of the card wished to be removed
+		hand.remove(i);
 	}
 	
 	public void addCardToHand(TreasureCard card) {
@@ -45,17 +49,13 @@ public class Hand {
 		return hand.contains(object);
 	}
 	
-	protected void tooManyCards(int i) { // i is the index of the card wished to be removed
-		participant.getHand().hand.remove(i); // removes index of chosen card
-	}
-	
 	public void populateHand(TreasureCard card) {
 		if(hand.size() < maxCards) {
 			hand.add(card);
 		}
 		else {
 			hand.add(card); // add card so the user can chosen out of 6 cards
-			((Hand) hand).tooManyCards(card);
+			GameManager.getInstance().handAfterRemoval();
 		}
 	}
 	

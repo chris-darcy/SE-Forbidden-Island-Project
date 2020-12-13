@@ -20,7 +20,9 @@ public class GameManager {
 	protected PlayerList playerList;
 	protected boolean treasureLost;
 	protected boolean foolsLandingLost;
-
+	protected Hand hand;
+	protected Participant participant;
+	
 	GameManager() {
 		board 			 = Board.getInstance();
 		waterlevel 		 = WaterLevel.getInstance();
@@ -267,7 +269,12 @@ public class GameManager {
 		gui.chooseCardToDiscard(playerList.getPlayer(0),0);
 	}
 	
-
+	public Hand handAfterRemoval() {
+		int cardRemove;
+		cardRemove = gui.chooseCardToDiscard(participant); 
+		participant.getHand().removeCardFromHand(cardRemove);
+		return hand;
+	}
 	
 	
  
