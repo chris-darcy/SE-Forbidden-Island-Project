@@ -266,7 +266,7 @@ public class GameManager {
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);
 		gui.display();
-		gui.chooseCardToDiscard(playerList.getPlayer(0),0);
+		gui.chooseCardToDiscard(playerList.getPlayer(0)); //,0);
 	}
 	
 	public Hand handAfterRemoval() {
