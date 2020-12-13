@@ -45,10 +45,8 @@ public class Hand {
 		return hand.contains(object);
 	}
 	
-	protected void tooManyCards(TreasureCard card) { // !!!
-		participant.getHand();
-		
-		hand.remove(card);
+	protected void tooManyCards(int i) { // i is the index of the card wished to be removed
+		participant.getHand().hand.remove(i); // removes index of chosen card
 	}
 	
 	public void populateHand(TreasureCard card) {
