@@ -20,7 +20,9 @@ public class GameManager {
 	protected PlayerList playerList;
 	protected boolean treasureLost;
 	protected boolean foolsLandingLost;
-
+	protected Hand hand;
+	protected Participant participant;
+	
 	GameManager() {
 		treasureLost = false;
 		foolsLandingLost = false;
@@ -297,9 +299,15 @@ public class GameManager {
 		gui.updateBoard(board.getBoard(), playerList);
 		gui.display();
 		gui.chooseCardTo("discard",playerList.getPlayer(0).getHand().getPrintableHand());
+
 	}
 	
-
+	public Hand handAfterRemoval() {
+		int cardRemove;
+		cardRemove = gui.chooseCardTo("discard",participant.toString()); 
+		participant.getHand().removeCardFromHand(cardRemove);
+		return hand;
+	}
 	
 	
  
