@@ -22,6 +22,8 @@ public class GameManager {
 	protected boolean foolsLandingLost;
 
 	GameManager() {
+		treasureLost = false;
+		foolsLandingLost = false;
 		board 			 = Board.getInstance();
 		waterlevel 		 = WaterLevel.getInstance();
 		playerList		 = PlayerList.getInstance();
@@ -50,11 +52,13 @@ public class GameManager {
 		int choice;
 		
 		while(!foolsLandingLost && !treasureLost) {
+			gui.updateBoard(board.getStringBoard(), playerList);
+			gui.updatePlayerHands(playerList.getAllStringPlayers());
+			gui.display();
 			for(int i=0; i<playerList.getSize();i++) {
 				player = playerList.getPlayer(i);
-				
 				while(player.getActionsRemaining() > 0) {
-					choice = gui.chooseAction(player);
+					choice = gui.chooseAction(player.toString());
 					
 					switch(choice) {
 						case 0:
@@ -66,13 +70,16 @@ public class GameManager {
 							break;
 							
 						case 2:
-							player.shoreUp(gui.chooseTile());
+							shoreUp(player);
 							break;
 							
 						case 3:
-							player.captureTreasure();
+							captureTreasure(player);
 							break;
 					}
+					gui.updateBoard(board.getStringBoard(), playerList);
+					gui.updatePlayerHands(playerList.getAllStringPlayers());
+					gui.display();
 				}
 			}
 		}
@@ -204,9 +211,10 @@ public class GameManager {
 		Participant receiver;
 		TreasureCard card;
 		
-		cardChoice = gui.chooseCardToGive(player);
+		cardChoice = gui.chooseCardTo("give",player.toString());
+		card = player.getHand().getCard(cardChoice);
 		
-		receiver = playerList.getPlayer(gui.chooseReceiver(player,playerList.getAllPlayerExcept(player)));
+		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
 		player.giveCard(receiver,card);
 	}
 	
@@ -214,13 +222,25 @@ public class GameManager {
 	// facilitate moving the player
 	//
 	private void movePlayer(Participant player) {
-		int location;
-		ArrayList<Integer> relevantTiles;
-		ArrayList<Tile> brd  = board.getBoard();
 		
-		relevantTiles = player.getRelevantTiles(brd);
-		location = gui.chooseNextLocation(relevantTiles, brd);
+		int location = chooseLocationTo("move to",player);
 		player.move(location);
+	}
+	
+	//
+	// facilitate shoring up a tile
+	//
+	private void shoreUp(Participant player) {
+		
+		int location = chooseLocationTo("shore up", player);
+		player.shoreUp(board.getBoard().get(location));
+	}
+	
+	//
+	// facilitate the player capturing a treasure
+	//
+	private void captureTreasure(Participant player) {
+		
 	}
 	
 	//
@@ -258,13 +278,25 @@ public class GameManager {
 		}
 	}
 	
+	//
+	// facilitate getting choice of tile from relevant tiles for purpose e.g shoreUp, move
+	//
+	private int chooseLocationTo(String action,Participant player) {
+		int location;
+		ArrayList<Integer> relevantTiles;
+		ArrayList<Tile> brd  = board.getBoard();
+		
+		relevantTiles = player.getRelevantTiles(brd);
+		return gui.chooseLocationTo(action,relevantTiles, brd);
+	}
+	
 	// !!!!!!!REMOVE LATER !!!!!!!!!!
 	public void callGUIDisplay(int playernums) {
 
 		gui.updatePlayerHands(playerList);
 		gui.updateBoard(board.getBoard(), playerList);
 		gui.display();
-		gui.chooseCardToDiscard(playerList.getPlayer(0),0);
+		gui.chooseCardTo("discard",playerList.getPlayer(0).getHand().getPrintableHand());
 	}
 	
 

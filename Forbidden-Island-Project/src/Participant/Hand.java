@@ -60,4 +60,12 @@ public class Hand {
 		}
 	}
 	
+	public TreasureCard getCard(int cardIdx) { // remove later !!!
+		return hand.get(cardIdx);
+	}
+	
+	@Override
+	public String toString() {		
+		return Arrays.toString(hand.toArray());
+	}
 }
