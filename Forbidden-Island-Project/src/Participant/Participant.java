@@ -81,8 +81,8 @@ public abstract class Participant {
 		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk
 		   // relevant 
 		   (tile.getLocation() == participant.getLocation() ||         // participant is on or adjacent to the tile
-			Math.abs(participant.getLocation()/6 - y) == 1 || 
-			Math.abs(currentLocation%6 - x) == 1)) {
+			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
+			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
 				
 				switch (tile.getTileStatus()){
 					case UNFLOODED:
@@ -125,7 +125,7 @@ public abstract class Participant {
 	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
 		
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
-        
+        // changes each time - need to sort this out to output a correct array of locations !!!
 		// generally, the participant can move left, right, up and down, these tiles will have to be checked
 		relevantTiles.add(this.location + 1);
 		relevantTiles.add(this.location - 1);
