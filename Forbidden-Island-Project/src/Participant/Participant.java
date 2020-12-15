@@ -3,6 +3,7 @@ package Participant;
 import java.util.ArrayList;
 import Board.*;
 import Cards.*;
+import Game.GameManager;
 
 public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
@@ -95,22 +96,20 @@ public abstract class Participant {
 		}
 	
 	// This method will be overridden by the Messenger Participant
-	public boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == participant.getLocation()) {
 			Hand giversHand = participant.getHand();
 			Hand receiversHand = receiver.getHand();
 			
-			// tooManyCards() 
+			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
+				GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+			}
 			
-			if(receiversHand.numberOfCards() < maxCards) {
-				receiversHand.addCardToHand(TreasureCardToGive);
-				giversHand.removeCardFromHand(TreasureCardToGive);
-			}
-			else{
-				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
-			}
+			receiversHand.addCardToHand(treasureCardToGive);
+			giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
 			participant.actionUsed();
+			
 			return true;
 		}
 		else {
