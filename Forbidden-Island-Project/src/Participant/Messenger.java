@@ -1,25 +1,27 @@
 package Participant;
 
 import Cards.TreasureCard;
+import Game.GameManager;
 
 public class Messenger extends Participant{
 	public Messenger(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	@Override
-	public boolean giveCard(Participant receiver, TreasureCard TreasureCardToGive) {
+	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
 		// Messenger can give a card to any other player
-			Hand giversHand = participant.getHand();
-			Hand receiversHand = receiver.getHand();
-			
-			if(receiversHand.numberOfCards() < maxCards) {
-				receiversHand.addCardToHand(TreasureCardToGive);
-				giversHand.removeCardFromHand(TreasureCardToGive);
-			}
-			else{
-				receiversHand.tooManyCards(TreasureCardToGive); // tell user they have too many cards and have them remove another card
-			}
-			return true;
+		Hand giversHand = this.hand;
+		Hand receiversHand = receiver.getHand();
+		
+		if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
+			GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+		}
+		
+		receiversHand.addCardToHand(treasureCardToGive);
+		giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
+		participant.actionUsed();
+		
+		return true;
 	}
 		
 }
