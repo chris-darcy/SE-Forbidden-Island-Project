@@ -21,7 +21,11 @@ public class Hand {
 	public Card getCardInHand(int i) { // method to get card from hand at a given index
 		return hand.get(i);
 	}	
-
+	
+	public int findHandIndex(TreasureCard treasureCard){
+		return hand.indexOf(treasureCard);
+	}
+	
 	private int size() {
 		return participant.getHand().size();
 	}
