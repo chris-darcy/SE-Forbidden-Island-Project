@@ -20,6 +20,7 @@ public class GUI {
 	private String[][] allHandSlices;
 	private String[][] boardSlices = new String[6][8];
 	private String[] waterlevelBar = new String[3];
+	private String[] treasureBag = new String[8];
 	
 	public GUI() {
 		input = new Scanner(System.in);
@@ -40,6 +41,9 @@ public class GUI {
 			for(int slice=0; slice<8;slice++) {
 				if(i<playernums) {
 					System.out.println(boardSlices[i][slice] + " || " + allHandSlices[i][slice]);				
+				}
+				else if(i==5){
+					System.out.println(boardSlices[i][slice] + " || " + treasureBag[slice]);
 				}
 				else {
 					System.out.println(boardSlices[i][slice] + " || ");			
@@ -62,7 +66,6 @@ public class GUI {
 		int idx;
 		int playerSliceIdx = 3;
 
-		//Tile tile;
 		for(String[] rowSlices: boardSlices) { Arrays.fill(rowSlices,"");}
 		
 		for (int row=0; row<6; row++ ){
@@ -103,7 +106,7 @@ public class GUI {
 	}
 	
 	//
-	// Creates String representation of player hands
+	// Updates String representation of player hands
 	//
 	public void updatePlayerHands(ArrayList<String> playerList) {
 		
@@ -125,11 +128,27 @@ public class GUI {
 	}
 	
 	//
-	// Creates String representation of waterlevel
+	// Updates String representation of waterlevel
 	//
 	public void updateWaterLevel() {
-		waterlevelBar[0] = waterlevelBar[0] + "####";
-		waterlevelBar[1] = "    " + waterlevelBar[1];
+		waterlevelBar[0] = waterlevelBar[0] + "########";
+		waterlevelBar[1] = "        " + waterlevelBar[1];
+	}
+	
+	//
+	// Updates String representation of the parties treasure bag
+	//
+	public void updateTreasures(ArrayList<String> capturedTreasures) {	
+		treasureBag[0] = "Captured Treasures: " + capturedTreasures.size();
+		treasureBag[1] = "---------------------";
+		for(int i=2; i<8;i++) {
+			if(i<capturedTreasures.size()) {
+				treasureBag[i] = capturedTreasures.get(i-2);
+			}
+			else {
+				treasureBag[i] = "";
+			}		
+		}
 	}
 	
 	//
@@ -140,14 +159,14 @@ public class GUI {
 		
 		printSeparator(indent + "Set The Difficulty");
 		System.out.println("~Please enter the initial water level mark~");
-		System.out.println("   1: Novice\n   2: Normal\n   3: Elite\n   4: Legendary");
+		System.out.println("   1: Novice\n   2: Normal\n   3: Elite\n   4: Probably Impossible");
 		
 		startLevel = getChoiceWithinBoundary("the difficulty level",
 											 "no such option available",
 											 1, 4);
-		waterlevelBar[0] = makeLongString('#',startLevel*4);
-		waterlevelBar[1] = makeLongString(' ',(startLevel-1)*4) + "   v";
-		waterlevelBar[2] = "   .   2   .   .   3   .   4   .   5   X";
+		waterlevelBar[0] = makeLongString('#',startLevel*8);
+		waterlevelBar[1] = makeLongString(' ',(startLevel-1)*8) + "       v";
+		waterlevelBar[2] = "   .   1   .   2   .   3   .   4   .   X";
 		
 		return startLevel;
 	}
@@ -232,6 +251,7 @@ public class GUI {
 			PlayerPrint other_p = new PlayerPrint(o);
 			
 			System.out.println("   " + choiceNum + ": " + other_p.name() + " (" + other_p.role() + ")");
+			choiceNum++;
 		}
 		
 		choice = getChoiceWithinBoundary("your action",
@@ -247,7 +267,6 @@ public class GUI {
 	// Ask player to choose which card to either discard or give
 	//
 	public int chooseCardTo(String action, String player) {
-		int choiceNum = 0;
 		int choice = 0;
 		PlayerPrint p = new PlayerPrint(player);
 		System.out.println("~Which card will you " + action + "?~");
@@ -380,10 +399,10 @@ public class GUI {
 		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
 	}
 	
-	public void printTreasureCaptureOutcome(boolean success, String name) {
+	public void printTreasureCaptureOutcome(boolean success, String name, String treasure) {
 		
 		if(success) {
-			System.out.println("   congratulations "+name+ ", you captured a treasure!");
+			System.out.println("   congratulations "+name+ ", you captured the"+treasure+"!");
 		}
 		else {
 			System.out.println("   "+name+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!");
@@ -439,7 +458,7 @@ public class GUI {
 	
 	private void initHeaderStrings(){
 		int tileWidth = 13;
-		int cardNameLen = 20;
+		int cardNameLen = 26;
 		
 		border = makeLongString('*',tileWidth*6 + cardNameLen);
 		indent = makeLongString(' ',Math.round((tileWidth*6 - 12)/2));
@@ -483,7 +502,6 @@ public class GUI {
 		public String actionsRemaining() {return this.actionsRemaining;}
 				
 		public String role() {return this.role;}
-
 	}
 	
 	//
@@ -509,7 +527,6 @@ public class GUI {
 		public String status() {return this.status;}
 				
 		public String type() {return this.type;}
-
 	}
 
 

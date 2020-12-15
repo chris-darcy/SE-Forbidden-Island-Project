@@ -12,16 +12,17 @@ import WaterLevel.WaterLevel;
 
 public class GameManager {
 	private static GameManager uniqueInstance = null;
-	protected Board board;
-	protected TreasureCardDeck treasureCardDeck;
-	protected FloodCardDeck floodCardDeck;
-	protected GUI gui;
-	protected WaterLevel waterlevel;
-	protected PlayerList playerList;
-	protected boolean treasureLost;
-	protected boolean foolsLandingLost;
-	protected Hand hand;
-	protected Participant participant;
+	private Board board;
+	private TreasureCardDeck treasureCardDeck;
+	private FloodCardDeck floodCardDeck;
+	private GUI gui;
+	private WaterLevel waterlevel;
+	private PlayerList playerList;
+	private Treasures treasures;
+	private boolean treasureLost;
+	private boolean foolsLandingLost;
+	private Hand hand;
+	private Participant participant;
 	
 	GameManager() {
 		treasureLost = false;
@@ -32,7 +33,7 @@ public class GameManager {
 		gui              = new GUI();
 		floodCardDeck    = new FloodCardDeck();
 		treasureCardDeck = new TreasureCardDeck();
-		
+		treasures        = new Treasures();		
 	}
 	
 	public static GameManager getInstance() {
@@ -56,6 +57,7 @@ public class GameManager {
 		while(!foolsLandingLost && !treasureLost) {
 			gui.updateBoard(board.getStringBoard(), playerList);
 			gui.updatePlayerHands(playerList.getAllStringPlayers());
+			gui.updateTreasures(treasures.captured());
 			gui.display();
 			for(int i=0; i<playerList.getSize();i++) {
 				player = playerList.getPlayer(i);
@@ -84,6 +86,7 @@ public class GameManager {
 					}
 					gui.updateBoard(board.getStringBoard(), playerList);
 					gui.updatePlayerHands(playerList.getAllStringPlayers());
+					gui.updateTreasures(treasures.captured());
 					gui.display();
 				}
 			}
@@ -245,11 +248,14 @@ public class GameManager {
 	//
 	private void captureTreasure(Participant player) {
 		boolean success = player.canCaptureTreasure(board.getBoard());
+		TileType type;
+		String treasure="";
 		
 		if(success) {
-			
+			type = board.getBoard().get(player.getLocation()).getTileType();
+			treasure = treasures.capture(type);
 		}
-		gui.printTreasureCaptureOutcome(success,player.getName());
+		gui.printTreasureCaptureOutcome(success,player.getName(),treasure);
 	}
 	
 	//

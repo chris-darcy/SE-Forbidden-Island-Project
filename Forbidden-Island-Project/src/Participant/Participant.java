@@ -74,6 +74,7 @@ public abstract class Participant {
 	public void setLocation(int location) {
 		this.location = location;
 	}
+
 	
 	// !!!
 	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
