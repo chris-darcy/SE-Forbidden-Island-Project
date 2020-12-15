@@ -40,5 +40,6 @@ public class WaterLevel {
 	public void setMaxWaterLevel(int maxWaterLevel) {
 		this.maxWaterLevel = maxWaterLevel;
 	}
+	
 
 }

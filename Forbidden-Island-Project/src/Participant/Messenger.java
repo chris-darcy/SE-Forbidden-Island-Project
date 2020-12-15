@@ -14,7 +14,7 @@ public class Messenger extends Participant{
 		Hand receiversHand = receiver.getHand();
 		
 		if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
-			GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+//			GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
 		}
 		
 		receiversHand.addCardToHand(treasureCardToGive);

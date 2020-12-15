@@ -20,7 +20,7 @@ public class HandCheck {
 		
 		System.out.println("Your Hand:\n");
 		for (int i = 0; i < 2; i++) {
-			hand.populateHand(treasureCardDeck.draw()); // pop the top cards from the deck
+			hand.addCardToHand(treasureCardDeck.draw()); // pop the top cards from the deck
 		}
 		ArrayList<String> printHand =  hand.getPrintableHand(); // !!! still not working
 		System.out.println(printHand);

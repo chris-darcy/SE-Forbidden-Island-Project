@@ -4,7 +4,7 @@ package Cards;
 public class TreasureCard extends Card {
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
-	protected TreasureCard(String name) {
+	public TreasureCard(String name) { // changed to public for observer tests
 		super(name);
 	}
 	

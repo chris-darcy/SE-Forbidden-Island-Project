@@ -19,22 +19,23 @@ public class GameObserver extends Observer {
 	@Override
 	public void update(Object o) {
 		if (o instanceof Tile) {
-			if (((Tile) o).getTileStatus() == TileStatus.SUNK &&  // if Foolslanding has sunk game is over
-				((Tile) o).getTileType() == TileType.FOOLSLANDING) {
+			if (((Tile) o).getTileStatus() == TileStatus.SUNK &&      // if Foolslanding has sunk game is over
+				(((Tile) o).getTileType() == TileType.FOOLSLANDING || 
+				((Tile) o).getTileType() != TileType.FOOLSLANDING &&  // if a treasure tile has sunk
+				((Tile) o).getTileType() != TileType.NORMAL)) {
 				GameOver = true;
 				System.out.println("GAMEOVER!!");
 			}
-			System.out.println("Instance Tile");
+			
+		}	
+		if (o instanceof Hand) {                          // too many cards in the participant's hand
+			if(((Hand) o).size() > 5) {
+				System.out.println("TO MANY CARDS IN YOUR HAND");
+				System.out.println("Instance Hand");
+				GameManager.getInstance().handAfterRemoval(); // get the user to remove one of their cards
+			}
 		}
-		
-		
-		
-		
-//		if (obj instanceof Hand) {
-//			GameManager.handAfterRemoval(); // get the user to remove one of their cards
-//		}
-		
-		
+				
 //		switch () {
 //		case obj instanceof Hand:   // too many cards in users hand
 //			// call too many cards

@@ -1,8 +1,6 @@
 package Board;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import Game.GameManager;
 import Game.GameObserver;
 
@@ -12,7 +10,7 @@ public class Tile {
 	public TileStatus tileStatus;
 	public TileType tileType;
 	public Tile tile;
-	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();;
+	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	

@@ -6,12 +6,14 @@ import java.util.List;
 //import java.util.Scanner;
 import Cards.*;
 import Game.GameManager;
+import Game.GameObserver;
 
 public class Hand {
 	protected List<TreasureCard> hand = new ArrayList<TreasureCard>(); 
 	public int maxCards = 5;
 	protected Card chosenCard;
 	protected Participant participant;
+	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	public Hand() {
 		
@@ -26,9 +28,10 @@ public class Hand {
 		return hand.indexOf(treasureCard);
 	}
 	
-	private int size() {
-		return participant.getHand().size();
+	public int size() {
+		return hand.size();
 	}
+	
 	public ArrayList<String> getPrintableHand() {
 		ArrayList<String> handString = new ArrayList<String>();
 		for(Card card : hand) {
@@ -47,24 +50,25 @@ public class Hand {
 	
 	public void addCardToHand(TreasureCard card) {
 		hand.add(card);
+		notifyAllGameObservers(hand);
 	}
 	
 	public boolean handContains(Object object) { // general check for card type
 		return hand.contains(object);
 	}
 	
-	public void populateHand(TreasureCard card) {
-		if(hand.size() < maxCards) {
-			hand.add(card);
-		}
-		else {
-			hand.add(card); // add card so the user can chosen out of 6 cards
-			GameManager.getInstance().handAfterRemoval();
-		}
+	public TreasureCard getCard(int cardIdx) {  // remove later !!!
+		return hand.get(cardIdx);
 	}
 	
-	public TreasureCard getCard(int cardIdx) { // remove later !!!
-		return hand.get(cardIdx);
+	public void notifyAllGameObservers(List<TreasureCard> hand) {
+			for(GameObserver observer : observerList) {
+				observer.update(hand);
+			}
+	}
+	
+	public void attach(GameObserver observer) {
+		observerList.add(observer);
 	}
 	
 	@Override

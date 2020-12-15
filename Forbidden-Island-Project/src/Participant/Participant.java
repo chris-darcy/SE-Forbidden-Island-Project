@@ -18,7 +18,7 @@ public abstract class Participant {
 	protected SandbagTreasureCard sandbagTreasureCard;
 	protected ArrayList<Integer> relevantTileList = new ArrayList<Integer>();
 	protected int location;
-	private GameObserver observer;
+	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
 	protected Participant(String name, Hand hand, int playerNum, int location, int numberOfActions) {
@@ -74,7 +74,6 @@ public abstract class Participant {
 	public void setLocation(int location) {
 		this.location = location;
 	}
-
 	
 	// !!!
 	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
@@ -109,7 +108,7 @@ public abstract class Participant {
 			
 			// observer!
 			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
-				notifyObserver(receiversHand);//GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+				notifyAllGameObservers(receiversHand);//GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
 			receiversHand.addCardToHand(treasureCardToGive);
@@ -190,7 +189,10 @@ public abstract class Participant {
 		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
 	}
 	
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyAllGameObservers(Hand hand) {
+		for(GameObserver observer : observerList) {
+			observer.update(hand);
+		}
 	}
+	
 }
