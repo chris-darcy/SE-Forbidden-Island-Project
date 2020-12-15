@@ -2,6 +2,8 @@ package UnitTests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,11 +15,13 @@ import Board.TileType;
 public class BoardTest {
 	private Board board;
 	private TileType emptyCorner;
+	private Integer[] corners;
 	
 	@Before
 	public void setUp() {
 		board = Board.getInstance();
 		emptyCorner = TileType.EMPTY;
+		corners = new Integer[] {0,1,4,5,6,11,24,29,30,31,34,35};
 	}
 	
 	@Test
@@ -47,23 +51,56 @@ public class BoardTest {
 	
 	@Test
 	public void test_empty_corner_tile_locations() {
-		assertEquals("0 should be an empty tile",TileType.EMPTY,board.getBoard().get(0).getTileType());
-		assertEquals("1 should be an empty tile",TileType.EMPTY,board.getBoard().get(1).getTileType());
-		assertEquals("4 should be an empty tile",TileType.EMPTY,board.getBoard().get(4).getTileType());
-		assertEquals("5 should be an empty tile",TileType.EMPTY,board.getBoard().get(5).getTileType());
-		assertEquals("6 should be an empty tile",TileType.EMPTY,board.getBoard().get(6).getTileType());
-		assertEquals("11 should be an empty tile",TileType.EMPTY,board.getBoard().get(11).getTileType());
-		assertEquals("24 should be an empty tile",TileType.EMPTY,board.getBoard().get(24).getTileType());
-		assertEquals("29 should be an empty tile",TileType.EMPTY,board.getBoard().get(29).getTileType());
-		assertEquals("30 should be an empty tile",TileType.EMPTY,board.getBoard().get(30).getTileType());
-		assertEquals("31 should be an empty tile",TileType.EMPTY,board.getBoard().get(31).getTileType());
-		assertEquals("34 should be an empty tile",TileType.EMPTY,board.getBoard().get(34).getTileType());
-		assertEquals("35 should be an empty tile",TileType.EMPTY,board.getBoard().get(35).getTileType());		
+
+		for(int cornerId: corners) {
+			assertEquals("should be an empty tile",emptyCorner,board.getBoard().get(cornerId).getTileType());
+		}	
 	}
+	
+	@Test
+	public void test_board_is_ordered_by_location() {
+		for(int i=0; i<36;i++) {
+			assertEquals("tile location should equal array index if ordered",i,board.getBoard().get(i).getLocation());
+		}
+	}
+	
+	@Test
+	public void test_roles_start_on_correct_tiles() {
+		
+		for(Tile tile: board.getBoard()) {
+			
+			switch(tile.getName()) {
+			case "SILVER GATE":
+				assertEquals("Messenger should start at Silver Gate",board.getMessengerStartLoc(),tile.getLocation());
+				break;
+			case "BRONZE GATE":
+				assertEquals("Engineer should start at Bronze Gate",board.getEngineerStartLoc(),tile.getLocation());
+				break;
+			case "COPPER GATE":
+				assertEquals("Explorer should start at Copper Gate",board.getExplorerStartLoc(),tile.getLocation());
+				break;
+			case "IRON GATE":
+				assertEquals("Diver should start at Iron Gate",board.getDiverStartLoc(),tile.getLocation());
+				break;
+			case "GOLD GATE":
+				assertEquals("Navigator should start at Gold Gate",board.getNavigatorStartLoc(),tile.getLocation());
+				break;
+			case "FOOLS LANDING":
+				assertEquals("Pilot should start at Fools Landing",board.getPilotStartLoc(),tile.getLocation());
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	
+	
 	
 	@After
 	public void tearDown() {
 		board = null;
+		emptyCorner = null;
+		corners = null;
 	}
 
 }

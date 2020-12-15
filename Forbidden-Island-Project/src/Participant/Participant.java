@@ -156,8 +156,23 @@ public abstract class Participant {
 		this.location = newLocation;
 	}
 	
-	public void captureTreasure() {
+	public boolean canCaptureTreasure(ArrayList<Tile> board) {
+		int counter = 0;
+		TileType tileType = board.get(this.location).getTileType();
 		
+		
+		if(tileType == TileType.NORMAL || tileType == TileType.FOOLSLANDING) {
+			return false;
+		}
+		for(int i=0; i<this.hand.numberOfCards();i++) {
+			if(this.hand.getCardInHand(i).getName().equalsIgnoreCase(tileType.name())) {
+				counter++;
+			}
+			if(counter == 4) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?

@@ -138,10 +138,13 @@ public class GUI {
 	public int setDifficulty() {
 		int startLevel = 0;
 		
+		printSeparator(indent + "Set The Difficulty");
 		System.out.println("~Please enter the initial water level mark~");
 		System.out.println("   1: Novice\n   2: Normal\n   3: Elite\n   4: Legendary");
 		
-		startLevel =  getIntFor("the difficulty level");
+		startLevel = getChoiceWithinBoundary("the difficulty level",
+											 "no such option available",
+											 1, 4);
 		waterlevelBar[0] = makeLongString('#',startLevel*4);
 		waterlevelBar[1] = makeLongString(' ',(startLevel-1)*4) + "   v";
 		waterlevelBar[2] = "   .   2   .   .   3   .   4   .   5   X";
@@ -210,10 +213,10 @@ public class GUI {
 		
 		System.out.println("~"+p.name+", what will your next move be?~  MOVES REMAINING: " + p.actionsRemaining());
 		
-		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure");
+		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure\n   4: End Turn");
 		choice = getChoiceWithinBoundary("your action",
 										 "no such option available",
-										 0, 3);
+										 0, 4);
 		return choice;
 	}
 	
@@ -254,7 +257,7 @@ public class GUI {
 						 "no such card available",
 						 0, (p.hand.length-1));
 		
-		System.out.println("you have chosen to " + action + " the " + p.hand[choice]);
+		System.out.println("you have chosen to " + action + " the " + p.hand[choice] + "\n");
 	
 		return choice;		
 	}
@@ -270,7 +273,7 @@ public class GUI {
 		System.out.println("~Where will you " + action + "?~");
 		
 		for(int tilePos: relevantTiles) {
-			System.out.println(tilePos + ": " + board.get(tilePos).getName());
+			System.out.println("   " + tilePos + ": " + board.get(tilePos).getName());
 		}
 
 		while(!valid) {
@@ -372,8 +375,19 @@ public class GUI {
 		System.out.println(indent + "///" + fslashes + "///\n");
 	}
 	
-	public void printPlayerFinalised(Participant player){
-		System.out.println(player.getName() + ", you have been assigned the role of " + player.getClass().getSimpleName() + "!\n");
+	public void printPlayerFinalised(String player){
+		PlayerPrint p = new PlayerPrint(player);
+		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
+	}
+	
+	public void printTreasureCaptureOutcome(boolean success, String name) {
+		
+		if(success) {
+			System.out.println("   congratulations "+name+ ", you captured a treasure!");
+		}
+		else {
+			System.out.println("   "+name+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!");
+		}
 	}
 	
 	
@@ -387,7 +401,7 @@ public class GUI {
 		
 		tl.put("SUNK"              ,"             ");
 		tl.put("UNFLOODED"         ," #         # ");
-		tl.put("FLOODED"           ," #    F!   # ");
+		tl.put("FLOODED"           ," # Flooded # ");
 			
 		tl.put("Pilot"             ," #   [P]   # ");
 		tl.put("Engineer"          ," #   [G]   # ");
@@ -438,6 +452,9 @@ public class GUI {
 		return new String(longString);
 	}
 	
+	//
+	// Create a printable and easily readable object for a player
+	//
 	private class PlayerPrint{
 		private String name;
 		private String playernum;
@@ -469,6 +486,9 @@ public class GUI {
 
 	}
 	
+	//
+	// Create a printable and easily readable object for a tile
+	//
 	private class TilePrint{
 		private String name;
 		private String location;
