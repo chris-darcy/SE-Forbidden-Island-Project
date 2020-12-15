@@ -1,6 +1,7 @@
 package Board;
 
 import Game.GameManager;
+import Game.GameObserver;
 
 public class Tile {
 	public String name;
@@ -8,6 +9,7 @@ public class Tile {
 	TileStatus tileStatus;
 	TileType tileType;
 	Tile tile;
+	GameObserver observer;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -64,6 +66,7 @@ public class Tile {
 		}
 		
 		this.tileStatus = tileStatus;
+		notifyObserver(this);
 	}
 	
 	// get the type of the tile
@@ -74,6 +77,10 @@ public class Tile {
 	// set type of Tile
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
+	}
+	
+	public void notifyObserver(Object obj) {
+		observer.update(obj);
 	}
 	
 }
