@@ -6,18 +6,29 @@ import Board.TileType;
 import Participant.Hand;
 import WaterLevel.WaterLevel;
 
-public abstract class GameObserver {
+public class GameObserver extends Observer {
 	public boolean GameOver = false; // initialise GameOver
+	public Object obj;
+	public Tile tile;
 	
-	public void update(Object obj) {
-		
-		if (obj instanceof Tile) {
-			if (((Tile) obj).getTileStatus() == TileStatus.SUNK &&  // if Foolslanding has sunk game is over
-				((Tile) obj).getTileType() == TileType.FOOLSLANDING) {
+//	public GameObserver(Tile tile) {
+//		this.tile = tile;
+//		this.tile.attach(this);
+//	}
+	
+	@Override
+	public void update(Object o) {
+		if (o instanceof Tile) {
+			if (((Tile) o).getTileStatus() == TileStatus.SUNK &&  // if Foolslanding has sunk game is over
+				((Tile) o).getTileType() == TileType.FOOLSLANDING) {
 				GameOver = true;
 				System.out.println("GAMEOVER!!");
 			}
+			System.out.println("Instance Tile");
 		}
+		
+		
+		
 		
 //		if (obj instanceof Hand) {
 //			GameManager.handAfterRemoval(); // get the user to remove one of their cards
@@ -37,4 +48,5 @@ public abstract class GameObserver {
 //			GameOver = true;
 //		}
 	}
+
 }

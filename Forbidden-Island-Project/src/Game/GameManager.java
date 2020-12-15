@@ -151,13 +151,12 @@ public class GameManager {
 		if(specialTile.getTileType() != TileType.NORMAL) {
 			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());
 			
-			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
-				treasureLost = true;
+//			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
+//				treasureLost = true;
 				//potentially update gui 
 
 //				notifyObserver(); // notify that an important tile has been changed
-			}
-		}		
+			}		
 		else{	
 			if(specialTile.getTileStatus() == TileStatus.SUNK) {
 				foolsLandingLost = true;

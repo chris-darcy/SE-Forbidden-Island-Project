@@ -1,15 +1,18 @@
 package Board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Game.GameManager;
 import Game.GameObserver;
 
 public class Tile {
 	public String name;
 	public int location;
-	TileStatus tileStatus;
-	TileType tileType;
-	Tile tile;
-	GameObserver observer;
+	public TileStatus tileStatus;
+	public TileType tileType;
+	public Tile tile;
+	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();;
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -64,9 +67,8 @@ public class Tile {
 			GameManager GM = GameManager.getInstance();
 			GM.updateSpecialTileStatus(this);
 		}
-		
 		this.tileStatus = tileStatus;
-		notifyObserver(this);
+		notifyAllGameObservers(this);
 	}
 	
 	// get the type of the tile
@@ -79,8 +81,14 @@ public class Tile {
 		this.tileType = tileType;
 	}
 	
-	public void notifyObserver(Object obj) {
-		observer.update(obj);
+	public void notifyAllGameObservers(Tile tile) {
+		for(GameObserver observer : observerList) {
+			observer.update(tile);
+		}
+	}
+	
+	public void attach(GameObserver observer) {
+		observerList.add(observer);
 	}
 	
 }
