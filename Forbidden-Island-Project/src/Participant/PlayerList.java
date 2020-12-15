@@ -1,6 +1,7 @@
 package Participant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PlayerList {
 	
@@ -64,5 +65,22 @@ public class PlayerList {
 		return playerList.size();
 	}
 
+	public ArrayList<String> getAllStringPlayersExcept(Participant player) {
+		ArrayList<String> others = new ArrayList<String>();
+		
+		for(Participant p: playerList) {
+			if(p.getPlayerNum() != player.getPlayerNum()) {
+				others.add(p.toString());
+			}
+		}
+		return others;
+	}
 	
+	public ArrayList<String> getAllStringPlayers(){
+		ArrayList<String> players = new ArrayList<String>();
+		for(Participant p: playerList) {
+				players.add(p.toString());
+		}
+		return players;
+	}
 }

@@ -50,6 +50,7 @@ public class FloodCardDeck {
 			case UNFLOODED:
 				tile.setTileStatus(TileStatus.FLOODED);
 				discardDeck.add(tilePos);
+				break;
 			case FLOODED:
 				tile.setTileStatus(TileStatus.SUNK);
 				if(tile.getTileType() == TileType.FOOLSLANDING) {

@@ -19,7 +19,7 @@ public abstract class Participant {
 	protected int location;
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
-	protected Participant(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
+	protected Participant(String name, Hand hand, int playerNum, int location, int numberOfActions) {
 
 		this.name = name;
 		this.playerNum = playerNum;
@@ -98,8 +98,8 @@ public abstract class Participant {
 	// This method will be overridden by the Messenger Participant
 	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
-		if (receiver.getLocation() == participant.getLocation()) {
-			Hand giversHand = participant.getHand();
+		if (receiver.getLocation() == this.location) {
+			Hand giversHand = this.hand;
 			Hand receiversHand = receiver.getHand();
 			
 			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
@@ -122,20 +122,21 @@ public abstract class Participant {
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
         
 		// generally, the participant can move left, right, up and down, these tiles will have to be checked
-		relevantTiles.add(participant.getLocation() + 1);
-		relevantTiles.add(participant.getLocation() - 1);
-		relevantTiles.add(participant.getLocation() + 6);
-		relevantTiles.add(participant.getLocation() - 6);
-		
+		relevantTiles.add(this.location + 1);
+		relevantTiles.add(this.location - 1);
+		relevantTiles.add(this.location + 6);
+		relevantTiles.add(this.location - 6);
+		//
+		// Issue with iterating over shrinking arraylist here !!!
 		for (int location : relevantTiles) { // check the TileStatus is not EMPTY of SUNK
 			if (board.get(location).getTileStatus() == TileStatus.SUNK || // if tile is sunk or is a corner piece (empty)
 				board.get(location).getTileType() == TileType.EMPTY) {    // the participant can't move there
-				relevantTiles.remove(location);
+				int idx = relevantTiles.indexOf(location);
+				relevantTiles.remove(idx);
 			}
 		}
 		
 		// observer should check for the list is empty !!!
-		
 		return relevantTiles;
 	}
 	
@@ -151,7 +152,7 @@ public abstract class Participant {
 	} 
 	
 	public void move(int newLocation) { // moves participant to new location
-		participant.setLocation(newLocation);
+		this.location = newLocation;
 	}
 	
 	public void captureTreasure() {
@@ -160,7 +161,11 @@ public abstract class Participant {
 
 	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		participant.getRelevantTiles(board); // for most participants, they will only be able to move to as normal
+		this.getRelevantTiles(board); // for most participants, they will only be able to move to as normal
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
+	}
 }

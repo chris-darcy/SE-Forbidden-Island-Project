@@ -58,28 +58,30 @@ public class GUI {
 	//
 	// Creates String representation of current board
 	//
-	public void updateBoard(ArrayList<Tile> board,PlayerList playerList) {
+	public void updateBoard(ArrayList<String> board,PlayerList playerList) {
 		int idx;
 		int playerSliceIdx = 3;
-		Tile tile;
+
+		//Tile tile;
 		for(String[] rowSlices: boardSlices) { Arrays.fill(rowSlices,"");}
 		
 		for (int row=0; row<6; row++ ){
 			for(int col=0; col<6; col++) {
-				
+								
 				idx = 6*row + col;
-				tile = board.get(idx); 
+				TilePrint tile = new TilePrint(board.get(idx));
+				//tile = board.get(idx); 
 				
-				if(tile.getTileType() == TileType.EMPTY) {
+				if(tile.type().equals("EMPTY")) {
 					for(int i=0; i<8; i++) {
 						boardSlices[row][i] = boardSlices[row][i] + tl.get("EMPTY");
 					}
 				}		
 				
 				else {				
-					boardSlices[row][0] = boardSlices[row][0] + tl.get(tile.name);
-					boardSlices[row][1] = boardSlices[row][1] + tl.get(tile.getTileType().toString());
-					boardSlices[row][2] = boardSlices[row][2] + tl.get(tile.getTileStatus().toString());					
+					boardSlices[row][0] = boardSlices[row][0] + tl.get(tile.name());
+					boardSlices[row][1] = boardSlices[row][1] + tl.get(tile.type());
+					boardSlices[row][2] = boardSlices[row][2] + tl.get(tile.status());					
 					
 					if(playerList.playersOnTile(idx)) {
 						for(Participant p: playerList.getPlayersOnTile(idx)){
@@ -103,18 +105,17 @@ public class GUI {
 	//
 	// Creates String representation of player hands
 	//
-	public void updatePlayerHands(PlayerList playerList) {
+	public void updatePlayerHands(ArrayList<String> playerList) {
 		
-		for(int player=0; player<playernums; player++){
+		for(int player=0; player<playernums; player++){	
+			PlayerPrint p = new PlayerPrint(playerList.get(player));
 			
-			allHandSlices[player][0] = playerList.getPlayer(player).getName() +" (" + playerList.getPlayer(player).getRoleName()+"):";	
-			
-			ArrayList<String> hand = playerList.getPlayer(player).getHand().getPrintableHand();	
+			allHandSlices[player][0] = p.name() +" (" + p.role()+"):";	
 		
 			//8 slices, first saved for player name
 			for(int card=0;card<7;card++) {	
-				if(card<hand.size()) {
-					allHandSlices[player][card+1] = hand.get(card);
+				if(card<p.hand.length) {
+					allHandSlices[player][card+1] = p.hand[card];
 				}
 				else {
 					allHandSlices[player][card+1] = "";
@@ -203,9 +204,11 @@ public class GUI {
 	//
 	// Ask player for their next action
 	//
-	public int chooseAction(Participant player) {
+	public int chooseAction(String player) {
 		int choice = 0;
-		System.out.println("~What will your next move be?~  MOVES REMAINING: " + player.getActionsRemaining());
+		PlayerPrint p = new PlayerPrint(player);
+		
+		System.out.println("~"+p.name+", what will your next move be?~  MOVES REMAINING: " + p.actionsRemaining());
 		
 		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure");
 		choice = getChoiceWithinBoundary("your action",
@@ -217,81 +220,54 @@ public class GUI {
 	//
 	// Ask a player to choose the receiver of their give card action
 	//
-	public int chooseReceiver(Participant player,ArrayList<Participant> everyoneElse) {
+	public int chooseReceiver(ArrayList<String> everyoneElse) {
 		int choice = 0;
 		int choiceNum = 0;
 		
 		System.out.println("~Which player will you give a card to?~");	
-		for(Participant p: everyoneElse) {
-			System.out.println("   " + choiceNum + ": " + p.getName() + " (" + p.getRoleName() + ")");
+		for(String o: everyoneElse) {
+			PlayerPrint other_p = new PlayerPrint(o);
+			
+			System.out.println("   " + choiceNum + ": " + other_p.name() + " (" + other_p.role() + ")");
 		}
 		
 		choice = getChoiceWithinBoundary("your action",
 						 "no such option available",
-						 0, (choiceNum-1));
+						 0, everyoneElse.size()-1);
 		
-		return everyoneElse.get(choice).getPlayerNum();
+		PlayerPrint chosen = new PlayerPrint(everyoneElse.get(choice));
+		
+		return Integer.parseInt(chosen.playernum());
 	}
 	
 	//
-	// Ask player to choose which surplus card to remove from their hand
+	// Ask player to choose which card to either discard or give
 	//
-	public int chooseCardToDiscard(Participant player) {
-		int cardsLeft = player.getHand().numberOfCards();
-		int chosen  = 0;
-		valid = false;
-		
-		printWarning(player.getName()+ ", you have too many cards. Discard one");
-		
-		System.out.println("~Which card will you discard?~");
-		
-		for(String card: player.getHand().getPrintableHand()) {
-			System.out.println("   " + (6-cardsLeft) + ": " + card);
-			cardsLeft--;
-		}
-		
-		while(!valid) {
-			chosen = getIntFor("the card to discard");
-			
-			if(chosen > 0 && chosen < 6) {
-				valid = true;
-				System.out.println("you have chosen to discard the " + player.getHand().getPrintableHand().get(chosen));
-			}
-			else{
-				System.out.println("no such card available");
-			}
-		}		
-		return chosen;		
-	}
-	
-	//
-	// Ask player to choose which card to give from their hand
-	//
-	public int chooseCardToGive(Participant player) {
+	public int chooseCardTo(String action, String player) {
 		int choiceNum = 0;
 		int choice = 0;
+		PlayerPrint p = new PlayerPrint(player);
+		System.out.println("~Which card will you " + action + "?~");
+		printAHand(p.hand);
 		
-		System.out.println("~Which card will you give?~");
-		printAHand(player.getPlayerNum());
-		
-		choice = getChoiceWithinBoundary("the card to give",
+		choice = getChoiceWithinBoundary("the card to " + action,
 						 "no such card available",
-						 0, (choiceNum-1));
+						 0, (p.hand.length-1));
 		
-		System.out.println("you have chosen to give the " + allHandSlices[player.getPlayerNum()][choice]);
+		System.out.println("you have chosen to " + action + " the " + p.hand[choice]);
 	
 		return choice;		
 	}
 	
 	//
-	// get choice of next location from player
+	// get choice of next location from player for action either shoreUp or move to
 	//
-	public int chooseNextLocation(ArrayList<Integer> relevantTiles,ArrayList<Tile> board) {
+	public int chooseLocationTo(String action,ArrayList<Integer> relevantTiles,ArrayList<Tile> board) {
 		int choice = 0;
 		int choiceNum = 0;
 		valid = false;
 		
-		System.out.println("~Where will you move?~");
+		System.out.println("~Where will you " + action + "?~");
 		
 		for(int tilePos: relevantTiles) {
 			System.out.println(tilePos + ": " + board.get(tilePos).getName());
@@ -301,11 +277,11 @@ public class GUI {
 			choice = getIntFor("the location");
 			
 			if(!relevantTiles.contains(choice)) {
-				System.out.println("you cannot move to that location");
+				System.out.println("you cannot "+ action + " that location");
 			}
 			else{
 				valid = true;
-				System.out.println("you will be moved to " + board.get(choice).getName());
+				System.out.println("you chose to " + action + " " + board.get(choice).getName());
 			}
 		}		
 		return choice;		
@@ -371,10 +347,10 @@ public class GUI {
 	//
 	// display a players hand along with the relative option numbers
 	//
-	private void printAHand(int playerNum) {
+	private void printAHand(String[] playerHand) {
 		int choiceNum = 0;
 		
-		for(String card: allHandSlices[playerNum]) {
+		for(String card: playerHand) {		
 			System.out.println("   " + (choiceNum) + ": " + card);
 			choiceNum++;
 		}
@@ -461,6 +437,63 @@ public class GUI {
 		
 		return new String(longString);
 	}
+	
+	private class PlayerPrint{
+		private String name;
+		private String playernum;
+		private String role;
+		private String[] hand;
+		private String location;
+		private String actionsRemaining;
+		
+		public PlayerPrint(String player) {
+			String[] fields = player.split("\n");
+			this.name = fields[0];
+			this.playernum = fields[1];
+			this.hand = fields[2].substring(1,fields[2].length()-1).split(", ");
+			this.location = fields[3];
+			this.actionsRemaining = fields[4];
+			this.role = fields[5];
+		}	
+		public String name() {return this.name;}
+			
+		public String playernum() {return this.playernum;}
+				
+		public String[] hand() {return this.hand;}
+				
+		public String location() {return this.location;}
+			
+		public String actionsRemaining() {return this.actionsRemaining;}
+				
+		public String role() {return this.role;}
+
+	}
+	
+	private class TilePrint{
+		private String name;
+		private String location;
+		private String status;
+		private String type;
+		
+		public TilePrint(String tile) {
+			String[] fields = tile.split("\n");
+			this.name = fields[0];
+			this.location = fields[1];
+			this.status = fields[2];
+			this.type = fields[3];
+		}	
+		public String name() {return this.name;}
+				
+		public String location() {return this.location;}
+				
+		public String status() {return this.status;}
+				
+		public String type() {return this.type;}
+
+	}
+
+
+	
 	
 }
 

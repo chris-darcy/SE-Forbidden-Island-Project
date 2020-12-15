@@ -242,6 +242,15 @@ public class Board {
 		return navigatorStartLoc;
 	}
 	
+	public ArrayList<String> getStringBoard(){
+		ArrayList<String> stringBoard =  new ArrayList<String>(); 
+		
+		for(Tile tile: board) {
+			stringBoard.add(tile.toString());
+		}
+		return stringBoard;
+	}
+	
 	
 	// needed to sort the board by tile location 0-->35
 	class Sortbyloc implements Comparator<Tile> 
