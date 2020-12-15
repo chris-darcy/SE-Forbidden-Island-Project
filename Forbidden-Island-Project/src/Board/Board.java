@@ -98,6 +98,7 @@ public class Board {
 				    			tiletype = TileType.NORMAL;
 				    			if(attributes[0] == "FOOLS LANDING") {
 				    				foolsLandingLoc = tilePos;
+				    				tiletype = TileType.FOOLSLANDING;
 				    			}
 				    			break;
 				    	}
@@ -149,7 +150,7 @@ public class Board {
 		return Arrays.asList(corners).contains(tilePos);
 	}
 	
-	public void addToSpecialSet(Tile treasureTile, TileType tiletype) {
+	private void addToSpecialSet(Tile treasureTile, TileType tiletype) {
 		switch(tiletype) {
 		case WIND:
 			windSet.add(treasureTile);
@@ -253,7 +254,7 @@ public class Board {
 	
 	
 	// needed to sort the board by tile location 0-->35
-	class Sortbyloc implements Comparator<Tile> 
+	private class Sortbyloc implements Comparator<Tile> 
 	{ 
 	    // Used for sorting in ascending order of 
 	    // location

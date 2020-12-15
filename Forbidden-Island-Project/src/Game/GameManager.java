@@ -78,6 +78,9 @@ public class GameManager {
 						case 3:
 							captureTreasure(player);
 							break;
+							
+						case 4:
+							break;//end turn early
 					}
 					gui.updateBoard(board.getStringBoard(), playerList);
 					gui.updatePlayerHands(playerList.getAllStringPlayers());
@@ -135,7 +138,7 @@ public class GameManager {
 					player = new Navigator(name,hand,i,location,3);
 					break;
 				}
-				gui.printPlayerFinalised(player);
+				gui.printPlayerFinalised(player.toString());
 				playerList.addPlayer(player);
 			}
 			playerList.create();
@@ -242,7 +245,12 @@ public class GameManager {
 	// facilitate the player capturing a treasure
 	//
 	private void captureTreasure(Participant player) {
+		boolean success = player.canCaptureTreasure(board.getBoard());
 		
+		if(success) {
+			
+		}
+		gui.printTreasureCaptureOutcome(success,player.getName());
 	}
 	
 	//
@@ -290,16 +298,6 @@ public class GameManager {
 		
 		relevantTiles = player.getRelevantTiles(brd);
 		return gui.chooseLocationTo(action,relevantTiles, brd);
-	}
-	
-	// !!!!!!!REMOVE LATER !!!!!!!!!!
-	public void callGUIDisplay(int playernums) {
-
-		gui.updatePlayerHands(playerList);
-		gui.updateBoard(board.getBoard(), playerList);
-		gui.display();
-		gui.chooseCardTo("discard",playerList.getPlayer(0).getHand().getPrintableHand());
-
 	}
 	
 	public Hand handAfterRemoval() {
