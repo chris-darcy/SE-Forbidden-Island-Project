@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Board.*;
 import Cards.*;
 import Game.GameManager;
+import Game.GameObserver;
 
 public abstract class Participant {
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
@@ -17,6 +18,7 @@ public abstract class Participant {
 	protected SandbagTreasureCard sandbagTreasureCard;
 	protected ArrayList<Integer> relevantTileList = new ArrayList<Integer>();
 	protected int location;
+	private GameObserver observer;
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
 	protected Participant(String name, Hand hand, int playerNum, int location, int numberOfActions) {
@@ -75,11 +77,12 @@ public abstract class Participant {
 	
 	// !!!
 	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
-		if(participant.getHand().handContains(sandbagTreasureCard) && // RELEVANTTILES
-		   tile.getTileStatus() != TileStatus.SUNK &&
-		   (tile.getLocation() == participant.getLocation() || 
-			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
-			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
+		if(participant.getHand().handContains(sandbagTreasureCard) &&  // participant has the required card
+		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk
+		   // relevant 
+		   (tile.getLocation() == participant.getLocation() ||         // participant is on or adjacent to the tile
+			Math.abs(participant.getLocation()/6 - y) == 1 || 
+			Math.abs(currentLocation%6 - x) == 1)) {
 				
 				switch (tile.getTileStatus()){
 					case UNFLOODED:
@@ -87,6 +90,7 @@ public abstract class Participant {
 					case FLOODED:
 						tile.setTileStatus(TileStatus.SUNK);
 				}
+				
 				participant.actionUsed();
 				return true;
 		}
@@ -102,8 +106,9 @@ public abstract class Participant {
 			Hand giversHand = this.hand;
 			Hand receiversHand = receiver.getHand();
 			
+			// observer!
 			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
-				GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+				notifyObserver(receiversHand);//GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
 			receiversHand.addCardToHand(treasureCardToGive);
@@ -167,5 +172,9 @@ public abstract class Participant {
 	@Override
 	public String toString() {
 		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
+	}
+	
+	public void notifyObserver(Object obj) {
+		observer.update(obj);
 	}
 }
