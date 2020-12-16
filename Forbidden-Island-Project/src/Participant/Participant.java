@@ -125,7 +125,7 @@ public abstract class Participant {
 		}
 	}
 
-	protected ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
+	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
 		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(+6, -6, -1, +1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		
