@@ -1,11 +1,7 @@
 package Testing;
 
-import java.util.ArrayList;
-import java.util.List;
 import Cards.*;
-import Game.GameManager;
 import Participant.*;
-import Board.Board;
 
 public class TestParticipant {
 	public static void main(String [] args) {
@@ -18,8 +14,8 @@ public class TestParticipant {
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		int playerNumber = 1;
 		
-		hand.populateHand(treasureCardDeck.draw());
-		hand.populateHand(treasureCardDeck.draw());
+		hand.addCardToHand(treasureCardDeck.draw());
+		hand.addCardToHand(treasureCardDeck.draw());
 		
 		Participant engineerTest = new Engineer(name, hand, playerNumber, location, actionsRemaining);
 		
