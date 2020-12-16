@@ -125,12 +125,11 @@ public abstract class Participant {
 	}
 
 	protected ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
-		ArrayList<Integer> mustBeContained = new ArrayList<Integer>(Arrays.asList(+6, -6, +1, -1)); // input must be contained
+		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(+6, -6, -1, +1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		
-		for (int i : mustBeContained) {                                         // check tiles up, down, left and right
-			if(mustBeContained.contains(i)&&
-			   board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
+		for (int i : upDownLeftRight) {                                                       // check tiles up, down, left and right
+			if(board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
 			   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
 			   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
 				
