@@ -35,9 +35,6 @@ public class Explorer extends Participant{
 			}
 			
 		}
-		else {
-			//Observer
-			return null;
-			}
+		return null;
 	}
 }
