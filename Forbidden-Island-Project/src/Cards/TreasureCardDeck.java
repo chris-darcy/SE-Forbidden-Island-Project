@@ -21,10 +21,10 @@ public class TreasureCardDeck {
 		
 		// add all the treasure cards to the deck of cards
 		for (int i = 0; i < 5; i++) { // 5 of each treasure
-			EarthTreasureCard earthTreasureCard = new EarthTreasureCard("Earth");
-			FireTreasureCard fireTreasureCard = new FireTreasureCard("Fire");
-			WindTreasureCard windTreasureCard = new WindTreasureCard("Wind");
-			OceanTreasureCard oceanTreasureCard = new OceanTreasureCard("Ocean");
+			TreasureCard earthTreasureCard = new TreasureCard("Earth");
+			TreasureCard fireTreasureCard = new TreasureCard("Fire");
+			TreasureCard windTreasureCard = new TreasureCard("Wind");
+			TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
 			cardDeck.push(earthTreasureCard);
 			cardDeck.push(fireTreasureCard);
 			cardDeck.push(windTreasureCard);
