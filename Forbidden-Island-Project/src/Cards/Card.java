@@ -18,4 +18,5 @@ public class Card {
 		return this.name;
 	}
 
+
 }
