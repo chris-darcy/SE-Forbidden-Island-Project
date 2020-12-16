@@ -21,10 +21,10 @@ public class Print_Hand_demo {
 		Hand H = new Hand();
 		TreasureCardDeck deck = new TreasureCardDeck();
 		
-		H.addCardToHand(deck.pop());
-		H.addCardToHand(deck.pop());
-		H.addCardToHand(deck.pop());
-		H.addCardToHand(deck.pop());
+		H.addCardToHand(deck.draw());
+		H.addCardToHand(deck.draw());
+		H.addCardToHand(deck.draw());
+		H.addCardToHand(deck.draw());
 		
 		for(String cardName: H.getPrintableHand()) {
 			System.out.println(cardName);
