@@ -115,6 +115,7 @@ public abstract class Participant {
 			
 			receiversHand.addCardToHand(treasureCardToGive);
 			giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
+			
 			participant.actionUsed();
 			
 			return true;
@@ -135,24 +136,26 @@ public abstract class Participant {
 				
 				relevantTiles.add(participant.getLocation() + 6);
 			}
-
+		// observer !!!
 		}
 		return relevantTiles;
 		
 	}
-	// should be moved to GameManager? !!!
-	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
-		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
-			return true;
-		}
-		else {
-			return false;
-		}
-		
-	} 
+	
+//	// should be moved to GameManager? !!!
+//	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
+//		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
+//			return true;
+//		}
+//		else {
+//			return false;
+//		}
+//		
+//	} 
 	
 	public void move(int newLocation) { // moves participant to new location
 		this.location = newLocation;
+		participant.actionUsed();
 	}
 	
 	public boolean canCaptureTreasure(ArrayList<Tile> board) {
@@ -168,6 +171,7 @@ public abstract class Participant {
 				counter++;
 			}
 			if(counter == 4) {
+				participant.actionUsed();
 				return true;
 			}
 		}
