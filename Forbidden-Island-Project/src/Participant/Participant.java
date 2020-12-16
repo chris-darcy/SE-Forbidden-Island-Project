@@ -2,11 +2,8 @@ package Participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import Board.*;
 import Cards.*;
-import Game.GameManager;
 import Game.GameObserver;
 
 public abstract class Participant {
