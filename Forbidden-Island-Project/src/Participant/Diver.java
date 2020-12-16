@@ -15,7 +15,7 @@ public class Diver extends Participant{
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
-	protected ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 		

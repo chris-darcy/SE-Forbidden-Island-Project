@@ -11,9 +11,10 @@ public class Pilot extends Participant {
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
-	@Override 
+	@Override
+	
 	// the pilot can move to any tile if their current tile is sunk
-	protected ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 		//verify the participant is on a sunk tile
 		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
