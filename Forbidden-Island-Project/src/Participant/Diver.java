@@ -19,8 +19,7 @@ public class Diver extends Participant{
 		//verify the participant is on a sunk tile
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 		
-		
-		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
+		if(board.get(participant.getLocation()).getTileStatus() == TileStatus.SUNK) {
 			// for most participants, they will only be able to move to as normal
 			
 			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));   // get up, down, left, right tiles is possible as these will be the shortest
