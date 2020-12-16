@@ -25,9 +25,7 @@ public class Diver extends Participant{
 			
 			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));   // get up, down, left, right tiles is possible as these will be the shortest
 			sunkRelevantTiles.add(getShortestDistance(board).getLocation()); // add the shortest
-			LinkedHashSet<Integer> hashSet = new LinkedHashSet<>(sunkRelevantTiles);  // remove if there are any duplicate locations
-			ArrayList<Integer> sunkRelevantTilesNoDuplicates = new ArrayList<>(hashSet);
-			return sunkRelevantTilesNoDuplicates;
+			return removeDuplicate(sunkRelevantTiles);
 		}
 		
 		else {
@@ -46,7 +44,15 @@ public class Diver extends Participant{
 				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); // calculate distance
 			}
 		}
-		return board.get(shortestDistance.indexOf(Collections.min(shortestDistance))); // the shortest value index will be the index of the board also
+		LinkedHashSet<Double> hashSet = new LinkedHashSet<Double>(shortestDistance);  // remove if there are any duplicate locations
+		ArrayList<Double> removedDuplicates = new ArrayList<Double>(hashSet);         // return hashSet to ArrayList array
+		return board.get(shortestDistance.indexOf(Collections.min(removedDuplicates))); // the shortest value index will be the index of the board also
+	}
+	
+	private ArrayList<Integer> removeDuplicate(ArrayList<Integer> list) {
+		LinkedHashSet<Integer> hashSet = new LinkedHashSet<>(list);  // remove if there are any duplicate locations
+		ArrayList<Integer> removedDuplicates = new ArrayList<>(hashSet);
+		return removedDuplicates;
 	}
 	
 }
