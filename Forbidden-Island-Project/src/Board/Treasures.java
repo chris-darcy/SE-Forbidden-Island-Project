@@ -20,11 +20,15 @@ public class Treasures {
 		remaining = 4;
 	}
 	
-	public String capture(TileType tileType) {
-		remaining--;
-		captured.add(treasures.get(tileType));
-		
-		return treasures.remove(tileType);	
+	public String capture(TileType tileType) {	
+			
+		if(treasures.containsKey(tileType)) {
+			remaining--;
+			captured.add(treasures.get(tileType));
+			return treasures.remove(tileType);
+		}
+		return null;
+			
 	}
 	
 	public int remaining() {
