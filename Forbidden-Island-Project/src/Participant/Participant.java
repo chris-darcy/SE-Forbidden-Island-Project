@@ -1,6 +1,9 @@
 package Participant;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import Board.*;
 import Cards.*;
 import Game.GameManager;
@@ -78,8 +81,7 @@ public abstract class Participant {
 	// !!!
 	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
 		if(participant.getHand().handContains(sandbagTreasureCard) &&  // participant has the required card
-		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk
-		   // relevant 
+		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk 
 		   (tile.getLocation() == participant.getLocation() ||         // participant is on or adjacent to the tile
 			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
 			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
@@ -122,29 +124,23 @@ public abstract class Participant {
 		}
 	}
 
-	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
-		
+	protected ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
+		ArrayList<Integer> mustBeContained = new ArrayList<Integer>(Arrays.asList(+6, -6, +1, -1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
-        // changes each time - need to sort this out to output a correct array of locations !!!
-		// generally, the participant can move left, right, up and down, these tiles will have to be checked
-		relevantTiles.add(this.location + 1);
-		relevantTiles.add(this.location - 1);
-		relevantTiles.add(this.location + 6);
-		relevantTiles.add(this.location - 6);
-		//
-		// Issue with iterating over shrinking arraylist here !!!
-		for (int location : relevantTiles) { // check the TileStatus is not EMPTY of SUNK
-			if (board.get(location).getTileStatus() == TileStatus.SUNK || // if tile is sunk or is a corner piece (empty)
-				board.get(location).getTileType() == TileType.EMPTY) {    // the participant can't move there
-				int idx = relevantTiles.indexOf(location);
-				relevantTiles.remove(idx);
-			}
-		}
 		
-		// observer should check for the list is empty !!!
+		for (int i : mustBeContained) {                                         // check tiles up, down, left and right
+			if(mustBeContained.contains(i)&&
+			   board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
+			   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
+			   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
+				
+				relevantTiles.add(participant.getLocation() + 6);
+			}
+
+		}
 		return relevantTiles;
+		
 	}
-	
 	// should be moved to GameManager? !!!
 	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
 		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
