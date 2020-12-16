@@ -12,9 +12,9 @@ import Participant.Participant;
 public class ObserverCheck {
 	public static void main(String [] args) {
 		GameObserver observer = new GameObserver();
-//		Tile tile = new Tile("Foolslanding", 15, TileStatus.FLOODED, TileType.FOOLSLANDING);
-//		tile.attach(observer);
-//		tile.setTileStatus(TileStatus.SUNK);
+		Tile tile = new Tile("Foolslanding", 15, TileStatus.FLOODED, TileType.FOOLSLANDING);
+		tile.attach(observer);
+		tile.setTileStatus(TileStatus.SUNK);
 		
 		
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
