@@ -82,6 +82,7 @@ public class GameManager {
 							break;
 							
 						case 4:
+							player.setActionsRemaining(0);
 							break;//end turn early
 					}
 					gui.updateBoard(board.getStringBoard(), playerList);
@@ -89,6 +90,7 @@ public class GameManager {
 					gui.updateTreasures(treasures.captured());
 					gui.display();
 				}
+				player.setActionsRemaining(3);
 			}
 		}
 		

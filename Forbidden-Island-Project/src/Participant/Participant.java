@@ -62,7 +62,7 @@ public abstract class Participant {
 		return numberOfActions;
 	}
 	
-	protected void setActionsRemaining(int numberOfActions) {
+	public void setActionsRemaining(int numberOfActions) {
 		this.numberOfActions = numberOfActions;
 	}
 	
