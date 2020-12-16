@@ -5,8 +5,6 @@ import Participant.Hand;
 
 public class Print_Hand_demo {
 	public static void main(String[] args) {
-		
-//		List<Card> hand = new ArrayList<Card>();
 
 		Hand H = new Hand();
 		TreasureCardDeck deck = new TreasureCardDeck();
