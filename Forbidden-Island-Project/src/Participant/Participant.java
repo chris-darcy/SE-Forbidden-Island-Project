@@ -130,7 +130,7 @@ public abstract class Participant {
 		return false;
 	}
 
-	protected ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
 		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
 			// for most participants, they will only be able to move to as normal
