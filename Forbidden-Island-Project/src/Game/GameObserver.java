@@ -10,11 +10,12 @@ public class GameObserver extends Observer {
 	public boolean GameOver = false; // initialise GameOver
 	public Object obj;
 	public Tile tile;
+	private Object o;
 	
-//	public GameObserver(Tile tile) {
-//		this.tile = tile;
-//		this.tile.attach(this);
-//	}
+	public GameObserver(Object o) {
+		this.o = o;
+		this.o.attach(this);
+	}
 	
 	@Override
 	public void update(Object o) {
