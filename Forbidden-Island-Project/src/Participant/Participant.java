@@ -130,11 +130,11 @@ public abstract class Participant {
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		
 		for (int i : upDownLeftRight) {                                                       // check tiles up, down, left and right
-			if(board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
-			   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-			   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
+			if(board.get(this.location + i) != null &&                            // verify the tile is on the board
+			   board.get(this.location + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
+			   board.get(this.location + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
 				
-				relevantTiles.add(participant.getLocation() + 6);
+				relevantTiles.add(this.location + i);
 			}
 		// observer !!!
 		}
@@ -155,7 +155,7 @@ public abstract class Participant {
 	
 	public void move(int newLocation) { // moves participant to new location
 		this.location = newLocation;
-		participant.actionUsed();
+		this.actionUsed();
 	}
 	
 	public boolean canCaptureTreasure(ArrayList<Tile> board) {
