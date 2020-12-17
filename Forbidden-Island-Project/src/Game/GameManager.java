@@ -96,8 +96,13 @@ public class GameManager {
 		
 	}
 	
-	public void endGame() {
-		
+	public void endGame(boolean gameResult) {
+		if(gameResult) {
+			gui.gameWon();
+		}
+		else{
+			gui.gameLost();
+		}
 	}
 	
 	//

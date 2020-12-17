@@ -548,6 +548,36 @@ public class GUI {
 		public String status() {return this.status;}
 				
 		public String type() {return this.type;}
-	}	
+		
+	}
+	
+	public void gameWon() {
+		System.out.println("                                   .''.       \r\n"
+				+ "       .''.      .        *''*    :_\\/_:     . \r\n"
+				+ "      :_\\/_:   _\\(/_  .:.*_\\/_*   : /\\ :  .'.:.'.\r\n"
+				+ "  .''.: /\\ :   ./)\\   ':'* /\\ * :  '..'.  -=:o:=-\r\n"
+				+ " :_\\/_:'.:::.    ' *''*    * '.\\'/.' _\\(/_'.':'.'\r\n"
+				+ " : /\\ : :::::     *_\\/_*     -= o =-  /)\\    '  *\r\n"
+				+ "  '..'  ':::'     * /\\ *     .'/.\\'.   '\r\n"
+				+ "      *            *..*         :\r\n"
+				+ "       *\r\n"
+				+ "        *"
+		        +"\nCongratulations! You have won the game! \n You successfully captured all the cards and everyone has been taken to safety!");
+	}
+	
+	public void gameLost() {
+		System.out.println("Sadly, you have just lost the game!" 
+	            + "     .-\"\"\"\"\"\"-.\r\n"
+				+ "   .'          '.\r\n"
+				+ "  /   O      O   \\\r\n"
+				+ " :           `    :\r\n"
+				+ " |                |      \r\n"
+				+ " :    .------.    :\r\n"
+				+ "  \\  '        '  /\r\n"
+				+ "   '.          .'\r\n"
+				+ "     '-......-'"
+				+ "\n \nBetter luck next time!");
+	}
 }
+	
 
