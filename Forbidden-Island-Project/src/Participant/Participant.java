@@ -2,11 +2,8 @@ package Participant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-
 import Board.*;
 import Cards.*;
-import Game.GameManager;
 import Game.GameObserver;
 
 public abstract class Participant {
@@ -34,57 +31,12 @@ public abstract class Participant {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	public String getName() {
-		return name;
-	}
-	
-	protected void setName(String name) {
-		this.name = name;
-	}
-	
-	public int getPlayerNum() {
-		return playerNum;
-	}
-	
-	public String getRoleName() {
-		return this.getClass().getSimpleName();
-	}
-	
-	public Hand getHand() {
-		return hand;
-	}
-	
-	protected void setHand(Hand hand) {
-		this.hand = hand;
-	}
-	
-	public int getActionsRemaining() {
-		return numberOfActions;
-	}
-	
-	public void setActionsRemaining(int numberOfActions) {
-		this.numberOfActions = numberOfActions;
-	}
-	
-	protected void actionUsed() { // each time the user uses an action
-		numberOfActions--; 
-	}
-	
-	public int getLocation() {
-		return location;
-	}
-	
-	public void setLocation(int location) {
-		this.location = location;
-	}
-	
+
 	// !!!
 	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
 		if(participant.getHand().handContains(sandbagTreasureCard) &&  // participant has the required card
 		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk 
-		   (tile.getLocation() == participant.getLocation() ||         // participant is on or adjacent to the tile
-			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
-			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
+		   isAdjacentTile(tile)) {                                     // tile is adjacent
 				
 				switch (tile.getTileStatus()){
 					case UNFLOODED:
@@ -101,6 +53,17 @@ public abstract class Participant {
 			}
 		}
 	
+	public boolean isAdjacentTile(Tile tile) {     // participant is on or adjacent to the tile
+		if(tile.getLocation() == participant.getLocation() ||         
+		   Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
+		   Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	// This method will be overridden by the Messenger Participant
 	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
 		// all players can give another player a treasure card if on the same tile
@@ -110,7 +73,7 @@ public abstract class Participant {
 			
 			// observer!
 			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
-				notifyAllGameObservers(receiversHand);//GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+				notifyAllGameObservers(receiversHand);          //GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
 			receiversHand.addCardToHand(treasureCardToGive);
@@ -142,17 +105,6 @@ public abstract class Participant {
 		
 	}
 	
-//	// should be moved to GameManager? !!!
-//	protected boolean booleanMove(int newLocation, ArrayList<Integer> relevantTiles) {
-//		if(relevantTiles.contains(newLocation)) { // checks if the user has chosen a relevant location
-//			return true;
-//		}
-//		else {
-//			return false;
-//		}
-//		
-//	} 
-	
 	public void move(int newLocation) { // moves participant to new location
 		this.location = newLocation;
 		this.actionUsed();
@@ -178,9 +130,15 @@ public abstract class Participant {
 		return false;
 	}
 
-	protected void onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		this.getRelevantTiles(board); // for most participants, they will only be able to move to as normal
+		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
+			// for most participants, they will only be able to move to as normal
+			return participant.getRelevantTiles(board); 
+		}
+		else {
+			return null;
+		}
 	}
 	
 	@Override
@@ -194,4 +152,47 @@ public abstract class Participant {
 		}
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
+	protected void setName(String name) {
+		this.name = name;
+	}
+	
+	public int getPlayerNum() {
+		return playerNum;
+	}
+	
+	public String getRoleName() {
+		return this.getClass().getSimpleName();
+	}
+	
+	public Hand getHand() {
+		return hand;
+	}
+	
+	protected void setHand(Hand hand) {
+		this.hand = hand;
+	}
+	
+	public int getActionsRemaining() {
+		return numberOfActions;
+	}
+	
+	protected void setActionsRemaining(int numberOfActions) {
+		this.numberOfActions = numberOfActions;
+	}
+	
+	protected void actionUsed() { // each time the user uses an action
+		numberOfActions--; 
+	}
+	
+	public int getLocation() {
+		return location;
+	}
+	
+	public void setLocation(int location) {
+		this.location = location;
+	}
 }

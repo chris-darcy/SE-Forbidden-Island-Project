@@ -14,7 +14,7 @@ public class HandCheck {
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		Stack<String> discardFloodDeck = new Stack<String>();
 		SandbagTreasureCard sandbagTreasureCard = new SandbagTreasureCard("Sandbag");
-		TreasureCard oceanTreasureCard = new OceanTreasureCard("Ocean");
+		TreasureCard oceanTreasureCard = new TreasureCard("Ocean");
 		String floodCard;
 		Hand hand = new Hand(); 
 		
