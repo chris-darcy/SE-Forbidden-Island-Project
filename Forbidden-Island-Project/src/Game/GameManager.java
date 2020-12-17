@@ -217,21 +217,22 @@ public class GameManager {
 	//
 	private void giveCard(Participant player) {
 		int cardChoice;
+		boolean success;
 		Participant receiver;
 		TreasureCard card;
 		
-		cardChoice = gui.chooseCardTo("give",player.toString());
-		card = player.getHand().getCard(cardChoice);
-		
 		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
-		player.giveCard(receiver,card);
+		cardChoice = gui.chooseCardTo("give",player.toString());
+		card = player.getHand().getCardInHand(cardChoice);
+		success = player.giveCard(receiver,card);
+		gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
+		
 	}
 	
 	//
 	// facilitate moving the player
 	//
-	private void movePlayer(Participant player) {
-		
+	private void movePlayer(Participant player) {	
 		int location = chooseLocationTo("move to",player);
 		player.move(location);
 	}
@@ -239,8 +240,7 @@ public class GameManager {
 	//
 	// facilitate shoring up a tile
 	//
-	private void shoreUp(Participant player) {
-		
+	private void shoreUp(Participant player) {		
 		int location = chooseLocationTo("shore up", player);
 		player.shoreUp(board.getBoard().get(location));
 	}
@@ -257,7 +257,7 @@ public class GameManager {
 			type = board.getBoard().get(player.getLocation()).getTileType();
 			treasure = treasures.capture(type);
 		}
-		gui.printTreasureCaptureOutcome(success,player.getName(),treasure);
+		gui.printTreasureCaptureOutcome(player.getName(),treasure,success);
 	}
 	
 	//

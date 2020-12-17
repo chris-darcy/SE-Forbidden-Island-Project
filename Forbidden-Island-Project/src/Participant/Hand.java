@@ -20,7 +20,7 @@ public class Hand {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	public Card getCardInHand(int i) { // method to get card from hand at a given index
+	public TreasureCard getCardInHand(int i) { // method to get card from hand at a given index
 		return hand.get(i);
 	}	
 	
@@ -49,16 +49,13 @@ public class Hand {
 	}
 	
 	public void addCardToHand(TreasureCard card) {
+		System.out.println("adding card to hand");
 		hand.add(card);
 		notifyAllGameObservers(hand);
 	}
 	
 	public boolean handContains(Object object) { // general check for card type
 		return hand.contains(object);
-	}
-	
-	public TreasureCard getCard(int cardIdx) {  // remove later !!!
-		return hand.get(cardIdx);
 	}
 	
 	public void notifyAllGameObservers(List<TreasureCard> hand) {

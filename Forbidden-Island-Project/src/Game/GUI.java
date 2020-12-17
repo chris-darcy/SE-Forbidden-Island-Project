@@ -259,6 +259,7 @@ public class GUI {
 						 0, everyoneElse.size()-1);
 		
 		PlayerPrint chosen = new PlayerPrint(everyoneElse.get(choice));
+		System.out.println("you have chosen to give a card to "+chosen.name()+"\n");
 		
 		return Integer.parseInt(chosen.playernum());
 	}
@@ -384,7 +385,7 @@ public class GUI {
 		System.out.println(border);
 	}
 	
-	private void printWarning(String warning) {				
+	private void printWarning(String warning){				
 		String fslashes = makeLongString('/',warning.length());
 		String spaces = makeLongString(' ',warning.length()-10);
 		
@@ -399,18 +400,38 @@ public class GUI {
 		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
 	}
 	
-	public void printTreasureCaptureOutcome(boolean success, String name, String treasure) {
-		
+	public void printTreasureCaptureOutcome(String player, String treasure, boolean success){	
+		actionOutcomeMSG("C",player,"",treasure,success);
+	}
+	
+	public void printGiveCardOutcome(String giver, String receiver, String treasure, boolean success){
+		actionOutcomeMSG("C",giver,receiver,treasure,success);
+	}
+	
+	private void actionOutcomeMSG(String action,String player, String otherPlayer,String item, boolean success){
+		String pass;
+		String fail;
+		switch(action) {
+			case "C":{
+				pass = "   congratulations "+player+ ", you captured the"+item+"!";
+				fail = "   "+player+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!";
+			}
+			default:{
+				pass = "   "+player+", you gave "+otherPlayer+" your "+item+" card";
+				fail = "   "+player+", you must be on the same tile as "+otherPlayer+" to give them a card!";
+			}
+		}
 		if(success) {
-			System.out.println("   congratulations "+name+ ", you captured the"+treasure+"!");
+			System.out.println(pass);
 		}
 		else {
-			System.out.println("   "+name+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!");
+			System.out.println(fail);
 		}
+		
 	}
 	
 	
-	private void initTileDict() {
+	private void initTileDict(){
 		tl.put("NORMAL"            ," O#########O ");
 		tl.put("EMPTY"             ,"             ");
 		tl.put("OCEAN"             ," O~~OCEAN~~O ");
@@ -527,10 +548,6 @@ public class GUI {
 		public String status() {return this.status;}
 				
 		public String type() {return this.type;}
-	}
-
-
-	
-	
+	}	
 }
 

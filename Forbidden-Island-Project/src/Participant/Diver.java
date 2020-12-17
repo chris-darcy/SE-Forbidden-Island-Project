@@ -19,10 +19,10 @@ public class Diver extends Participant{
 		//verify the participant is on a sunk tile
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 		
-		if(board.get(participant.getLocation()).getTileStatus() == TileStatus.SUNK) {
+		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
 			// for most participants, they will only be able to move to as normal
 			
-			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));   // get up, down, left, right tiles is possible as these will be the shortest
+			sunkRelevantTiles.addAll(this.getRelevantTiles(board));   // get up, down, left, right tiles is possible as these will be the shortest
 			sunkRelevantTiles.add(getShortestDistance(board).getLocation()); // add the shortest
 			return removeDuplicate(sunkRelevantTiles);
 		}
@@ -37,7 +37,7 @@ public class Diver extends Participant{
 		int xd = diver.getLocation()%6;
 		int yd = diver.getLocation()/6;
 		for (Tile tile : board) {
-			if(tile.getTileType() != TileType.EMPTY || tile.getTileStatus() != TileStatus.SUNK ) {
+			if(tile.getTileType() != TileType.EMPTY && tile.getTileStatus() != TileStatus.SUNK ) {
 				int xt = tile.getLocation()%6;
 				int yt = tile.getLocation()/6;
 				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); // calculate distance
