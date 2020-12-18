@@ -160,10 +160,13 @@ public class GameManager {
 				}
 				gui.printPlayerFinalised(player.toString());
 				playerList.addPlayer(player);
+				// attach observer
+				new ParticipantObserver(player);
 			}
 			playerList.create();
+			
 		}
-
+		
 	}
 	
 	public void updateSpecialTileStatus(Tile specialTile) {	
