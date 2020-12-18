@@ -50,7 +50,6 @@ public class Hand {
 	
 	public void addCardToHand(TreasureCard card) {
 		hand.add(card);
-		notifyAllGameObservers(hand);
 	}
 	
 
@@ -66,16 +65,6 @@ public class Hand {
 	
 	public boolean handContains(Object object) { // general check for card type
 		return hand.contains(object);
-	}
-	
-	public void notifyAllGameObservers(List<TreasureCard> hand) {
-			for(GameObserver observer : observerList) {
-				observer.update(hand);
-			}
-	}
-	
-	public void attach(GameObserver observer) {
-		observerList.add(observer);
 	}
 	
 	@Override
