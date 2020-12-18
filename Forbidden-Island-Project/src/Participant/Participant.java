@@ -7,8 +7,8 @@ import Cards.*;
 import Game.GameManager;
 import Observers.Subject;
 
-public abstract class Participant extends Subject{
-	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
+public abstract class Participant extends Subject {
+	protected String name;
 	public Hand hand;
 	private int playerNum;
 	protected int numberOfActions;

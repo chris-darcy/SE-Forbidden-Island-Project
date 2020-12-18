@@ -1,11 +1,16 @@
 package Testing;
 
+import java.util.ArrayList;
+
+import Board.Board;
+import Board.Tile;
+import Board.TileStatus;
 import Cards.*;
 import Participant.*;
 
 public class TestParticipant {
 	public static void main(String [] args) {
-//		Board board = new Board();
+		ArrayList<Tile> board = Board.getInstance().getBoard();
 		String name = "Bob";
 		int actionsRemaining = 5;
 		int location = 3; // uppermost edge
@@ -13,13 +18,15 @@ public class TestParticipant {
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		int playerNumber = 1;
-		
+		 
 		hand.addCardToHand(treasureCardDeck.draw());
 		hand.addCardToHand(treasureCardDeck.draw());
 		
-		Participant engineerTest = new Engineer(name, hand, playerNumber, location, actionsRemaining);
+		Participant diver = new Diver(name, hand, playerNumber, location, actionsRemaining);
 		
-		engineerTest.hand.getPrintableHand();
-//		engineerTest.getRelevantTiles(board.getBoard());
+		System.out.println(board.get(diver.getLocation()).getTileStatus());
+		board.get(diver.getLocation()).setTileStatus(TileStatus.SUNK);
+		ArrayList<Integer> where = diver.onSunkTile(board);
+		System.out.println(where);
 	}
 }
