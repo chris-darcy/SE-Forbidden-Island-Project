@@ -21,7 +21,7 @@ public class Diver extends Participant{
 
 		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
 			
-			sunkRelevantTiles.addAll(this.calculateRelevantTiles(board));    // get up, down, left, right tiles is possible as these will be the shortest
+			sunkRelevantTiles.addAll(this.getRelevantTiles(board));    // get up, down, left, right tiles is possible as these will be the shortest
 			sunkRelevantTiles.add(getShortestDistance(board).getLocation()); // add the shortest
 			
 			if(removeDuplicate(sunkRelevantTiles).isEmpty()) {

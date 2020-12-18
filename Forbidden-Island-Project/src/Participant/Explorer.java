@@ -20,7 +20,7 @@ public class Explorer extends Participant{
 		//verify the participant is on a sunk tile
 		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
 			ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
-			sunkRelevantTiles.addAll(participant.calculateRelevantTiles(board));    // get up, down, left, right tiles
+			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));    // get up, down, left, right tiles
 			
 			ArrayList<Integer> diagMoveOptions = new ArrayList<Integer>(Arrays.asList((-6-1), (-6+1), (6-1), (6+1))); 
 			
