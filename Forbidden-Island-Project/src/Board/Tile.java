@@ -3,14 +3,14 @@ package Board;
 import java.util.ArrayList;
 import Game.GameManager;
 import Game.GameObserver;
+import Observers.Subject;
 
-public class Tile {
+public class Tile extends Subject{
 	public String name;
 	public int location;
 	public TileStatus tileStatus;
 	public TileType tileType;
 	public Tile tile;
-	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -61,9 +61,7 @@ public class Tile {
 			GM.updateSpecialTileStatus(this);
 		}
 		this.tileStatus = tileStatus;
-		///////////
-//		notifyAllGameObservers();
-		//////////
+		notifyAllObservers();
 	}
 	
 	// get the type of the tile
@@ -74,16 +72,6 @@ public class Tile {
 	// set type of Tile
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
-	}
-	
-	public void notifyAllGameObservers(Tile tile) {
-		for(GameObserver observer : observerList) {
-			observer.update();
-		}
-	}
-	
-	public void attach(GameObserver observer) {
-		observerList.add(observer);
 	}
 	
 }
