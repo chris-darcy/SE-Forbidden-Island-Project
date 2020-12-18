@@ -93,20 +93,10 @@ public abstract class Participant extends Subject {
 	}
 
 	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) {     // returns relevant tiles that the participant can move to
-		ArrayList<Integer> relevantTiles = calculateRelevantTiles(board);
-		if(!relevantTiles.isEmpty()) {
-			notifyAllObservers(); // game over as participant can't move
-			return relevantTiles;
-		}
-		else {
-			return null;
-		}
-	}
-	public ArrayList<Integer> calculateRelevantTiles(ArrayList<Tile> board){
 		int[] xyPlayer = xyLoc(this.location);
 		
-		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(6, -6, -1, +1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
+		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(6, -6, -1, +1)); // input selected by user must be contained
 	
 		for (int i : upDownLeftRight) {                                     // check tiles up, down, left and right
 			int testPos = this.location + i;
@@ -122,7 +112,13 @@ public abstract class Participant extends Subject {
 				}
 			}
 		}
-		return relevantTiles;
+		if(!relevantTiles.isEmpty()) {
+			notifyAllObservers(); // game over as participant can't move
+			return relevantTiles;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	public void move(int newLocation) { // moves participant to new location
