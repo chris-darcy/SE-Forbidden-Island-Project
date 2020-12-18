@@ -2,7 +2,6 @@ package Observers;
 
 import Board.Tile;
 import Game.GameManager;
-import Game.Observer;
 import Participant.Participant;
 
 public class TileObserver extends Observer {

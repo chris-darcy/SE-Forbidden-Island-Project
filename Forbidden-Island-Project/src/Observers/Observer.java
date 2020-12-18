@@ -1,6 +1,6 @@
-package Game;
+package Observers;
 
 public abstract class Observer {
 	protected Object object;
-	public abstract void update(Object o);
+	public abstract void update();
 }

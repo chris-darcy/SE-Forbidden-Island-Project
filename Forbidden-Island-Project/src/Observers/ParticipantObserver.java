@@ -1,6 +1,6 @@
-package Game;
+package Observers;
 
-import Observers.Subject;
+import Game.GameManager;
 import Participant.Participant;
 
 public class ParticipantObserver extends Observer{
