@@ -56,12 +56,7 @@ public class Tile {
 	public void setTileStatus(TileStatus tileStatus) {
 		
 		// GM monitors the state of the special tiles
-		if(this.tileType == TileType.FOOLSLANDING|| 
-		   this.tileType == TileType.EARTH || 
-		   this.tileType == TileType.FIRE  ||
-		   this.tileType == TileType.OCEAN ||
-		   this.tileType == TileType.WIND ) {
-			
+		if(this.tileType != TileType.EMPTY && this.tileType != TileType.NORMAL) {		
 			GameManager GM = GameManager.getInstance();
 			GM.updateSpecialTileStatus(this);
 		}

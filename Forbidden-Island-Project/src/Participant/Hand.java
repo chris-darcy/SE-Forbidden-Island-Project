@@ -20,7 +20,7 @@ public class Hand {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	public Card getCardInHand(int i) { // method to get card from hand at a given index
+	public TreasureCard getCardInHand(int i) { // method to get card from hand at a given index
 		return hand.get(i);
 	}	
 	
@@ -53,12 +53,19 @@ public class Hand {
 		notifyAllGameObservers(hand);
 	}
 	
-	public boolean handContains(Object object) { // general check for card type
-		return hand.contains(object);
+
+	public ArrayList<TreasureCard> getTreasureCards(){
+		ArrayList<TreasureCard> treasureCards = new ArrayList<TreasureCard>();
+			for(TreasureCard card: hand) {
+				if(!(card instanceof HelicopterTreasureCard)&& !(card instanceof SandbagTreasureCard)) {
+					treasureCards.add(card);
+				}
+			}
+		return treasureCards;
 	}
 	
-	public TreasureCard getCard(int cardIdx) {  // remove later !!!
-		return hand.get(cardIdx);
+	public boolean handContains(Object object) { // general check for card type
+		return hand.contains(object);
 	}
 	
 	public void notifyAllGameObservers(List<TreasureCard> hand) {

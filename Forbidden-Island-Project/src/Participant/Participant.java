@@ -43,6 +43,7 @@ public abstract class Participant extends Subject{
 						tile.setTileStatus(TileStatus.FLOODED);
 					case FLOODED:
 						tile.setTileStatus(TileStatus.SUNK);
+					default:
 				}
 				
 				participant.actionUsed();
@@ -54,9 +55,12 @@ public abstract class Participant extends Subject{
 		}
 	
 	public boolean isAdjacentTile(Tile tile) {     // participant is on or adjacent to the tile
-		if(tile.getLocation() == participant.getLocation() ||         
-		   Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
-		   Math.abs(currentLocation%6 - tile.getLocation()%6) == 1) {
+		int xyPlayer[] = xyLoc(this.location);
+		int xyTile[] =  xyLoc(tile.getLocation());
+		
+		if(tile.getLocation() == this.location ||         
+		   Math.abs(xyPlayer[0] - xyTile[0]) == 1 || 
+		   Math.abs(xyPlayer[1] - xyTile[1]) == 1) {
 			return true;
 		}
 		else {
@@ -79,7 +83,7 @@ public abstract class Participant extends Subject{
 			receiversHand.addCardToHand(treasureCardToGive);
 			giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
 			
-			participant.actionUsed();
+			this.actionUsed();
 			
 			return true;
 		}
@@ -89,19 +93,32 @@ public abstract class Participant extends Subject{
 	}
 
 	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
-		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(+6, -6, -1, +1)); // input must be contained
-		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
+		int[] xyPlayer = xyLoc(this.location);
 		
-		for (int i : upDownLeftRight) {                                                // check tiles up, down, left and right
-			if(board.get(this.getLocation() + i) != null &&                            // verify the tile is on the board
-			   board.get(this.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-			   board.get(this.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
+		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(6, -6, -1, +1)); // input must be contained
+		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
+
+		for (int i : upDownLeftRight) {                                           // check tiles up, down, left and right
+			int testPos = this.location + i;
+			
+			if(testPos > 1 && testPos < 34) {
+				if(board.get(testPos).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
+				   board.get(testPos).getTileType() != TileType.EMPTY){ // verify the tile is not a corner tile
+					int[] xyTile = xyLoc(testPos);
+					
+					if(Math.abs(xyPlayer[0] - xyTile[0]) <= 1 && Math.abs(xyPlayer[1] - xyTile[1]) <= 1) { // verify position truly 1 away
+						relevantTiles.add(testPos);
+					}
 				
-			   relevantTiles.add(this.getLocation() + 6);
+				}
 			}
-		// observer !!!
+		
 		}
-		return relevantTiles;
+		if(!relevantTiles.isEmpty()) {
+			return relevantTiles;
+		}
+		// observer !!!
+		return null;
 		
 	}
 	
@@ -123,7 +140,7 @@ public abstract class Participant extends Subject{
 				counter++;
 			}
 			if(counter == 4) {
-				participant.actionUsed();
+				this.actionUsed();
 				return true;
 			}
 		}
@@ -132,9 +149,9 @@ public abstract class Participant extends Subject{
 
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
+		if(board.get(this.location).getTileStatus() != TileStatus.SUNK) {
 			// for most participants, they will only be able to move to as normal
-			return participant.getRelevantTiles(board); 
+			return this.getRelevantTiles(board); 
 		}
 		else {
 			return null;
@@ -143,7 +160,12 @@ public abstract class Participant extends Subject{
 	
 	@Override
 	public String toString() {
-		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
+		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName()+"\n"+this.hand.getTreasureCards().toString();
+	}
+	
+	protected int[] xyLoc(int location) {
+		int [] xyLoc = {location%6,location/6};
+		return xyLoc;
 	}
 	
 	public String getName() {
@@ -174,7 +196,7 @@ public abstract class Participant extends Subject{
 		return numberOfActions;
 	}
 	
-	protected void setActionsRemaining(int numberOfActions) {
+	public void setActionsRemaining(int numberOfActions) {
 		this.numberOfActions = numberOfActions;
 	}
 	

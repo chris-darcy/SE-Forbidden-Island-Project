@@ -58,7 +58,7 @@ public class FloodCardDeck {
 					break;
 				}
 			default:
-				//System.out.println("Something went wrong, please try again!");
+				
 		}	
 		return tile.getName(); // will be shown to the user so they know what they drew
 	}
@@ -73,6 +73,12 @@ public class FloodCardDeck {
 //	private discardToFloodDeck(){
 //		
 //	}
+
+	public void mergeAndShuffle() {
+		cardDeck.addAll(discardDeck);
+		discardDeck.clear();
+		Collections.shuffle(cardDeck);	
+	}
 
 }
 
