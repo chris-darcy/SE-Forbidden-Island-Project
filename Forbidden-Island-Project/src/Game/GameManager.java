@@ -7,6 +7,7 @@ import java.util.List;
 
 import Board.*;
 import Cards.*;
+import Observers.ParticipantObserver;
 import Participant.*;
 import WaterLevel.WaterLevel;
 
@@ -160,8 +161,8 @@ public class GameManager {
 				}
 				gui.printPlayerFinalised(player.toString());
 				playerList.addPlayer(player);
-				// attach observer
-				new ParticipantObserver(player);
+				
+				new ParticipantObserver(player);   // attach observer
 			}
 			playerList.create();
 			
