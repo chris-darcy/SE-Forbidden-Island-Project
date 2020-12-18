@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import Board.*;
 import Cards.*;
-import Game.GameObserver;
+import Game.GameManager;
+import Observers.Subject;
 
-public abstract class Participant {
+public abstract class Participant extends Subject{
 	protected String name; // !!! Need to reduce number of parameters - place in appropriate class
 	public Hand hand;
 	private int playerNum;
@@ -18,7 +19,6 @@ public abstract class Participant {
 	protected SandbagTreasureCard sandbagTreasureCard;
 	protected ArrayList<Integer> relevantTileList = new ArrayList<Integer>();
 	protected int location;
-	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 
 	protected Participant(String name, Hand hand, int playerNum, int location, int numberOfActions) {
@@ -73,7 +73,7 @@ public abstract class Participant {
 			
 			// observer!
 			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
-				notifyAllGameObservers(receiversHand);          //GameManager.handAfterRemoval(); // call method to get user to remove one of their cards
+				GameManager.getInstance().handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
 			receiversHand.addCardToHand(treasureCardToGive);
@@ -92,12 +92,12 @@ public abstract class Participant {
 		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(+6, -6, -1, +1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		
-		for (int i : upDownLeftRight) {                                                       // check tiles up, down, left and right
-			if(board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
-			   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-			   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
+		for (int i : upDownLeftRight) {                                                // check tiles up, down, left and right
+			if(board.get(this.getLocation() + i) != null &&                            // verify the tile is on the board
+			   board.get(this.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
+			   board.get(this.getLocation() + i).getTileType() != TileType.EMPTY) {    // verify the tile is not a corner tile
 				
-				relevantTiles.add(participant.getLocation() + 6);
+			   relevantTiles.add(this.getLocation() + 6);
 			}
 		// observer !!!
 		}
@@ -107,7 +107,7 @@ public abstract class Participant {
 	
 	public void move(int newLocation) { // moves participant to new location
 		this.location = newLocation;
-		participant.actionUsed();
+		this.actionUsed();
 	}
 	
 	public boolean canCaptureTreasure(ArrayList<Tile> board) {
@@ -144,12 +144,6 @@ public abstract class Participant {
 	@Override
 	public String toString() {
 		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
-	}
-	
-	public void notifyAllGameObservers(Hand hand) {
-		for(GameObserver observer : observerList) {
-			observer.update(hand);
-		}
 	}
 	
 	public String getName() {
