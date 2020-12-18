@@ -3,7 +3,9 @@ package WaterLevel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WaterLevel {
+import Observers.Subject;
+
+public class WaterLevel extends Subject{
 	private int currentWaterLevel;
 	private int maxWaterLevel;
 	private static WaterLevel uniqueInstance = null;
