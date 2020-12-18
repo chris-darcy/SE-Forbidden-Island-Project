@@ -61,7 +61,9 @@ public class Tile {
 			GM.updateSpecialTileStatus(this);
 		}
 		this.tileStatus = tileStatus;
-		notifyAllGameObservers(this);
+		///////////
+//		notifyAllGameObservers();
+		//////////
 	}
 	
 	// get the type of the tile
@@ -76,7 +78,7 @@ public class Tile {
 	
 	public void notifyAllGameObservers(Tile tile) {
 		for(GameObserver observer : observerList) {
-			observer.update(tile);
+			observer.update();
 		}
 	}
 	
