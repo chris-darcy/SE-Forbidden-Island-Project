@@ -9,7 +9,6 @@ import Board.TileStatus;
 import Board.TileType;
 
 public class Diver extends Participant{
-	private Diver diver;
 	
 	public Diver(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 		super(name, hand, playerNum, location, actionsRemaining);
@@ -21,11 +20,13 @@ public class Diver extends Participant{
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 
 		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
-			// for most participants, they will only be able to move to as normal
 			
-			sunkRelevantTiles.addAll(this.getRelevantTiles(board));   // get up, down, left, right tiles is possible as these will be the shortest
-
+			sunkRelevantTiles.addAll(this.calculateRelevantTiles(board));    // get up, down, left, right tiles is possible as these will be the shortest
 			sunkRelevantTiles.add(getShortestDistance(board).getLocation()); // add the shortest
+			
+			if(removeDuplicate(sunkRelevantTiles).isEmpty()) {
+				notifyAllObservers(); // getRelevant tiles is empty - game is lost
+			}
 			return removeDuplicate(sunkRelevantTiles);
 		}
 		

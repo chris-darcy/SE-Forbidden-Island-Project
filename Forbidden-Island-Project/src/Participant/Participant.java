@@ -92,34 +92,37 @@ public abstract class Participant extends Subject{
 		}
 	}
 
-	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) { // returns relevant tiles that the participant can move to
+	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) {     // returns relevant tiles that the participant can move to
+		ArrayList<Integer> relevantTiles = calculateRelevantTiles(board);
+		if(!relevantTiles.isEmpty()) {
+			notifyAllObservers(); // game over as participant can't move
+			return relevantTiles;
+		}
+		else {
+			return null;
+		}
+	}
+	public ArrayList<Integer> calculateRelevantTiles(ArrayList<Tile> board){
 		int[] xyPlayer = xyLoc(this.location);
 		
 		ArrayList<Integer> upDownLeftRight = new ArrayList<Integer>(Arrays.asList(6, -6, -1, +1)); // input must be contained
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
-
-		for (int i : upDownLeftRight) {                                           // check tiles up, down, left and right
+	
+		for (int i : upDownLeftRight) {                                     // check tiles up, down, left and right
 			int testPos = this.location + i;
 			
 			if(testPos > 1 && testPos < 34) {
 				if(board.get(testPos).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-				   board.get(testPos).getTileType() != TileType.EMPTY){ // verify the tile is not a corner tile
+				   board.get(testPos).getTileType() != TileType.EMPTY){     // verify the tile is not a corner tile
 					int[] xyTile = xyLoc(testPos);
 					
 					if(Math.abs(xyPlayer[0] - xyTile[0]) <= 1 && Math.abs(xyPlayer[1] - xyTile[1]) <= 1) { // verify position truly 1 away
 						relevantTiles.add(testPos);
 					}
-				
 				}
 			}
-		
 		}
-		if(!relevantTiles.isEmpty()) {
-			return relevantTiles;
-		}
-		// observer !!!
-		return null;
-		
+		return relevantTiles;
 	}
 	
 	public void move(int newLocation) { // moves participant to new location
@@ -151,6 +154,9 @@ public abstract class Participant extends Subject{
 		//verify the participant is on a sunk tile
 		if(board.get(this.location).getTileStatus() != TileStatus.SUNK) {
 			// for most participants, they will only be able to move to as normal
+			if(this.getRelevantTiles(board).isEmpty()) {
+				notifyAllObservers(); // getRelevant tiles is empty - game is lost
+			}
 			return this.getRelevantTiles(board); 
 		}
 		else {

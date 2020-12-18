@@ -16,11 +16,11 @@ public class Explorer extends Participant{
 	
 	@Override 
 	// the Explorer can move diagnolly if their current tile is sunk
-	protected ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { 
 		//verify the participant is on a sunk tile
 		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
 			ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
-			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));            // get up, down, left, right tiles
+			sunkRelevantTiles.addAll(participant.calculateRelevantTiles(board));    // get up, down, left, right tiles
 			
 			ArrayList<Integer> diagMoveOptions = new ArrayList<Integer>(Arrays.asList((-6-1), (-6+1), (6-1), (6+1))); 
 			
@@ -29,11 +29,15 @@ public class Explorer extends Participant{
 				   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
 				   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {  
 					sunkRelevantTiles.add(participant.getLocation() + i);
-			
-					return sunkRelevantTiles;
 				}
 			}
-			
+			if(sunkRelevantTiles.isEmpty()) {
+				notifyAllObservers(); // gameover as explorer can't move
+				return sunkRelevantTiles;
+			}
+			else {
+				return sunkRelevantTiles;
+			}
 		}
 		return null;
 	}

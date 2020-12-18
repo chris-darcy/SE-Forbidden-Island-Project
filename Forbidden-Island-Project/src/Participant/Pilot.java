@@ -24,10 +24,12 @@ public class Pilot extends Participant {
 					sunkRelevantTiles.add(tile.getLocation()); 
 				}
 			}
+			if(sunkRelevantTiles.isEmpty()) {
+				notifyAllObservers(); /// gameover if participant can't move
+			}
 			return sunkRelevantTiles;
 		}
 		else {
-			// observer !!!
 			return null;
 		}
 	}
