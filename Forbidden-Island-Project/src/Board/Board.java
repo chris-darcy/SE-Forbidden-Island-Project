@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import Observers.ParticipantObserver;
+import Observers.Subject;
+import Observers.TileObserver;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -13,7 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class Board {
+public class Board extends Subject{
 	
 	private static Board uniqueInstance = null;
 	private int board_size = 36;
@@ -129,6 +132,8 @@ public class Board {
 				    	Tile tile = new Tile(attributes[0],tilePos,TileStatus.UNFLOODED,tiletype);
 				    	board.add(tile);
 				    	addToSpecialSet(tile,tiletype);
+				    	
+				    	new TileObserver(tile); // attach observer to each tile
 				    }
 				    
 				    // Order board by location for easy reading
