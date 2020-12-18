@@ -43,6 +43,7 @@ public abstract class Participant {
 						tile.setTileStatus(TileStatus.FLOODED);
 					case FLOODED:
 						tile.setTileStatus(TileStatus.SUNK);
+					default:
 				}
 				
 				participant.actionUsed();
@@ -80,7 +81,6 @@ public abstract class Participant {
 			}
 			
 			receiversHand.addCardToHand(treasureCardToGive);
-			System.out.println("added " +treasureCardToGive.getName() + "in func");
 			giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
 			
 			this.actionUsed();
@@ -160,7 +160,7 @@ public abstract class Participant {
 	
 	@Override
 	public String toString() {
-		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName();
+		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName()+"\n"+this.hand.getTreasureCards().toString();
 	}
 	
 	protected void notifyAllGameObservers(Hand hand) {
@@ -172,10 +172,6 @@ public abstract class Participant {
 	protected int[] xyLoc(int location) {
 		int [] xyLoc = {location%6,location/6};
 		return xyLoc;
-	}
-	
-	protected int linLoc(int x,int y) {
-		return 6*y + x;
 	}
 	
 	public String getName() {

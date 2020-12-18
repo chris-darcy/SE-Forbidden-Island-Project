@@ -49,9 +49,19 @@ public class Hand {
 	}
 	
 	public void addCardToHand(TreasureCard card) {
-		System.out.println("adding card to hand");
 		hand.add(card);
 		notifyAllGameObservers(hand);
+	}
+	
+
+	public ArrayList<TreasureCard> getTreasureCards(){
+		ArrayList<TreasureCard> treasureCards = new ArrayList<TreasureCard>();
+			for(TreasureCard card: hand) {
+				if(!(card instanceof HelicopterTreasureCard)&& !(card instanceof SandbagTreasureCard)) {
+					treasureCards.add(card);
+				}
+			}
+		return treasureCards;
 	}
 	
 	public boolean handContains(Object object) { // general check for card type

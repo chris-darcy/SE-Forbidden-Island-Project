@@ -47,7 +47,7 @@ public class GameManager {
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
-		waterlevel.setMaxWaterLevel(gui.setDifficulty());
+		waterlevel.setWaterLevel(gui.setDifficulty());
 	}
 	
 	public void runGame() {
@@ -72,16 +72,20 @@ public class GameManager {
 						case 1:
 							giveCard(player);
 							break;
-							
+						
 						case 2:
-							shoreUp(player);
+							useCard(player);
 							break;
 							
 						case 3:
-							captureTreasure(player);
+							shoreUp(player);
 							break;
 							
 						case 4:
+							captureTreasure(player);
+							break;
+							
+						case 5:
 							player.setActionsRemaining(0);
 							break;//end turn early
 					}
@@ -91,11 +95,17 @@ public class GameManager {
 					gui.display();
 				}
 				player.setActionsRemaining(3);
+				drawFromTreasureDeck(player);
+				drawFloodCards();
+				gui.updateBoard(board.getStringBoard(), playerList);
+				gui.updatePlayerHands(playerList.getAllStringPlayers());
+				gui.updateTreasures(treasures.captured());
+				gui.display();
 			}
 		}
 		
 	}
-	
+
 	public void endGame(boolean gameResult) {
 		if(gameResult) {
 			gui.gameWon();
@@ -227,13 +237,20 @@ public class GameManager {
 		TreasureCard card;
 		
 		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
-		cardChoice = gui.chooseCardTo("give",player.toString());
-		card = player.getHand().getCardInHand(cardChoice);
+		cardChoice = gui.chooseCardToGive(player.toString());
+		card = player.hand.getTreasureCards().get(cardChoice);
 		success = player.giveCard(receiver,card);
 		gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
 		
 	}
 	
+	//
+	// facilitate a player using their special cards
+	//
+	private void useCard(Participant player) {
+		
+		
+	}
 	//
 	// facilitate moving the player
 	//
@@ -271,6 +288,35 @@ public class GameManager {
 	private void floodFirstSixTiles() {
 		for(int i=0; i<6; i++) {
 			floodCardDeck.draw();
+		}
+	}
+	
+	//
+	// facilitate a player drawing 2 Treasure Deck cards
+	//
+	private void drawFromTreasureDeck(Participant player) {
+		TreasureCard card;
+		
+		for(int i=0;i<2;i++) {
+			card = treasureCardDeck.draw();
+			if(card instanceof RiseWaterTreasureCard) {
+				waterlevel.increment();
+				gui.updateWaterLevel();
+				floodCardDeck.mergeAndShuffle();
+			}
+			else {
+				player.getHand().addCardToHand(card);
+			}
+		}
+	}
+	
+	//
+	// draw appropriate flood cards
+	//
+	private void drawFloodCards() {
+		int level = waterlevel.getCurrentWaterLevel();
+		for(int i=0; i<level;i++) {
+			floodCardDeck.draw();		
 		}
 	}
 	
@@ -314,7 +360,7 @@ public class GameManager {
 	
 	public Hand handAfterRemoval() {
 		int cardRemove;
-		cardRemove = gui.chooseCardTo("discard",participant.toString()); 
+		cardRemove = gui.chooseCardToDiscard(participant.toString()); 
 		participant.getHand().removeCardFromHand(cardRemove);
 		return hand;
 	}

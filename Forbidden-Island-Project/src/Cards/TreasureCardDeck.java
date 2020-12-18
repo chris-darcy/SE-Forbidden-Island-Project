@@ -59,6 +59,13 @@ public class TreasureCardDeck {
 	}
 	
 	public TreasureCard draw() {
+		if(cardDeck.isEmpty()) {
+			Collections.shuffle(treasureDiscardPile); // shuffle
+			Collections.reverse(treasureDiscardPile);// turn over
+			cardDeck = treasureDiscardPile;
+			treasureDiscardPile.clear();
+		}
+		
 		return cardDeck.pop();
 	}
 	

@@ -55,7 +55,7 @@ public class GUI {
 		System.out.println(waterlevelBar[0]);
 		System.out.println(waterlevelBar[0]);
 		System.out.println(waterlevelBar[1]);
-		System.out.println(waterlevelBar[2]);
+		System.out.println(waterlevelBar[2]);				 
 		printSeparator("");
 	}
 	
@@ -75,16 +75,16 @@ public class GUI {
 				TilePrint tile = new TilePrint(board.get(idx));
 				//tile = board.get(idx); 
 				
-				if(tile.type().equals("EMPTY")) {
+				if(tile.type().equals("EMPTY") || tile.status().equals("SUNK")) {
 					for(int i=0; i<8; i++) {
-						boardSlices[row][i] = boardSlices[row][i] + tl.get("EMPTY");
+						boardSlices[row][i] += tl.get("EMPTY");
 					}
 				}		
 				
 				else {				
-					boardSlices[row][0] = boardSlices[row][0] + tl.get(tile.name());
-					boardSlices[row][1] = boardSlices[row][1] + tl.get(tile.type());
-					boardSlices[row][2] = boardSlices[row][2] + tl.get(tile.status());					
+					boardSlices[row][0] += tl.get(tile.name());
+					boardSlices[row][1] += tl.get(tile.type());
+					boardSlices[row][2] += tl.get(tile.status());					
 					
 					if(playerList.playersOnTile(idx)) {
 						for(Participant p: playerList.getPlayersOnTile(idx)){
@@ -94,10 +94,10 @@ public class GUI {
 					}
 					
 					for(int i=playerSliceIdx; i<7; i++) {
-						boardSlices[row][i] = boardSlices[row][i] + tl.get("BLANK");
+						boardSlices[row][i] += tl.get("BLANK");
 					}	
 					
-					boardSlices[row][7] = boardSlices[row][7] + tl.get("NORMAL");
+					boardSlices[row][7] += tl.get("NORMAL");
 					
 					playerSliceIdx = 3;
 				}
@@ -232,10 +232,10 @@ public class GUI {
 		
 		System.out.println("~"+p.name+", what will your next move be?~  MOVES REMAINING: " + p.actionsRemaining());
 		
-		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure\n   4: End Turn");
+		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure\n   4: Use Party Helicopter Lift/SandBag\n   5: End Turn");
 		choice = getChoiceWithinBoundary("your action",
 										 "no such option available",
-										 0, 4);
+										 0, 5);
 		return choice;
 	}
 	
@@ -265,21 +265,17 @@ public class GUI {
 	}
 	
 	//
-	// Ask player to choose which card to either discard or give
+	// Ask player to choose which treasure card to give
 	//
-	public int chooseCardTo(String action, String player) {
-		int choice = 0;
-		PlayerPrint p = new PlayerPrint(player);
-		System.out.println("~Which card will you " + action + "?~");
-		printAHand(p.hand);
-		
-		choice = getChoiceWithinBoundary("the card to " + action,
-						 "no such card available",
-						 0, (p.hand.length-1));
-		
-		System.out.println("you have chosen to " + action + " the " + p.hand[choice] + "\n");
+	public int chooseCardToGive(String player) {	
+		return chooseCardTo("give",player);		
+	}
 	
-		return choice;		
+	//
+	// Ask player to choose which card to discard
+	//
+	public int chooseCardToDiscard(String player) {	
+		return chooseCardTo("discard",player);		
 	}
 	
 	//
@@ -401,25 +397,46 @@ public class GUI {
 	}
 	
 	public void printTreasureCaptureOutcome(String player, String treasure, boolean success){	
-		actionOutcomeMSG("C",player,"",treasure,success);
+		actionOutcomeMSG("capture",player,"",treasure,success);
 	}
 	
 	public void printGiveCardOutcome(String giver, String receiver, String treasure, boolean success){
-		actionOutcomeMSG("C",giver,receiver,treasure,success);
+		actionOutcomeMSG("give",giver,receiver,treasure,success);
+	}
+	
+	private int chooseCardTo(String action, String player) {
+		String[] cardsToDisplay;
+		int choice = 0;
+		PlayerPrint p = new PlayerPrint(player);
+		
+		if(action.equals("give")) {
+			cardsToDisplay = p.treasureCards;
+		}
+		else {
+			cardsToDisplay = p.hand;
+		}
+		
+		System.out.println("~Which card will you " + action + "?~");
+		printAHand(cardsToDisplay);
+		
+		choice = getChoiceWithinBoundary("the card to " + action,
+						 "no such card available",
+						 0, (cardsToDisplay.length-1));
+		System.out.println("you have chosen to " + action + " the " + cardsToDisplay[choice] + "\n");
+	
+		return choice;	
 	}
 	
 	private void actionOutcomeMSG(String action,String player, String otherPlayer,String item, boolean success){
 		String pass;
 		String fail;
-		switch(action) {
-			case "C":{
-				pass = "   congratulations "+player+ ", you captured the"+item+"!";
-				fail = "   "+player+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!";
-			}
-			default:{
-				pass = "   "+player+", you gave "+otherPlayer+" your "+item+" card";
-				fail = "   "+player+", you must be on the same tile as "+otherPlayer+" to give them a card!";
-			}
+		if(action.equals("capture")){
+			pass = "   congratulations "+player+ ", you captured the"+item+"!";
+			fail = "   "+player+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!";
+		}
+		else{
+			pass = "   "+player+", you gave "+otherPlayer+" your "+item+" card";
+			fail = "   "+player+", you must be on the same tile as "+otherPlayer+" to give them a treasure card!";
 		}
 		if(success) {
 			System.out.println(pass);
@@ -438,6 +455,7 @@ public class GUI {
 		tl.put("FIRE"              ," O~~Fire~~~O ");
 		tl.put("WIND"              ," O~~Wind~~~O ");
 		tl.put("EARTH"             ," O~~Earth~~O ");
+		tl.put("FOOLSLANDING"      ," O    X    O ");
 		
 		tl.put("SUNK"              ,"             ");
 		tl.put("UNFLOODED"         ," #         # ");
@@ -502,6 +520,7 @@ public class GUI {
 		private String[] hand;
 		private String location;
 		private String actionsRemaining;
+		private String[] treasureCards;
 		
 		public PlayerPrint(String player) {
 			String[] fields = player.split("\n");
@@ -511,6 +530,7 @@ public class GUI {
 			this.location = fields[3];
 			this.actionsRemaining = fields[4];
 			this.role = fields[5];
+			this.treasureCards = fields[6].substring(1,fields[6].length()-1).split(", ");
 		}	
 		public String name() {return this.name;}
 			
@@ -523,6 +543,8 @@ public class GUI {
 		public String actionsRemaining() {return this.actionsRemaining;}
 				
 		public String role() {return this.role;}
+		
+		public String[] treasureCards() {return this.treasureCards;}
 	}
 	
 	//

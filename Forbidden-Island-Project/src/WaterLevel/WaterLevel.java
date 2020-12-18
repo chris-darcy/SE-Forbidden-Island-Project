@@ -25,7 +25,7 @@ public class WaterLevel {
 	}
 	
 	public int getCurrentWaterLevel() {
-		return currentWaterLevel;
+		return this.currentWaterLevel;
 	}
 	
 	public void setWaterLevel(int currentWaterLevel) { // update current water level
@@ -34,11 +34,15 @@ public class WaterLevel {
 	}
 	
 	public int getMaxWaterLevel() {
-		return maxWaterLevel;
+		return this.maxWaterLevel;
 	}
 	
 	public void setMaxWaterLevel(int maxWaterLevel) {
 		this.maxWaterLevel = maxWaterLevel;
+	}
+	
+	public void increment() {
+		this.currentWaterLevel++;
 	}
 	
 
