@@ -9,7 +9,7 @@ import Game.GameManager;
 import Game.GameObserver;
 
 public class Hand {
-	protected List<TreasureCard> hand = new ArrayList<TreasureCard>(); 
+	protected List<Card> hand = new ArrayList<Card>(); 
 	public int maxCards = 5;
 	protected Card chosenCard;
 	protected Participant participant;
@@ -20,7 +20,7 @@ public class Hand {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-	public TreasureCard getCardInHand(int i) { // method to get card from hand at a given index
+	public Card getCardInHand(int i) { // method to get card from hand at a given index
 		return hand.get(i);
 	}	
 	
@@ -48,14 +48,13 @@ public class Hand {
 		hand.remove(i);
 	}
 	
-	public void addCardToHand(TreasureCard card) {
+	public void addCardToHand(Card card) {
 		hand.add(card);
 	}
-	
 
-	public ArrayList<TreasureCard> getTreasureCards(){
-		ArrayList<TreasureCard> treasureCards = new ArrayList<TreasureCard>();
-			for(TreasureCard card: hand) {
+	public ArrayList<Card> getTreasureCards(){
+		ArrayList<Card> treasureCards = new ArrayList<Card>();
+			for(Card card: hand) {
 				if(!(card instanceof HelicopterTreasureCard)&& !(card instanceof SandbagTreasureCard)) {
 					treasureCards.add(card);
 				}
