@@ -112,13 +112,10 @@ public abstract class Participant extends Subject {
 				}
 			}
 		}
-		if(!relevantTiles.isEmpty()) {
+		if(relevantTiles.isEmpty()) {
 			notifyAllObservers(); // game over as participant can't move
-			return relevantTiles;
 		}
-		else {
-			return null;
-		}
+		return relevantTiles;
 	}
 	
 	public void move(int newLocation) { // moves participant to new location
