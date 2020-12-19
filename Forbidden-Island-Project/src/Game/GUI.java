@@ -584,7 +584,8 @@ public class GUI {
 				+ "      *            *..*         :\r\n"
 				+ "       *\r\n"
 				+ "        *"
-		        +"\nCongratulations! You have won the game! \n You successfully captured all the cards and everyone has been taken to safety!");
+		        +"\nCongratulations! You have won the game! \n You successfully captured all the cards and everyone has been taken to safety!"
+		        + "\n Next time you should think twice about going to a deserted Island!");
 	}
 	
 	public void gameLost() {
