@@ -6,8 +6,8 @@ import java.util.Collections;
 
 public class TreasureCardDeck {
 
-	Stack<TreasureCard> cardDeck = new Stack<TreasureCard>();
-	Stack<TreasureCard> treasureDiscardPile = new Stack<TreasureCard>();
+	Stack<Card> cardDeck = new Stack<Card>();
+	Stack<Card> treasureDiscardPile = new Stack<Card>();
 	
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
@@ -48,7 +48,7 @@ public class TreasureCardDeck {
 	}
 	
 	public String printDeck() {
-		for (TreasureCard card: cardDeck) {
+		for (Card card: cardDeck) {
 			System.out.println(card.toString());
 		}
 		return null;
@@ -58,7 +58,7 @@ public class TreasureCardDeck {
 		return cardDeck.size();
 	}
 	
-	public TreasureCard draw() {
+	public Card draw() {
 		if(cardDeck.isEmpty()) {
 			Collections.shuffle(treasureDiscardPile); // shuffle
 			Collections.reverse(treasureDiscardPile);// turn over
