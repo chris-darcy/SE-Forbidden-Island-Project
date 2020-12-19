@@ -8,6 +8,8 @@ import java.util.List;
 import Board.*;
 import Cards.*;
 import Observers.ParticipantObserver;
+import Observers.WaterLevelObserver;
+import Observers.WinningObserver;
 import Participant.*;
 import WaterLevel.WaterLevel;
 
@@ -17,7 +19,7 @@ public class GameManager {
 	private TreasureCardDeck treasureCardDeck;
 	private FloodCardDeck floodCardDeck;
 	private GUI gui;
-	private WaterLevel waterlevel;
+	private WaterLevel waterLevel;
 	private PlayerList playerList;
 	private Treasures treasures;
 	private boolean treasureLost;
@@ -29,12 +31,15 @@ public class GameManager {
 		treasureLost = false;
 		foolsLandingLost = false;
 		board 			 = Board.getInstance();
-		waterlevel 		 = WaterLevel.getInstance();
+		waterLevel 		 = WaterLevel.getInstance();
 		playerList		 = PlayerList.getInstance();
 		gui              = new GUI();
 		floodCardDeck    = new FloodCardDeck();
 		treasureCardDeck = new TreasureCardDeck();
-		treasures        = new Treasures();		
+		treasures        = new Treasures();	
+		
+		// !!! is this the where the treasures are initialised? !!!
+		new WinningObserver(treasures); //attach observer to check number of captured treasures
 	}
 	
 	public static GameManager getInstance() {
@@ -48,7 +53,8 @@ public class GameManager {
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
-		waterlevel.setWaterLevel(gui.setDifficulty());
+		waterLevel.setWaterLevel(gui.setDifficulty());
+		new WaterLevelObserver(waterLevel); // attach observer to check the waterLevel
 	}
 	
 	public void runGame() {
@@ -106,7 +112,8 @@ public class GameManager {
 		}
 		
 	}
-
+	
+	// end of game logic
 	public void endGame(boolean gameResult) {
 		if(gameResult) {
 			gui.gameWon();
@@ -238,7 +245,7 @@ public class GameManager {
 		int cardChoice;
 		boolean success;
 		Participant receiver;
-		TreasureCard card;
+		Card card;
 		
 		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
 		cardChoice = gui.chooseCardToGive(player.toString());
@@ -299,12 +306,12 @@ public class GameManager {
 	// facilitate a player drawing 2 Treasure Deck cards
 	//
 	private void drawFromTreasureDeck(Participant player) {
-		TreasureCard card;
+		Card card;
 		
 		for(int i=0;i<2;i++) {
 			card = treasureCardDeck.draw();
 			if(card instanceof RiseWaterTreasureCard) {
-				waterlevel.increment();
+				waterLevel.increment();
 				gui.updateWaterLevel();
 				floodCardDeck.mergeAndShuffle();
 			}
@@ -318,7 +325,7 @@ public class GameManager {
 	// draw appropriate flood cards
 	//
 	private void drawFloodCards() {
-		int level = waterlevel.getCurrentWaterLevel();
+		int level = waterLevel.getCurrentWaterLevel();
 		for(int i=0; i<level;i++) {
 			floodCardDeck.draw();		
 		}
@@ -328,7 +335,7 @@ public class GameManager {
 	// hand 2 card out to each player at the beginning of the game
 	//
 	private void handOutCards() {		
-		TreasureCard card;
+		Card card;
 		Participant player;
 		
 		if(playerList.isCreated()) {
