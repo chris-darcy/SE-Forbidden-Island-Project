@@ -91,7 +91,7 @@ public class PlayerList {
 	}
 	
 	public boolean playerListContainsHelicopterCard() {
-		HelicopterTreasureCard helicopter;
+		HelicopterTreasureCard helicopter = new HelicopterTreasureCard("Helicopter");
 		for (Participant p : playerList) {
 			if(p.getHand().handContains(helicopter)) {
 				return true;
