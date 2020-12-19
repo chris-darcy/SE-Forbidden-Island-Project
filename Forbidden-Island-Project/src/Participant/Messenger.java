@@ -1,7 +1,6 @@
 package Participant;
 
 import Cards.*;
-import Game.GameManager;
 
 public class Messenger extends Participant{
 	public Messenger(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
