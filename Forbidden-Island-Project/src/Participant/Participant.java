@@ -69,22 +69,32 @@ public abstract class Participant extends Subject {
 	}
 	
 	// This method will be overridden by the Messenger Participant
-	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
+	public boolean giveCard(Participant receiver, Card card) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == this.location) {
 			Hand giversHand = this.hand;
 			Hand receiversHand = receiver.getHand();
 			
 			// observer!
-			if(receiversHand.numberOfCards() >= maxCards - 1) { // after addition of new card, card hand will be too big
+			if(receiversHand.numberOfCards() >= maxCards - 1 &&
+			   cardChosenOkay(card)) { // after addition of new card, card hand will be too big
 				GameManager.getInstance().handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
-			receiversHand.addCardToHand(treasureCardToGive);
-			giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
+			receiversHand.addCardToHand(card);
+			giversHand.removeCardFromHand(giversHand.findHandIndex(card));
 			
 			this.actionUsed();
 			
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean cardChosenOkay(Card card) {
+		if(card instanceof TreasureCard) { // card can only be given as long as it is not a helicopter/ sandbad card
 			return true;
 		}
 		else {
@@ -112,16 +122,14 @@ public abstract class Participant extends Subject {
 				}
 			}
 		}
-		if(!relevantTiles.isEmpty()) {
+		if(relevantTiles.isEmpty()) {
 			notifyAllObservers(); // game over as participant can't move
-			return relevantTiles;
 		}
-		else {
-			return null;
-		}
+		return relevantTiles;
 	}
 	
 	public void move(int newLocation) { // moves participant to new location
+		
 		this.location = newLocation;
 		this.actionUsed();
 	}

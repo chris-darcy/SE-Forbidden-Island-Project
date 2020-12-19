@@ -24,8 +24,8 @@ public class Hand {
 		return hand.get(i);
 	}	
 	
-	public int findHandIndex(TreasureCard treasureCard){
-		return hand.indexOf(treasureCard);
+	public int findHandIndex(Card card){
+		return hand.indexOf(card);
 	}
 	
 	public int size() {
