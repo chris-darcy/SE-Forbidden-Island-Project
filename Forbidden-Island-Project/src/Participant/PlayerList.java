@@ -3,6 +3,8 @@ package Participant;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import Cards.HelicopterTreasureCard;
+
 public class PlayerList {
 	
 	private static PlayerList uniqueInstance = null;
@@ -23,6 +25,10 @@ public class PlayerList {
 	
 	public void addPlayer(Participant p) {
 		playerList.add(p);
+	}
+	
+	public ArrayList<Participant> getPlayerList(){
+		return playerList;
 	}
 	
 	public ArrayList<Integer> getPlayerLocs(){
@@ -82,5 +88,15 @@ public class PlayerList {
 				players.add(p.toString());
 		}
 		return players;
+	}
+	
+	public boolean playerListContainsHelicopterCard() {
+		HelicopterTreasureCard helicopter;
+		for (Participant p : playerList) {
+			if(p.getHand().handContains(helicopter)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
