@@ -1,6 +1,6 @@
 package Participant;
 
-import Cards.TreasureCard;
+import Cards.*;
 import Game.GameManager;
 
 public class Messenger extends Participant{
@@ -8,7 +8,7 @@ public class Messenger extends Participant{
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	@Override
-	public boolean giveCard(Participant receiver, TreasureCard treasureCardToGive) {
+	public boolean giveCard(Participant receiver, Card treasureCardToGive) {
 		// Messenger can give a card to any other player
 		Hand giversHand = this.hand;
 		Hand receiversHand = receiver.getHand();
