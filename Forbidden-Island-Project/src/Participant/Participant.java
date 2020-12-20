@@ -33,26 +33,14 @@ public abstract class Participant extends Subject {
 	//------------------------------ METHODS --------------------------------------//
 
 	// !!!
-	public boolean shoreUp(Tile tile) { // make boolean method canShoreUp()
-		if(participant.getHand().handContains(sandbagTreasureCard) &&  // participant has the required card
-		   tile.getTileStatus() != TileStatus.SUNK &&                  // tile they have chosen is not sunk 
-		   isAdjacentTile(tile)) {                                     // tile is adjacent
-				
-				switch (tile.getTileStatus()){
-					case UNFLOODED:
-						tile.setTileStatus(TileStatus.FLOODED);
-					case FLOODED:
-						tile.setTileStatus(TileStatus.SUNK);
-					default:
-				}
-				
-				participant.actionUsed();
+	public boolean shoreUp(Tile tile) {		
+		if(tile.getTileStatus() == TileStatus.FLOODED && isAdjacentTile(tile)) { // tile they have chosen is not sunk or is not valid	
+				tile.setTileStatus(TileStatus.UNFLOODED);
+				this.actionUsed();
 				return true;
-		}
-		else {
-				return false;
-			}
-		}
+		}			
+		return false;
+	}
 	
 	public boolean isAdjacentTile(Tile tile) {     // participant is on or adjacent to the tile
 		int xyPlayer[] = xyLoc(this.location);
@@ -128,8 +116,14 @@ public abstract class Participant extends Subject {
 		return relevantTiles;
 	}
 	
-	public void move(int newLocation) { // moves participant to new location
-		
+	public ArrayList<Integer> getShoreUpAbleTiles(ArrayList<Tile> board){
+		ArrayList<Integer> relevantTiles = this.getRelevantTiles(board);
+		relevantTiles.add(this.location);
+		relevantTiles.removeIf(n->(board.get(n).getTileStatus() != TileStatus.FLOODED));
+		return relevantTiles;
+	}
+	
+	public void move(int newLocation) { // moves participant to new location	
 		this.location = newLocation;
 		this.actionUsed();
 	}

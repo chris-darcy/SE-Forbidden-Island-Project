@@ -396,6 +396,10 @@ public class GUI {
 		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
 	}
 	
+	public void printTreasureDuplicate() {
+		System.out.println("you have already captured that treasure!");
+	}
+	
 	public void printTreasureCaptureOutcome(String player, String treasure, boolean success){	
 		actionOutcomeMSG("capture",player,"",treasure,success);
 	}
@@ -589,7 +593,7 @@ public class GUI {
 	}
 	
 	public void gameLost() {
-		System.out.println("Sadly, you have just lost the game!" 
+		System.out.println("Sadly, you have just lost the game!\n" 
 	            + "     .-\"\"\"\"\"\"-.\r\n"
 				+ "   .'          '.\r\n"
 				+ "  /   O      O   \\\r\n"

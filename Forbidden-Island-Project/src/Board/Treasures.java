@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Treasures {
+import Observers.Subject;
+
+public class Treasures extends Subject{
 	private Map<TileType,String> treasures;
 	private ArrayList<String> captured;
 	private int remaining;
@@ -37,6 +39,10 @@ public class Treasures {
 	
 	public ArrayList<String> captured() {
 		return captured;
+	}
+	
+	public boolean uncaptured(TileType tileType) {
+		return treasures.containsKey(tileType);
 	}
 }
 
