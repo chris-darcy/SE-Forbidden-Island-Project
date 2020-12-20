@@ -71,11 +71,6 @@ public class FloodCardDeck {
 			System.out.println(card);
 		}
 	}
-	/////////////////////////////////////
-	// discard -> flooddeck
-//	private discardToFloodDeck(){
-//		
-//	}
 
 	public void mergeAndShuffle() {
 		cardDeck.addAll(discardDeck);
