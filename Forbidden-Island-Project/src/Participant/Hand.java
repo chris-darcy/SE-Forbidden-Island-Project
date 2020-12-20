@@ -51,6 +51,20 @@ public class Hand {
 	public void addCardToHand(Card card) {
 		hand.add(card);
 	}
+	
+	public ArrayList<Card> discardFour(String type){
+		ArrayList<Card> toDiscard = new ArrayList<Card>();
+		int counter = 0;
+		
+		for(Card card: this.getTreasureCards()) {
+			if(card.getName().equalsIgnoreCase(type) && counter < 4) {
+				toDiscard.add(card);
+				this.hand.remove(card);
+				counter++;
+			}
+		}
+		return toDiscard;
+	}
 
 	public ArrayList<Card> getTreasureCards(){
 		ArrayList<Card> treasureCards = new ArrayList<Card>();

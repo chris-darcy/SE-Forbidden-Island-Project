@@ -1,7 +1,7 @@
 package UnitTests;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.jupiter.api.Test;
+import static org.junit.Assert.*;
+import org.junit.*;
 import Cards.*;
 
 class CardDeckTest {

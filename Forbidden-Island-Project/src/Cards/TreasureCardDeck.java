@@ -1,5 +1,6 @@
 package Cards;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 import java.util.Collections;
@@ -70,13 +71,20 @@ public class TreasureCardDeck {
 	}
 	
 
-	public void replace(Card card) {
-		cardDeck.add(card);
+
+	public void replace(Card drawnCard) {
+		cardDeck.add(drawnCard);
 		Collections.shuffle(cardDeck);
 	}
 
-	public void addToDiscardPile(TreasureCard treasureCard){ // when chosen to remove/ used, add to discard pile
+	public void addToDiscardPile(Card treasureCard){ // when chosen to remove/ used, add to discard pile
 		treasureDiscardPile.add(treasureCard);
+	}
+	
+	public void receiveDiscarded(ArrayList<Card> discarded) {
+		for(Card card: discarded) {
+			this.addToDiscardPile(card);
+		}
 	}
 
 }

@@ -41,14 +41,18 @@ public class FloodCardDeck {
 	}
 	
 	public String draw() {
-		int tilePos = cardDeck.pop();
-		Tile tile = board.get(tilePos);
-//		if () {
-//			discardToFloodDeck();
-//		}
+		int tilePos;
+		Tile tile;
+		
+		if (cardDeck.isEmpty()) {
+			mergeAndShuffle();
+		}
+		tilePos = cardDeck.pop();
+		tile = board.get(tilePos);
 		switch(tile.getTileStatus()) {
 			case UNFLOODED:
 				tile.setTileStatus(TileStatus.FLOODED);
+				System.out.println("flooded "+ tile.getName());
 				discardDeck.add(tilePos);
 				break;
 			case FLOODED:
@@ -57,8 +61,7 @@ public class FloodCardDeck {
 				// Observer
 					break;
 				}
-			default:
-				
+			default:				
 		}	
 		return tile.getName(); // will be shown to the user so they know what they drew
 	}

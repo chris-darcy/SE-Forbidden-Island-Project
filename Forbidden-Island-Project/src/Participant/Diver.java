@@ -18,10 +18,13 @@ public class Diver extends Participant{
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
+		boolean shoreUp = false;
 
 		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
 			
-			sunkRelevantTiles.addAll(this.getRelevantTiles(board));          // get up, down, left, right tiles is possible as these will be the shortest
+
+			sunkRelevantTiles.addAll(this.getRelevantTiles(board,shoreUp));    // get up, down, left, right tiles is possible as these will be the shortest
+
 			sunkRelevantTiles.add(getShortestDistance(board).getLocation()); // add the shortest
 			
 			if(removeDuplicate(sunkRelevantTiles).isEmpty()) {

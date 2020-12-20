@@ -3,7 +3,6 @@ package Board;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import Observers.Subject;
 import Observers.WinningObserver;
 
@@ -41,6 +40,10 @@ public class Treasures extends Subject{
 	
 	public ArrayList<String> captured() {
 		return captured;
+	}
+	
+	public boolean uncaptured(TileType tileType) {
+		return treasures.containsKey(tileType);
 	}
 }
 
