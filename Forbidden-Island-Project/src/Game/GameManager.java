@@ -301,7 +301,7 @@ public class GameManager {
 	private void drawFloodCards() {
 		int level = waterLevel.getCurrentWaterLevel();
 		for(int i=0; i<level;i++) {
-			System.out.println(floodCardDeck.draw());		
+			System.out.println("A flood card was drawn for tile " + floodCardDeck.draw());		
 		}
 	}
 	
