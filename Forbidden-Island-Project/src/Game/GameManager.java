@@ -212,7 +212,7 @@ public class GameManager {
 		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
 		cardChoice = gui.chooseCardToGive(player.toString());
 		card = player.hand.getTreasureCards().get(cardChoice);
-		success = player.giveCard(receiver,card);
+		success = player.giveCard(receiver,card);             // error here
 		gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
 		
 	}
