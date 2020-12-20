@@ -6,14 +6,12 @@ import java.util.List;
 //import java.util.Scanner;
 import Cards.*;
 import Game.GameManager;
-import Game.GameObserver;
 
 public class Hand {
 	protected List<Card> hand = new ArrayList<Card>(); 
 	public int maxCards = 5;
 	protected Card chosenCard;
 	protected Participant participant;
-	private ArrayList<GameObserver> observerList = new ArrayList<GameObserver>();
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	public Hand() {
 		
