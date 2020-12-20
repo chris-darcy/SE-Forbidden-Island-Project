@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Treasures {
+import Observers.Subject;
+import Observers.WinningObserver;
+
+public class Treasures extends Subject{
 	private Map<TileType,String> treasures;
 	private ArrayList<String> captured;
 	private int remaining;
@@ -32,6 +35,7 @@ public class Treasures {
 	}
 	
 	public int remaining() {
+		notifyAllObservers(); // notify observers each time a 
 		return remaining;
 	}
 	

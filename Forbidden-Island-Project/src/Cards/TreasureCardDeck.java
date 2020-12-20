@@ -70,8 +70,8 @@ public class TreasureCardDeck {
 	}
 	
 
-	public void replace(TreasureCard drawnCard) {
-		cardDeck.add(drawnCard);
+	public void replace(Card card) {
+		cardDeck.add(card);
 		Collections.shuffle(cardDeck);
 	}
 

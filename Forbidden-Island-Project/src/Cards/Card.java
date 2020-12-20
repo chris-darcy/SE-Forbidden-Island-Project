@@ -5,9 +5,8 @@ package Cards;
 public class Card {
 	protected String name;
 	
-	protected Card (String name) {
+	public Card (String name) {
 		this.name = name;
-//		this.cardType = cardType;
 	}
 	
 	public String getName() {
