@@ -38,7 +38,6 @@ public class GameManager {
 		treasureCardDeck = new TreasureCardDeck();
 		treasures        = new Treasures();	
 		
-		// !!! is this the where the treasures are initialised? !!!
 		new WinningObserver(treasures); //attach observer to check number of captured treasures
 	}
 	
@@ -248,6 +247,14 @@ public class GameManager {
 	}
 	
 	//
+	// facilitate movement of players to a location with helicopter card
+	//
+	private void helicopter(Participant player) {
+		int location = chooseLocationTo("helicopter to", player);
+		participant.helicopterParticipants(player, location);
+	}
+	
+	//
 	// facilitate the player capturing a treasure
 	//
 	private void captureTreasure(Participant player) {
@@ -339,8 +346,8 @@ public class GameManager {
 		ArrayList<Integer> relevantTiles;
 		ArrayList<Tile> brd  = board.getBoard();
 		boolean shoreUp = action.equals("shore up");
-
-			relevantTiles = player.getRelevantTiles(brd,shoreUp);
+		
+		relevantTiles = player.getRelevantTiles(brd,shoreUp);
 		return gui.chooseLocationTo(action,relevantTiles, brd);
 	}
 	
