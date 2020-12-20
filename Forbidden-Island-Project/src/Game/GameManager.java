@@ -50,6 +50,7 @@ public class GameManager {
 	}
 	
 	public void setupGame() {
+		// should add some welcome message here indicating that flood cards will be drawn first
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
