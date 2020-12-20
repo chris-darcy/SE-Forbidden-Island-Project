@@ -62,10 +62,9 @@ public abstract class Participant extends Subject {
 		if (receiver.getLocation() == this.location) {
 			Hand giversHand = this.hand;
 			Hand receiversHand = receiver.getHand();
-			
-			// observer!
-			if(receiversHand.numberOfCards() >= maxCards - 1 &&
-			   cardChosenOkay(card)) { // after addition of new card, card hand will be too big
+
+			if(receiversHand.numberOfCards() >= maxCards &&
+			   cardChosenOkay(card)) {                        // after addition of new card, card hand will be too big
 				GameManager.getInstance().handAfterRemoval(); // call method to get user to remove one of their cards
 			}
 			
