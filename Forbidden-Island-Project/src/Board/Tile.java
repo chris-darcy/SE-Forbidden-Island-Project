@@ -2,7 +2,6 @@ package Board;
 
 import java.util.ArrayList;
 import Game.GameManager;
-import Game.GameObserver;
 import Observers.Subject;
 
 public class Tile extends Subject{
