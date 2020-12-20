@@ -1,10 +1,8 @@
 package Cards;
 
-import Board.*;
 import Participant.Participant;
 
 public class HelicopterTreasureCard extends Card{
-	private String name;
 	
 	public HelicopterTreasureCard(String name) {
 		super(name);
