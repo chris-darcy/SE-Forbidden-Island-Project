@@ -60,7 +60,7 @@ public class Tile extends Subject{
 			GM.updateSpecialTileStatus(this);
 		}
 		this.tileStatus = tileStatus;
-		notifyAllObservers();
+//		notifyAllObservers();
 	}
 	
 	// get the type of the tile
