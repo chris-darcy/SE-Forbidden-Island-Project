@@ -16,12 +16,9 @@ public class TileObserver extends Observer {
 	
 	@Override
 	public void update() {
-		if(((Tile)this.subject).getTileType() != TileType.NORMAL &&   // double check the tile is a special tile
-		   ((Tile)this.subject).getTileType() != TileType.EMPTY  &&
-		   ((Tile)this.subject).getTileStatus() == TileStatus.SUNK) { // check the tile is sunk
 			System.out.println(((Tile)this.subject).getName() + " has sunk!");
 			//GameManager.getInstance().endGame(false);              // game over if this is true
 			GameManager.getInstance().updateSpecialTileStatus((Tile)this.subject);
-		}
 	}
 }
+
