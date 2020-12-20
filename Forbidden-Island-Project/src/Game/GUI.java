@@ -111,7 +111,7 @@ public class GUI {
 	public void updatePlayerHands(ArrayList<String> playerList) {
 		
 		for(int player=0; player<playernums; player++){	
-			PlayerPrint p = new PlayerPrint(playerList.get(player));
+			PlayerPrint p = new PlayerPrint().fullBuild(playerList.get(player));
 			
 			allHandSlices[player][0] = p.name() +" (" + p.role()+"):";	
 		
@@ -228,11 +228,11 @@ public class GUI {
 	//
 	public int chooseAction(String player) {
 		int choice = 0;
-		PlayerPrint p = new PlayerPrint(player);
+		PlayerPrint p = new PlayerPrint().fullBuild(player);
 		
 		System.out.println("~"+p.name+", what will your next move be?~  MOVES REMAINING: " + p.actionsRemaining());
 		
-		System.out.println("   0: Move\n   1: Give Card\n   2: Shore Up a Tile\n   3: Capture a Treasure\n   4: Use Party Helicopter Lift/SandBag\n   5: End Turn");
+		System.out.println("   0: Move (1 action)\n   1: Give Card (1 action)\n   2: Shore Up a Tile (1 action)\n   3: Capture a Treasure (1 action)\n   4: Use Party Helicopter Lift/SandBag\n   5: End Turn");
 		choice = getChoiceWithinBoundary("your action",
 										 "no such option available",
 										 0, 5);
@@ -242,26 +242,15 @@ public class GUI {
 	//
 	// Ask a player to choose the receiver of their give card action
 	//
-	public int chooseReceiver(ArrayList<String> everyoneElse) {
-		int choice = 0;
-		int choiceNum = 0;
-		
-		System.out.println("~Which player will you give a card to?~");	
-		for(String o: everyoneElse) {
-			PlayerPrint other_p = new PlayerPrint(o);
-			
-			System.out.println("   " + choiceNum + ": " + other_p.name() + " (" + other_p.role() + ")");
-			choiceNum++;
-		}
-		
-		choice = getChoiceWithinBoundary("your action",
-						 "no such option available",
-						 0, everyoneElse.size()-1);
-		
-		PlayerPrint chosen = new PlayerPrint(everyoneElse.get(choice));
-		System.out.println("you have chosen to give a card to "+chosen.name()+"\n");
-		
-		return Integer.parseInt(chosen.playernum());
+	public int choosePlayerToUseCard(ArrayList<String> playerList) {	
+		return choosePlayerTo("use a special card",playerList);
+	}
+	
+	//
+	// Ask a player to choose the receiver of their give card action
+	//
+	public int chooseReceiver(ArrayList<String> everyoneElse) {	
+		return choosePlayerTo("give a card to",everyoneElse);	
 	}
 	
 	//
@@ -279,30 +268,65 @@ public class GUI {
 	}
 	
 	//
+	// Ask party to choose which special card to use
+	//
+	public int chooseCardToUse(String player) {	
+		return chooseCardTo("use",player);		
+	}
+	
+	//
+	// Ask a player to choose the receiver of their give card action
+	//
+	public int choosePlayerTo(String action,ArrayList<String> playerList) {
+		int choice = 0;
+		int choiceNum = 0;
+		
+		System.out.println("~Which player will you choose to "+action+"?~");	
+		for(String player: playerList) {
+			PlayerPrint p = new PlayerPrint().fullBuild(player);
+			
+			System.out.println("   " + choiceNum + ": " + p.name() + " (" + p.role() + ")");
+			choiceNum++;
+		}	
+		choice = getChoiceWithinBoundary("your action",
+						 "no such option available",
+						 0, playerList.size()-1);
+		
+		PlayerPrint chosen = new PlayerPrint().fullBuild(playerList.get(choice));
+		System.out.println("you have chosen"+chosen.name()+" to "+action+"\n");
+		return Integer.parseInt(chosen.playernum());
+	}
+	
+	//
 	// get choice of next location from player for action either shoreUp or move to
 	//
 	public int chooseLocationTo(String action,ArrayList<Integer> relevantTiles,ArrayList<Tile> board) {
-		int choice = 0;
+		int choice = 0;//default retrieve empty tile for empty relevantTile scenario
 		int choiceNum = 0;
 		valid = false;
 		
-		System.out.println("~Where will you " + action + "?~");
-		
-		for(int tilePos: relevantTiles) {
-			System.out.println("   " + tilePos + ": " + board.get(tilePos).getName());
-		}
-
-		while(!valid) {
-			choice = getIntFor("the location");
+		if(!relevantTiles.isEmpty()) {
+			System.out.println("~Where will you " + action + "?~");
 			
-			if(!relevantTiles.contains(choice)) {
-				System.out.println("you cannot "+ action + " that location");
+			for(int tilePos: relevantTiles) {
+				System.out.println("   " + tilePos + ": " + board.get(tilePos).getName());
 			}
-			else{
-				valid = true;
-				System.out.println("you chose to " + action + " " + board.get(choice).getName());
-			}
-		}		
+	
+			while(!valid) {
+				choice = getIntFor("the location");
+				
+				if(!relevantTiles.contains(choice)) {
+					System.out.println("you cannot "+ action + " that location");
+				}
+				else{
+					valid = true;
+					System.out.println("you chose to " + action + " " + board.get(choice).getName());
+				}
+			}	
+		}
+		else {
+			System.out.println("There are currently no tiles to " + action + ". Choose another action!");
+		}
 		return choice;		
 	}
 	
@@ -392,8 +416,12 @@ public class GUI {
 	}
 	
 	public void printPlayerFinalised(String player){
-		PlayerPrint p = new PlayerPrint(player);
+		PlayerPrint p = new PlayerPrint().fullBuild(player);
 		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
+	}
+	
+	public void printNoSpecialCards() {
+		System.out.println("your party has no special cards to use");
 	}
 	
 	public void printTreasureDuplicate() {
@@ -411,13 +439,17 @@ public class GUI {
 	private int chooseCardTo(String action, String player) {
 		String[] cardsToDisplay;
 		int choice = 0;
-		PlayerPrint p = new PlayerPrint(player);
+		PlayerPrint p;
 		
-		if(action.equals("give")) {
-			cardsToDisplay = p.treasureCards;
-		}
-		else {
-			cardsToDisplay = p.hand;
+		switch(action) {
+			case"give": {
+				p = new PlayerPrint().fullBuild(player);
+				cardsToDisplay = p.treasureCards;
+			}
+			default:{
+				p = new PlayerPrint().handBuild(player);
+				cardsToDisplay = p.hand;
+			}
 		}
 		
 		System.out.println("~Which card will you " + action + "?~");
@@ -526,7 +558,9 @@ public class GUI {
 		private String actionsRemaining;
 		private String[] treasureCards;
 		
-		public PlayerPrint(String player) {
+		public PlayerPrint() {}
+			
+		public PlayerPrint fullBuild(String player) {
 			String[] fields = player.split("\n");
 			this.name = fields[0];
 			this.playernum = fields[1];
@@ -535,7 +569,14 @@ public class GUI {
 			this.actionsRemaining = fields[4];
 			this.role = fields[5];
 			this.treasureCards = fields[6].substring(1,fields[6].length()-1).split(", ");
-		}	
+			return this;
+		}
+		
+		public PlayerPrint handBuild(String player) {
+			this.hand = player.substring(1,player.length()-1).split(", ");
+			return this;
+		}
+		
 		public String name() {return this.name;}
 			
 		public String playernum() {return this.playernum;}

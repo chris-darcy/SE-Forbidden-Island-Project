@@ -62,15 +62,14 @@ public class GameManager {
 		int choice;
 		
 		while(!foolsLandingLost && !treasureLost) {
-			gui.updateBoard(board.getStringBoard(), playerList);
-			gui.updatePlayerHands(playerList.getAllStringPlayers());
-			gui.updateTreasures(treasures.captured());
-			gui.display();
 			for(int i=0; i<playerList.getSize();i++) {
 				player = playerList.getPlayer(i);
-				while(player.getActionsRemaining() > 0) {
+				while(player.getActionsRemaining() > 0 && !foolsLandingLost && !treasureLost) {
+					gui.updateBoard(board.getStringBoard(), playerList);
+					gui.updatePlayerHands(playerList.getAllStringPlayers());
+					gui.updateTreasures(treasures.captured());
+					gui.display();
 					choice = gui.chooseAction(player.toString());
-					
 					switch(choice) {
 						case 0:
 							movePlayer(player);
@@ -89,24 +88,17 @@ public class GameManager {
 							break;
 							
 						case 4:
-							useCard(player);
+							useCard();
 							break;
 							
 						case 5:
 							player.setActionsRemaining(0);
 							break;//end turn early
 					}
-					gui.updateBoard(board.getStringBoard(), playerList);
-					gui.updatePlayerHands(playerList.getAllStringPlayers());
-					gui.updateTreasures(treasures.captured());
-					gui.display();
 				}
 				player.setActionsRemaining(3);
 				drawFromTreasureDeck(player);
 				drawFloodCards();
-				gui.updateBoard(board.getStringBoard(), playerList);
-				gui.updatePlayerHands(playerList.getAllStringPlayers());
-				gui.updateTreasures(treasures.captured());
 			}
 		}
 		
@@ -184,7 +176,10 @@ public class GameManager {
 			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
 				treasureLost = true;
 				endGame(false);
-			}	
+			}
+			else {
+				
+			}
 		}
 		else{	
 			if(specialTile.getTileStatus() == TileStatus.SUNK) {
@@ -225,9 +220,15 @@ public class GameManager {
 	//
 	// facilitate a player using their special cards
 	//
-	private void useCard(Participant player) {
+	private void useCard() {
+		int playerchoice;
 		
-		
+		if(playerList.playerListContainsHelicopterCard() || playerList.playerListContainsSandBagCard()) {
+			gui.choosePlayerToUseCard(playerList.getAllStringPlayers());
+		}
+		else {
+			gui.printNoSpecialCards();
+		}
 	}
 	//
 	// facilitate moving the player
@@ -253,19 +254,17 @@ public class GameManager {
 		TileType type;
 		String treasure="";
 		
-		if(success) {
-			type = board.getBoard().get(player.getLocation()).getTileType();
-			
-			if(treasures.uncaptured(type)) {
+		type = board.getBoard().get(player.getLocation()).getTileType();
+		if(treasures.uncaptured(type)) {
+			if(success){
 				treasure = treasures.capture(type);
 				treasureCardDeck.receiveDiscarded(player.getHand().discardFour(type.name()));
-				gui.printTreasureCaptureOutcome(player.getName(),treasure,success);
 			}
-			else {
-				gui.printTreasureDuplicate();
-			}
+			gui.printTreasureCaptureOutcome(player.getName(),treasure,success);
 		}
-		
+		else {
+			gui.printTreasureDuplicate();
+		}
 	}
 	
 	//
@@ -302,7 +301,7 @@ public class GameManager {
 	private void drawFloodCards() {
 		int level = waterLevel.getCurrentWaterLevel();
 		for(int i=0; i<level;i++) {
-			floodCardDeck.draw();		
+			System.out.println(floodCardDeck.draw());		
 		}
 	}
 	
@@ -336,16 +335,11 @@ public class GameManager {
 	// facilitate getting choice of tile from relevant tiles for purpose e.g shoreUp, move
 	//
 	private int chooseLocationTo(String action,Participant player) {
-		int location;
 		ArrayList<Integer> relevantTiles;
 		ArrayList<Tile> brd  = board.getBoard();
-		
-		if(action.equals("move to")) {
-			relevantTiles = player.getRelevantTiles(brd);
-		}
-		else {
-			relevantTiles = player.getShoreUpAbleTiles(brd);
-		}
+		boolean shoreUp = action.equals("shore up");
+
+			relevantTiles = player.getRelevantTiles(brd,shoreUp);
 		return gui.chooseLocationTo(action,relevantTiles, brd);
 	}
 	

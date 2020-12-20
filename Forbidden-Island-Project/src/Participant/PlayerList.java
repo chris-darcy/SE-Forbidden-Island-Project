@@ -1,9 +1,10 @@
 package Participant;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
+import Cards.Card;
 import Cards.HelicopterTreasureCard;
+import Cards.SandbagTreasureCard;
 
 public class PlayerList {
 	
@@ -73,12 +74,9 @@ public class PlayerList {
 
 	public ArrayList<String> getAllStringPlayersExcept(Participant player) {
 		ArrayList<String> others = new ArrayList<String>();
-		
-		for(Participant p: playerList) {
-			if(p.getPlayerNum() != player.getPlayerNum()) {
-				others.add(p.toString());
-			}
-		}
+		others = getAllStringPlayers();
+		others.removeIf(n->(n.equals(player.toString())));
+	
 		return others;
 	}
 	
@@ -92,8 +90,17 @@ public class PlayerList {
 	
 	public boolean playerListContainsHelicopterCard() {
 		HelicopterTreasureCard helicopter = new HelicopterTreasureCard("Helicopter");
+		return playerListContains(helicopter);
+	}
+	
+	public boolean playerListContainsSandBagCard() {
+		SandbagTreasureCard sandbag = new SandbagTreasureCard("Sandbag");
+		return playerListContains(sandbag);
+	}
+	
+	public boolean playerListContains(Object o) {
 		for (Participant p : playerList) {
-			if(p.getHand().handContains(helicopter)) {
+			if(p.getHand().handContains(o)) {
 				return true;
 			}
 		}

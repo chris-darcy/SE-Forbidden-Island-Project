@@ -3,6 +3,7 @@ package Game;
 import Board.Tile;
 import Board.TileStatus;
 import Board.TileType;
+import Observers.Observer;
 import Participant.Hand;
 import WaterLevel.WaterLevel;
 
@@ -50,5 +51,6 @@ public class GameObserver extends Observer {
 //			GameOver = true;
 //		}
 	}
+
 
 }

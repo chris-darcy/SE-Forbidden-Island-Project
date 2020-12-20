@@ -90,7 +90,7 @@ public abstract class Participant extends Subject {
 		}
 	}
 
-	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board) {     // returns relevant tiles that the participant can move to
+	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board, boolean shoreUp) {     // returns relevant tiles that the participant can move to
 		int[] xyPlayer = xyLoc(this.location);
 		
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
@@ -110,22 +110,21 @@ public abstract class Participant extends Subject {
 				}
 			}
 		}
-		if(relevantTiles.isEmpty()) {
+		if(shoreUp) {
+			relevantTiles.add(this.location);
+			relevantTiles.removeIf(n->(board.get(n).getTileStatus() != TileStatus.FLOODED));
+		}
+		if(!shoreUp && relevantTiles.isEmpty()) {
 			notifyAllObservers(); // game over as participant can't move
 		}
 		return relevantTiles;
 	}
 	
-	public ArrayList<Integer> getShoreUpAbleTiles(ArrayList<Tile> board){
-		ArrayList<Integer> relevantTiles = this.getRelevantTiles(board);
-		relevantTiles.add(this.location);
-		relevantTiles.removeIf(n->(board.get(n).getTileStatus() != TileStatus.FLOODED));
-		return relevantTiles;
-	}
-	
 	public void move(int newLocation) { // moves participant to new location	
-		this.location = newLocation;
-		this.actionUsed();
+		if(newLocation > 0) { // catch empty relevantTiles scenario
+			this.location = newLocation;
+			this.actionUsed();
+		}
 	}
 	
 	public boolean canCaptureTreasure(ArrayList<Tile> board) {
@@ -150,12 +149,14 @@ public abstract class Participant extends Subject {
 
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
-		if(board.get(this.location).getTileStatus() != TileStatus.SUNK) {
+		boolean shoreUp = false;
+		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
+			ArrayList<Integer> relevantTiles = this.getRelevantTiles(board,shoreUp);
 			// for most participants, they will only be able to move to as normal
-			if(this.getRelevantTiles(board).isEmpty()) {
+			if(relevantTiles.isEmpty()) {
 				notifyAllObservers(); // getRelevant tiles is empty - game is lost
 			}
-			return this.getRelevantTiles(board); 
+			return relevantTiles;
 		}
 		else {
 			return null;

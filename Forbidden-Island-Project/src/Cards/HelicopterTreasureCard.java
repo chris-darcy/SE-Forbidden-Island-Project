@@ -5,7 +5,7 @@ import Participant.Participant;
 
 public class HelicopterTreasureCard extends TreasureCard{
 	
-	protected HelicopterTreasureCard(String name) {
+	public HelicopterTreasureCard(String name) {
 		super(name);
 	}
 	// one or more users can be moved, this will be called for each user to be moved

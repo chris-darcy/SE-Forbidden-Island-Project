@@ -16,11 +16,12 @@ public class Explorer extends Participant{
 	
 	@Override 
 	// the Explorer can move diagnolly if their current tile is sunk
-	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { 
+	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) {
+		boolean shoreUp = false;
 		//verify the participant is on a sunk tile
 		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
 			ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
-			sunkRelevantTiles.addAll(participant.getRelevantTiles(board));    // get up, down, left, right tiles
+			sunkRelevantTiles.addAll(participant.getRelevantTiles(board,shoreUp));    // get up, down, left, right tiles
 			
 			ArrayList<Integer> diagMoveOptions = new ArrayList<Integer>(Arrays.asList((-6-1), (-6+1), (6-1), (6+1))); 
 			
