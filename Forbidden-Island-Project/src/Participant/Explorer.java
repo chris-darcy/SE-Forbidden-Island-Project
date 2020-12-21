@@ -18,28 +18,24 @@ public class Explorer extends Participant{
 	// the Explorer can move diagnolly if their current tile is sunk
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) {
 		boolean shoreUp = false;
+		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
 		//verify the participant is on a sunk tile
-		if(board.get(participant.getLocation()).getTileStatus() != TileStatus.SUNK) {
-			ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
-			sunkRelevantTiles.addAll(participant.getRelevantTiles(board,shoreUp));    // get up, down, left, right tiles
+		if(board.get(this.getLocation()).getTileStatus() != TileStatus.SUNK) {
+			sunkRelevantTiles.addAll(this.getRelevantTiles(board,shoreUp));    // get up, down, left, right tiles
 			
 			ArrayList<Integer> diagMoveOptions = new ArrayList<Integer>(Arrays.asList((-6-1), (-6+1), (6-1), (6+1))); 
 			
 			for (int i : diagMoveOptions) {                                                       // check tiles up, down, left and right
-				if(board.get(participant.getLocation() + i) != null &&                            // verify the tile is on the board
-				   board.get(participant.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-				   board.get(participant.getLocation() + i).getTileType() != TileType.EMPTY) {  
-					sunkRelevantTiles.add(participant.getLocation() + i);
+				if(board.get(this.getLocation() + i) != null &&                            // verify the tile is on the board
+				   board.get(this.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
+				   board.get(this.getLocation() + i).getTileType() != TileType.EMPTY) {  
+					sunkRelevantTiles.add(this.getLocation() + i);
 				}
 			}
 			if(sunkRelevantTiles.isEmpty()) {
 				notifyAllObservers(); // gameover as explorer can't move
-				return sunkRelevantTiles;
-			}
-			else {
-				return sunkRelevantTiles;
 			}
 		}
-		return null;
+		return sunkRelevantTiles;
 	}
 }

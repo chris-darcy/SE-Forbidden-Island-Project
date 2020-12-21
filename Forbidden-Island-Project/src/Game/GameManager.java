@@ -22,13 +22,11 @@ public class GameManager {
 	private WaterLevel waterLevel;
 	private PlayerList playerList;
 	private Treasures treasures;
-	private boolean treasureLost;
-	private boolean foolsLandingLost;
+	private boolean gameOver;
 	private Hand hand;
 	
 	GameManager() {
-		treasureLost = false;
-		foolsLandingLost = false;
+		gameOver = false;
 		board 			 = Board.getInstance();
 		waterLevel 		 = WaterLevel.getInstance();
 		playerList		 = PlayerList.getInstance();
@@ -61,10 +59,10 @@ public class GameManager {
 		Participant player;
 		int choice;
 		
-		while(!foolsLandingLost && !treasureLost) {
+		while(!gameOver) {
 			for(int i=0; i<playerList.getSize();i++) {
 				player = playerList.getPlayer(i);
-				while(player.getActionsRemaining() > 0 && !foolsLandingLost && !treasureLost) {
+				while(player.getActionsRemaining() > 0  && !gameOver) {
 					gui.updateBoard(board.getStringBoard(), playerList);
 					gui.updatePlayerHands(playerList.getAllStringPlayers());
 					gui.updateTreasures(treasures.captured());
@@ -95,10 +93,18 @@ public class GameManager {
 							player.setActionsRemaining(0);
 							break;//end turn early
 					}
+					
+					if(gameOver) {
+						break;
+					}
+				}
+				if(gameOver) {
+					break;
 				}
 				player.setActionsRemaining(3);
 				drawFromTreasureDeck(player);
 				drawFloodCards();
+				
 			}
 		}
 		
@@ -106,12 +112,12 @@ public class GameManager {
 	
 	// end of game logic
 	public void endGame(boolean gameResult) {
-		if(gameResult) {
-			
+		if(gameResult) {		
 			gui.gameWon();
 		}
 		else{
 			gui.gameLost();
+			gameOver = true;
 		}
 	}
 	
@@ -174,13 +180,11 @@ public class GameManager {
 		if(specialTile.getTileType() != TileType.FOOLSLANDING) {
 			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());		
 			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
-				treasureLost = true;
 				endGame(false);
 			}
 		}
 		else{	
 			if(specialTile.getTileStatus() == TileStatus.SUNK) {
-				foolsLandingLost = true;
 				endGame(false);
 			}
 		}		
@@ -193,6 +197,7 @@ public class GameManager {
 		for(Participant p : playerList.getPlayerList()) {
 			if(p.getLocation() == tile.getLocation() && tile.getTileStatus() == TileStatus.SUNK) {
 			   p.onSunkTile(board.getBoard());
+
 			}
 		}
 	}
@@ -218,12 +223,16 @@ public class GameManager {
 		Participant receiver;
 		Card card;
 		
-		receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
-		cardChoice = gui.chooseCardToGive(player.toString());
-		card = player.hand.getTreasureCards().get(cardChoice);
-		success = player.giveCard(receiver,card);             // error here
-		gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
-		
+		if(!player.getHand().getTreasureCards().isEmpty()) {
+			receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
+			cardChoice = gui.chooseCardToGive(player.toString());
+			card = player.hand.getTreasureCards().get(cardChoice);
+			success = player.giveCard(receiver,card);             // error here
+			gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
+		}
+		else {
+			gui.printNoTreasureCards(player.getName());
+		}	
 	}
 	
 	//
@@ -305,6 +314,7 @@ public class GameManager {
 			if(card instanceof RiseWaterTreasureCard) {
 				waterLevel.increment();
 				gui.updateWaterLevel();
+				gui.printWatersRise();
 				floodCardDeck.mergeAndShuffle();
 			}
 			else {
@@ -319,7 +329,7 @@ public class GameManager {
 	private void drawFloodCards() {
 		int level = waterLevel.getCurrentWaterLevel();
 		for(int i=0; i<level;i++) {
-			System.out.println("A flood card was drawn for tile " + floodCardDeck.draw());		
+			floodCardDeck.draw();		
 		}
 	}
 	
@@ -362,14 +372,7 @@ public class GameManager {
 	}
 	
 	private int chooseHelicopterTo(String action) {
-		ArrayList<Integer> locations = new ArrayList<Integer>();
-
-		for(Tile tile : Board.getInstance().getBoard()) {
-			if(tile.getTileStatus() != TileStatus.SUNK && tile.getTileType() != TileType.EMPTY) {
-				locations.add(tile.getLocation());
-			} 
-		}
-		return gui.chooseHelicopterLocation(action, locations, board.getInstance().getBoard());
+		return gui.chooseHelicopterLocation(action, board.getBoard());
 	}
 	
 	public Hand handAfterRemoval(Participant player) {

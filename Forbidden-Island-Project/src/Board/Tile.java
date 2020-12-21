@@ -53,13 +53,6 @@ public class Tile extends Subject{
 		
 	// set status of Tile
 	public void setTileStatus(TileStatus tileStatus) {
-		
-		// GM monitors the state of the special tiles
-		if(this.tileType != TileType.EMPTY && this.tileType != TileType.NORMAL) {		
-			GameManager GM = GameManager.getInstance();
-			GM.updateSpecialTileStatus(this);
-		}
-		GameManager.getInstance().updateParticipantTileStatus(this);
 		this.tileStatus = tileStatus;
 		notifyAllObservers();
 	}

@@ -2,9 +2,11 @@
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 
 import Observers.ParticipantObserver;
 import Observers.Subject;
@@ -16,7 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class Board extends Subject{
+public class Board {
 	
 	private static Board uniqueInstance = null;
 	private int board_size = 36;
@@ -267,5 +269,6 @@ public class Board extends Subject{
 	    { 
 	        return a.getLocation() - b.getLocation(); 
 	    } 
-	} 
+	}
+
 }

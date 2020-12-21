@@ -1,8 +1,6 @@
 package Observers;
 
 import Board.Tile;
-import Board.TileStatus;
-import Board.TileType;
 import Game.GameManager;
 
 public class TileObserver extends Observer {

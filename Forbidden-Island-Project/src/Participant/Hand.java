@@ -46,13 +46,8 @@ public class Hand {
 		hand.remove(i);
 	}
 	
-	public void addCardToHand(Card card) {
-		if(hand.size() < maxCards ) {       // check if too many cards in hand
-			hand.add(card);
-		}
-		else {
-			GameManager.getInstance().handAfterRemoval(participant);
-		}
+	public void addCardToHand(Card card) {	
+		hand.add(card);
 	}
 	
 	public ArrayList<Card> discardFour(String type){
@@ -75,9 +70,6 @@ public class Hand {
 				if(!(card instanceof HelicopterTreasureCard)&& !(card instanceof SandbagTreasureCard)) {
 					treasureCards.add(card);
 				}
-			}
-			if(treasureCards.isEmpty()) {
-				return null;
 			}
 		return treasureCards;
 	}

@@ -62,12 +62,12 @@ public abstract class Participant extends Subject {
 			Hand giversHand = this.hand;
 			Hand receiversHand = receiver.getHand();
 
-			if(receiversHand.numberOfCards() >= maxCards &&
-			    cardChosenOkay(card)) {                            // after addition of new card, card hand will be too big
-				GameManager.getInstance().handAfterRemoval(receiver);  // call method to get user to remove one of their cards
+
+			if(cardChosenOkay(card)) {     
+				receiversHand.addCardToHand(card);// after addition of new card, card hand will be too big										// call method to get user to remove one of their cards
 			}
 			
-			receiversHand.addCardToHand(card);
+			
 			giversHand.removeCardFromHand(giversHand.findHandIndex(card));
 			
 			this.actionUsed();
@@ -80,11 +80,9 @@ public abstract class Participant extends Subject {
 	}
 	
 	public void addCardToHand(Card card) {
-		if(this.getHand().size() < maxCards ) {       // check if too many cards in hand
-			this.getHand().addCardToHand(card);
-		}
-		else {
-			GameManager.getInstance().handAfterRemoval(participant);
+		this.getHand().addCardToHand(card);
+		if(this.getHand().size() > maxCards ) {       // check if too many cards in hand
+			GameManager.getInstance().handAfterRemoval(this);
 		}
 	}
 	
@@ -156,18 +154,16 @@ public abstract class Participant extends Subject {
 
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
+		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		boolean shoreUp = false;
 		if(board.get(this.location).getTileStatus() == TileStatus.SUNK) {
-			ArrayList<Integer> relevantTiles = this.getRelevantTiles(board,shoreUp);
+			relevantTiles.addAll(this.getRelevantTiles(board,shoreUp));
 			// for most participants, they will only be able to move to as normal
 			if(relevantTiles.isEmpty()) {
 				notifyAllObservers(); // getRelevant tiles is empty - game is lost
-			}
-			return relevantTiles;
+			}		
 		}
-		else {
-			return null;
-		}
+		return relevantTiles;
 	}
 	
 	@Override

@@ -52,7 +52,6 @@ public class FloodCardDeck {
 		switch(tile.getTileStatus()) {
 			case UNFLOODED:
 				tile.setTileStatus(TileStatus.FLOODED);
-				System.out.println("flooded "+ tile.getName());
 				discardDeck.add(tilePos);
 				break;
 			case FLOODED:
