@@ -46,6 +46,4 @@ public class WaterLevel extends Subject{
 	public void increment() {
 		this.currentWaterLevel++;
 	}
-	
-
 }

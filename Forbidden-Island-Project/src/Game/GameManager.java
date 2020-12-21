@@ -360,7 +360,7 @@ public class GameManager {
 	//
 	private int chooseLocationTo(String action,Participant player) {
 		ArrayList<Integer> relevantTiles;
-		ArrayList<Tile> brd  = board.getBoard();
+		ArrayList<Tile> brd  = board.getSafeTiles();
 		boolean shoreUp = action.equals("shore up");
 		
 		relevantTiles = player.getRelevantTiles(brd,shoreUp);

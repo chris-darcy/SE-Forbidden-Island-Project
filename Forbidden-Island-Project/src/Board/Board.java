@@ -2,9 +2,11 @@
 
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Map;
 
 import Observers.ParticipantObserver;
 import Observers.Subject;
@@ -21,7 +23,6 @@ public class Board extends Subject{
 	private static Board uniqueInstance = null;
 	private int board_size = 36;
 	private ArrayList<Tile> board =  new ArrayList<Tile>(); 
-	private ArrayList<Tile> remainingBoard =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> fireSet =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> oceanSet =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> earthSet =  new ArrayList<Tile>(); 
@@ -49,7 +50,6 @@ public class Board extends Subject{
 	private Board() {
 		initialise();
 		createSet();
-		remainingBoard = board;
 	}
 	
 	private void initialise() {
@@ -226,11 +226,6 @@ public class Board extends Subject{
 		return board;
 	}
 	
-	public ArrayList<Tile> getSafeTiles(){
-		remainingBoard.removeIf(n->(n.getTileStatus().equals(TileStatus.SUNK)));
-		return remainingBoard;
-	}
-	
 	public int getPilotStartLoc() {
 		return pilotStartLoc;
 	}
@@ -274,5 +269,6 @@ public class Board extends Subject{
 	    { 
 	        return a.getLocation() - b.getLocation(); 
 	    } 
-	} 
+	}
+
 }
