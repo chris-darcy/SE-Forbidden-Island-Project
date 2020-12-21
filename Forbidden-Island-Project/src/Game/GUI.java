@@ -31,7 +31,30 @@ public class GUI {
 		initHeaderStrings();
 	}
 	
-	
+	//
+	// Introduction for game
+	//
+	public void introduction() {
+		System.out.println("| |  | |      | |                             \r\n"
+				+ "| |  | |  ___ | |  ___  ___   _ __ ___    ___ \r\n"
+				+ "| |/\\| | / _ \\| | / __|/ _ \\ | '_ ` _ \\  / _ \\\r\n"
+				+ "\\  /\\  /|  __/| || (__| (_) || | | | | ||  __/\r\n"
+				+ " \\/  \\/  \\___||_| \\___|\\___/ |_| |_| |_| \\___|");
+		System.out.println("          ___   ____\r\n"
+				+ "        /' --;^/ ,-_\\     \\ | /\r\n"
+				+ "       / / --o\\ o-\\ \\\\   --(_)--\r\n"
+				+ "      /-/-/|o|-|\\-\\\\|\\\\   / | \\\r\n"
+				+ "       '`  ` |-|   `` '\r\n"
+				+ "             |-|\r\n"
+				+ "             |-|O\r\n"
+				+ "             |-(\\,__\r\n"
+				+ "          ...|-|\\--,\\_....\r\n"
+				+ "      ,;;;;;;;;;;;;;;;;;;;;;;;;,.\r\n"
+				+ "~~,;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n"
+				+ "~;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,  ______   ---------   _____     ------");
+		System.out.println("\n\nYou are on a forbidden island, and will each be given a role:\nEngineer (G)\nExplorer (E)\nDiver(D) \nPilot (P) \n Messenger (M)");
+		System.out.println("\nThe first tiles will be flooded!");
+	}
 	//
 	// Display Board alongside player hands
 	//

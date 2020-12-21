@@ -6,7 +6,6 @@ public class WaterLevel extends Subject{
 	private int currentWaterLevel;
 	private int maxWaterLevel = 5;
 	private static WaterLevel uniqueInstance = null;
-//	private List<Observer> obervers = new ArrayList<Observer>(); // !! Try and intergrate an observer
 	//------------------------------ CONSTRUCTORS ---------------------------------//
 	
 	private WaterLevel(int currentWaterLevel, int maxWaterLevel) {

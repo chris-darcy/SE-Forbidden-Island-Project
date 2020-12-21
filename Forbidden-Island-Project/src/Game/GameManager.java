@@ -49,6 +49,7 @@ public class GameManager {
 	
 	public void setupGame() {
 		// should add some welcome message here indicating that flood cards will be drawn first
+		/// 
 		floodFirstSixTiles();
 		createPlayerList();
 		handOutCards();
@@ -176,9 +177,6 @@ public class GameManager {
 				treasureLost = true;
 				endGame(false);
 			}
-			else {
-				
-			}
 		}
 		else{	
 			if(specialTile.getTileStatus() == TileStatus.SUNK) {
@@ -192,9 +190,9 @@ public class GameManager {
 	// Check users tile status
 	//
 	public void updateParticipantTileStatus(Tile tile) {
-		for(Participant p : PlayerList.getInstance().getPlayerList()) {
+		for(Participant p : playerList.getPlayerList()) {
 			if(p.getLocation() == tile.getLocation() && tile.getTileStatus() == TileStatus.SUNK) {
-				p.onSunkTile(board.getInstance().getBoard());
+			   p.onSunkTile(board.getBoard());
 			}
 		}
 	}
@@ -310,7 +308,7 @@ public class GameManager {
 				floodCardDeck.mergeAndShuffle();
 			}
 			else {
-				player.addCardToHand(card); ///////////////
+				player.addCardToHand(card);
 			}
 		}
 	}
@@ -378,7 +376,7 @@ public class GameManager {
 		int cardRemove;
 		cardRemove = gui.chooseCardToDiscard(player.toString()); 
 		player.getHand().removeCardFromHand(cardRemove);
-		return hand;
+		return player.getHand();
 	}
 
 }

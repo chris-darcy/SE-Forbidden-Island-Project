@@ -12,7 +12,7 @@ public class Engineer extends Participant{
 	// can shore up two tiles for 1 action
 	@Override
 	public boolean shoreUp(Tile tile) {
-		if(participant.getActionsRemaining()>0 &&
+		if(this.getActionsRemaining()>0 &&
 		   tile.getTileStatus() != TileStatus.SUNK && isAdjacentTile(tile) && chance<2) {
 				
 				switch (tile.getTileStatus()){
