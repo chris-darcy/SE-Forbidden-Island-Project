@@ -79,6 +79,15 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
+	public void addCardToHand(Card card) {
+		if(this.getHand().size() < maxCards ) {       // check if too many cards in hand
+			this.getHand().addCardToHand(card);
+		}
+		else {
+			GameManager.getInstance().handAfterRemoval(participant);
+		}
+	}
+	
 	public boolean cardChosenOkay(Card card) {
 		if(card instanceof TreasureCard) { // card can only be given as long as it is not a helicopter/ sandbad card
 			return true;
