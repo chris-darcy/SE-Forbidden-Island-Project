@@ -47,7 +47,12 @@ public class Hand {
 	}
 	
 	public void addCardToHand(Card card) {
-		hand.add(card);
+		if(hand.size() < maxCards ) {
+			hand.add(card);
+		}
+		else {
+			GameManager.getInstance().handAfterRemoval();
+		}
 	}
 	
 	public ArrayList<Card> discardFour(String type){
