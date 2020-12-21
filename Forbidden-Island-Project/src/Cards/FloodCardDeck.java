@@ -58,7 +58,6 @@ public class FloodCardDeck {
 			case FLOODED:
 				tile.setTileStatus(TileStatus.SUNK);
 				if(tile.getTileType() == TileType.FOOLSLANDING) {
-				// Observer
 					break;
 				}
 			default:				

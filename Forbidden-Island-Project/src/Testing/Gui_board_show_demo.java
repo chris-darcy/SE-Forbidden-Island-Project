@@ -10,7 +10,7 @@ public class Gui_board_show_demo {
 		GM.createPlayerList();
 		
 		// to be removed, for demonstration only
-		GM.callGUIDisplay(2);
+//		GM.callGUIDisplay(2);
 	}
 
 }

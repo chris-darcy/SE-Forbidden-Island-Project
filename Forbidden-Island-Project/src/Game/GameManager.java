@@ -262,11 +262,8 @@ public class GameManager {
 	//
 	private void helicopter() {
 		int location = chooseHelicopterTo("helicopter"); // obtain location to helicopter participants to
-		ArrayList<Integer> participantsChosen = gui.chooseHelicopterParticipants(location);
-		
-		for(int i : participantsChosen) {
-			PlayerList.getInstance().getPlayer(i).setLocation(location);
-		}
+		ArrayList<Integer> playersToMove = gui.chooseHelicopterParticipants(location);
+		playerList.moveSelected(playersToMove,location);
 	}
 	
 	//
@@ -383,7 +380,5 @@ public class GameManager {
 		player.getHand().removeCardFromHand(cardRemove);
 		return hand;
 	}
-	
-	
- 
+
 }

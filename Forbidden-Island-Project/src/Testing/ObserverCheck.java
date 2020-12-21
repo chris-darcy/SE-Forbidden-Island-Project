@@ -1,35 +1,35 @@
 package Testing;
 
+import java.util.ArrayList;
+
+import Board.Board;
 import Board.Tile;
 import Board.TileStatus;
 import Board.TileType;
 import Cards.TreasureCardDeck;
-import Game.GameObserver;
+import Game.GameManager;
+import Observers.ParticipantObserver;
+import Participant.Engineer;
 import Participant.Hand;
-import Participant.Participant;
-import Cards.TreasureCard;
 
 public class ObserverCheck {
 	public static void main(String [] args) {
 		Tile tile = new Tile("Foolslanding", 15, TileStatus.FLOODED, TileType.FOOLSLANDING);
-		GameObserver tileObserver = new GameObserver(tile);
-//		tile.attach(tileObserver);
-		tile.setTileStatus(TileStatus.SUNK);
+		int playerNum = 1;
+		Hand hand = new Hand();
+		int numberOfActions = 2;
+		GameManager.getInstance();
 		
+		Engineer p = new Engineer("A", hand, playerNum, tile.getLocation(), numberOfActions);
+		ParticipantObserver observer = new ParticipantObserver(p);
 		
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
-		Hand hand = new Hand();
-		GameObserver handObserver = new GameObserver(hand);
-//		hand.attach(observer);
-		System.out.println(hand.toString());
 		
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 4; i++) {
 			hand.addCardToHand(treasureCardDeck.draw()); // pop the top cards from the deck
-			System.out.println(hand.size());
 		}
 		
-		
-//		Participant participant = new Participant("Hello", hand, 1, 15, 5);
+		tile.setTileStatus(TileStatus.SUNK); // sink the current tile
 		
 	}
 	

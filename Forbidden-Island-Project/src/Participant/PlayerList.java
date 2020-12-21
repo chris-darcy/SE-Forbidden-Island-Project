@@ -105,4 +105,10 @@ public class PlayerList {
 		}
 		return false;
 	}
+	
+	public void moveSelected(ArrayList<Integer> playersToMove, int location) {
+		for(int i : playersToMove) {
+			playerList.get(i).setLocation(location);
+		}
+	}
 }

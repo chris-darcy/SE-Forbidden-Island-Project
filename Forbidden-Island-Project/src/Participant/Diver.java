@@ -40,8 +40,8 @@ public class Diver extends Participant{
 	
 	private Tile getShortestDistance(ArrayList<Tile> board) {
 		ArrayList<Double> shortestDistance = new ArrayList<Double>();
-		int xd = participant.getLocation()%6;
-		int yd = participant.getLocation()/6;
+		int xd = this.getLocation()%6;
+		int yd = this.getLocation()/6;
 		for (Tile tile : board) {
 			if(tile.getTileType() != TileType.EMPTY && tile.getTileStatus() != TileStatus.SUNK ) {
 				int xt = tile.getLocation()%6;

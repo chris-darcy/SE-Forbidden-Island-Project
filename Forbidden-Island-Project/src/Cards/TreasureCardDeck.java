@@ -69,8 +69,6 @@ public class TreasureCardDeck {
 		
 		return cardDeck.pop();
 	}
-	
-
 
 	public void replace(Card drawnCard) {
 		cardDeck.add(drawnCard);
