@@ -307,7 +307,7 @@ public class GameManager {
 	//
 	private void drawFromTreasureDeck(Participant player) {
 		Card card;
-		while(!gameOver) {   // ensure that cards are not drawn after end of game
+		if(!gameOver) {   // ensure that cards are not drawn after end of game
 			for(int i=0;i<2;i++) {
 				card = treasureCardDeck.draw();
 				if(card instanceof RiseWaterTreasureCard) {
@@ -328,8 +328,10 @@ public class GameManager {
 	//
 	private void drawFloodCards() {
 		int level = waterLevel.getCurrentWaterLevel();
-		for(int i=0; i<level;i++) {
-			floodCardDeck.draw();		
+		if(!gameOver) {   // ensure that cards are not drawn after end of game
+			for(int i=0; i<level;i++) {
+				floodCardDeck.draw();		
+			}
 		}
 	}
 	
