@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import Board.Tile;
+import Board.TileStatus;
 import Board.TileType;
 
 public class GUI {	
@@ -300,9 +301,8 @@ public class GUI {
 	//
 	// get choice of next location from player for action either shoreUp or move to
 	//
-	public int chooseLocationTo(String action,ArrayList<Integer> relevantTiles,ArrayList<Tile> board) {
+	public int chooseLocationTo(String action,ArrayList<Integer> relevantTiles, ArrayList<Tile> board) {
 		int choice = 0;//default retrieve empty tile for empty relevantTile scenario
-		int choiceNum = 0;
 		valid = false;
 		
 		if(!relevantTiles.isEmpty()) {
@@ -328,6 +328,52 @@ public class GUI {
 			System.out.println("There are currently no tiles to " + action + ". Choose another action!");
 		}
 		return choice;		
+	}
+	
+	
+	public int chooseHelicopterLocation(String action, ArrayList<Integer> locations, ArrayList<Tile> board) {
+		int choice = 0;
+		valid = false;
+		
+		if(!locations.isEmpty()) {
+			System.out.println("~Where will you " + action + " to?~");
+			
+			for(int tilePos: locations) {
+				System.out.println("   " + tilePos + ": " + board.get(tilePos).getName());
+			}
+	
+			while(!valid) {
+				choice = getIntFor("the location");
+				
+				if(!locations.contains(choice)) {
+					System.out.println("you cannot "+ action + "to that location");
+				}
+				else{
+					valid = true;
+					System.out.println("you chose to " + action + " to " + board.get(choice).getName());
+					
+				}
+			}
+			
+		}
+		else {
+			System.out.println("There are currently no tiles to " + action + ". Choose another action!");
+		}
+		return choice;		
+	}
+	
+	//
+	// choose location to helicopter the participants to
+	//
+	public ArrayList<Integer> chooseHelicopterParticipants(int location) {
+		System.out.println("~How many players do you wish to move? (between 1 and" + PlayerList.getInstance().getSize() + ")~");
+		int playerChoice = getIntFor("the number of players to helicopter");
+		ArrayList<Integer> playersToMove = new ArrayList<Integer>();
+		
+		for(int i = 0; i<playerChoice;i++) {
+			playersToMove.add(choosePlayerTo("helicopter",PlayerList.getInstance().getAllStringPlayers()));
+		}
+		return playersToMove;
 	}
 	
 	//

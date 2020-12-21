@@ -25,14 +25,17 @@ public class Engineer extends Participant{
 					actionUsed();
 					chance++;
 				}
-				if(chance == 1) {
-					chance = 0;  // re-initialise for next turn
-				}
 				return true;		
 		}
 		else {
 			return false;
 		}
+	}
+	
+	@Override
+	public void setActionsRemaining(int numberOfActions) {
+		this.numberOfActions = numberOfActions;
+		this.chance = 0;
 	}
 }
 
