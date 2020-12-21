@@ -76,6 +76,9 @@ public class Hand {
 					treasureCards.add(card);
 				}
 			}
+			if(treasureCards.isEmpty()) {
+				return null;
+			}
 		return treasureCards;
 	}
 	

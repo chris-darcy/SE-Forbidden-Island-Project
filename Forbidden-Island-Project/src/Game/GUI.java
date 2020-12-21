@@ -494,7 +494,7 @@ public class GUI {
 				break;
 			}
 			default:{
-				p = new PlayerPrint().handBuild(player);
+				p = new PlayerPrint().fullBuild(player);
 				cardsToDisplay = p.hand;
 				break;
 			}

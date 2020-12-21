@@ -64,7 +64,7 @@ public abstract class Participant extends Subject {
 
 			if(receiversHand.numberOfCards() >= maxCards &&
 			    cardChosenOkay(card)) {                            // after addition of new card, card hand will be too big
-				GameManager.getInstance().handAfterRemoval(this);  // call method to get user to remove one of their cards
+				GameManager.getInstance().handAfterRemoval(receiver);  // call method to get user to remove one of their cards
 			}
 			
 			receiversHand.addCardToHand(card);
@@ -76,6 +76,15 @@ public abstract class Participant extends Subject {
 		}
 		else {
 			return false;
+		}
+	}
+	
+	public void addCardToHand(Card card) {
+		if(this.getHand().size() < maxCards ) {       // check if too many cards in hand
+			this.getHand().addCardToHand(card);
+		}
+		else {
+			GameManager.getInstance().handAfterRemoval(participant);
 		}
 	}
 	

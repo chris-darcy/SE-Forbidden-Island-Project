@@ -310,7 +310,7 @@ public class GameManager {
 				floodCardDeck.mergeAndShuffle();
 			}
 			else {
-				player.getHand().addCardToHand(card);
+				player.addCardToHand(card); ///////////////
 			}
 		}
 	}
