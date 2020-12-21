@@ -17,8 +17,6 @@ public class TileObserver extends Observer {
 	@Override
 	public void update() {
 			System.out.println(((Tile)this.subject).getName() + " has sunk!");
-			//GameManager.getInstance().endGame(false);              // game over if this is true
-			GameManager.getInstance().updateSpecialTileStatus((Tile)this.subject);
 	}
 }
 
