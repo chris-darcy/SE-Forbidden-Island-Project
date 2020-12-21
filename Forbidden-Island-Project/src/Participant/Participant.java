@@ -32,12 +32,11 @@ public abstract class Participant extends Subject {
 	
 	//------------------------------ METHODS --------------------------------------//
 
-	// !!!
 	public boolean shoreUp(Tile tile) {		
 		if(tile.getTileStatus() == TileStatus.FLOODED && isAdjacentTile(tile)) { // tile they have chosen is not sunk or is not valid	
-				tile.setTileStatus(TileStatus.UNFLOODED);
-				this.actionUsed();
-				return true;
+			tile.setTileStatus(TileStatus.UNFLOODED);
+			this.actionUsed();
+			return true;
 		}			
 		return false;
 	}
@@ -114,7 +113,7 @@ public abstract class Participant extends Subject {
 			relevantTiles.removeIf(n->(board.get(n).getTileStatus() != TileStatus.FLOODED));
 		}
 		if(!shoreUp && relevantTiles.isEmpty()) {
-			notifyAllObservers(); // game over as participant can't move
+			notifyAllObservers(); 
 		}
 		return relevantTiles;
 	}

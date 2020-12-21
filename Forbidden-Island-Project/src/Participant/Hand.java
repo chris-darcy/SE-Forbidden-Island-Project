@@ -47,11 +47,11 @@ public class Hand {
 	}
 	
 	public void addCardToHand(Card card) {
-		if(hand.size() < maxCards ) {
+		if(hand.size() < maxCards ) {       // check if too many cards in hand
 			hand.add(card);
 		}
 		else {
-			GameManager.getInstance().handAfterRemoval();
+			GameManager.getInstance().handAfterRemoval(participant);
 		}
 	}
 	
