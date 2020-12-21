@@ -307,17 +307,18 @@ public class GameManager {
 	//
 	private void drawFromTreasureDeck(Participant player) {
 		Card card;
-		
-		for(int i=0;i<2;i++) {
-			card = treasureCardDeck.draw();
-			if(card instanceof RiseWaterTreasureCard) {
-				waterLevel.increment();
-				gui.updateWaterLevel();
-				gui.printWatersRise();
-				floodCardDeck.mergeAndShuffle();
-			}
-			else {
-				player.addCardToHand(card);
+		while(!gameOver) {   // ensure that cards are not drawn after end of game
+			for(int i=0;i<2;i++) {
+				card = treasureCardDeck.draw();
+				if(card instanceof RiseWaterTreasureCard) {
+					waterLevel.increment();
+					gui.updateWaterLevel();
+					gui.printWatersRise();
+					floodCardDeck.mergeAndShuffle();
+				}
+				else {
+					player.addCardToHand(card);
+				}
 			}
 		}
 	}
