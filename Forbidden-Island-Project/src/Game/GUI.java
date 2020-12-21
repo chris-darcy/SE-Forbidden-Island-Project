@@ -462,6 +462,15 @@ public class GUI {
 		System.out.println(indent + "///" + fslashes + "///\n");
 	}
 	
+	public void printSpecialTileSunk(String sunkTile) {
+		TilePrint tl = new TilePrint(sunkTile);
+		printWarning(tl.name() + ", A CRITICAL "+tl.type()+" TILE HAS SUNK. ONE REMAINS...");
+	}
+	
+	public void printWatersRise() {
+		printWarning("A WATERS RISE CARD HAS BEEN DRAWN");
+	}
+	
 	public void printPlayerFinalised(String player){
 		PlayerPrint p = new PlayerPrint().fullBuild(player);
 		System.out.println(p.name() + ", you have been assigned the role of " + p.role() + "!\n");
@@ -490,16 +499,13 @@ public class GUI {
 	private int chooseCardTo(String action, String player) {
 		String[] cardsToDisplay;
 		int choice = 0;
-		PlayerPrint p;
-		
+		PlayerPrint p = new PlayerPrint().fullBuild(player);
 		switch(action) {
 			case"give": {
-				p = new PlayerPrint().fullBuild(player);
 				cardsToDisplay = p.treasureCards;
 				break;
 			}
 			default:{
-				p = new PlayerPrint().fullBuild(player);
 				cardsToDisplay = p.hand;
 				break;
 			}
@@ -622,11 +628,6 @@ public class GUI {
 			this.actionsRemaining = fields[4];
 			this.role = fields[5];
 			this.treasureCards = fields[6].substring(1,fields[6].length()-1).split(", ");
-			return this;
-		}
-		
-		public PlayerPrint handBuild(String player) {
-			this.hand = player.substring(1,player.length()-1).split(", ");
 			return this;
 		}
 		

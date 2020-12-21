@@ -18,7 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class Board extends Subject{
+public class Board {
 	
 	private static Board uniqueInstance = null;
 	private int board_size = 36;

@@ -18,7 +18,7 @@ public class Messenger extends Participant{
 		
 		receiversHand.addCardToHand(treasureCardToGive);
 		giversHand.removeCardFromHand(giversHand.findHandIndex(treasureCardToGive));
-		participant.actionUsed();
+		this.actionUsed();
 		
 		return true;
 	}

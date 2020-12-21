@@ -18,7 +18,7 @@ public class WaterLevel extends Subject{
 	
 	public static WaterLevel getInstance() {
 		if(uniqueInstance==null) {
-			uniqueInstance = new WaterLevel(0,10);
+			uniqueInstance = new WaterLevel(0,5);
 		}
 		return uniqueInstance;
 	}
@@ -29,7 +29,7 @@ public class WaterLevel extends Subject{
 	
 	public void setWaterLevel(int currentWaterLevel) { // update current water level
 		this.currentWaterLevel = currentWaterLevel;
-//		notifyObservers(); // notify the observers that the waterlevel has been changed
+ 
 	}
 	
 	public int getMaxWaterLevel() {
@@ -42,5 +42,6 @@ public class WaterLevel extends Subject{
 	
 	public void increment() {
 		this.currentWaterLevel++;
+		notifyAllObservers();// notify the observers that the waterlevel has been changed
 	}
 }
