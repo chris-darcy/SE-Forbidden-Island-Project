@@ -21,6 +21,7 @@ public class Board extends Subject{
 	private static Board uniqueInstance = null;
 	private int board_size = 36;
 	private ArrayList<Tile> board =  new ArrayList<Tile>(); 
+	private ArrayList<Tile> remainingBoard =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> fireSet =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> oceanSet =  new ArrayList<Tile>(); 
 	private ArrayList<Tile> earthSet =  new ArrayList<Tile>(); 
@@ -48,6 +49,7 @@ public class Board extends Subject{
 	private Board() {
 		initialise();
 		createSet();
+		remainingBoard = board;
 	}
 	
 	private void initialise() {
@@ -222,6 +224,11 @@ public class Board extends Subject{
 	
 	public ArrayList<Tile> getBoard() {
 		return board;
+	}
+	
+	public ArrayList<Tile> getSafeTiles(){
+		remainingBoard.removeIf(n->(n.getTileStatus().equals(TileStatus.SUNK)));
+		return remainingBoard;
 	}
 	
 	public int getPilotStartLoc() {

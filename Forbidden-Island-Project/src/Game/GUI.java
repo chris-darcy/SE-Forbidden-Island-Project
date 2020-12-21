@@ -265,6 +265,7 @@ public class GUI {
 	// Ask player to choose which card to discard
 	//
 	public int chooseCardToDiscard(String player) {	
+		printWarning("YOU HAVE TOO MANY CARDS!");
 		return chooseCardTo("discard",player);		
 	}
 	
@@ -331,15 +332,15 @@ public class GUI {
 	}
 	
 	
-	public int chooseHelicopterLocation(String action, ArrayList<Integer> locations, ArrayList<Tile> board) {
+	public int chooseHelicopterLocation(String action, ArrayList<Tile> locations) {
 		int choice = 0;
 		valid = false;
 		
 		if(!locations.isEmpty()) {
 			System.out.println("~Where will you " + action + " to?~");
 			
-			for(int tilePos: locations) {
-				System.out.println("   " + tilePos + ": " + board.get(tilePos).getName());
+			for(Tile tilePos: locations) {
+				System.out.println("   " + tilePos.getLocation() + ": " + tilePos.getName());
 			}
 	
 			while(!valid) {
@@ -350,7 +351,7 @@ public class GUI {
 				}
 				else{
 					valid = true;
-					System.out.println("you chose to " + action + " to " + board.get(choice).getName());
+					System.out.println("you chose to " + action + " to " + locations.get(choice).getName());
 					
 				}
 			}
@@ -482,6 +483,10 @@ public class GUI {
 		actionOutcomeMSG("give",giver,receiver,treasure,success);
 	}
 	
+	public void printNoTreasureCards(String name) {
+		System.out.println(name +",your party have no treasure cards to give");
+	}
+	
 	private int chooseCardTo(String action, String player) {
 		String[] cardsToDisplay;
 		int choice = 0;
@@ -494,7 +499,7 @@ public class GUI {
 				break;
 			}
 			default:{
-				p = new PlayerPrint().handBuild(player);
+				p = new PlayerPrint().fullBuild(player);
 				cardsToDisplay = p.hand;
 				break;
 			}
