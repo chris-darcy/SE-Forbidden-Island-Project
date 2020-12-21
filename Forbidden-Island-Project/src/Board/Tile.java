@@ -59,8 +59,9 @@ public class Tile extends Subject{
 			GameManager GM = GameManager.getInstance();
 			GM.updateSpecialTileStatus(this);
 		}
+		GameManager.getInstance().updateParticipantTileStatus(this);
 		this.tileStatus = tileStatus;
-//		notifyAllObservers();
+		notifyAllObservers();
 	}
 	
 	// get the type of the tile

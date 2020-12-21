@@ -190,6 +190,18 @@ public class GameManager {
 	}
 	
 	//
+	// Check users tile status
+	//
+	public void updateParticipantTileStatus(Tile tile) {
+		for(Participant p : PlayerList.getInstance().getPlayerList()) {
+			if(p.getLocation() == tile.getLocation() && tile.getTileStatus() == TileStatus.SUNK) {
+				p.onSunkTile(board.getInstance().getBoard());
+			}
+		}
+	}
+	
+	
+	//
 	// Letters represent character roles Engineer, Diver etc, shuffle and return String role list
 	//
 	private String[] shuffleRoles(){	
@@ -351,10 +363,10 @@ public class GameManager {
 		return gui.chooseLocationTo(action,relevantTiles, brd);
 	}
 	
-	public Hand handAfterRemoval() {
+	public Hand handAfterRemoval(Participant player) {
 		int cardRemove;
-		cardRemove = gui.chooseCardToDiscard(participant.toString()); 
-		participant.getHand().removeCardFromHand(cardRemove);
+		cardRemove = gui.chooseCardToDiscard(player.toString()); 
+		player.getHand().removeCardFromHand(cardRemove);
 		return hand;
 	}
 	
