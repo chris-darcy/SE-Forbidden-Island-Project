@@ -4,25 +4,16 @@ import Board.Tile;
 import Board.TileStatus;
 
 public class Engineer extends Participant{
-	protected int chance = 0;
-	
+	int chance = 0;
 	public Engineer(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
 	// can shore up two tiles for 1 action
-	// !!! should read in 2 tiles
 	@Override
 	public boolean shoreUp(Tile tile) {
-		int chance = 0; // initialise 
 		if(participant.getActionsRemaining()>0 &&
-		   chance <= 1 && 
-		   tile.getTileStatus() != TileStatus.SUNK &&
-		   (tile.getLocation() == participant.getLocation() || 
-			Math.abs(participant.getLocation()/6 - tile.getLocation()/6) == 1 || 
-			Math.abs(currentLocation%6 - tile.getLocation()%6) == 1)) {
-				
-				chance++;
+		   tile.getTileStatus() != TileStatus.SUNK && isAdjacentTile(tile) && chance<2) {
 				
 				switch (tile.getTileStatus()){
 				case UNFLOODED:
@@ -30,9 +21,12 @@ public class Engineer extends Participant{
 				case FLOODED:
 					tile.setTileStatus(TileStatus.SUNK);
 				}
-				
-				if(chance == 1) { // has had two chances
-					participant.actionUsed();
+				if(chance == 0) { // remove action after first of two opportunities
+					actionUsed();
+					chance++;
+				}
+				if(chance == 1) {
+					chance = 0;  // re-initialise for next turn
 				}
 				return true;		
 		}
@@ -41,3 +35,4 @@ public class Engineer extends Participant{
 		}
 	}
 }
+

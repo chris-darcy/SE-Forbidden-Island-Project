@@ -252,7 +252,7 @@ public class GameManager {
 	//
 	// facilitate shoring up a tile
 	//
-	private void shoreUp(Participant player) {		
+	public void shoreUp(Participant player) {		
 		int location = chooseLocationTo("shore up", player);
 		player.shoreUp(board.getBoard().get(location));
 	}
