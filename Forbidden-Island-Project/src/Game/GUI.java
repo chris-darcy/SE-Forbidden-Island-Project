@@ -52,7 +52,7 @@ public class GUI {
 				+ "      ,;;;;;;;;;;;;;;;;;;;;;;;;,.\r\n"
 				+ "~~,;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\r\n"
 				+ "~;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;,  ______   ---------   _____     ------");
-		System.out.println("\n\nYou are on a forbidden island, and will each be given a role:\nEngineer (G)\nExplorer (E)\nDiver(D) \nPilot (P) \n Messenger (M)");
+		System.out.println("\n\nYou are on a forbidden island, and will each be given a role:\nEngineer (G)\nExplorer (E)\nDiver(D) \nPilot (P) \nMessenger (M)");
 		System.out.println("\nThe first tiles will be flooded!");
 	}
 	//
