@@ -170,17 +170,6 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
-	public boolean helicopterParticipants(Participant p, int location) {
-		HelicopterTreasureCard card = new HelicopterTreasureCard("Helicopter");
-		if(this.getHand().handContains(card)) { // the user hand contains a helicopter card
-			p.setLocation(location);
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
-	
 	@Override
 	public String toString() {
 		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName()+"\n"+this.hand.getTreasureCards().toString();

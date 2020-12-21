@@ -1,13 +1,10 @@
 package WaterLevel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import Observers.Subject;
 
 public class WaterLevel extends Subject{
 	private int currentWaterLevel;
-	private int maxWaterLevel;
+	private int maxWaterLevel = 5;
 	private static WaterLevel uniqueInstance = null;
 //	private List<Observer> obervers = new ArrayList<Observer>(); // !! Try and intergrate an observer
 	//------------------------------ CONSTRUCTORS ---------------------------------//
