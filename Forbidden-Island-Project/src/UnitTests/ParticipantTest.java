@@ -50,7 +50,7 @@ public class ParticipantTest {
 		for(int i=0;i<36;i++) {
 			player.move(i);
 			Collections.addAll(validationSet,tl[i]);
-			relevantTiles = player.getRelevantTiles(board.getBoard());
+			relevantTiles = player.getRelevantTiles(board.getBoard(), false);
 			Collections.sort(relevantTiles);// order matters
 			assertEquals("relevant positions expected not returned",validationSet,relevantTiles);
 			validationSet.clear();
