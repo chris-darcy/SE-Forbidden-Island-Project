@@ -261,9 +261,13 @@ public class GameManager {
 	//
 	// facilitate movement of players to a location with helicopter card
 	//
-	private void helicopter(Participant player) {
-		int location = chooseLocationTo("helicopter to", player);
-		participant.helicopterParticipants(player, location);
+	private void helicopter() {
+		int location = chooseHelicopterTo("helicopter"); // obtain location to helicopter participants to
+		ArrayList<Integer> participantsChosen = gui.chooseHelicopterParticipants(location);
+		
+		for(int i : participantsChosen) {
+			PlayerList.getInstance().getPlayer(i).setLocation(location);
+		}
 	}
 	
 	//
@@ -361,6 +365,17 @@ public class GameManager {
 		
 		relevantTiles = player.getRelevantTiles(brd,shoreUp);
 		return gui.chooseLocationTo(action,relevantTiles, brd);
+	}
+	
+	private int chooseHelicopterTo(String action) {
+		ArrayList<Integer> locations = new ArrayList<Integer>();
+
+		for(Tile tile : Board.getInstance().getBoard()) {
+			if(tile.getTileStatus() != TileStatus.SUNK && tile.getTileType() != TileType.EMPTY) {
+				locations.add(tile.getLocation());
+			} 
+		}
+		return gui.chooseHelicopterLocation(action, locations, board.getInstance().getBoard());
 	}
 	
 	public Hand handAfterRemoval(Participant player) {
