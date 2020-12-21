@@ -445,10 +445,12 @@ public class GUI {
 			case"give": {
 				p = new PlayerPrint().fullBuild(player);
 				cardsToDisplay = p.treasureCards;
+				break;
 			}
 			default:{
 				p = new PlayerPrint().handBuild(player);
 				cardsToDisplay = p.hand;
+				break;
 			}
 		}
 		
