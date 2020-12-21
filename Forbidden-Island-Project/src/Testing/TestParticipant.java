@@ -16,7 +16,6 @@ public class TestParticipant {
 		int location = 3; // uppermost edge
 		Hand hand = new Hand();
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
-		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		int playerNumber = 1;
 		 
 		hand.addCardToHand(treasureCardDeck.draw());
@@ -27,6 +26,9 @@ public class TestParticipant {
 		System.out.println(board.get(diver.getLocation()).getTileStatus());
 		board.get(diver.getLocation()).setTileStatus(TileStatus.SUNK);
 		ArrayList<Integer> where = diver.onSunkTile(board);
-		System.out.println(where);
+		System.out.println("------------------");
+		for(int i : where) {
+			System.out.println(board.get(i));
+		}
 	}
 }

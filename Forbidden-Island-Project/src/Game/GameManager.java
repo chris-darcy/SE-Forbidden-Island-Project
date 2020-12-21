@@ -25,7 +25,6 @@ public class GameManager {
 	private boolean treasureLost;
 	private boolean foolsLandingLost;
 	private Hand hand;
-	private Participant participant;
 	
 	GameManager() {
 		treasureLost = false;

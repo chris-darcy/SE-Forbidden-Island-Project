@@ -2,7 +2,6 @@ package Participant;
 
 import java.util.ArrayList;
 
-import Cards.Card;
 import Cards.HelicopterTreasureCard;
 import Cards.SandbagTreasureCard;
 
