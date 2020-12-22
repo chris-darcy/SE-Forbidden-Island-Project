@@ -115,8 +115,8 @@ public class GameManager {
 			gui.gameWon();
 		}
 		else{
-			gui.gameLost();
 			gameOver = true;
+			gui.gameLost();
 		}
 	}
 	
@@ -226,7 +226,7 @@ public class GameManager {
 			receiver = playerList.getPlayer(gui.chooseReceiver(playerList.getAllStringPlayersExcept(player)));
 			cardChoice = gui.chooseCardToGive(player.toString());
 			card = player.hand.getTreasureCards().get(cardChoice);
-			success = player.giveCard(receiver,card);             // error here
+			success = player.giveCard(receiver,card);            
 			gui.printGiveCardOutcome(player.getName(),receiver.getName(),card.getName(),success);
 		}
 		else {
@@ -312,9 +312,11 @@ public class GameManager {
 				card = treasureCardDeck.draw();
 				if(card instanceof RiseWaterTreasureCard) {
 					waterLevel.increment();
-					gui.updateWaterLevel();
-					gui.printWatersRise();
-					floodCardDeck.mergeAndShuffle();
+					if(!gameOver) {
+						gui.updateWaterLevel();
+						gui.printWatersRise();
+						floodCardDeck.mergeAndShuffle();
+					}
 				}
 				else {
 					player.addCardToHand(card);
