@@ -60,13 +60,11 @@ public abstract class Participant extends Subject {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == this.location) {
 			Hand giversHand = this.hand;
-			Hand receiversHand = receiver.getHand();
 
 
 			if(cardChosenOkay(card)) {     
-				receiversHand.addCardToHand(card);// after addition of new card, card hand will be too big										// call method to get user to remove one of their cards
+				receiver.addCardToHand(card);// after addition of new card, card hand will be too big										// call method to get user to remove one of their cards
 			}
-			
 			
 			giversHand.removeCardFromHand(giversHand.findHandIndex(card));
 			
