@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_51wIoERGEeuWpf72et1Eag" name="Forbidden-Island-Project">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_54y1kERGEeuWpf72et1Eag">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_65JfUERGEeuWpf72et1Eag" name="Player"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_95hgEERGEeuWpf72et1Eag" name="SetUpGame">
+    <include xmi:type="uml:Include" xmi:id="_zkw2QERHEeuWpf72et1Eag" addition="_SnvbkERHEeuWpf72et1Eag"/>
+    <include xmi:type="uml:Include" xmi:id="_0iykwERHEeuWpf72et1Eag" addition="_ZHwL8ERHEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_CxoegERHEeuWpf72et1Eag" name="runGame">
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_-nxwYERKEeuWpf72et1Eag" name="ExtensionPoint1"/>
+    <extensionPoint xmi:type="uml:ExtensionPoint" xmi:id="_LMVdIERLEeuWpf72et1Eag" name="ExtensionPoint2"/>
+    <include xmi:type="uml:Include" xmi:id="_M6Q-kERLEeuWpf72et1Eag" addition="_y0tK8ERKEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_SnvbkERHEeuWpf72et1Eag" name="create PlayerList"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ZHwL8ERHEeuWpf72et1Eag" name="initialise board"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_B2CjgERIEeuWpf72et1Eag" name="GameManager"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_GriS0ERIEeuWpf72et1Eag"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_L3mvEERIEeuWpf72et1Eag" name="setUpGame"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_SZBNoERIEeuWpf72et1Eag"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_S1VgwERJEeuWpf72et1Eag" name="Player 1">
+    <generalization xmi:type="uml:Generalization" xmi:id="_fkHggERJEeuWpf72et1Eag" general="_65JfUERGEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_UMuKcERJEeuWpf72et1Eag" name="Player 2"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_XKKzAERJEeuWpf72et1Eag" name="Player 3"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_YpTqgERJEeuWpf72et1Eag" name="Player 4"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_rzLo8ERKEeuWpf72et1Eag" memberEnd="_rzfyAERKEeuWpf72et1Eag _rziOQERKEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rzX2MERKEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rzZEUERKEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_rzfyAERKEeuWpf72et1Eag" name="player 2" type="_UMuKcERJEeuWpf72et1Eag" association="_rzLo8ERKEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_rziOQERKEeuWpf72et1Eag" name="player 4" type="_YpTqgERJEeuWpf72et1Eag" association="_rzLo8ERKEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_y0tK8ERKEeuWpf72et1Eag" name="Choose Action"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_30MjwERKEeuWpf72et1Eag" name="On a flooded tile">
+    <extend xmi:type="uml:Extend" xmi:id="_-nnYUERKEeuWpf72et1Eag" extendedCase="_CxoegERHEeuWpf72et1Eag" extensionLocation="_-nxwYERKEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_Dfbb0ERLEeuWpf72et1Eag" name="Too Many Cards in Hand">
+    <extend xmi:type="uml:Extend" xmi:id="_LMU2EERLEeuWpf72et1Eag" extendedCase="_CxoegERHEeuWpf72et1Eag" extensionLocation="_LMVdIERLEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_caDGUERLEeuWpf72et1Eag" name="Draw Treasure Cards"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_gcJp0ERLEeuWpf72et1Eag" name="Draw Flood Cards"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_jaN9cERLEeuWpf72et1Eag" name="End Turn/ Game"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_5VHugERLEeuWpf72et1Eag" memberEnd="_5VI8okRLEeuWpf72et1Eag _5VJjsERLEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_5VI8oERLEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_5VI8oURLEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_5VI8okRLEeuWpf72et1Eag" name="draw treasure cards" type="_caDGUERLEeuWpf72et1Eag" association="_5VHugERLEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_5VJjsERLEeuWpf72et1Eag" name="choose action" type="_y0tK8ERKEeuWpf72et1Eag" association="_5VHugERLEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6Gv_wERLEeuWpf72et1Eag" memberEnd="_6GxN4URLEeuWpf72et1Eag _6GxN4kRLEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6Gwm0ERLEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6GxN4ERLEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6GxN4URLEeuWpf72et1Eag" name="draw flood cards" type="_gcJp0ERLEeuWpf72et1Eag" association="_6Gv_wERLEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6GxN4kRLEeuWpf72et1Eag" name="draw treasure cards" type="_caDGUERLEeuWpf72et1Eag" association="_6Gv_wERLEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_6xzu8ERLEeuWpf72et1Eag" memberEnd="_6x0WAkRLEeuWpf72et1Eag _6x0WA0RLEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_6x0WAERLEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_6x0WAURLEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6x0WAkRLEeuWpf72et1Eag" name="end turn/ game" type="_jaN9cERLEeuWpf72et1Eag" association="_6xzu8ERLEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_6x0WA0RLEeuWpf72et1Eag" name="draw flood cards" type="_gcJp0ERLEeuWpf72et1Eag" association="_6xzu8ERLEeuWpf72et1Eag"/>
+  </packagedElement>
+</uml:Model>

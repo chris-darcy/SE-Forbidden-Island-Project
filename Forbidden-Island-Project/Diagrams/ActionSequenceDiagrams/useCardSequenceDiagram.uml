@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_k7KesEQ-EeuWpf72et1Eag" name="Forbidden-Island-Project">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_k8U8UEQ-EeuWpf72et1Eag">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Interaction" xmi:id="_k7iSIEQ-EeuWpf72et1Eag" name="Interaction1">
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_mMOd8EQ-EeuWpf72et1Eag" name="GameManager" coveredBy="_vePb4EQ-EeuWpf72et1Eag _veTtUEQ-EeuWpf72et1Eag _06GnoEQ-EeuWpf72et1Eag _06GnoUQ-EeuWpf72et1Eag _3aBmsEQ-EeuWpf72et1Eag _7Q0SEUQ-EeuWpf72et1Eag _BNedwUQ_EeuWpf72et1Eag _DDwC4EQ_EeuWpf72et1Eag _FCNToEQ_EeuWpf72et1Eag _LgNR0EQ_EeuWpf72et1Eag _NFGzEUQ_EeuWpf72et1Eag _yrsPUEQ-EeuWpf72et1Eag"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_nODuYEQ-EeuWpf72et1Eag" name="GUI" coveredBy="_vePb4EQ-EeuWpf72et1Eag _veTtUEQ-EeuWpf72et1Eag _DDwC4EQ_EeuWpf72et1Eag _FCNToUQ_EeuWpf72et1Eag _LgNR0EQ_EeuWpf72et1Eag _NFHaIEQ_EeuWpf72et1Eag"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_okadUEQ-EeuWpf72et1Eag" name="PlayerList" coveredBy="_vePb4EQ-EeuWpf72et1Eag _veTtUEQ-EeuWpf72et1Eag _3aBmsUQ-EeuWpf72et1Eag _7Q05IEQ-EeuWpf72et1Eag _BNedwEQ_EeuWpf72et1Eag _DDwC4EQ_EeuWpf72et1Eag _LgNR0EQ_EeuWpf72et1Eag _-gZMcEQ-EeuWpf72et1Eag"/>
+    <fragment xmi:type="uml:CombinedFragment" xmi:id="_vePb4EQ-EeuWpf72et1Eag" name="CombinedFragment4" covered="_nODuYEQ-EeuWpf72et1Eag _okadUEQ-EeuWpf72et1Eag _mMOd8EQ-EeuWpf72et1Eag">
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_veTtUEQ-EeuWpf72et1Eag" name="InteractionOperand0" covered="_nODuYEQ-EeuWpf72et1Eag _okadUEQ-EeuWpf72et1Eag _mMOd8EQ-EeuWpf72et1Eag">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_06GnoEQ-EeuWpf72et1Eag" name="Message5SendEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_06GAkEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_yrsPUEQ-EeuWpf72et1Eag" name="ActionExecutionSpecification5" covered="_mMOd8EQ-EeuWpf72et1Eag" finish="_NFGzEUQ_EeuWpf72et1Eag" start="_06GnoEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_06GnoUQ-EeuWpf72et1Eag" name="Message5ReceiveEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_06GAkEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_3aBmsUQ-EeuWpf72et1Eag" name="Message6ReceiveEvent" covered="_okadUEQ-EeuWpf72et1Eag" message="_3aA_oEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_-gZMcEQ-EeuWpf72et1Eag" name="ActionExecutionSpecification8" covered="_okadUEQ-EeuWpf72et1Eag" finish="_BNedwEQ_EeuWpf72et1Eag" start="_3aBmsUQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_3aBmsEQ-EeuWpf72et1Eag" name="Message6SendEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_3aA_oEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_7Q0SEUQ-EeuWpf72et1Eag" name="Message7SendEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_7Q0SEEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_7Q05IEQ-EeuWpf72et1Eag" name="Message7ReceiveEvent" covered="_okadUEQ-EeuWpf72et1Eag" message="_7Q0SEEQ-EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_BNedwEQ_EeuWpf72et1Eag" name="Message8SendEvent" covered="_okadUEQ-EeuWpf72et1Eag" message="_BNd2sEQ_EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_BNedwUQ_EeuWpf72et1Eag" name="Message8ReceiveEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_BNd2sEQ_EeuWpf72et1Eag"/>
+        <guard xmi:type="uml:InteractionConstraint" xmi:id="_veTtUUQ-EeuWpf72et1Eag" name="guard">
+          <specification xmi:type="uml:LiteralString" xmi:id="_yCL_UEQ-EeuWpf72et1Eag" value="useCard"/>
+        </guard>
+      </operand>
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_DDwC4EQ_EeuWpf72et1Eag" name="InteractionOperand2" covered="_nODuYEQ-EeuWpf72et1Eag _okadUEQ-EeuWpf72et1Eag _mMOd8EQ-EeuWpf72et1Eag">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_FCNToEQ_EeuWpf72et1Eag" name="Message9SendEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_FCMskEQ_EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_FCNToUQ_EeuWpf72et1Eag" name="Message9ReceiveEvent" covered="_nODuYEQ-EeuWpf72et1Eag" message="_FCMskEQ_EeuWpf72et1Eag"/>
+        <guard xmi:type="uml:InteractionConstraint" xmi:id="_DDwp8EQ_EeuWpf72et1Eag" name="guard">
+          <specification xmi:type="uml:LiteralString" xmi:id="_D9GswEQ_EeuWpf72et1Eag" value="if outcome true"/>
+        </guard>
+      </operand>
+      <operand xmi:type="uml:InteractionOperand" xmi:id="_LgNR0EQ_EeuWpf72et1Eag" name="InteractionOperand3" covered="_nODuYEQ-EeuWpf72et1Eag _okadUEQ-EeuWpf72et1Eag _mMOd8EQ-EeuWpf72et1Eag">
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NFGzEUQ_EeuWpf72et1Eag" name="Message10SendEvent" covered="_mMOd8EQ-EeuWpf72et1Eag" message="_NFGzEEQ_EeuWpf72et1Eag"/>
+        <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_NFHaIEQ_EeuWpf72et1Eag" name="Message10ReceiveEvent" covered="_nODuYEQ-EeuWpf72et1Eag" message="_NFGzEEQ_EeuWpf72et1Eag"/>
+        <guard xmi:type="uml:InteractionConstraint" xmi:id="_LgN44EQ_EeuWpf72et1Eag" name="guard">
+          <specification xmi:type="uml:LiteralString" xmi:id="_MSu68EQ_EeuWpf72et1Eag" value="if outcome false"/>
+        </guard>
+      </operand>
+    </fragment>
+    <message xmi:type="uml:Message" xmi:id="_06GAkEQ-EeuWpf72et1Eag" name="useCard()" messageSort="asynchCall" receiveEvent="_06GnoUQ-EeuWpf72et1Eag" sendEvent="_06GnoEQ-EeuWpf72et1Eag"/>
+    <message xmi:type="uml:Message" xmi:id="_3aA_oEQ-EeuWpf72et1Eag" name="playerListContainsHelicopterCard()" messageSort="asynchCall" receiveEvent="_3aBmsUQ-EeuWpf72et1Eag" sendEvent="_3aBmsEQ-EeuWpf72et1Eag"/>
+    <message xmi:type="uml:Message" xmi:id="_7Q0SEEQ-EeuWpf72et1Eag" name="playerListContainsSandBagCard()" messageSort="asynchCall" receiveEvent="_7Q05IEQ-EeuWpf72et1Eag" sendEvent="_7Q0SEUQ-EeuWpf72et1Eag"/>
+    <message xmi:type="uml:Message" xmi:id="_BNd2sEQ_EeuWpf72et1Eag" name="outcome" messageSort="reply" receiveEvent="_BNedwUQ_EeuWpf72et1Eag" sendEvent="_BNedwEQ_EeuWpf72et1Eag"/>
+    <message xmi:type="uml:Message" xmi:id="_FCMskEQ_EeuWpf72et1Eag" name="choosePlayerToUseCard()" messageSort="asynchCall" receiveEvent="_FCNToUQ_EeuWpf72et1Eag" sendEvent="_FCNToEQ_EeuWpf72et1Eag"/>
+    <message xmi:type="uml:Message" xmi:id="_NFGzEEQ_EeuWpf72et1Eag" name="printNoSpecialCards()" messageSort="asynchCall" receiveEvent="_NFHaIEQ_EeuWpf72et1Eag" sendEvent="_NFGzEUQ_EeuWpf72et1Eag"/>
+  </packagedElement>
+</uml:Model>

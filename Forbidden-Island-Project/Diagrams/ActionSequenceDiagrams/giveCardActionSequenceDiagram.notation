@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_DD2NsEQ4EeuryaKUYnp85Q" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_DD2NsUQ4EeuryaKUYnp85Q" type="Interaction_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_DD2NskQ4EeuryaKUYnp85Q" type="Interaction_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_DD2Ns0Q4EeuryaKUYnp85Q" type="Interaction_SubfragmentCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_NhjisEQ4EeuryaKUYnp85Q" type="CombinedFragment_Shape">
+        <children xmi:type="notation:BasicCompartment" xmi:id="_NhkJwEQ4EeuryaKUYnp85Q" type="CombinedFragment_SubfragmentCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_NhkJxEQ4EeuryaKUYnp85Q" type="InteractionOperand_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_NhkJxkQ4EeuryaKUYnp85Q" type="InteractionOperand_Guard">
+              <element xmi:type="uml:InteractionConstraint" href="giveCardActionSequenceDiagram.uml#_NheqMUQ4EeuryaKUYnp85Q"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NhkJx0Q4EeuryaKUYnp85Q" x="5" y="5"/>
+            </children>
+            <element xmi:type="uml:InteractionOperand" href="giveCardActionSequenceDiagram.uml#_NheqMEQ4EeuryaKUYnp85Q"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NhkJxUQ4EeuryaKUYnp85Q" width="841" height="271"/>
+          </children>
+          <children xmi:type="notation:Shape" xmi:id="_MhBV8EQ8EeuWpf72et1Eag" type="InteractionOperand_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_MhB9AEQ8EeuWpf72et1Eag" type="InteractionOperand_Guard">
+              <element xmi:type="uml:InteractionConstraint" href="giveCardActionSequenceDiagram.uml#_Mgw3QEQ8EeuWpf72et1Eag"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MhB9AUQ8EeuWpf72et1Eag" x="5" y="5"/>
+            </children>
+            <element xmi:type="uml:InteractionOperand" href="giveCardActionSequenceDiagram.uml#_MgvCEEQ8EeuWpf72et1Eag"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MhBV8UQ8EeuWpf72et1Eag" y="271" width="841" height="380"/>
+          </children>
+          <children xmi:type="notation:Shape" xmi:id="_vAjsQEQ8EeuWpf72et1Eag" type="InteractionOperand_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_vAjsQkQ8EeuWpf72et1Eag" type="InteractionOperand_Guard">
+              <element xmi:type="uml:InteractionConstraint" href="giveCardActionSequenceDiagram.uml#_vAQxUEQ8EeuWpf72et1Eag"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vAjsQ0Q8EeuWpf72et1Eag" x="5" y="5"/>
+            </children>
+            <element xmi:type="uml:InteractionOperand" href="giveCardActionSequenceDiagram.uml#_vAO8IEQ8EeuWpf72et1Eag"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_vAjsQUQ8EeuWpf72et1Eag" y="651" width="841" height="121"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_NhkJwUQ4EeuryaKUYnp85Q"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_NhkJwkQ4EeuryaKUYnp85Q"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NhkJw0Q4EeuryaKUYnp85Q"/>
+        </children>
+        <element xmi:type="uml:CombinedFragment" href="giveCardActionSequenceDiagram.uml#_NhaYwEQ4EeuryaKUYnp85Q"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NhjisUQ4EeuryaKUYnp85Q" x="34" y="46" width="841" height="801"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_GZbpcEQ4EeuryaKUYnp85Q" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_GZcQgEQ4EeuryaKUYnp85Q" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_Mj5AkEQ4EeuryaKUYnp85Q" type="ActionExecutionSpecification_Shape">
+          <element xmi:type="uml:ActionExecutionSpecification" href="giveCardActionSequenceDiagram.uml#_Mj1WMEQ4EeuryaKUYnp85Q"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Mj5AkUQ4EeuryaKUYnp85Q" x="40" y="96" width="20" height="721"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="giveCardActionSequenceDiagram.uml#_GZZ0QEQ4EeuryaKUYnp85Q"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_GZbpcUQ4EeuryaKUYnp85Q" x="74" y="10" height="857"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_HauHUEQ4EeuryaKUYnp85Q" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_HauuYEQ4EeuryaKUYnp85Q" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_eu_iQEQ8EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_evAJUEQ8EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Behavior">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_evAJUUQ8EeuWpf72et1Eag" x="18" y="18"/>
+          </children>
+          <element xmi:type="uml:BehaviorExecutionSpecification" href="giveCardActionSequenceDiagram.uml#_eu9tEEQ8EeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_eu_iQUQ8EeuWpf72et1Eag" x="40" y="536" width="20" height="41"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="giveCardActionSequenceDiagram.uml#_HasSIEQ4EeuryaKUYnp85Q"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_HauHUUQ4EeuryaKUYnp85Q" x="274" y="10" height="857"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_IY-fUEQ4EeuryaKUYnp85Q" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_IY_GYUQ4EeuryaKUYnp85Q" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_Vg3iokQ4EeuryaKUYnp85Q" type="BehaviorExecutionSpecification_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_Vg7NAEQ4EeuryaKUYnp85Q" type="BehaviorExecutionSpecification_Behavior">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_Vg7NAUQ4EeuryaKUYnp85Q" x="18" y="18"/>
+          </children>
+          <element xmi:type="uml:BehaviorExecutionSpecification" href="giveCardActionSequenceDiagram.uml#_Vg3ioEQ4EeuryaKUYnp85Q"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Vg3io0Q4EeuryaKUYnp85Q" x="40" y="396" width="20" height="80"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="giveCardActionSequenceDiagram.uml#_IY8qIEQ4EeuryaKUYnp85Q"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_IY_GYEQ4EeuryaKUYnp85Q" x="474" y="10" height="741"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_KtZZAEQ4EeuryaKUYnp85Q" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_KtZZAkQ4EeuryaKUYnp85Q" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_-O6iQEQ7EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_-O7JUEQ7EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Behavior">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_-O7JUUQ7EeuWpf72et1Eag" x="18" y="18"/>
+          </children>
+          <element xmi:type="uml:BehaviorExecutionSpecification" href="giveCardActionSequenceDiagram.uml#_-O1pwEQ7EeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-O6iQUQ7EeuWpf72et1Eag" x="40" y="196" width="20" height="100"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_knFXAEQ8EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Shape">
+          <children xmi:type="notation:DecorationNode" xmi:id="_knF-EEQ8EeuWpf72et1Eag" type="BehaviorExecutionSpecification_Behavior">
+            <layoutConstraint xmi:type="notation:Location" xmi:id="_knF-EUQ8EeuWpf72et1Eag" x="18" y="18"/>
+          </children>
+          <element xmi:type="uml:BehaviorExecutionSpecification" href="giveCardActionSequenceDiagram.uml#_knEI4EQ8EeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_knFXAUQ8EeuWpf72et1Eag" x="40" y="616" width="20" height="40"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="giveCardActionSequenceDiagram.uml#_KtWVsEQ4EeuryaKUYnp85Q"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KtZZAUQ4EeuryaKUYnp85Q" x="674" y="10" height="857"/>
+      </children>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DD2NtEQ4EeuryaKUYnp85Q"/>
+    </children>
+    <element xmi:type="uml:Interaction" href="giveCardActionSequenceDiagram.uml#_DD0YgEQ4EeuryaKUYnp85Q"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_DD2NtUQ4EeuryaKUYnp85Q"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_DD2NtkQ4EeuryaKUYnp85Q" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_DD2Nt0Q4EeuryaKUYnp85Q"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_DD2NuEQ4EeuryaKUYnp85Q" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+    <owner xmi:type="uml:Model" href="giveCardActionSequenceDiagram.uml#_DDbW8EQ4EeuryaKUYnp85Q"/>
+  </styles>
+  <element xmi:type="uml:Interaction" href="giveCardActionSequenceDiagram.uml#_DD0YgEQ4EeuryaKUYnp85Q"/>
+  <edges xmi:type="notation:Connector" xmi:id="_SGqFkEQ4EeuryaKUYnp85Q" type="Message_AsynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_GZbpcEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_SGqFk0Q4EeuryaKUYnp85Q" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SGqFlEQ4EeuryaKUYnp85Q" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_SGqFlUQ4EeuryaKUYnp85Q" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SGqFlkQ4EeuryaKUYnp85Q" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_SGqFkUQ4EeuryaKUYnp85Q"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_SGAlUEQ4EeuryaKUYnp85Q"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SGqFkkQ4EeuryaKUYnp85Q" points="[-10, -2, -10, -60]$[-10, 58, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SG-1sEQ4EeuryaKUYnp85Q" id="(0.5,0.11201866977829639)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_SHBR8EQ4EeuryaKUYnp85Q" id="(0.5,0.20536756126021002)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_VgS64EQ4EeuryaKUYnp85Q" type="Message_SynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_IY-fUEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_VgS640Q4EeuryaKUYnp85Q" type="Message_SynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_VgS65EQ4EeuryaKUYnp85Q" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_VgS65UQ4EeuryaKUYnp85Q" type="Message_SynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_VgS65kQ4EeuryaKUYnp85Q" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_VgS64UQ4EeuryaKUYnp85Q"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_VgNbUEQ4EeuryaKUYnp85Q"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_VgS64kQ4EeuryaKUYnp85Q" points="[-10, -8, -430, -60]$[420, 52, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VgoSEEQ4EeuryaKUYnp85Q" id="(0.5,0.46207701283547264)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_VgrVYEQ4EeuryaKUYnp85Q" id="(0.5,0.5344129554655871)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_cI0HAEQ4EeuryaKUYnp85Q" type="Message_ReplyEdge" source="_IY-fUEQ4EeuryaKUYnp85Q" target="_GZbpcEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_cI0HA0Q4EeuryaKUYnp85Q" type="Message_ReplyNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_cI0HBEQ4EeuryaKUYnp85Q" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_cI0HBUQ4EeuryaKUYnp85Q" type="Message_ReplyStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_cI0HBkQ4EeuryaKUYnp85Q" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_cI0HAUQ4EeuryaKUYnp85Q"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_cIuAYEQ4EeuryaKUYnp85Q"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_cI0HAkQ4EeuryaKUYnp85Q" points="[-10, -2, 410, -40]$[-430, 38, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cJMhgEQ4EeuryaKUYnp85Q" id="(0.5,0.6423751686909581)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_cJQL4EQ4EeuryaKUYnp85Q" id="(0.5,0.5554259043173863)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_-NcioEQ7EeuWpf72et1Eag" type="Message_SynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_KtZZAEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-NgNAEQ7EeuWpf72et1Eag" type="Message_SynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-NgNAUQ7EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_-NgNAkQ7EeuWpf72et1Eag" type="Message_SynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-NgNA0Q7EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_-NdJsEQ7EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_-M03kEQ7EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-NdJsUQ7EeuWpf72et1Eag" points="[-10, -7, -650, 60]$[640, -67, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-OHRAEQ7EeuWpf72et1Eag" id="(0.5,0.22870478413068845)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-OHRAUQ7EeuWpf72et1Eag" id="(0.5,0.22870478413068845)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_-PETQEQ7EeuWpf72et1Eag" type="Message_ReplyEdge" source="_KtZZAEQ4EeuryaKUYnp85Q" target="_GZbpcEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_-PETQ0Q7EeuWpf72et1Eag" type="Message_ReplyNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-PETREQ7EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_-PE6UEQ7EeuWpf72et1Eag" type="Message_ReplyStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_-PE6UUQ7EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_-PETQUQ7EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_-PCeEEQ7EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_-PETQkQ7EeuWpf72et1Eag" points="[0, 0, 640, 0]$[-650, 0, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-PGIcEQ7EeuWpf72et1Eag" id="(0.5,0.3453908984830805)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_-PGIcUQ7EeuWpf72et1Eag" id="(0.5,0.3453908984830805)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Edm5IEQ8EeuWpf72et1Eag" type="Message_AsynchEdge" source="_KtZZAEQ4EeuryaKUYnp85Q" target="_KtZZAEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_EdngMEQ8EeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_EdngMUQ8EeuWpf72et1Eag" x="-78" y="9"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_EdngMkQ8EeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_EdngM0Q8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Edm5IUQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_EdY2sEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Edm5IkQ8EeuWpf72et1Eag" points="[-10, 0, -10, 0]$[-10, 0, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EePyUEQ8EeuWpf72et1Eag" id="(0.5,0.2520420070011668)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EePyUUQ8EeuWpf72et1Eag" id="(0.5,0.3220536756126021)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_euCgAEQ8EeuWpf72et1Eag" type="Message_SynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_HauHUEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_euCgA0Q8EeuWpf72et1Eag" type="Message_SynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_euCgBEQ8EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_euCgBUQ8EeuWpf72et1Eag" type="Message_SynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_euCgBkQ8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_euCgAUQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_et1rsEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_euCgAkQ8EeuWpf72et1Eag" points="[-10, 10, -210, -80]$[200, 90, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eumgsEQ8EeuWpf72et1Eag" id="(0.5,0.6254375729288215)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eunHwEQ8EeuWpf72et1Eag" id="(0.5,0.6254375729288215)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_evFo4EQ8EeuWpf72et1Eag" type="Message_ReplyEdge" source="_HauHUEQ4EeuryaKUYnp85Q" target="_GZbpcEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_evFo40Q8EeuWpf72et1Eag" type="Message_ReplyNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_evFo5EQ8EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_evFo5UQ8EeuWpf72et1Eag" type="Message_ReplyStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_evFo5kQ8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_evFo4UQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_evEawEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_evFo4kQ8EeuWpf72et1Eag" points="[0, 0, 200, 0]$[-210, 0, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_evHeEEQ8EeuWpf72et1Eag" id="(0.5,0.6721120186697783)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_evHeEUQ8EeuWpf72et1Eag" id="(0.5,0.6721120186697783)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_kmEDUEQ8EeuWpf72et1Eag" type="Message_SynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_KtZZAEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_kmEDU0Q8EeuWpf72et1Eag" type="Message_SynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kmEDVEQ8EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_kmEDVUQ8EeuWpf72et1Eag" type="Message_SynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_kmEDVkQ8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_kmEDUUQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_kl0ywEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_kmEDUkQ8EeuWpf72et1Eag" points="[-10, 0, -650, 0]$[640, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kmrHUEQ8EeuWpf72et1Eag" id="(0.5,0.7187864644107351)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_kmruYEQ8EeuWpf72et1Eag" id="(0.5,0.7187864644107351)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_knKPgkQ8EeuWpf72et1Eag" type="Message_ReplyEdge" source="_KtZZAEQ4EeuryaKUYnp85Q" target="_GZbpcEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_knK2kEQ8EeuWpf72et1Eag" type="Message_ReplyNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_knK2kUQ8EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_knK2kkQ8EeuWpf72et1Eag" type="Message_ReplyStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_knK2k0Q8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_knKPg0Q8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_knJocEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_knKPhEQ8EeuWpf72et1Eag" points="[0, 0, 640, 0]$[-650, 0, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_knLdoEQ8EeuWpf72et1Eag" id="(0.5,0.7654609101516919)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_knLdoUQ8EeuWpf72et1Eag" id="(0.5,0.7654609101516919)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_sNOB8EQ8EeuWpf72et1Eag" type="Message_AsynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_HauHUEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_sNOpAEQ8EeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_sNOpAUQ8EeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_sNOpAkQ8EeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_sNOpA0Q8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_sNOB8UQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_sM-KUEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_sNOB8kQ8EeuWpf72et1Eag" points="[-10, -5, -210, -20]$[200, 15, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sN3iMEQ8EeuWpf72et1Eag" id="(0.5,0.8121353558926487)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_sN4JQEQ8EeuWpf72et1Eag" id="(0.5,0.8121353558926487)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_0dpAAEQ8EeuWpf72et1Eag" type="Message_AsynchEdge" source="_GZbpcEQ4EeuryaKUYnp85Q" target="_HauHUEQ4EeuryaKUYnp85Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_0dpAA0Q8EeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_0dpABEQ8EeuWpf72et1Eag" x="-5" y="12"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_0dpABUQ8EeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_0dpABkQ8EeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_0dpAAUQ8EeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="giveCardActionSequenceDiagram.uml#_0dYhUEQ8EeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0dpAAkQ8EeuWpf72et1Eag" points="[-10, 4, -210, -20]$[200, 24, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0eNnwEQ8EeuWpf72et1Eag" id="(0.5,0.882147024504084)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0eNnwUQ8EeuWpf72et1Eag" id="(0.5,0.882147024504084)"/>
+  </edges>
+</notation:Diagram>
