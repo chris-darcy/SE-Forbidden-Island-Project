@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.*;
 import Cards.*;
 import Participant.Hand;
+import Participant.Participant;
 
 class CardDeckTest {
 
@@ -17,7 +18,7 @@ class CardDeckTest {
     @Test(expected = IndexOutOfBoundsException.class)
     public void testSetupTreasure() {
     	TreasureCardDeck testTreasureDeck = new TreasureCardDeck();
-        FloodCardDeck testTreasureDeck = new FloodCardDeck(); 
+        FloodCardDeck testTreasureDeck1 = new FloodCardDeck();
         RiseWaterTreasureCard riseWaterCard = new RiseWaterTreasureCard("RiseWater");
         
         assertTrue("TreasureCardDeck must contain RiseWater Level card", cards.contains(instanceof RiseWaterTreasureCard));
@@ -28,8 +29,6 @@ class CardDeckTest {
             testDeck.setupMurder(); // Demonstrate Exception risk if called more than once
         }
         
-        testTreasureDeck.destroyMe();
-        testTreasureDeck.destroyMe();
     }
     
     
@@ -38,10 +37,15 @@ class CardDeckTest {
     public void testDealCard() {
         
         Card newCard;
+        Participant player = new Engineer ("Debby", );
         Hand testHand = new Hand();
         TreasureCardDeck testDeck = new TreasureCardDeck();
         
         assertEquals("When first initialised, the hand should be of length 0", 0, testHand.size());
+        
+        
+        
+        
         
         for (int i=0; i<5; i++) {
             newCard = testDeck.dealCard();
