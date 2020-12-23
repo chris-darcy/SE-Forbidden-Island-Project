@@ -42,8 +42,8 @@ public class Hand {
 		return hand.size();
 	}
 	
-	public void removeCardFromHand(int i) { // i is the index of the card wished to be removed
-		hand.remove(i);
+	public Card removeCardFromHand(int i) { // i is the index of the card wished to be removed
+		return hand.remove(i);
 	}
 	
 	public void addCardToHand(Card card) {

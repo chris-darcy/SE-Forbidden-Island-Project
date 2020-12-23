@@ -416,7 +416,7 @@ public class GameManager {
 	public Hand handAfterRemoval(Participant player) {
 		int cardRemove;
 		cardRemove = gui.chooseCardToDiscard(player.toString()); 
-		player.getHand().removeCardFromHand(cardRemove);
+		treasureCardDeck.addToDiscardPile(player.getHand().removeCardFromHand(cardRemove));
 		return player.getHand();
 	}
 

@@ -198,7 +198,59 @@ public class ParticipantTest {
 		
 	}
 	
+	@Test 
+	public void test_pilot_onSunkTile() {
+		Participant pilot = new Pilot("B",hand,1,0,3);
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.SUNK);
+			}
+		}
+		board.getBoard().get(3).setTileStatus(TileStatus.UNFLOODED);
+		board.getBoard().get(9).setTileStatus(TileStatus.UNFLOODED);
+		ArrayList<Integer> validationSet = new ArrayList<Integer>(); 
+		validationSet.add(3);validationSet.add(9);
+		ArrayList<Integer> testSet = new ArrayList<Integer>();
+		pilot.move(12);
+		testSet = pilot.onSunkTile(board.getBoard());
+		Collections.sort(testSet);
+		assertEquals("pilot get onsunk tiles should inlcude any unsunk tile",validationSet,testSet);
+		
+	}
 	
+	@Test
+	public void test_giveCard() {
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
+		Hand A = new Hand();
+		Hand B = new Hand();
+		Card cardA = new TreasureCard("A");
+		Card cardB = new TreasureCard("B");
+		Participant messenger = new Messenger("B",A,1,0,3);
+		Participant player = new Navigator("B",B,1,0,3);
+		player.move(2);
+		player.addCardToHand(cardA);
+		messenger.move(32);
+		messenger.addCardToHand(cardB);
+		
+		
+		
+		assertFalse("players may give to those on the same tile",player.giveCard(messenger, cardA));
+		assertTrue("messenger may give to those on any tile",messenger.giveCard(player, cardB));
+		assertEquals("2 card now expected to be in players hand",2,player.getHand().numberOfCards());
+		assertEquals("No cards expected to be in messengers hand",0,messenger.getHand().numberOfCards());
+		
+		player.move(32);
+		
+		assertTrue("players may give to those on the same tile",player.giveCard(messenger, cardB));
+		assertEquals("1 card now expected to be in players hand",1,player.getHand().numberOfCards());
+		assertEquals("1 card now expected to be in messengers hand",1,messenger.getHand().numberOfCards());
+	}
 
 	@After
 	public void tearDown() {
