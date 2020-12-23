@@ -84,5 +84,9 @@ public class TreasureCardDeck {
 			this.addToDiscardPile(card);
 		}
 	}
+	
+	public Stack<Card> getDiscardPile(){
+		return treasureDiscardPile;
+	}
 
 }
