@@ -39,6 +39,9 @@ public class GameManagerTest {
 	Treasures treasures;
 	WaterLevel waterlevel;
 	
+	//
+	// verify player numbers
+	//
 	@Test
 	public void test() {
 		input = "2\nplayerA\ny\nplayerB\ny\n2\n";
@@ -57,6 +60,9 @@ public class GameManagerTest {
 		GM.destroyMe();
 	}
 	
+	//
+	// verify cards drawn correct and waterLevel
+	//
 	@Test
 	public void test_setupGame() {
 		input = "2\nplayerA\ny\nplayerB\ny\n2\n";
@@ -68,8 +74,6 @@ public class GameManagerTest {
 		playerlist = PlayerList.getInstance();
 		waterlevel = WaterLevel.getInstance();
 		
-		
-		//assertEquals("6 flooded tiles are expected after board setup",6,board.floodedTiles().size());
 		assertEquals("2 players expected after playerlist finalisation",2,playerlist.getPlayerList().size());
 		for(Participant p: playerlist.getPlayerList()) {
 			System.out.println(p.getHand().getPrintableHand());
@@ -118,6 +122,9 @@ public class GameManagerTest {
 		board.destroyMe();
 	}
 	
+	//
+	// verify giveCard() method in runGame()
+	//
 	@Test
 	public void testGiveCard() {
 		GM = GameManager.getInstance();
@@ -151,6 +158,9 @@ public class GameManagerTest {
 		board.destroyMe();
 	}
 	
+	//
+	// verify shoreUp() method in runGame()
+	//
 	@Test
 	public void testShoreUp() {
 		GM = GameManager.getInstance();
@@ -183,6 +193,9 @@ public class GameManagerTest {
 		board.destroyMe();
 	}
 	
+	//
+	// verify captureTreasure() method in runGame()
+	//
 	@Test
 	public void testCaptureTreasure() {
 		GM = GameManager.getInstance();
@@ -218,7 +231,7 @@ public class GameManagerTest {
 	}
 
 	//
-	// action 4 - useCard
+	// verify useCard() method in runGame()
 	//
 	@Test
 	public void testUseCard() {
@@ -255,22 +268,5 @@ public class GameManagerTest {
 		GM.destroyMe();
 		board.destroyMe();
 	}
-	
-	@Test
-	public void testPlayerNumber() {
-		GM = GameManager.getInstance();
-		playerlist = PlayerList.getInstance();
-		
-		input = "2\nplayerA\ny\nplayerB\ny\n1\n";
-		in = new ByteArrayInputStream(input.getBytes());
-		System.setIn(in);
-		GUI.getInstance().setScanner(new Scanner(in));
-		GM.setupGame();
-		assertEquals("1st player has playernum 0",0,playerlist.getPlayer(0).getPlayerNum());
-		
-		playerlist.destroyMe();
-		GM.destroyMe();
-	}
-
 		
 }
