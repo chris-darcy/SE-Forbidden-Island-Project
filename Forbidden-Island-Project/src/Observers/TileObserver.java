@@ -1,6 +1,8 @@
 package Observers;
 
 import Board.Tile;
+import Board.TileStatus;
+import Board.TileType;
 import Game.GameManager;
 
 public class TileObserver extends Observer {
@@ -13,8 +15,19 @@ public class TileObserver extends Observer {
 	
 	@Override
 	public void update() {
-		System.out.println(((Tile)this.subject).getName() + " has sunk!");
-		GameManager.getInstance().updateParticipantTileStatus(((Tile)this.subject));
+		if(((Tile)this.subject).getTileStatus() == TileStatus.SUNK) {
+			System.out.println("\n"+((Tile)this.subject).getName() + " has sunk!");
+			GameManager.getInstance().updateParticipantTileStatus(((Tile)this.subject));
+			if(((Tile)this.subject).getTileType() != TileType.NORMAL) {
+				GameManager.getInstance().updateSpecialTileStatus(((Tile)this.subject));
+			}
+		}
+		else if(((Tile)this.subject).getTileStatus() == TileStatus.FLOODED){
+			System.out.println("\n"+((Tile)this.subject).getName() + " has flooded!");
+		}
+		else {
+			System.out.println("\n"+((Tile)this.subject).getName() + " has been shored up!");
+		}
 	}
 }
 
