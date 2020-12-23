@@ -46,7 +46,7 @@ public class Hand {
 		hand.remove(i);
 	}
 	
-	public void addCardToHand(Card card) {	
+	public void addCardToHand(Card card) {
 		hand.add(card);
 	}
 	
@@ -74,8 +74,48 @@ public class Hand {
 		return treasureCards;
 	}
 	
-	public boolean handContains(Object object) { // general check for card type
-		return hand.contains(object);
+	public boolean handContains(Object o) { // general check for card type
+		return hand.contains(o);
+	}
+	
+	public boolean handContainsHelicopter() {
+		for(Card card : this.hand) {
+			if(card instanceof HelicopterTreasureCard) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean handContainsSandbag() {
+		for(Card card : this.hand) {
+			if(card instanceof SandbagTreasureCard) {
+				return true;
+			}
+		}
+		return false; 
+	}
+	
+	public Card removeSpecialCard(boolean helicopter){
+		int count = 0;
+		if (helicopter) {
+			for(Card card : this.hand) {
+				if(card instanceof HelicopterTreasureCard) {
+					return this.hand.remove(count);
+				}
+				count ++;
+			}
+		}
+		else {
+			for(Card card : this.hand) {
+				if(card instanceof SandbagTreasureCard) {
+					return this.hand.remove(count);
+				}
+				count ++;
+			}
+		}
+		
+		return null;
 	}
 	
 	@Override
