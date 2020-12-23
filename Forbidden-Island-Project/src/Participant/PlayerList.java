@@ -2,6 +2,7 @@ package Participant;
 
 import java.util.ArrayList;
 
+import Cards.Card;
 import Cards.HelicopterTreasureCard;
 import Cards.SandbagTreasureCard;
 
@@ -87,23 +88,43 @@ public class PlayerList {
 		return players;
 	}
 	
-	public boolean playerListContainsHelicopterCard() {
-		HelicopterTreasureCard helicopter = new HelicopterTreasureCard("Helicopter");
-		return playerListContains(helicopter);
+	public ArrayList<String> playerListStringify(ArrayList<Participant> list){
+		ArrayList<String> stringPlayers = new ArrayList<String>();
+		for (Participant p : list) {
+			stringPlayers.add(p.toString());
+		}
+		return stringPlayers;
 	}
-	
-	public boolean playerListContainsSandBagCard() {
-		SandbagTreasureCard sandbag = new SandbagTreasureCard("Sandbag");
-		return playerListContains(sandbag);
-	}
-	
-	public boolean playerListContains(Object o) {
+	public ArrayList<Participant> playerListContainsHelicopterCard() {
+		ArrayList<Participant> playersWeWant = new ArrayList<Participant>();
+		
 		for (Participant p : playerList) {
-			if(p.getHand().handContains(o)) {
-				return true;
+			if(p.getHand().handContainsHelicopter()) {
+				playersWeWant.add(p);
 			}
 		}
-		return false;
+		return playersWeWant;
+	}
+	
+	public ArrayList<Participant> playerListContainsSandBagCard() {
+		ArrayList<Participant> playersWeWant = new ArrayList<Participant>();
+		
+		for (Participant p : playerList) {
+			if(p.getHand().handContainsSandbag()) {
+				playersWeWant.add(p);
+			}
+		}
+		return playersWeWant;
+	}
+	
+	public ArrayList<Participant> playerListContains(Card o) {
+		ArrayList<Participant> specialPlayerList = new ArrayList<Participant>();
+		for (Participant p : playerList) {
+			if(p.getHand().handContains(o)) {
+				specialPlayerList.add(p);
+			}
+		}
+		return specialPlayerList;
 	}
 	
 	public void moveSelected(ArrayList<Integer> playersToMove, int location) {
