@@ -42,14 +42,14 @@ public class Diver extends Participant{
 		int xd = this.getLocation()%6;
 		int yd = this.getLocation()/6;
 		for (Tile tile : board) {
-			if(tile.getTileType() != TileType.EMPTY && tile.getTileStatus() != TileStatus.SUNK ) {
+			if(tile.getTileStatus() != TileStatus.SUNK) {
 				int xt = tile.getLocation()%6;
 				int yt = tile.getLocation()/6;
 				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); // calculate distance
 			}
 		}
-		LinkedHashSet<Double> hashSet = new LinkedHashSet<Double>(shortestDistance);  // remove if there are any duplicate locations
-		ArrayList<Double> removedDuplicates = new ArrayList<Double>(hashSet);         // return hashSet to ArrayList array
+		LinkedHashSet<Double> hashSet = new LinkedHashSet<Double>(shortestDistance);    // remove if there are any duplicate locations
+		ArrayList<Double> removedDuplicates = new ArrayList<Double>(hashSet);           // return hashSet to ArrayList array
 		return board.get(shortestDistance.indexOf(Collections.min(removedDuplicates))); // the shortest value index will be the index of the board also
 	}
 	
