@@ -19,17 +19,22 @@ public class Explorer extends Participant{
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) {
 		boolean shoreUp = false;
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();
+		this.getLocation();
+		
 		//verify the participant is on a sunk tile
-		if(board.get(this.getLocation()).getTileStatus() != TileStatus.SUNK) {
+		if(board.get(this.getLocation()).getTileStatus() == TileStatus.SUNK) {
 			sunkRelevantTiles.addAll(this.getRelevantTiles(board,shoreUp));    // get up, down, left, right tiles
+			int xd = this.getLocation()%6;
+			int yd = this.getLocation()/6;
 			
-			ArrayList<Integer> diagMoveOptions = new ArrayList<Integer>(Arrays.asList((-6-1), (-6+1), (6-1), (6+1))); 
+			int[][] diagMoveOptions = {{xd-1, yd-1}, {xd-1, yd+1}, {xd+1, yd-1}, {xd+1, yd+1}};
 			
-			for (int i : diagMoveOptions) {                                                       // check tiles up, down, left and right
-				if(board.get(this.getLocation() + i) != null &&                            // verify the tile is on the board
-				   board.get(this.getLocation() + i).getTileStatus() != TileStatus.SUNK && // verify the tile is not sunk
-				   board.get(this.getLocation() + i).getTileType() != TileType.EMPTY) {  
-					sunkRelevantTiles.add(this.getLocation() + i);
+			for(int[] i : diagMoveOptions) {
+				if(!(i[0]<0 || i[0]>5 || i[1]>5 || i[1]<0)) {
+					location = (i[0]) + 6*(i[1]);
+					if(!(board.get(location).getTileStatus()== TileStatus.SUNK)) {
+						sunkRelevantTiles.add(location);
+					}
 				}
 			}
 			if(sunkRelevantTiles.isEmpty()) {
