@@ -177,7 +177,8 @@ public class GameManager {
 	public void updateSpecialTileStatus(Tile specialTile) {	
 		
 		if(specialTile.getTileType() != TileType.FOOLSLANDING) {
-			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());		
+			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());
+			gui.printSpecialTileSunk(specialTile.toString());
 			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
 				endGame(false);
 			}
@@ -193,10 +194,14 @@ public class GameManager {
 	// Check users tile status
 	//
 	public void updateParticipantTileStatus(Tile tile) {
+		ArrayList<Integer> availableTiles = new ArrayList<Integer>();
+		int location = 0;
 		for(Participant p : playerList.getPlayerList()) {
 			if(p.getLocation() == tile.getLocation() && tile.getTileStatus() == TileStatus.SUNK) {
-			   p.onSunkTile(board.getBoard());
-
+			   availableTiles = p.onSunkTile(board.getBoard());
+			   gui.printOnSunkTile(p.getName());
+			   location = gui.chooseLocationTo("swim", availableTiles, board.getBoard());
+			   p.setLocation(location);
 			}
 		}
 	}

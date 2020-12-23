@@ -486,6 +486,10 @@ public class GUI {
 		System.out.println(indent + "///" + fslashes + "///\n");
 	}
 	
+	public void printOnSunkTile(String player) {
+		printWarning(player+", YOUR TILE HAS SUNK BENEATH YOU!! SWIM FOR IT!");
+	}
+	
 	public void printSpecialTileSunk(String sunkTile) {
 		TilePrint tl = new TilePrint(sunkTile);
 		printWarning(tl.name() + ", A CRITICAL "+tl.type()+" TILE HAS SUNK. ONE REMAINS...");
