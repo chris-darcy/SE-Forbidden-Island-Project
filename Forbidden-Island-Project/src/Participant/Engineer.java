@@ -4,12 +4,16 @@ import Board.Tile;
 import Board.TileStatus;
 
 public class Engineer extends Participant{
-	int chance = 0;
+	
+	int chance = 0; // to keep track of number of actios taken for shoreUp
+	
 	public Engineer(String name, Hand hand, int playerNum, int location, int actionsRemaining) {
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
-	// can shore up two tiles for 1 action
+	//
+	// the engineer can shore up two tiles for 1 action
+	//
 	@Override
 	public boolean shoreUp(Tile tile) {
 		if(this.getActionsRemaining()>0 &&
@@ -38,7 +42,7 @@ public class Engineer extends Participant{
 	@Override
 	public void setActionsRemaining(int numberOfActions) {
 		this.numberOfActions = numberOfActions;
-		this.chance = 0;
+		this.chance = 0; // ensures that each time the engineer returns to have their turn that count is reinitialised
 	}
 }
 

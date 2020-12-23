@@ -12,8 +12,10 @@ public class Explorer extends Participant{
 		super(name, hand, playerNum, location, actionsRemaining);
 	}
 	
+	//
+	// the Explorer can move diagnolly if their current tile is sunk (as well as to their adjacent tiles)
+	//
 	@Override 
-	// the Explorer can move diagnolly if their current tile is sunk
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) {
 		boolean shoreUp = false;
 		ArrayList<Integer> sunkRelevantTiles = new ArrayList<Integer>();

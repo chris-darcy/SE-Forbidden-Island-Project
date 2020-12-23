@@ -16,10 +16,16 @@ public class Hand {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
+	//
+	// returns card of index i in the participant's hand
+	//
 	public Card getCardInHand(int i) { // method to get card from hand at a given index
 		return hand.get(i);
 	}	
 	
+	//
+	// finds the index of a given card for the participant's hand
+	//
 	public int findHandIndex(Card card){
 		return hand.indexOf(card);
 	}
@@ -28,6 +34,9 @@ public class Hand {
 		return hand.size();
 	}
 	
+	//
+	// get hand that is in printable form
+	//
 	public ArrayList<String> getPrintableHand() {
 		ArrayList<String> handString = new ArrayList<String>();
 		for(Card card : hand) {
@@ -48,6 +57,9 @@ public class Hand {
 		hand.add(card);
 	}
 	
+	//
+	// discard four cards of the same treasurecard type to capture a treasure
+	//
 	public ArrayList<Card> discardFour(String type){
 		ArrayList<Card> toDiscard = new ArrayList<Card>();
 		int counter = 0;
@@ -62,6 +74,9 @@ public class Hand {
 		return toDiscard;
 	}
 
+	//
+	// return the treasure cards in the hand
+	//
 	public ArrayList<Card> getTreasureCards(){
 		ArrayList<Card> treasureCards = new ArrayList<Card>();
 			for(Card card: hand) {
@@ -72,10 +87,16 @@ public class Hand {
 		return treasureCards;
 	}
 	
+	//
+	// confirm the hand contains a card of a certain type
+	//
 	public boolean handContains(Object o) { // general check for card type
 		return hand.contains(o);
 	}
 	
+	//
+	// confirm that the hand contains a helicopter card
+	//
 	public boolean handContainsHelicopter() {
 		for(Card card : this.hand) {
 			if(card instanceof HelicopterTreasureCard) {
@@ -85,6 +106,9 @@ public class Hand {
 		return false;
 	}
 	
+	//
+	// confirm the hand contains a sandbag card
+	//
 	public boolean handContainsSandbag() {
 		for(Card card : this.hand) {
 			if(card instanceof SandbagTreasureCard) {
@@ -94,11 +118,14 @@ public class Hand {
 		return false; 
 	}
 	
+	//
+	// remove special card from hand after useCard() method in runGame has been chosen and the card has been used
+	//
 	public Card removeSpecialCard(boolean helicopter){
 		int count = 0;
 		if (helicopter) {
 			for(Card card : this.hand) {
-				if(card instanceof HelicopterTreasureCard) {
+				if(card instanceof HelicopterTreasureCard) {  // check there index is a helicopter card
 					return this.hand.remove(count);
 				}
 				count ++;
@@ -106,7 +133,7 @@ public class Hand {
 		}
 		else {
 			for(Card card : this.hand) {
-				if(card instanceof SandbagTreasureCard) {
+				if(card instanceof SandbagTreasureCard) { // check the index is a sandbag card
 					return this.hand.remove(count);
 				}
 				count ++;

@@ -31,7 +31,10 @@ public abstract class Participant extends Subject {
 	}
 	
 	//------------------------------ METHODS --------------------------------------//
-
+	
+	//
+	// method to change an adjacent tile from flooded to unflooded
+	//
 	public boolean shoreUp(Tile tile) {		
 		if(tile.getTileStatus() == TileStatus.FLOODED && isAdjacentTile(tile)) { // tile they have chosen is not sunk or is not valid	
 			tile.setTileStatus(TileStatus.UNFLOODED);
@@ -41,6 +44,9 @@ public abstract class Participant extends Subject {
 		return false;
 	}
 	
+	//
+	// checks what adjacent tiles are available
+	//
 	public boolean isAdjacentTile(Tile tile) {     // participant is on or adjacent to the tile
 		int xyPlayer[] = xyLoc(this.location);
 		int xyTile[] =  xyLoc(tile.getLocation());
@@ -55,7 +61,9 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
-	// This method will be overridden by the Messenger Participant
+	//
+	// allows users to give cards to other players
+	//
 	public boolean giveCard(Participant receiver, Card card) {
 		// all players can give another player a treasure card if on the same tile
 		if (receiver.getLocation() == this.location) {
@@ -77,6 +85,9 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
+	//
+	// adds a specified card to the participant's hand
+	//
 	public void addCardToHand(Card card) {
 		this.getHand().addCardToHand(card);
 		if(this.getHand().size() > maxCards ) {       // check if too many cards in hand
@@ -84,6 +95,9 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
+	//
+	// ensures the card chosen to give is appropriate (i.e not a helicopter card etc.)
+	//
 	public boolean cardChosenOkay(Card card) {
 		if(card instanceof TreasureCard) { // card can only be given as long as it is not a helicopter/ sandbad card
 			return true;
@@ -93,6 +107,9 @@ public abstract class Participant extends Subject {
 		}
 	}
 
+	//
+	// returns all tiles the participant could move to 
+	//
 	public ArrayList<Integer> getRelevantTiles(ArrayList<Tile> board, boolean shoreUp) {     // returns relevant tiles that the participant can move to
 		int[] xyPlayer = xyLoc(this.location);
 		
@@ -123,6 +140,9 @@ public abstract class Participant extends Subject {
 		return relevantTiles;
 	}
 	
+	//
+	// move the participant
+	//
 	public void move(int newLocation) { // moves participant to new location	
 		if(newLocation > 0) { // catch empty relevantTiles scenario
 			this.location = newLocation;
@@ -130,6 +150,9 @@ public abstract class Participant extends Subject {
 		}
 	}
 	
+	//
+	// if the participant has all the correct treasure cards and is on the appropriate tile, they can capture a treasure
+	//
 	public boolean canCaptureTreasure(ArrayList<Tile> board) {
 		int counter = 0;
 		TileType tileType = board.get(this.location).getTileType();
@@ -149,7 +172,10 @@ public abstract class Participant extends Subject {
 		}
 		return false;
 	}
-
+	
+	//
+	// when user is located on a tile that has sunk, they must move appropriately
+	//
 	public ArrayList<Integer> onSunkTile(ArrayList<Tile> board) { // should possibly be called in Observer or something like that?
 		//verify the participant is on a sunk tile
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
@@ -169,6 +195,9 @@ public abstract class Participant extends Subject {
 		return this.name+"\n"+this.playerNum+"\n"+this.hand.toString()+"\n"+this.location+"\n"+this.numberOfActions+"\n"+this.getRoleName()+"\n"+this.hand.getTreasureCards().toString();
 	}
 	
+	//
+	// get location on the board with x and y coordinates
+	//
 	protected int[] xyLoc(int location) {
 		int [] xyLoc = {location%6,location/6};
 		return xyLoc;
@@ -198,6 +227,9 @@ public abstract class Participant extends Subject {
 		this.hand = hand;
 	}
 	
+	//
+	// returns the number of actions the participant has left on the turn
+	//
 	public int getActionsRemaining() {
 		return numberOfActions;
 	}
@@ -206,6 +238,9 @@ public abstract class Participant extends Subject {
 		this.numberOfActions = numberOfActions;
 	}
 	
+	//
+	// reduces the actionsRemaining of the participant when an action has been taken
+	//
 	protected void actionUsed() { // each time the user uses an action
 		numberOfActions--; 
 	}

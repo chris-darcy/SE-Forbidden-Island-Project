@@ -21,6 +21,9 @@ public class Treasures extends Subject{
 		remaining = 4;
 	}
 	
+	//
+	// capture treasure under certau=in conditions
+	//
 	public String capture(TileType tileType) {	
 			
 		if(treasures.containsKey(tileType)) {
@@ -31,15 +34,24 @@ public class Treasures extends Subject{
 		return null;		
 	}
 	
+	//
+	// calculate the number of treasures remaining - oberserver is notified each time an update occurs
+	//
 	public int remaining() {
 		notifyAllObservers(); // notify observers each time a treasure is captured
 		return remaining;
 	}
 	
+	//
+	// indicates the treasures captured
+	//
 	public ArrayList<String> captured() {
 		return captured;
 	}
 	
+	//
+	// indicates treasures uncaptured
+	//
 	public boolean uncaptured(TileType tileType) {
 		return treasures.containsKey(tileType);
 	}

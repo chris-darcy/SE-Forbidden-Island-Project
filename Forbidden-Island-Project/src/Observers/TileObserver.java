@@ -8,11 +8,17 @@ import Game.GameManager;
 public class TileObserver extends Observer {
 	private Subject subject;
 	
+	//
+	// observes the status of each tile on the board
+	//
 	public TileObserver(Subject subject) {
 		this.subject = subject;
 		this.subject.attach(this);
 	}
 	
+	//
+	// updates the observers by checking the current status of tiles to tell the user
+	//
 	@Override
 	public void update() {
 		if(((Tile)this.subject).getTileStatus() == TileStatus.SUNK) {

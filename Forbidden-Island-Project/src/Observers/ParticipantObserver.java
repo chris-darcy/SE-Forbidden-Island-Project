@@ -9,7 +9,9 @@ import Board.Tile;
 import Board.TileStatus;
 
 public class ParticipantObserver extends Observer{
-	
+	//
+	// observer that checks the current location status of each participant
+	//
 	private Subject subject;
 	private ArrayList<Tile> board = Board.getInstance().getBoard();
 	public ParticipantObserver(Subject subject) {
@@ -17,6 +19,10 @@ public class ParticipantObserver extends Observer{
 		this.subject.attach(this);
 	}
 	
+	//
+	// updates the observers by checking is criteria are met for losing the 
+	// game and checking if the participant needs to swim somewhere
+	//
 	@Override
 	public void update() {
 		//the participant has no where to move game has been lost

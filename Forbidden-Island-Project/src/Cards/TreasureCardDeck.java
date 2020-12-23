@@ -17,6 +17,9 @@ public class TreasureCardDeck {
 	
 	//-------------------------------- METHODS ------------------------------------//
 	
+	//
+	// initialise the treasure card deck
+	//
 	public void initialise() { // type of card input determines type of deck created
 		
 		// add all the treasure cards to the deck of cards
@@ -58,6 +61,9 @@ public class TreasureCardDeck {
 		return cardDeck.size();
 	}
 	
+	//
+	// draw cards from deck
+	//
 	public Card draw() {
 		if(cardDeck.isEmpty()) {
 			Collections.shuffle(treasureDiscardPile); // shuffle
@@ -73,17 +79,26 @@ public class TreasureCardDeck {
 		cardDeck.add(drawnCard);
 		Collections.shuffle(cardDeck);
 	}
-
+	
+	//
+	// add treasure card to discard pile
+	//
 	public void addToDiscardPile(Card treasureCard){ // when chosen to remove/ used, add to discard pile
 		treasureDiscardPile.add(treasureCard);
 	}
 	
+	//
+	// get cards discarded from treasure card deck and add to the discard pile
+	//
 	public void receiveDiscarded(ArrayList<Card> discarded) {
 		for(Card card: discarded) {
 			this.addToDiscardPile(card);
 		}
 	}
 	
+	//
+	// returns discard pile
+	//
 	public Stack<Card> getDiscardPile(){
 		return treasureDiscardPile;
 	}

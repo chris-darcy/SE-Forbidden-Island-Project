@@ -7,11 +7,17 @@ import Participant.PlayerList;
 public class WinningObserver extends Observer{
 	private Subject subject;
 	
+	//
+	// observer that determines if the players have won the game
+	//
 	public WinningObserver(Subject subject) {
 		this.subject = subject;
 		this.subject.attach(this);
 	}
-
+	
+	//
+	// updates the observers by checking is criteria are met for winning the game
+	//
 	@Override
 	public void update() {
 		if(((Treasures)this.subject).remaining() == 0 &&                   // check all the treasures have been captured

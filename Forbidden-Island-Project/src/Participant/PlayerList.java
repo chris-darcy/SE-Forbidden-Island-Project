@@ -15,6 +15,9 @@ public class PlayerList {
 		this.created = false;
 	}
 	
+	//
+	// return current status of the playerlist
+	//
 	public static PlayerList getInstance() {
 		if(uniqueInstance == null) {
 			uniqueInstance = new PlayerList();
@@ -22,6 +25,9 @@ public class PlayerList {
 		return uniqueInstance;
 	}
 	
+	//
+	// add player to the playerlist
+	//
 	public void addPlayer(Participant p) {
 		playerList.add(p);
 	}
@@ -50,6 +56,9 @@ public class PlayerList {
 		return playersOnTile;
 	}
 	
+	//
+	// find playerlist individuals on any given tile
+	//
 	public boolean playersOnTile(int tilePos){
 		return getPlayerLocs().contains(tilePos);
 	}
@@ -69,7 +78,10 @@ public class PlayerList {
 	public int getSize() {
 		return playerList.size();
 	}
-
+	
+	//
+	// return all playerlist members except for one
+	//
 	public ArrayList<String> getAllStringPlayersExcept(Participant player) {
 		ArrayList<String> others = new ArrayList<String>();
 		others = getAllStringPlayers();
@@ -78,6 +90,9 @@ public class PlayerList {
 		return others;
 	}
 	
+	//
+	// returns playerlist in string format
+	//
 	public ArrayList<String> getAllStringPlayers(){
 		ArrayList<String> players = new ArrayList<String>();
 		for(Participant p: playerList) {
@@ -93,6 +108,10 @@ public class PlayerList {
 		}
 		return stringPlayers;
 	}
+	
+	//
+	// ensures at least one sandbag card between the players
+	//
 	public ArrayList<Participant> playerListContainsHelicopterCard() {
 		ArrayList<Participant> playersWeWant = new ArrayList<Participant>();
 		
@@ -104,6 +123,9 @@ public class PlayerList {
 		return playersWeWant;
 	}
 	
+	//
+	// ensures at least one sandbag card between the players
+	//
 	public ArrayList<Participant> playerListContainsSandBagCard() {
 		ArrayList<Participant> playersWeWant = new ArrayList<Participant>();
 		
@@ -115,6 +137,9 @@ public class PlayerList {
 		return playersWeWant;
 	}
 	
+	//
+	// ensures at least one card of type x between the players
+	//
 	public ArrayList<Participant> playerListContains(Card o) {
 		ArrayList<Participant> specialPlayerList = new ArrayList<Participant>();
 		for (Participant p : playerList) {
@@ -125,13 +150,19 @@ public class PlayerList {
 		return specialPlayerList;
 	}
 	
+	//
+	// move selected players from playerlist
+	//
 	public void moveSelected(ArrayList<Integer> playersToMove, int location) {
 		for(int i : playersToMove) {
 			playerList.get(i).setLocation(location);
 		}
 	}
 	
-	 public void destroyMe(){
+	//
+	// for testing purposes
+	//
+	public void destroyMe(){
 		   this.uniqueInstance = null;
 	}
 }

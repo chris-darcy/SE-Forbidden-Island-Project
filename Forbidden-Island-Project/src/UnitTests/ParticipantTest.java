@@ -30,6 +30,8 @@ public class ParticipantTest {
 	//[18][19][20][21][22][23]
 	// 24 [25][26][27][28] 29
 	// 30  31 [32][33] 34  35
+	
+	
 	@Before
 	public void setUp() {
 		board = Board.getInstance();
@@ -39,6 +41,9 @@ public class ParticipantTest {
 		
 	}
 	
+	//
+	// test that relevantTiles tiles returned is correct
+	//
 	@Test
 	public void retrieve_relevant_movement_tiles() {
 		for(int i=0;i<36;i++) {
@@ -97,6 +102,9 @@ public class ParticipantTest {
 		}
 	}
 	
+	//
+	// check that treasure capturing is completed under the correct conditions
+	//
 	@Test
 	public void test_can_capture_treasure() {
 	String [] types = {"Wind","Ocean","Fire","Earth"};
@@ -122,6 +130,9 @@ public class ParticipantTest {
 		}
 	}
 	
+	//
+	// verify the participant's outcome if they are on a sunk tile 
+	//
 	@Test
 	public void test_onSunkTile() {
 		for(int i=0;i<36;i++) {
@@ -151,6 +162,10 @@ public class ParticipantTest {
 			}
 		}
 	}	
+	
+	//
+	// test outcome for the explorer if they are on a sunk tile
+	//
 	@Test 
 	public void test_explorer_onSunkTile() {
 		Participant explorer = new Explorer("B",hand,1,0,3);
@@ -176,6 +191,9 @@ public class ParticipantTest {
 		}
 	}
 		
+	//
+	// tets outcome for fiver if they are on a sunk tile
+	//
 	@Test 
 	public void test_diver_onSunkTile() {
 		Participant diver = new Diver("B",hand,1,0,3);
@@ -196,6 +214,9 @@ public class ParticipantTest {
 		
 	}
 	
+	//
+	// test the outcome for the pilot if they are on a sunk tile
+	//
 	@Test 
 	public void test_pilot_onSunkTile() {
 		Participant pilot = new Pilot("B",hand,1,0,3);
@@ -217,6 +238,9 @@ public class ParticipantTest {
 		
 	}
 	
+	//
+	// test give card method for a participant
+	//
 	@Test
 	public void test_giveCard() {
 		for(int i=0;i<36;i++) {
@@ -250,6 +274,9 @@ public class ParticipantTest {
 		assertEquals("1 card now expected to be in messengers hand",1,messenger.getHand().numberOfCards());
 	}
 	
+	//
+	// test the outcome for the engineer when they shore up a tile
+	//
 	@Test
 	public void test_engineer_shoreUp() {
 		ArrayList<Integer> tlFlooded = new ArrayList<Integer>(Arrays.asList((12),(13),(18)));

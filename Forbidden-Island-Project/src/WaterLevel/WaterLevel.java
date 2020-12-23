@@ -15,6 +15,9 @@ public class WaterLevel extends Subject{
 	
 	//------------------------------ METHODS --------------------------------------//
 	
+	//
+	// get current instance of the waterLevel
+	//
 	public static WaterLevel getInstance() {
 		if(uniqueInstance==null) {
 			uniqueInstance = new WaterLevel(0,5);
@@ -39,11 +42,17 @@ public class WaterLevel extends Subject{
 		this.maxWaterLevel = maxWaterLevel;
 	}
 	
+	//
+	// increment waterlevel when a risewater card has bene drawn, attach an observer to watch the water level
+	//
 	public void increment() {
 		this.currentWaterLevel++;
 		notifyAllObservers();// notify the observers that the waterlevel has been changed
 	}
 
+	//
+	// added for testing purposes
+	//
 	public void destroyMe() {
 		this.uniqueInstance = null;	
 	}

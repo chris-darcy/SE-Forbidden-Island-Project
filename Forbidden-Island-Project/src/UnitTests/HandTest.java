@@ -12,7 +12,9 @@ import Participant.Hand;
 
 public class HandTest {
 	
+	//
 	// check the handContains and addCard to hand methods work
+	//
 	@Test
     public void testSetupTreasure() {
     	TreasureCardDeck testTreasureDeck = new TreasureCardDeck();
@@ -25,6 +27,9 @@ public class HandTest {
         assertEquals("Hand contains correct number of cards", 2, hand.size());
     }
 	
+	//
+	// ensure findHandIndex() method works correctly
+	//
 	@Test
 	public void findHandIndexTest () {
 		Card card1 = new TreasureCard("Ocean");
@@ -39,7 +44,9 @@ public class HandTest {
 		assertEquals("FindHandIndex returns index 1 for card at index 1", 1, hand.findHandIndex(card2));
 		}
 	
+	//
 	// verify that only treasure cards of the same type are removed when treasure capture
+	//
 	@Test
 	public void capturedTreasureCardRemoval(){
 		Card card1 = new TreasureCard("Fire");
@@ -61,7 +68,9 @@ public class HandTest {
 		assertEquals("After treasure captured, remaining card type is Ocean", "Ocean", hand.getCardInHand(0).getName());
 	}
 	
+	//
 	// verify that getTreasureCards only returns treasurecards that are used to capture treasures
+	//
 	@Test
 	public void getTreasureCardsFromHand() {
 		Card card1 = new TreasureCard("Fire");

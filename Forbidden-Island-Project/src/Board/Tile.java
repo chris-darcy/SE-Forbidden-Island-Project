@@ -28,39 +28,52 @@ public class Tile extends Subject{
 				this.tileType ;
 	}
 	
+	//
 	// get the location of the tile
+	//
 	public int getLocation() {
 		return location;
 	}
 	
+	//
 	// get the location of the tile
+	//
 		public String getName() {
 			return name;
 		}
 	
-
+	//
 	// set location of tile
+    //
 	public void setLocation(int location) {
 		this.location = location;
 	}
 	
+	//
 	// get the status of the tile
+	//
 	public TileStatus getTileStatus() {
 		return tileStatus;
 	}
 		
+	//
 	// set status of Tile
+	//
 	public void setTileStatus(TileStatus tileStatus) {
 		this.tileStatus = tileStatus;
 		notifyAllObservers();
 	}
 	
+	//
 	// get the type of the tile
+	//
 	public TileType getTileType() {
 		return tileType;
 	}
-			
+	
+	//
 	// set type of Tile
+	//
 	public void setTileType(TileType tileType) {
 		this.tileType = tileType;
 	}
