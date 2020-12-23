@@ -15,16 +15,19 @@ public class Engineer extends Participant{
 		if(this.getActionsRemaining()>0 &&
 		   tile.getTileStatus() != TileStatus.SUNK && isAdjacentTile(tile)) {
 				
-				if(tile.getTileStatus() == TileStatus.FLOODED){
+				if(tile.getTileStatus() == TileStatus.FLOODED) {
 					tile.setTileStatus(TileStatus.UNFLOODED);
 				}		
+
 				if(chance == 0) { // remove action after first of two opportunities
 					actionUsed();
 					chance++;
 				}
-				else { // remove action after first of two opportunities
-					chance = 0;
+
+				else{ 
+					chance = 0; // after shoring up two tiles, re-initialise to 0
 				}
+				
 				return true;		
 		}
 		else {

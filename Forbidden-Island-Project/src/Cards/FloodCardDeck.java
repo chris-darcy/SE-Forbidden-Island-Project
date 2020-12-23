@@ -76,5 +76,8 @@ public class FloodCardDeck {
 		Collections.shuffle(cardDeck);	
 	}
 
+	public Stack<Integer> getDiscardDeck() {
+		return discardDeck;
+	}
 }
 
