@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="WaterLevel.WaterLevel" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/WaterLevel/WaterLevel.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="133" y="151"/>    
+    <position height="-1" width="-1" x="155" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="Participant.Diver" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Diver.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="848" y="135"/>    
+    <position height="-1" width="-1" x="210" y="98"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="Participant.Engineer" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Engineer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="866" y="306"/>    
+    <position height="-1" width="-1" x="129" y="294"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="Participant.Explorer" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Explorer.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="920" y="623"/>    
+    <position height="-1" width="-1" x="1128" y="276"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="Participant.Hand" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Hand.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="307" y="1125"/>    
+    <position height="-1" width="-1" x="156" y="660"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="Participant.Messenger" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Messenger.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="939" y="801"/>    
+    <position height="-1" width="-1" x="608" y="78"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="Participant.Navigator" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Navigator.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="906" y="458"/>    
+    <position height="-1" width="-1" x="982" y="67"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,55 +57,93 @@
   </class>  
   <class id="7" language="java" name="Participant.Participant" project="Forbidden-Island-Project" 
     file="/Forbidden-Island-Project/src/Participant/Participant.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="312" y="412"/>    
+    <position height="-1" width="-1" x="625" y="579"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="9" name="participant"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+  <class id="8" language="java" name="Participant.Pilot" project="Forbidden-Island-Project" 
+    file="/Forbidden-Island-Project/src/Participant/Pilot.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="624" y="1047"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="Participant.PlayerList" project="Forbidden-Island-Project" 
+    file="/Forbidden-Island-Project/src/Participant/PlayerList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1168" y="783"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="10">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="12">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="13" name="playerList"/>      
+      <multiplicity id="14" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="11">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="12" name="hand"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
   <generalization id="15">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
-  <association id="16">    
+  <generalization id="16">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <association id="17">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="18" name="uniqueInstance"/>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="20">    
     <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="17" name="participant"/>      
-      <multiplicity id="18" minimum="0" maximum="1"/>    
+      <attribute id="21" name="participant"/>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="19">    
+  <association id="23">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="24" name="participant"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="26">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
-  <generalization id="20">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="21">    
-    <end type="SOURCE" refId="5"/>    
+  <association id="27">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="28" name="hand"/>      
+      <multiplicity id="29" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="8"/>    
     <end type="TARGET" refId="7"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
