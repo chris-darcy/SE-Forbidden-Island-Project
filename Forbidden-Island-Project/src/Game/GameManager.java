@@ -44,6 +44,9 @@ public class GameManager {
 		return uniqueInstance;
 	}
 	
+	//
+	// setup game to initialise all game elements
+	//
 	public void setupGame() {
 		gui.introduction();
 		floodFirstSixTiles();
@@ -53,6 +56,9 @@ public class GameManager {
 		new WaterLevelObserver(waterLevel); // attach observer to check the waterLevel
 	}
 	
+	//
+	// run game logic
+	//
 	public void runGame() {
 		Participant player;
 		int choice;
@@ -108,7 +114,9 @@ public class GameManager {
 		
 	}
 	
+	//
 	// end of game logic
+	//
 	public void endGame(boolean gameResult) {
 		if(gameResult) {		
 			gui.gameWon();

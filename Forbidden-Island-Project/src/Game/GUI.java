@@ -391,9 +391,9 @@ public class GUI {
 		return playersToMove;
 	}
 	
-	
-	
-	
+	//
+	// use a helicopter or sandbag card at any time during the game
+	//	
 	public int useSpecialCard(){
 		int choice = 0;
 		
@@ -534,6 +534,9 @@ public class GUI {
 		System.out.println("Remember as the Engineer, shoring up 2 tiles will cost 1 action !");
 	}
 	
+	//
+	// choose card to give to other participant
+	//
 	private int chooseCardTo(String action, String player) {
 		String[] cardsToDisplay;
 		int choice = 0;
@@ -560,6 +563,9 @@ public class GUI {
 		return choice;	
 	}
 	
+	//
+	// action outcomes print
+	//
 	private void actionOutcomeMSG(String action,String player, String otherPlayer,String item, boolean success){
 		String pass;
 		String fail;
@@ -580,7 +586,9 @@ public class GUI {
 		
 	}
 	
-	
+	//
+	// for printing the board
+	//
 	private void initTileDict(){
 		tl.put("NORMAL"            ," O#########O ");
 		tl.put("EMPTY"             ,"             ");
@@ -714,10 +722,16 @@ public class GUI {
 		input = scan;
 	}
 	
-	 public void destroyMe(){
+	//
+	// for unit tests
+	//
+	public void destroyMe(){
 		   this.uniqueInstance = null;
 	}
 	
+	//
+	// end of game printout
+	//
 	public void gameWon() {
 		System.out.println("                                   .''.       \r\n"
 				+ "       .''.      .        *''*    :_\\/_:     . \r\n"
