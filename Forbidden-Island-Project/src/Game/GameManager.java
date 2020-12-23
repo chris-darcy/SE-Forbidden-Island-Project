@@ -29,7 +29,7 @@ public class GameManager {
 		board 			 = Board.getInstance();
 		waterLevel 		 = WaterLevel.getInstance();
 		playerList		 = PlayerList.getInstance();
-		gui              = new GUI();
+		gui              = GUI.getInstance();
 		floodCardDeck    = new FloodCardDeck();
 		treasureCardDeck = new TreasureCardDeck();
 		treasures        = new Treasures();	
@@ -173,6 +173,9 @@ public class GameManager {
 		
 	}
 	
+	//
+	// check for the loss of special tiles
+	//
 	public void updateSpecialTileStatus(Tile specialTile) {	
 		
 		if(specialTile.getTileType() != TileType.FOOLSLANDING) {
@@ -295,6 +298,9 @@ public class GameManager {
 	public void shoreUp(Participant player) {		
 		int location = choosePlayerLocationTo("shore up", player);
 		player.shoreUp(board.getBoard().get(location));
+		if(player instanceof Engineer){
+			gui.printEngineerShoreUoReminder();
+		}
 	}
 	
 	//
