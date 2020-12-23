@@ -32,40 +32,6 @@ public class CardDeckTest {
 	} 
 	
 	//
-	// check the treasuredeck contains all the cards required
-	//
-	@Test 
-	public void treasureDeckContains() {
-		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
-		Card card;
-		int helicopterCount = 0;
-    	int sandbagCount = 0;
-    	int riseWaterCount = 0;
-    	int treasureCardCount = 0;
-    	// for each card in the deck, ensure that it contains the right amount of each card
-    	for(int i = 0 ; i < treasureCardDeck.size() ; i++) {
-    		card = treasureCardDeck.draw();
-    		if(card.getName() == "Sandbag") {
-    			treasureCardCount++;
-    		}
-    		if(card.getName() == "Helicopter"){
-    			helicopterCount++;
-    		}
-    		if(card.getName() == "Waters Rise"){
-    			riseWaterCount++;
-    		}
-    		else {
-    			treasureCardCount++;
-    		}
-    	}
-    	assertEquals("TreasureCardDeck contains the correct number of Treasure cards", 20, treasureCardCount);
-    	assertEquals("TreasureCardDeck contains the correct number of RiseWater cards", 3, riseWaterCount);
-    	assertEquals("TreasureCardDeck contains the correct number of Helicopter cards", 3, helicopterCount);
-    	assertEquals("TreasureCardDeck contains the correct number of Sandbag cards", 2, sandbagCount);	
-    	
-	}
-	
-	//
 	// verify card added to the discard pile
 	//
     @Test
