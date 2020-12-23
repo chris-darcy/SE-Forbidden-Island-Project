@@ -22,9 +22,8 @@ public class Engineer extends Participant{
 					actionUsed();
 					chance++;
 				}
-				
-				if(chance == 1) { // after shoring up two tiles, re-initialise to 0
-					chance = 0;
+				else{ 
+					chance = 0; // after shoring up two tiles, re-initialise to 0
 				}
 				
 				return true;		
