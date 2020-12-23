@@ -259,6 +259,21 @@ public class Board {
 		return stringBoard;
 	}
 	
+	public ArrayList<Integer> unSunkTiles(){
+		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
+		for(Tile tile : board) {
+			if(tile.getTileStatus() != TileStatus.SUNK) {
+				relevantTiles.add(tile.getLocation());
+			}
+		}
+		return relevantTiles;
+	}
+	
+	public ArrayList<Integer> floodedTiles(){
+		ArrayList<Integer> relevantTiles = unSunkTiles();
+		relevantTiles.removeIf(n->(board.get(n).getTileStatus() == TileStatus.UNFLOODED));
+		return relevantTiles;
+	}
 	
 	// needed to sort the board by tile location 0-->35
 	private class Sortbyloc implements Comparator<Tile> 
