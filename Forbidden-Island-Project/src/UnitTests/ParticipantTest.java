@@ -165,7 +165,6 @@ public class ParticipantTest {
 		
 		explorer.move(12);
 		board.getBoard().get(12).setTileStatus(TileStatus.SUNK);
-		//ArrayList<Integer> validationSet = new ArrayList<Integer>(Arrays.asList((13), (14),(15), (19),(21),(25),(26),(27))); 
 		ArrayList<Integer> validationSet = new ArrayList<Integer>(Arrays.asList((7),(13),(18),(19))); 
 		ArrayList<Integer> testSet = new ArrayList<Integer>();
 		testSet = explorer.onSunkTile(board.getBoard());
@@ -181,12 +180,22 @@ public class ParticipantTest {
 		
 	@Test 
 	public void test_diver_onSunkTile() {
+		Participant diver = new Diver("B",hand,1,0,3);
 		for(int i=0;i<36;i++) {
 			Tile tile = board.getBoard().get(i);
 			if(tile.getTileType() != TileType.EMPTY) {
-				tile.setTileStatus(TileStatus.UNFLOODED);
+				tile.setTileStatus(TileStatus.SUNK);
 			}
 		}
+		board.getBoard().get(3).setTileStatus(TileStatus.UNFLOODED);
+		board.getBoard().get(9).setTileStatus(TileStatus.UNFLOODED);
+		ArrayList<Integer> validationSet = new ArrayList<Integer>(); 
+		validationSet.add(9);
+		ArrayList<Integer> testSet = new ArrayList<Integer>();
+		diver.move(12);
+		testSet = diver.onSunkTile(board.getBoard());
+		assertEquals("diver get onsunk tiles should inlcude shortest distance to tile",validationSet,testSet);
+		
 		
 	
 	}

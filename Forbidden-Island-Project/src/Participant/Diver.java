@@ -2,6 +2,7 @@ package Participant;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashSet;
 
 import Board.Tile;
@@ -39,18 +40,22 @@ public class Diver extends Participant{
 	
 	private Tile getShortestDistance(ArrayList<Tile> board) {
 		ArrayList<Double> shortestDistance = new ArrayList<Double>();
+		int count = 0;
 		int xd = this.getLocation()%6;
 		int yd = this.getLocation()/6;
 		for (Tile tile : board) {
 			if(tile.getTileStatus() != TileStatus.SUNK) {
 				int xt = tile.getLocation()%6;
 				int yt = tile.getLocation()/6;
-				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); // calculate distance
+				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); 
+				// calculate distance
 			}
+			else {
+				shortestDistance.add(36.0);
+			}
+			count++;
 		}
-		LinkedHashSet<Double> hashSet = new LinkedHashSet<Double>(shortestDistance);    // remove if there are any duplicate locations
-		ArrayList<Double> removedDuplicates = new ArrayList<Double>(hashSet);           // return hashSet to ArrayList array
-		return board.get(shortestDistance.indexOf(Collections.min(removedDuplicates))); // the shortest value index will be the index of the board also
+		return board.get(shortestDistance.indexOf(Collections.min(shortestDistance))); // the shortest value index will be the index of the board also
 	}
 	
 	private ArrayList<Integer> removeDuplicate(ArrayList<Integer> list) {
@@ -58,5 +63,4 @@ public class Diver extends Participant{
 		ArrayList<Integer> removedDuplicates = new ArrayList<>(hashSet);
 		return removedDuplicates;
 	}
-	
 }
