@@ -13,18 +13,20 @@ public class Engineer extends Participant{
 	@Override
 	public boolean shoreUp(Tile tile) {
 		if(this.getActionsRemaining()>0 &&
-		   tile.getTileStatus() != TileStatus.SUNK && isAdjacentTile(tile) && chance<2) {
+		   tile.getTileStatus() != TileStatus.SUNK && isAdjacentTile(tile)) {
 				
-				switch (tile.getTileStatus()){
-				case UNFLOODED:
-					tile.setTileStatus(TileStatus.FLOODED);
-				case FLOODED:
-					tile.setTileStatus(TileStatus.SUNK);
+				if(tile.getTileStatus() == TileStatus.FLOODED) {
+					tile.setTileStatus(TileStatus.UNFLOODED);
 				}
 				if(chance == 0) { // remove action after first of two opportunities
 					actionUsed();
 					chance++;
 				}
+				
+				if(chance == 1) { // after shoring up two tiles, re-initialise to 0
+					chance = 0;
+				}
+				
 				return true;		
 		}
 		else {
