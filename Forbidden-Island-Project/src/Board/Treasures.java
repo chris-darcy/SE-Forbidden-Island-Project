@@ -33,7 +33,7 @@ public class Treasures extends Subject{
 	}
 	
 	public int remaining() {
-		notifyAllObservers(); // notify observers each time a 
+		notifyAllObservers(); // notify observers each time a treasure is captured
 		return remaining;
 	}
 	
