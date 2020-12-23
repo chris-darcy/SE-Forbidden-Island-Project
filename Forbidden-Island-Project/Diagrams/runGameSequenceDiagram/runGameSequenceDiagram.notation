@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.3/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/gmfdiag/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_Ns-IEESyEeuWpf72et1Eag" type="PapyrusUMLSequenceDiagram" name="Sequence Diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_Ns-IEUSyEeuWpf72et1Eag" type="Interaction_Shape">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Ns-IEkSyEeuWpf72et1Eag" type="Interaction_NameLabel"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_Ns-IE0SyEeuWpf72et1Eag" type="Interaction_SubfragmentCompartment">
+      <children xmi:type="notation:Shape" xmi:id="_KKGo0ESzEeuWpf72et1Eag" type="CombinedFragment_Shape">
+        <children xmi:type="notation:BasicCompartment" xmi:id="_KKGo0kSzEeuWpf72et1Eag" type="CombinedFragment_SubfragmentCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_KKGo1kSzEeuWpf72et1Eag" type="InteractionOperand_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_KKGo2ESzEeuWpf72et1Eag" type="InteractionOperand_Guard">
+              <element xmi:type="uml:InteractionConstraint" href="runGameSequenceDiagram.uml#_KJ830USzEeuWpf72et1Eag"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKGo2USzEeuWpf72et1Eag" x="5" y="5"/>
+            </children>
+            <element xmi:type="uml:InteractionOperand" href="runGameSequenceDiagram.uml#_KJ830ESzEeuWpf72et1Eag"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKGo10SzEeuWpf72et1Eag" width="460" height="529"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_KKGo00SzEeuWpf72et1Eag"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_KKGo1ESzEeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKGo1USzEeuWpf72et1Eag"/>
+        </children>
+        <element xmi:type="uml:CombinedFragment" href="runGameSequenceDiagram.uml#_KJ4mYESzEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KKGo0USzEeuWpf72et1Eag" x="234" y="186" width="460" height="560"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_RP8qIESzEeuWpf72et1Eag" type="CombinedFragment_Shape">
+        <children xmi:type="notation:BasicCompartment" xmi:id="_RP8qIkSzEeuWpf72et1Eag" type="CombinedFragment_SubfragmentCompartment">
+          <children xmi:type="notation:Shape" xmi:id="_RP8qJkSzEeuWpf72et1Eag" type="InteractionOperand_Shape">
+            <children xmi:type="notation:DecorationNode" xmi:id="_RP8qKESzEeuWpf72et1Eag" type="InteractionOperand_Guard">
+              <element xmi:type="uml:InteractionConstraint" href="runGameSequenceDiagram.uml#_RPxD8USzEeuWpf72et1Eag"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RP8qKUSzEeuWpf72et1Eag" x="5" y="5"/>
+            </children>
+            <element xmi:type="uml:InteractionOperand" href="runGameSequenceDiagram.uml#_RPxD8ESzEeuWpf72et1Eag"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RP8qJ0SzEeuWpf72et1Eag" width="580" height="51"/>
+          </children>
+          <styles xmi:type="notation:SortingStyle" xmi:id="_RP8qI0SzEeuWpf72et1Eag"/>
+          <styles xmi:type="notation:FilteringStyle" xmi:id="_RP8qJESzEeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RP8qJUSzEeuWpf72et1Eag"/>
+        </children>
+        <element xmi:type="uml:CombinedFragment" href="runGameSequenceDiagram.uml#_RPwc4ESzEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RP8qIUSzEeuWpf72et1Eag" x="234" y="746" width="580" height="80"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_OfBQEESyEeuWpf72et1Eag" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_OfBQEkSyEeuWpf72et1Eag" type="Lifeline_NameLabel"/>
+        <element xmi:type="uml:Lifeline" href="runGameSequenceDiagram.uml#_Oe-MwESyEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OfBQEUSyEeuWpf72et1Eag" x="54" y="10" height="1081"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_PoMeoESyEeuWpf72et1Eag" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_PoPh8USyEeuWpf72et1Eag" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_UulJoESyEeuWpf72et1Eag" type="ActionExecutionSpecification_Shape">
+          <element xmi:type="uml:ActionExecutionSpecification" href="runGameSequenceDiagram.uml#_Uud04ESyEeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_UulJoUSyEeuWpf72et1Eag" x="60" y="136" width="20" height="940"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="runGameSequenceDiagram.uml#_PoKCYESyEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PoPh8ESyEeuWpf72et1Eag" x="254" y="10" width="141" height="1081"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_RjVVoESyEeuWpf72et1Eag" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_RjVVokSyEeuWpf72et1Eag" type="Lifeline_NameLabel"/>
+        <children xmi:type="notation:Shape" xmi:id="_p7w5EESyEeuWpf72et1Eag" type="ActionExecutionSpecification_Shape">
+          <element xmi:type="uml:ActionExecutionSpecification" href="runGameSequenceDiagram.uml#_p7qLYESyEeuWpf72et1Eag"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_p7w5EUSyEeuWpf72et1Eag" x="40" y="256" width="20" height="300"/>
+        </children>
+        <element xmi:type="uml:Lifeline" href="runGameSequenceDiagram.uml#_RjS5YESyEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_RjVVoUSyEeuWpf72et1Eag" x="514" y="10" height="1081"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_lACl8ESyEeuWpf72et1Eag" type="Lifeline_Shape">
+        <children xmi:type="notation:DecorationNode" xmi:id="_lACl8kSyEeuWpf72et1Eag" type="Lifeline_NameLabel"/>
+        <element xmi:type="uml:Lifeline" href="runGameSequenceDiagram.uml#_k_9GYESyEeuWpf72et1Eag"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_lACl8USyEeuWpf72et1Eag" x="734" y="10" height="1081"/>
+      </children>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ns-IFESyEeuWpf72et1Eag"/>
+    </children>
+    <element xmi:type="uml:Interaction" href="runGameSequenceDiagram.uml#_Ns52oESyEeuWpf72et1Eag"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Ns-IFUSyEeuWpf72et1Eag"/>
+  </children>
+  <styles xmi:type="notation:StringValueStyle" xmi:id="_Ns-IFkSyEeuWpf72et1Eag" name="diagram_compatibility_version" stringValue="1.4.0"/>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_Ns-IF0SyEeuWpf72et1Eag"/>
+  <styles xmi:type="style:PapyrusDiagramStyle" xmi:id="_Ns-IGESyEeuWpf72et1Eag" diagramKindId="org.eclipse.papyrus.uml.diagram.sequence">
+    <owner xmi:type="uml:Model" href="runGameSequenceDiagram.uml#_Nsu3gESyEeuWpf72et1Eag"/>
+  </styles>
+  <element xmi:type="uml:Interaction" href="runGameSequenceDiagram.uml#_Ns52oESyEeuWpf72et1Eag"/>
+  <edges xmi:type="notation:Connector" xmi:id="_TkpGEESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_OfBQEESyEeuWpf72et1Eag" target="_PoMeoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_TkptIESyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TkptIUSyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_TkptIkSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_TkptI0SyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_TkpGEUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_Tkk0oESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_TkpGEkSyEeuWpf72et1Eag" points="[0, 0, -220, 0]$[220, 0, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TlNt0ESyEeuWpf72et1Eag" id="(0.5,0.12580943570767808)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_TlOU4ESyEeuWpf72et1Eag" id="(0.5,0.12580943570767808)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_a3QYEESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_RjVVoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_a3Q_IESyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_a3Q_IUSyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_a3Q_IkSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_a3Q_I0SyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_a3QYEUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_a3LfkESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_a3QYEkSyEeuWpf72et1Eag" points="[-10, 3, -250, 60]$[240, -57, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_a3iE4ESyEeuWpf72et1Eag" id="(0.5,0.23681776133209992)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_a3jTAESyEeuWpf72et1Eag" id="(0.5,0.23681776133209992)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_caqrkESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_RjVVoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_caqrk0SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_caqrlESyEeuWpf72et1Eag" x="-8" y="-8"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_caqrlUSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_caqrlkSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_caqrkUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_calzEESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_caqrkkSyEeuWpf72et1Eag" points="[-10, -6, -250, 40]$[240, -46, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ca6jMESyEeuWpf72et1Eag" id="(0.5,0.2923219241443108)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_ca7KQESyEeuWpf72et1Eag" id="(0.5,0.2923219241443108)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_eULx8ESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_RjVVoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_eULx80SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_eULx9ESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_eUMZAESyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_eUMZAUSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_eULx8USyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_eUD2IESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_eULx8kSyEeuWpf72et1Eag" points="[-10, 5, -250, 40]$[240, -35, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eUcQoESyEeuWpf72et1Eag" id="(0.5,0.34782608695652173)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_eUc3sESyEeuWpf72et1Eag" id="(0.5,0.34782608695652173)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_hTvTUESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_RjVVoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_hTvTU0SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_hTvTVESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_hTvTVUSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_hTvTVkSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_hTvTUUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_hTpMsESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_hTvTUkSyEeuWpf72et1Eag" points="[-10, -4, -250, 20]$[240, -24, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hUBnMESyEeuWpf72et1Eag" id="(0.5,0.38482886216466233)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hUCOQESyEeuWpf72et1Eag" id="(0.5,0.38482886216466233)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_0arvAESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_RjVVoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_0arvA0SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_0arvBESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_0arvBUSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_0arvBkSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_0arvAUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_0afhwESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_0arvAkSyEeuWpf72et1Eag" points="[-10, 6, -250, -20]$[230, 26, -10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0bAfIESyEeuWpf72et1Eag" id="(0.5,0.4588344125809436)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0bBGMESyEeuWpf72et1Eag" id="(0.5,0.4588344125809436)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_25gh4ESyEeuWpf72et1Eag" type="Message_ReplyEdge" source="_RjVVoESyEeuWpf72et1Eag" target="_PoMeoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_25kMQESyEeuWpf72et1Eag" type="Message_ReplyNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_25kMQUSyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_25kMQkSyEeuWpf72et1Eag" type="Message_ReplyStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_25kMQ0SyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_25gh4USyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_25Z0MESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_25gh4kSyEeuWpf72et1Eag" points="[-10, 0, 230, 0]$[-230, 0, 10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_254VUESyEeuWpf72et1Eag" id="(0.5,0.5143385753931545)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_2548YESyEeuWpf72et1Eag" id="(0.5,0.5143385753931545)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_5qpMwESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_PoMeoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_5qpMw0SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5qpMxESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_5qpMxUSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_5qpMxkSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_5qpMwUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_5qhQ8ESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5qpMwkSyEeuWpf72et1Eag" points="[-10, 7, -10, -160]$[10, 167, 10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5rBAMESyEeuWpf72et1Eag" id="(0.5,0.5883441258094357)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5rCOUESyEeuWpf72et1Eag" id="(0.5,0.6808510638297872)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_9NuR8ESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_lACl8ESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_9NuR80SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9NuR9ESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_9NuR9USyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_9NuR9kSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_9NuR8USyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_9NmWIESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_9NuR8kSyEeuWpf72et1Eag" points="[-10, -6, -470, -20]$[460, 14, 0, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9OEQMESyEeuWpf72et1Eag" id="(0.5,0.7363552266419982)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9OE3QESyEeuWpf72et1Eag" id="(0.5,0.7363552266419982)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="__ubUIESyEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_PoMeoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="__ubUI0SyEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__ubUJESyEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="__ubUJUSyEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="__ubUJkSyEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="__ubUIUSyEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#__uSKMESyEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="__ubUIkSyEeuWpf72et1Eag" points="[-10, 0, -10, -100]$[10, 100, 10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="__u08wESyEeuWpf72et1Eag" id="(0.5,0.7733580018501388)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="__u2K4ESyEeuWpf72et1Eag" id="(0.5,0.84736355226642)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Cq3QEESzEeuWpf72et1Eag" type="Message_AsynchEdge" source="_PoMeoESyEeuWpf72et1Eag" target="_PoMeoESyEeuWpf72et1Eag">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cq3QE0SzEeuWpf72et1Eag" type="Message_AsynchNameLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Cq3QFESzEeuWpf72et1Eag" x="1" y="-13"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_Cq3QFUSzEeuWpf72et1Eag" type="Message_AsynchStereotypeLabel">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Cq3QFkSzEeuWpf72et1Eag" x="1" y="-33"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Cq3QEUSzEeuWpf72et1Eag"/>
+    <element xmi:type="uml:Message" href="runGameSequenceDiagram.uml#_CquGIESzEeuWpf72et1Eag"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Cq3QEkSzEeuWpf72et1Eag" points="[-10, 6, -10, -80]$[10, 86, 10, 0]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CrRfwESzEeuWpf72et1Eag" id="(0.5,0.8843663274745606)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_CrSG0ESzEeuWpf72et1Eag" id="(0.5,0.9583718778908418)"/>
+  </edges>
+</notation:Diagram>
