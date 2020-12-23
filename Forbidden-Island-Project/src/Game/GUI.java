@@ -514,8 +514,8 @@ public class GUI {
 		System.out.println("your party has no special cards to use");
 	}
 	
-	public void printTreasureDuplicate() {
-		System.out.println("you have already captured that treasure!");
+	public void printTreasureMissing() {
+		System.out.println("there is no treasure here...");
 	}
 	
 	public void printTreasureCaptureOutcome(String player, String treasure, boolean success){	
@@ -712,6 +712,10 @@ public class GUI {
 	
 	public void setScanner(Scanner scan) {
 		input = scan;
+	}
+	
+	 public void destroyMe(){
+		   this.uniqueInstance = null;
 	}
 	
 	public void gameWon() {

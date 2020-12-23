@@ -28,8 +28,7 @@ public class Treasures extends Subject{
 			captured.add(treasures.get(tileType));
 			return treasures.remove(tileType);
 		}
-		return null;
-			
+		return null;		
 	}
 	
 	public int remaining() {

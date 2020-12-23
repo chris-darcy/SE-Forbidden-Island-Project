@@ -43,4 +43,8 @@ public class WaterLevel extends Subject{
 		this.currentWaterLevel++;
 		notifyAllObservers();// notify the observers that the waterlevel has been changed
 	}
+
+	public void destroyMe() {
+		this.uniqueInstance = null;	
+	}
 }

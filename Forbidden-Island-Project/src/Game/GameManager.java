@@ -331,7 +331,7 @@ public class GameManager {
 			gui.printTreasureCaptureOutcome(player.getName(),treasure,success);
 		}
 		else {
-			gui.printTreasureDuplicate();
+			gui.printTreasureMissing();
 		}
 	}
 	
@@ -423,6 +423,10 @@ public class GameManager {
 		cardRemove = gui.chooseCardToDiscard(player.toString()); 
 		treasureCardDeck.addToDiscardPile(player.getHand().removeCardFromHand(cardRemove));
 		return player.getHand();
+	}
+	
+	 public void destroyMe(){
+		   this.uniqueInstance = null;
 	}
 
 }
