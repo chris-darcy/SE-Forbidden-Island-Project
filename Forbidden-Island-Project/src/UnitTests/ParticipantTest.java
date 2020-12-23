@@ -196,9 +196,9 @@ public class ParticipantTest {
 		testSet = diver.onSunkTile(board.getBoard());
 		assertEquals("diver get onsunk tiles should inlcude shortest distance to tile",validationSet,testSet);
 		
-		
-	
 	}
+	
+	
 
 	@After
 	public void tearDown() {

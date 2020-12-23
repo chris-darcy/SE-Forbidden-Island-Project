@@ -179,7 +179,7 @@ public class GameManager {
 		if(specialTile.getTileType() != TileType.FOOLSLANDING) {
 			ArrayList<Tile> set = board.getSpecialSet(specialTile.getTileType());
 			gui.printSpecialTileSunk(specialTile.toString());
-			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK) {
+			if(set.get(0).getTileStatus() == TileStatus.SUNK && set.get(1).getTileStatus() == TileStatus.SUNK && treasures.uncaptured(specialTile.getTileType())) {
 				endGame(false);
 			}
 		}
