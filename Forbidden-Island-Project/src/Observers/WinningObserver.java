@@ -15,7 +15,7 @@ public class WinningObserver extends Observer{
 	@Override
 	public void update() {
 		if(((Treasures)this.subject).remaining() == 0 &&                   // check all the treasures have been captured
-			PlayerList.getInstance().playerListContainsHelicopterCard()) { // check at least one participant has a helicopter card
+			!PlayerList.getInstance().playerListContainsHelicopterCard().isEmpty()) { // check at least one participant has a helicopter card
 			
 			System.out.println("You have captured all the treaures!");
 			GameManager.getInstance().endGame(true); // run gamewon logic to end the game
