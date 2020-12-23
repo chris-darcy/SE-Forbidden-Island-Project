@@ -40,7 +40,6 @@ public class Diver extends Participant{
 	
 	private Tile getShortestDistance(ArrayList<Tile> board) {
 		ArrayList<Double> shortestDistance = new ArrayList<Double>();
-		int count = 0;
 		int xd = this.getLocation()%6;
 		int yd = this.getLocation()/6;
 		
@@ -53,7 +52,6 @@ public class Diver extends Participant{
 			else {
 				shortestDistance.add(36.0);
 			}
-			count++;
 		}
 		return board.get(shortestDistance.indexOf(Collections.min(shortestDistance))); // the shortest value index will be the index of the board also
 	}
