@@ -231,7 +231,7 @@ public class GameManagerTest {
 	}
 
 	//
-	// verify useCard() method in runGame()
+	// verify useCard() method in runGame() 
 	//
 	@Test
 	public void testUseCard() {
@@ -250,13 +250,14 @@ public class GameManagerTest {
 		
 		board.getBoard().get(13).setTileStatus(TileStatus.UNFLOODED);
 		board.getBoard().get(14).setTileStatus(TileStatus.UNFLOODED);
+		board.getBoard().get(20).setTileStatus(TileStatus.FLOODED);
 		
 		playerlist.getPlayerList().get(0).setLocation(13);
 		
 		playerlist.getPlayerList().get(0).addCardToHand(card1);
 		playerlist.getPlayerList().get(0).addCardToHand(card2);
 		
-		input = "\n0\n0\n14\n1\n0\n";                              // test helicopter
+		input = "\n0\n0\n14\n1\n0\n"; // test helicopter
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		GUI.getInstance().setScanner(new Scanner(in));
@@ -264,9 +265,18 @@ public class GameManagerTest {
 		
 		assertEquals("Player A should be on tile 14", 14, playerlist.getPlayerList().get(0).getLocation());
 		
+		input = "\n1\n0\n20\n"; // test sandbag
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		GUI.getInstance().setScanner(new Scanner(in));
+		GM.useCard();
+		
+		assertEquals("The sandbag card shored up tile 20 successfully", true, board.getBoard().get(20).getTileStatus() == TileStatus.UNFLOODED);
+		
 		playerlist.destroyMe();
 		GM.destroyMe();
 		board.destroyMe();
 	}
+	
 		
 }
