@@ -37,10 +37,6 @@ public class CardDeckTest {
     @Test
     public void treasureCardDeckDrawTest() {
     	TreasureCardDeck testTreasureDeck = new TreasureCardDeck();
-    	Card treasureCard1 = new HelicopterTreasureCard("Helicopter");
-    	Card treasureCard2 = new SandbagTreasureCard("Sandbag");
-    	Card treasureCard3 = new RiseWaterTreasureCard("Rise Water");
-    	
         Hand hand = new Hand();
         
         hand.addCardToHand(testTreasureDeck.draw());
