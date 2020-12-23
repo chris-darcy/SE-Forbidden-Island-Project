@@ -45,8 +45,8 @@ public abstract class Participant extends Subject {
 		int xyPlayer[] = xyLoc(this.location);
 		int xyTile[] =  xyLoc(tile.getLocation());
 		
-		if(tile.getLocation() == this.location ||         
-		   Math.abs(xyPlayer[0] - xyTile[0]) == 1 || 
+		if(tile.getLocation() == this.location ^         
+		   Math.abs(xyPlayer[0] - xyTile[0]) == 1 ^ 
 		   Math.abs(xyPlayer[1] - xyTile[1]) == 1) {
 			return true;
 		}
