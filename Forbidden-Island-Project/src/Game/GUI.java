@@ -165,12 +165,12 @@ public class GUI {
 	public void updateTreasures(ArrayList<String> capturedTreasures) {	
 		treasureBag[0] = "Captured Treasures: " + capturedTreasures.size();
 		treasureBag[1] = "---------------------";
-		for(int i=2; i<8;i++) {
+		for(int i=0; i<6;i++) {
 			if(i<capturedTreasures.size()) {
-				treasureBag[i] = capturedTreasures.get(i-2);
+				treasureBag[i+2] = capturedTreasures.get(i);////////////////////////////////////
 			}
 			else {
-				treasureBag[i] = "";
+				treasureBag[i+2] = "";
 			}		
 		}
 	}
@@ -318,7 +318,8 @@ public class GUI {
 						 0, playerList.size()-1);
 		
 		PlayerPrint chosen = new PlayerPrint().fullBuild(playerList.get(choice));
-		System.out.println("you have chosen"+chosen.name()+" to "+action+"\n");
+		System.out.println("you have chosen "+chosen.name()+" to "+action+"\n");
+		
 		return Integer.parseInt(chosen.playernum());
 	}
 	
@@ -354,51 +355,51 @@ public class GUI {
 		return choice;		
 	}
 	
-	
-	public int chooseHelicopterLocation(String action, ArrayList<Tile> locations) {
-		int choice = 0;
-		valid = false;
-		
-		if(!locations.isEmpty()) {
-			System.out.println("~Where will you " + action + " to?~");
-			
-			for(Tile tilePos: locations) {
-				System.out.println("   " + tilePos.getLocation() + ": " + tilePos.getName());
-			}
-	
-			while(!valid) {
-				choice = getIntFor("the location");
-				
-				if(!locations.contains(choice)) {
-					System.out.println("you cannot "+ action + "to that location");
-				}
-				else{
-					valid = true;
-					System.out.println("you chose to " + action + " to " + locations.get(choice).getName());
-					
-				}
-			}
-			
-		}
-		else {
-			System.out.println("There are currently no tiles to " + action + ". Choose another action!");
-		}
-		return choice;		
-	}
-	
 	//
 	// choose location to helicopter the participants to
 	//
 	public ArrayList<Integer> chooseHelicopterParticipants(int location) {
-		System.out.println("~How many players do you wish to move? (between 1 and" + PlayerList.getInstance().getSize() + ")~");
+		System.out.println("~How many players do you wish to move? (between 1 and " + PlayerList.getInstance().getSize() + ")~");
 		int playerChoice = getIntFor("the number of players to helicopter");
-		ArrayList<Integer> playersToMove = new ArrayList<Integer>();
 		
-		for(int i = 0; i<playerChoice;i++) {
-			playersToMove.add(choosePlayerTo("helicopter",PlayerList.getInstance().getAllStringPlayers()));
+		ArrayList<Integer> playersToMove = new ArrayList<Integer>();
+		int chosenIndex;
+		for(int i = 0; i<playerChoice;i++) { 
+			chosenIndex = choosePlayerTo("helicopter", PlayerList.getInstance().getAllStringPlayers());
+			if(playersToMove.contains(chosenIndex)) { // can't helicopter the same person twice
+				System.out.println("You have already chosen this user to be moved by helicopter!");
+				System.out.println("~what do you want to do?~");
+				System.out.println("   0: Choose another player\n   1: Stop choosing players to move via helicopter\n");
+				
+				if(getIntFor("helicopter decision") == 1) {
+					return playersToMove;  // the player has decided to stop moving others by helicopter
+				}
+				else {
+					playerChoice++; // increment so the participant can choose again
+				}
+			}
+			else {
+				playersToMove.add(chosenIndex);
+			}
 		}
 		return playersToMove;
 	}
+	
+	
+	
+	
+	public int useSpecialCard(){
+		int choice = 0;
+		
+		System.out.println("~what will your next move be?~");
+		
+		System.out.println("   0: Helicopter Lift Card\n   1: Sandbag card\n");
+		choice = getChoiceWithinBoundary("your action",
+										 "no such option available",
+										 0, 1);
+		return choice;
+	}
+	
 	
 	//
 	// get integer choice from player but must be within upper and lower limts, display error message otherwise.

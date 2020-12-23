@@ -238,20 +238,50 @@ public class GameManager {
 	// facilitate a player using their special cards
 	//
 	private void useCard() {
-		int playerchoice;
+		int choice = gui.useSpecialCard();
+		ArrayList<Participant> specialParticipantList = new ArrayList<Participant>();
+		int hasCardParticipant;
+		Participant participantHasCard;
+		boolean helicopter;
 		
-		if(playerList.playerListContainsHelicopterCard() || playerList.playerListContainsSandBagCard()) {
-			gui.choosePlayerToUseCard(playerList.getAllStringPlayers());
+		if(choice == 0) { // type helicopter
+			specialParticipantList = playerList.playerListContainsHelicopterCard();
+			helicopter = true;
 		}
-		else {
+		else { // type sandbag
+			specialParticipantList = playerList.playerListContainsSandBagCard();
+			helicopter = false;
+		}
+
+		if(specialParticipantList.isEmpty()) {
 			gui.printNoSpecialCards();
 		}
+		else {
+			hasCardParticipant = gui.choosePlayerToUseCard(playerList.playerListStringify(specialParticipantList));
+			participantHasCard = playerList.getPlayer(hasCardParticipant);
+			treasureCardDeck.addToDiscardPile(participantHasCard.getHand().removeSpecialCard(helicopter));			
+			
+			if(choice == 0) {
+				helicopter();
+			}
+			else{
+				sandbag(participantHasCard);
+			}
+			
+		}
+	
 	}
+	
+	private void sandbag(Participant player) {
+		int location = gui.chooseLocationTo("shore up", board.floodedTiles(), board.getBoard());
+		board.getBoard().get(location).setTileStatus(TileStatus.UNFLOODED);;
+	}
+	
 	//
 	// facilitate moving the player
 	//
 	private void movePlayer(Participant player) {	
-		int location = chooseLocationTo("move to",player);
+		int location = choosePlayerLocationTo("move to",player);
 		player.move(location);
 	}
 	
@@ -259,7 +289,7 @@ public class GameManager {
 	// facilitate shoring up a tile
 	//
 	public void shoreUp(Participant player) {		
-		int location = chooseLocationTo("shore up", player);
+		int location = choosePlayerLocationTo("shore up", player);
 		player.shoreUp(board.getBoard().get(location));
 	}
 	
@@ -267,9 +297,11 @@ public class GameManager {
 	// facilitate movement of players to a location with helicopter card
 	//
 	private void helicopter() {
-		int location = chooseHelicopterTo("helicopter"); // obtain location to helicopter participants to
+		int location = gui.chooseLocationTo("helicopter", board.unSunkTiles(), board.getBoard()); // obtain location to helicopter participants to
 		ArrayList<Integer> playersToMove = gui.chooseHelicopterParticipants(location);
-		playerList.moveSelected(playersToMove,location);
+		for (int i : playersToMove) {
+			playerList.getPlayer(i).setLocation(location);
+		}
 	}
 	
 	//
@@ -366,7 +398,7 @@ public class GameManager {
 	//
 	// facilitate getting choice of tile from relevant tiles for purpose e.g shoreUp, move
 	//
-	private int chooseLocationTo(String action,Participant player) {
+	private int choosePlayerLocationTo(String action,Participant player) {
 		ArrayList<Integer> relevantTiles;
 		ArrayList<Tile> brd  = board.getBoard();
 		boolean shoreUp = action.equals("shore up");
@@ -375,9 +407,6 @@ public class GameManager {
 		return gui.chooseLocationTo(action,relevantTiles, brd);
 	}
 	
-	private int chooseHelicopterTo(String action) {
-		return gui.chooseHelicopterLocation(action, board.getBoard());
-	}
 	
 	public Hand handAfterRemoval(Participant player) {
 		int cardRemove;
