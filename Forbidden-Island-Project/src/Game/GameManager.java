@@ -123,7 +123,7 @@ public class GameManager {
 	//
 	// create the player characters at game startup
 	//
-	public void createPlayerList(){
+	private void createPlayerList(){
 		int playernums = 0;
 		int location;
 		String name;
