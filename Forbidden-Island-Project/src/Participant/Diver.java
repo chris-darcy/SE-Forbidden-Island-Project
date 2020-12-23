@@ -2,12 +2,10 @@ package Participant;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 
 import Board.Tile;
 import Board.TileStatus;
-import Board.TileType;
 
 public class Diver extends Participant{
 	

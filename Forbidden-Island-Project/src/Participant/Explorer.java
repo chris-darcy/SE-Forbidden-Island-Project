@@ -1,11 +1,9 @@
 package Participant;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import Board.Tile;
 import Board.TileStatus;
-import Board.TileType;
 
 public class Explorer extends Participant{
 
