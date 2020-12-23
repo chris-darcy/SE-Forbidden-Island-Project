@@ -27,7 +27,7 @@ public class PlayerList {
 	}
 	
 	public ArrayList<Participant> getPlayerList(){
-		return playerList;
+		return this.playerList;
 	}
 	
 	public ArrayList<Integer> getPlayerLocs(){
@@ -129,5 +129,9 @@ public class PlayerList {
 		for(int i : playersToMove) {
 			playerList.get(i).setLocation(location);
 		}
+	}
+	
+	 public void destroyMe(){
+		   this.uniqueInstance = null;
 	}
 }

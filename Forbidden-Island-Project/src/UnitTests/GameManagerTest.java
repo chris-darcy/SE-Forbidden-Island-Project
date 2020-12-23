@@ -39,32 +39,49 @@ public class GameManagerTest {
 	Treasures treasures;
 	WaterLevel waterlevel;
 	
-	@Before
-	public void setUp() {
-		floodCardDeck = new FloodCardDeck();
+	@Test
+	public void test() {
+		input = "2\nplayerA\ny\nplayerB\ny\n2\n";
+		in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		GUI.getInstance().setScanner(new Scanner(in));
 		GM = GameManager.getInstance();
-		board = Board.getInstance();
+		
+		GM.setupGame();
+		
 		playerlist = PlayerList.getInstance();
-		treasures = new Treasures();
-		waterlevel = WaterLevel.getInstance();
+		System.out.println(playerlist.getPlayerList().get(1).getHand().getPrintableHand());
+		assertEquals("2nd player has playernum 1",2,playerlist.getPlayerList().size());
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
 	}
 	
 	@Test
 	public void test_setupGame() {
-		//Game setup
-		input = "\n2\nplayerA\ny\nplayerB\ny\n2\n";
+		input = "2\nplayerA\ny\nplayerB\ny\n2\n";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		GUI.getInstance().setScanner(new Scanner(in));
+		GM = GameManager.getInstance();
 		GM.setupGame();
-		assertEquals("6 flooded tiles are expected after board setup",6,board.floodedTiles().size());
+		playerlist = PlayerList.getInstance();
+		waterlevel = WaterLevel.getInstance();
+		
+		
+		//assertEquals("6 flooded tiles are expected after board setup",6,board.floodedTiles().size());
 		assertEquals("2 players expected after playerlist finalisation",2,playerlist.getPlayerList().size());
 		for(Participant p: playerlist.getPlayerList()) {
+			System.out.println(p.getHand().getPrintableHand());
 			assertEquals("2 cards should be added to each hand, no watersrise",2,p.getHand().numberOfCards());
 			assertFalse("no hand should contain a waters rise card",p.getHand().handContains(new RiseWaterTreasureCard("Rise Water")));
 		}
 		assertEquals("waterlevel set to 2",2,waterlevel.getCurrentWaterLevel());
 		assertEquals("max waterlevel always set to 5",5,waterlevel.getMaxWaterLevel());
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
+		waterlevel.destroyMe();
 	}
 
 	//
@@ -73,6 +90,9 @@ public class GameManagerTest {
 	//
 	@Test
 	public void testMove() {	
+		GM = GameManager.getInstance();
+		playerlist = PlayerList.getInstance();
+		board = Board.getInstance();
 		//Game setup
 		input = "\n2\nplayerA\ny\nplayerB\ny\n2\n";
 		in = new ByteArrayInputStream(input.getBytes());
@@ -92,10 +112,17 @@ public class GameManagerTest {
 		GUI.getInstance().setScanner(new Scanner(in));
 		GM.movePlayer(playerlist.getPlayerList().get(0));
 		assertEquals("Player succesfully moved to tile 13",13 , playerlist.getPlayerList().get(0).getLocation());
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
+		board.destroyMe();
 	}
 	
 	@Test
 	public void testGiveCard() {
+		GM = GameManager.getInstance();
+		playerlist = PlayerList.getInstance();
+		board = Board.getInstance();
 		//Game setup
 		input = "\n2\nplayerA\ny\nplayerB\ny\n1\n0\n0\n";
 		in = new ByteArrayInputStream(input.getBytes());
@@ -119,10 +146,16 @@ public class GameManagerTest {
 		GM.createPlayerList();	
 		
 		assertEquals("Player B's hand is 1 card longer than before",initialSize + 1, playerlist.getPlayer(1).getHand().size());
+		playerlist.destroyMe();
+		GM.destroyMe();
+		board.destroyMe();
 	}
 	
 	@Test
 	public void testShoreUp() {
+		GM = GameManager.getInstance();
+		playerlist = PlayerList.getInstance();
+		board = Board.getInstance();
 		//Game setup
 		input = "\n2\nplayerA\ny\nplayerB\ny\n2\n";
 		in = new ByteArrayInputStream(input.getBytes());
@@ -144,10 +177,18 @@ public class GameManagerTest {
 		GM.shoreUp(playerlist.getPlayer(0));
 		
 		assertEquals("Player A has shored up tile 13",true, board.getBoard().get(13).getTileStatus()==TileStatus.UNFLOODED);
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
+		board.destroyMe();
 	}
 	
 	@Test
 	public void testCaptureTreasure() {
+		GM = GameManager.getInstance();
+		board = Board.getInstance();
+		playerlist = PlayerList.getInstance();
+		treasures = new Treasures();
 		//Game setup
 		input = "\n2\nplayerA\ny\nplayerB\ny\n2\n";
 		in = new ByteArrayInputStream(input.getBytes());
@@ -170,6 +211,10 @@ public class GameManagerTest {
 		playerlist.getPlayer(1).setLocation(oceanLocation.get(0).getLocation()); // set users location to an Ocean tile
 		
 		assertEquals("Player B has captured a treasure", 4, treasures.remaining());
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
+		board.destroyMe();
 	}
 
 	//
@@ -177,6 +222,9 @@ public class GameManagerTest {
 	//
 	@Test
 	public void testUseCard() {
+		GM = GameManager.getInstance();
+		playerlist = PlayerList.getInstance();
+		board = Board.getInstance();
 		input = "\n2\nplayerA\ny\nplayerB\ny\n1\n";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
@@ -202,26 +250,27 @@ public class GameManagerTest {
 		GM.useCard();
 		
 		assertEquals("Player A should be on tile 14", 14, playerlist.getPlayerList().get(0).getLocation());
+		
+		playerlist.destroyMe();
+		GM.destroyMe();
+		board.destroyMe();
 	}
 	
 	@Test
-	public void test() {
-		input = "\n2\nplayerA\ny\nplayerB\ny\n";
+	public void testPlayerNumber() {
+		GM = GameManager.getInstance();
+		playerlist = PlayerList.getInstance();
+		
+		input = "2\nplayerA\ny\nplayerB\ny\n1\n";
 		in = new ByteArrayInputStream(input.getBytes());
 		System.setIn(in);
 		GUI.getInstance().setScanner(new Scanner(in));
 		GM.setupGame();
 		assertEquals("1st player has playernum 0",0,playerlist.getPlayer(0).getPlayerNum());
-	}
-	
-	@After
-	public void tearDown() {
-		floodCardDeck = null;
-		GM = null;
-		board = null;
-		playerlist = null;
-		waterlevel = null;
-	}
 		
+		playerlist.destroyMe();
+		GM.destroyMe();
+	}
+
 		
 }

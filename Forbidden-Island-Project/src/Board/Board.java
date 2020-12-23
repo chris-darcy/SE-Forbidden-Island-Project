@@ -304,5 +304,9 @@ public class Board {
 	        return a.getLocation() - b.getLocation(); 
 	    } 
 	}
+	
+	 public void destroyMe(){
+		   this.uniqueInstance = null;
+	}
 
 }
