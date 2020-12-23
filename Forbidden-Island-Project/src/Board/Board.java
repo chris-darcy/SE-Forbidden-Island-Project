@@ -47,14 +47,19 @@ public class Board {
 		return uniqueInstance;
 	}
 	
+	//
+	// Create board
+	//
 	private Board() {
 		initialise();
 		createSet();
 	}
 	
+	//
+	// Initialise board
+	//
 	private void initialise() {
 
-	
 		int tilePos;
 		String line;
 		String[] attributes;
@@ -152,7 +157,9 @@ public class Board {
 		}				
 	}
 	
-	// tiles not part of actual play board
+	//
+	// indicated which tiles are not part of actual play board
+	//
 	public boolean isCorner(int tilePos) {
 		return Arrays.asList(corners).contains(tilePos);
 	}
@@ -176,6 +183,9 @@ public class Board {
 		}
 	}
 	
+	//
+	// Create treasure set
+	//
 	private void createSet() {
 		specialSets.add(windSet);
 		specialSets.add(oceanSet);
@@ -183,6 +193,9 @@ public class Board {
 		specialSets.add(earthSet);
 	}
 	
+	//
+	// Get special tiles locations such as treasure tiles and foolslanding
+	//
 	public Tile getFoolsLanding() {
 		return board.get(foolsLandingLoc);
 	}
@@ -250,6 +263,9 @@ public class Board {
 		return navigatorStartLoc;
 	}
 	
+	//
+	// Create string version of board
+	//
 	public ArrayList<String> getStringBoard(){
 		ArrayList<String> stringBoard =  new ArrayList<String>(); 
 		
@@ -259,6 +275,9 @@ public class Board {
 		return stringBoard;
 	}
 	
+	//
+	// Return unsunk tiles of board
+	//
 	public ArrayList<Integer> unSunkTiles(){
 		ArrayList<Integer> relevantTiles = new ArrayList<Integer>();
 		for(Tile tile : board) {
@@ -269,13 +288,18 @@ public class Board {
 		return relevantTiles;
 	}
 	
+	//
+	// Return flooded tiles of board
+	//
 	public ArrayList<Integer> floodedTiles(){
 		ArrayList<Integer> relevantTiles = unSunkTiles();
 		relevantTiles.removeIf(n->(board.get(n).getTileStatus() == TileStatus.UNFLOODED));
 		return relevantTiles;
 	}
 	
-	// needed to sort the board by tile location 0-->35
+	//
+	// Sort the board by tile location 0-->35
+	//
 	private class Sortbyloc implements Comparator<Tile> 
 	{ 
 	    // Used for sorting in ascending order of 
