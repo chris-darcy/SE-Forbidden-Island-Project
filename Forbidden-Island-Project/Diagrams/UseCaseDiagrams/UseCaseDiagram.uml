@@ -15,7 +15,6 @@
   </packagedElement>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_SnvbkERHEeuWpf72et1Eag" name="create PlayerList"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_ZHwL8ERHEeuWpf72et1Eag" name="initialise board"/>
-  <packagedElement xmi:type="uml:Actor" xmi:id="_B2CjgERIEeuWpf72et1Eag" name="GameManager"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_GriS0ERIEeuWpf72et1Eag"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_L3mvEERIEeuWpf72et1Eag" name="setUpGame"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_SZBNoERIEeuWpf72et1Eag"/>
@@ -62,5 +61,19 @@
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_6x0WAkRLEeuWpf72et1Eag" name="end turn/ game" type="_jaN9cERLEeuWpf72et1Eag" association="_6xzu8ERLEeuWpf72et1Eag"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_6x0WA0RLEeuWpf72et1Eag" name="draw flood cards" type="_gcJp0ERLEeuWpf72et1Eag" association="_6xzu8ERLEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_09v5cESqEeuWpf72et1Eag" memberEnd="_09yVsESqEeuWpf72et1Eag _09y8wESqEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_09xuoESqEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_09xuoUSqEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_09yVsESqEeuWpf72et1Eag" name="player" type="_65JfUERGEeuWpf72et1Eag" association="_09v5cESqEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_09y8wESqEeuWpf72et1Eag" name="setupgame" type="_95hgEERGEeuWpf72et1Eag" association="_09v5cESqEeuWpf72et1Eag"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_1sM64ESqEeuWpf72et1Eag" memberEnd="_1sM640SqEeuWpf72et1Eag _1sM65ESqEeuWpf72et1Eag">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_1sM64USqEeuWpf72et1Eag" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_1sM64kSqEeuWpf72et1Eag" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_1sM640SqEeuWpf72et1Eag" name="player" type="_65JfUERGEeuWpf72et1Eag" association="_1sM64ESqEeuWpf72et1Eag"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_1sM65ESqEeuWpf72et1Eag" name="rungame" type="_CxoegERHEeuWpf72et1Eag" association="_1sM64ESqEeuWpf72et1Eag"/>
   </packagedElement>
 </uml:Model>
