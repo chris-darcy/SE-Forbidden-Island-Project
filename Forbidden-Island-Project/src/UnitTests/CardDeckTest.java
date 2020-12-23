@@ -9,21 +9,27 @@ import Cards.*;
 import Participant.Hand;
 
 public class CardDeckTest {
+	//
 	// verify the correct number of flood tiles is included in the deck
+	//
 	@Test
 	public void treasureCardDeckTest() {
 		TreasureCardDeck treasureCardDeck = new TreasureCardDeck();
 		assertEquals("Testing TreasureCardDeck output has 28 cards", 28, treasureCardDeck.size());
-	}  
-	    
+	} 
+	
+	//  
 	// verify the correct number of flood tiles is included in the deck
+	//
 	@Test
 	public void floodCardDeckTest() {
 		FloodCardDeck floodCardDeck = new FloodCardDeck();
 		assertEquals("Testing FloodCardDeck output has 24 cards", 24, floodCardDeck.size());
 	} 
-    
+	
+	//
 	// verify card added to the discard pile
+	//
     @Test
     public void treasureCardDeckDrawTest() {
     	TreasureCardDeck testTreasureDeck = new TreasureCardDeck();
@@ -36,7 +42,9 @@ public class CardDeckTest {
     	assertEquals("Discard pile should contain the same card that was removed", true, testTreasureDeck.getDiscardPile().contains(cardRemoved));
     }
     
+    //
     // verify that when the floodcard deck is empty, it uses the discard pile to continue, thereby the discard pile is empty
+    //
     @Test
     public void emptyFloodTest() {
     	FloodCardDeck cardDeck = new FloodCardDeck();
