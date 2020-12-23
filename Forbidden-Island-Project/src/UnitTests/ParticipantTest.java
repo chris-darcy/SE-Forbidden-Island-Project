@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 import org.junit.After;
 import org.junit.Before;
@@ -36,11 +37,19 @@ public class ParticipantTest {
 		board = Board.getInstance();
 		emptyCorner = TileType.EMPTY;
 		hand = new Hand();
-		player = new Engineer("A",hand,1,0,3);// start player with empty hand at tile 0, row 0 col 0	    
+		player = new Engineer("A",hand,1,0,3);// start player with empty hand at tile 0, row 0 col 0	
+		
 	}
 	
 	@Test
 	public void retrieve_relevant_movement_tiles() {
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
+		
 		Integer[][] tl = {{    } ,{2,7}        ,{3,8}        ,{2,9}        ,{3,10}       ,{     },
   			              {7,12} ,{8,13}       ,{2,7,9,14}   ,{3,8,10,15}  ,{9,16}       ,{10,17},  
   			              {13,18},{7,12,14,19} ,{8,13,15,20} ,{9,14,16,21} ,{10,15,17,22},{16,23},
@@ -117,7 +126,78 @@ public class ParticipantTest {
 	
 	@Test
 	public void test_onSunkTile() {
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
 		
+		Stack<Integer> validationSet1 = new Stack<Integer>();
+		validationSet1.push(14);validationSet1.push(19);validationSet1.push(21);validationSet1.push(26);validationSet1.push(0);
+		
+		player.move(20);
+		board.getBoard().get(20).setTileStatus(TileStatus.SUNK);
+		
+		for(int i=0;i<5;i++) {
+			board.getBoard().get(validationSet1.pop()).setTileStatus(TileStatus.SUNK);
+			ArrayList<Integer> testSet = player.onSunkTile(board.getBoard());
+			Collections.sort(testSet);
+			assertEquals("reachable tiles diminished",validationSet1,testSet);
+		}
+		
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
+	}	
+	@Test 
+	public void test_explorer_onSunkTile() {
+		Participant explorer = new Explorer("B",hand,1,0,3);
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
+		
+		explorer.move(12);
+		board.getBoard().get(12).setTileStatus(TileStatus.SUNK);
+		ArrayList<Integer> validationSet = new ArrayList<Integer>(Arrays.asList((7),(13),(18),(19))); 
+		ArrayList<Integer> testSet = new ArrayList<Integer>();
+		testSet = explorer.onSunkTile(board.getBoard());
+		Collections.sort(testSet);
+		assertEquals("explorer get onsunk tiles should inlcude diagonals",validationSet,testSet);
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.UNFLOODED);
+			}
+		}
+	}
+		
+	@Test 
+	public void test_diver_onSunkTile() {
+		Participant diver = new Diver("B",hand,1,0,3);
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				tile.setTileStatus(TileStatus.SUNK);
+			}
+		}
+		board.getBoard().get(3).setTileStatus(TileStatus.UNFLOODED);
+		board.getBoard().get(9).setTileStatus(TileStatus.UNFLOODED);
+		ArrayList<Integer> validationSet = new ArrayList<Integer>(); 
+		validationSet.add(9);
+		ArrayList<Integer> testSet = new ArrayList<Integer>();
+		diver.move(12);
+		testSet = diver.onSunkTile(board.getBoard());
+		assertEquals("diver get onsunk tiles should inlcude shortest distance to tile",validationSet,testSet);
+		
+		
+	
 	}
 
 	@After
