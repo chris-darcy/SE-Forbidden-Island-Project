@@ -251,6 +251,41 @@ public class ParticipantTest {
 		assertEquals("1 card now expected to be in players hand",1,player.getHand().numberOfCards());
 		assertEquals("1 card now expected to be in messengers hand",1,messenger.getHand().numberOfCards());
 	}
+	
+	@Test
+	public void test_engineer_shoreUp() {
+		ArrayList<Integer> tlFlooded = new ArrayList<Integer>(Arrays.asList((12),(13),(18)));
+		ArrayList<Integer> validationSet = tlFlooded;
+		ArrayList<Integer> testSet = new ArrayList<Integer>();
+	
+		
+		Participant engineer = new Engineer("B",hand,1,0,3);
+		engineer.move(12);
+		
+		for(int i=0;i<36;i++) {
+			Tile tile = board.getBoard().get(i);
+			if(tile.getTileType() != TileType.EMPTY) {
+				if(tlFlooded.contains(i)) {
+					tile.setTileStatus(TileStatus.FLOODED);
+				}
+				else {
+					tile.setTileStatus(TileStatus.UNFLOODED);
+				}
+			}
+			else {
+				tile.setTileStatus(TileStatus.SUNK);
+			}
+		}
+		engineer.setActionsRemaining(3);
+		assertFalse("cant shoreup a tile that is not at your compass points or your location",engineer.shoreUp(board.getBoard().get(7)));
+		for(int i=0;i<3;i++) {
+			assertTrue("engineer shores up a tile with regular relevant tiles",engineer.shoreUp(board.getBoard().get(tlFlooded.get(i))));
+		}
+		assertEquals("engineer uses shoreup 3 times, they have 1 action remaining",1,engineer.getActionsRemaining());
+		//board.getBoard().get(12
+		
+		
+	}
 
 	@After
 	public void tearDown() {
