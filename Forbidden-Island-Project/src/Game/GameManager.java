@@ -123,7 +123,7 @@ public class GameManager {
 	//
 	// create the player characters at game startup
 	//
-	private void createPlayerList(){
+	public void createPlayerList(){
 		int playernums = 0;
 		int location;
 		String name;
@@ -213,7 +213,7 @@ public class GameManager {
 	//
 	// Letters represent character roles Engineer, Diver etc, shuffle and return String role list
 	//
-	private String[] shuffleRoles(){	
+	public String[] shuffleRoles(){	
 		String[] roles = {"P","M","G","E","D","N"};
 		List<String> roleList = Arrays.asList(roles);
 		Collections.shuffle(roleList);	
@@ -224,7 +224,7 @@ public class GameManager {
 	//
 	// facilitate a player giving a card from their hand
 	//
-	private void giveCard(Participant player) {
+	public void giveCard(Participant player) {
 		int cardChoice;
 		boolean success;
 		Participant receiver;
@@ -245,7 +245,7 @@ public class GameManager {
 	//
 	// facilitate a player using their special cards
 	//
-	private void useCard() {
+	public void useCard() {
 		int choice = gui.useSpecialCard();
 		ArrayList<Participant> specialParticipantList = new ArrayList<Participant>();
 		int hasCardParticipant;
@@ -280,7 +280,7 @@ public class GameManager {
 	
 	}
 	
-	private void sandbag(Participant player) {
+	public void sandbag(Participant player) {
 		int location = gui.chooseLocationTo("shore up", board.floodedTiles(), board.getBoard());
 		board.getBoard().get(location).setTileStatus(TileStatus.UNFLOODED);;
 	}
@@ -288,7 +288,7 @@ public class GameManager {
 	//
 	// facilitate moving the player
 	//
-	private void movePlayer(Participant player) {	
+	public void movePlayer(Participant player) {	
 		int location = choosePlayerLocationTo("move to",player);
 		player.move(location);
 	}
@@ -307,7 +307,7 @@ public class GameManager {
 	//
 	// facilitate movement of players to a location with helicopter card
 	//
-	private void helicopter() {
+	public void helicopter() {
 		int location = gui.chooseLocationTo("helicopter", board.unSunkTiles(), board.getBoard()); // obtain location to helicopter participants to
 		ArrayList<Integer> playersToMove = gui.chooseHelicopterParticipants(location);
 		for (int i : playersToMove) {
@@ -318,7 +318,7 @@ public class GameManager {
 	//
 	// facilitate the player capturing a treasure
 	//
-	private void captureTreasure(Participant player) {
+	public void captureTreasure(Participant player) {
 		boolean success = player.canCaptureTreasure(board.getBoard());
 		TileType type;
 		String treasure="";
@@ -339,7 +339,7 @@ public class GameManager {
 	//
 	// randomly flood the first 6 tiles to initialise the board
 	//
-	private void floodFirstSixTiles() {
+	public void floodFirstSixTiles() {
 		for(int i=0; i<6; i++) {
 			floodCardDeck.draw();
 		}
@@ -348,7 +348,7 @@ public class GameManager {
 	//
 	// facilitate a player drawing 2 Treasure Deck cards
 	//
-	private void drawFromTreasureDeck(Participant player) {
+	public void drawFromTreasureDeck(Participant player) {
 		Card card;
 		if(!gameOver) {   // ensure that cards are not drawn after end of game
 			for(int i=0;i<2;i++) {
@@ -371,7 +371,7 @@ public class GameManager {
 	//
 	// draw appropriate flood cards
 	//
-	private void drawFloodCards() {
+	public void drawFloodCards() {
 		int level = waterLevel.getCurrentWaterLevel();
 		if(!gameOver) {   // ensure that cards are not drawn after end of game
 			for(int i=0; i<level;i++) {
@@ -383,7 +383,7 @@ public class GameManager {
 	//
 	// hand 2 card out to each player at the beginning of the game
 	//
-	private void handOutCards() {		
+	public void handOutCards() {		
 		Card card;
 		Participant player;
 		
@@ -409,7 +409,7 @@ public class GameManager {
 	//
 	// facilitate getting choice of tile from relevant tiles for purpose e.g shoreUp, move
 	//
-	private int choosePlayerLocationTo(String action,Participant player) {
+	public int choosePlayerLocationTo(String action,Participant player) {
 		ArrayList<Integer> relevantTiles;
 		ArrayList<Tile> brd  = board.getBoard();
 		boolean shoreUp = action.equals("shore up");
