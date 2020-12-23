@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import Board.Tile;
-import Board.TileStatus;
-import Board.TileType;
 
 public class GUI {	
 	private Scanner input;

@@ -23,7 +23,6 @@ public class GameManager {
 	private PlayerList playerList;
 	private Treasures treasures;
 	private boolean gameOver;
-	private Hand hand;
 	
 	GameManager() {
 		gameOver = false;

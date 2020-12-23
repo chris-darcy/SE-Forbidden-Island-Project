@@ -3,9 +3,7 @@ package Participant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-//import java.util.Scanner;
 import Cards.*;
-import Game.GameManager;
 
 public class Hand {
 	protected List<Card> hand = new ArrayList<Card>(); 

@@ -1,11 +1,7 @@
 package UnitTests;
 
 import static org.junit.Assert.*;
-
-import java.util.Stack;
-
 import org.junit.*;
-
 import Board.Board;
 import Board.Tile;
 import Board.TileStatus;

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import Observers.Subject;
-import Observers.WinningObserver;
 
 public class Treasures extends Subject{
 	private Map<TileType,String> treasures;
