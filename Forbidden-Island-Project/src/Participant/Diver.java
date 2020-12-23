@@ -41,11 +41,12 @@ public class Diver extends Participant{
 		ArrayList<Double> shortestDistance = new ArrayList<Double>();
 		int xd = this.getLocation()%6;
 		int yd = this.getLocation()/6;
+		
 		for (Tile tile : board) {
 			if(tile.getTileStatus() != TileStatus.SUNK) {
 				int xt = tile.getLocation()%6;
 				int yt = tile.getLocation()/6;
-				shortestDistance.add(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt))); // calculate distance
+				shortestDistance.add(Math.ceil(Math.sqrt((xd - xt) * (xd - xt) + (yd - yt) * (yd - yt)))); // calculate distance
 			}
 		}
 		LinkedHashSet<Double> hashSet = new LinkedHashSet<Double>(shortestDistance);    // remove if there are any duplicate locations
