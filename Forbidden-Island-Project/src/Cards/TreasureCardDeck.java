@@ -102,12 +102,5 @@ public class TreasureCardDeck {
 	public Stack<Card> getDiscardPile(){
 		return treasureDiscardPile;
 	}
-	
-	//
-	// return pop function for testing treasure card deck
-	//
-	public Card pop() {
-		return cardDeck.pop();
-	}
 
 }
