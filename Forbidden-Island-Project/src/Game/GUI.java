@@ -524,6 +524,10 @@ public class GUI {
 		System.out.println(name +",your party have no treasure cards to give");
 	}
 	
+	public void printEngineerShoreUoReminder() {
+		System.out.println("Remember as the Engineer, shoring up 2 tiles will cost 1 action !");
+	}
+	
 	private int chooseCardTo(String action, String player) {
 		String[] cardsToDisplay;
 		int choice = 0;
