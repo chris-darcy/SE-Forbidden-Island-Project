@@ -22,13 +22,21 @@ public class GUI {
 	private String[][] boardSlices = new String[6][8];
 	private String[] waterlevelBar = new String[3];
 	private String[] treasureBag = new String[8];
+	private static GUI uniqueInstance = null;
 	
-	public GUI() {
+	private GUI() {
 		input = new Scanner(System.in);
 		proceed = true;
 		valid = false;
 		initTileDict();
 		initHeaderStrings();
+	}
+	
+	public static GUI getInstance() {
+		if(uniqueInstance == null) {
+			uniqueInstance = new GUI();
+		}
+		return uniqueInstance;
 	}
 	
 	//
@@ -702,6 +710,10 @@ public class GUI {
 				
 		public String type() {return this.type;}
 		
+	}
+	
+	public void setScanner(Scanner scan) {
+		input = scan;
 	}
 	
 	public void gameWon() {
