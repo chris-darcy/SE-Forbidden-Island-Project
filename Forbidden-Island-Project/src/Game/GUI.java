@@ -492,7 +492,7 @@ public class GUI {
 	
 	public void printSpecialTileSunk(String sunkTile) {
 		TilePrint tl = new TilePrint(sunkTile);
-		printWarning(tl.name() + ", A CRITICAL "+tl.type()+" TILE HAS SUNK. ONE REMAINS...");
+		printWarning(tl.name() + ", A CRITICAL "+tl.type()+" TILE HAS SUNK.");
 	}
 	
 	public void printWatersRise() {
@@ -554,7 +554,7 @@ public class GUI {
 		String pass;
 		String fail;
 		if(action.equals("capture")){
-			pass = "   congratulations "+player+ ", you captured the"+item+"!";
+			pass = "   congratulations "+player+ ", you captured "+item+"!";
 			fail = "   "+player+", you must have all 4 treasure clues and be on its treasure tile to capture a treasure!";
 		}
 		else{
